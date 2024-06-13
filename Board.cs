@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
 
 namespace Coursework_UI
 {
@@ -34,10 +35,10 @@ namespace Coursework_UI
             return Win;
         }
 
-        public int[,] b
+
+        public void PlaceCounter(int Column)
         {
-            get { return GameBoard; }
-            set { GameBoard = value; }
+
         }
 
 

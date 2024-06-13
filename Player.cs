@@ -14,5 +14,6 @@ namespace Coursework_UI
 
         public abstract void NewPlayer(string Name, string Colour);
         public abstract void PlaceCounter();
+
     }
 }

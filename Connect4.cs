@@ -9,8 +9,7 @@ namespace Coursework_UI
     internal class Connect4
     {
         private Board b;
-        private Player P1;
-        private Player P2;
+
 
         public Connect4()
         {
@@ -26,6 +25,11 @@ namespace Coursework_UI
         public void StartGame()
         {
             b.CreateBoard(7,6);
+        }
+
+        public void PlaceCounter(int Column)
+        {
+            b.PlaceCounter(Column);
         }
     }
 }

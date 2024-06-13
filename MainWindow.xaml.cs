@@ -27,11 +27,12 @@ namespace Coursework_UI
         {
             InitializeComponent(); 
             Game = new Connect4();
+            DataContext = Game;
         }
 
         private void Column1_Click(object sender, RoutedEventArgs e)
         {
-            R1C1.Fill = Brushes.Yellow;
+            Game.PlaceCounter(1);
         }
     }
 }
