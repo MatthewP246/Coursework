@@ -11,7 +11,7 @@ namespace Coursework_UI
 {
     internal class Board 
     {
-        private int[,] GameBoard;
+        private int[,] Locations;
         public event PropertyChangedEventHandler PropertyChanged;
 
         public Board()
@@ -21,7 +21,7 @@ namespace Coursework_UI
 
         public void CreateBoard(int Width, int Height)
         {
-            GameBoard = new int[7,6];
+            Locations = new int[7,6];
         }
 
 
@@ -35,10 +35,24 @@ namespace Coursework_UI
             return Win;
         }
 
+        public int[,] location
+        {
+            get { return Locations; }
+            set { Locations = value; OnPropertyChanged("b"); }
+        }
+        protected void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+
+
+        }
 
         public void PlaceCounter(int Column)
         {
-
+            location[0, 0] = 1;
         }
 
 

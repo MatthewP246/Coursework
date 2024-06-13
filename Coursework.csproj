@@ -75,6 +75,7 @@
       <DependentUpon>Grid.xaml</DependentUpon>
     </Compile>
     <Compile Include="Human.cs" />
+    <Compile Include="IntegerToStringConverter.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

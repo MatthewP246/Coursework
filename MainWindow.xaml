@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="640" Width="720">
     <Window.Resources>
-        <Style TargetType="{x:Type Ellipse}"/>
+        <local:IntegerToStringConverter x:Key="CCConverter" />
     </Window.Resources>
     <Grid>
         <Grid>
