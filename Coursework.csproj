@@ -55,10 +55,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="BoardWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Grid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -73,9 +69,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Board.cs" />
-    <Compile Include="BoardWindow.xaml.cs">
-      <DependentUpon>BoardWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Connect4.cs" />
     <Compile Include="Cons.cs" />
     <Compile Include="Grid.xaml.cs">

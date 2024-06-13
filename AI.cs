@@ -13,7 +13,11 @@ namespace Coursework_UI
         
         public override void NewPlayer(string Name, string Colour)
         {
-            Player.Name = Name;
+            
+        }
+        public override void PlaceCounter()
+        {
+            
         }
     }
 }

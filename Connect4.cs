@@ -16,8 +16,13 @@ namespace Coursework_UI
         {
             b = new Board();
         }
-        
-        
+        public Board board
+        {
+            get { return b; }
+            set { b = value; }
+        }
+
+
         public void StartGame()
         {
             b.CreateBoard(7,6);

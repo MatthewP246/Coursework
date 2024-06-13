@@ -34,9 +34,13 @@
             </Grid.RowDefinitions>
 
 
-            <Button Name="Start" Grid.Column="1" Grid.Row="1"  Click="Start" Background="{x:Null}" BorderBrush="Blue">
-                <Ellipse Grid.Column="1" Grid.Row="1" Width="50" Height="50" Fill="GreenYellow"></Ellipse>
+            <Button Name="Column1" Click="Column1_Click" Grid.Column="1" Grid.Row="1" Background="{x:Null}" BorderBrush="{x:Null}">
+                <Ellipse Width="40" Height="40" Fill="GreenYellow"></Ellipse>
             </Button>
+
+            <Ellipse Name="R1C1" Grid.Column="1" Grid.Row="6" Width="75" Height="75"/>
+
+
 
         </Grid>
     </Grid>

@@ -16,5 +16,8 @@ namespace Coursework_UI
         {
 
         }
+        public override void PlaceCounter()
+        {
+        }
     }
 }
