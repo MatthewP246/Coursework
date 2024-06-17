@@ -23,10 +23,8 @@ namespace Coursework_UI
             get { return Locations; }
         }
 
-        public void CreateBoard(int Width, int Height)
-        {
+        //public void CreateBoard(int Width, int Height)
 
-        }
 
 
         public bool CheckWin()
