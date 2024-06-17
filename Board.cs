@@ -6,22 +6,26 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
+using System.Xaml.Schema;
 
 namespace Coursework_UI
 {
     internal class Board 
     {
-        private int[,] Locations;
-        public event PropertyChangedEventHandler PropertyChanged;
+        private Counter[,] Locations = new Counter[7, 6];
 
         public Board()
         {
-
+            Locations[0, 0] = new Counter("0");
+        }
+        public Counter[,] locations
+        {
+            get { return Locations; }
         }
 
         public void CreateBoard(int Width, int Height)
         {
-            Locations = new int[7,6];
+
         }
 
 
@@ -35,24 +39,15 @@ namespace Coursework_UI
             return Win;
         }
 
-        public int[,] location
+
+
+        public void PlaceCounter(int C, int R, string v)
         {
-            get { return Locations; }
-            set { Locations = value; OnPropertyChanged("b"); }
-        }
-        protected void OnPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
+            if (Locations[C, R].Number == null)
             {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+                Locations[C, R] = new Counter(v);
             }
-
-
-        }
-
-        public void PlaceCounter(int Column)
-        {
-            location[0, 0] = 1;
+            else Locations[C, R].Number = v;
         }
 
 

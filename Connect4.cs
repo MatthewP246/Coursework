@@ -18,7 +18,6 @@ namespace Coursework_UI
         public Board board
         {
             get { return b; }
-            set { b = value; }
         }
 
 
@@ -27,9 +26,9 @@ namespace Coursework_UI
             b.CreateBoard(7,6);
         }
 
-        public void PlaceCounter(int Column)
+        public void PlaceCounter(int C, int R, string v)
         {
-            b.PlaceCounter(Column);
+            b.PlaceCounter(C,R,v);
         }
     }
 }

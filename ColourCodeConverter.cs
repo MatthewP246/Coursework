@@ -8,15 +8,17 @@ using System.Windows.Data;
 
 namespace Coursework_UI
 {
-    class IntegerToStringConverter : IValueConverter
+    class ColourCodeConverter : IValueConverter
     {
-        // converts the data in your model to a form that can be subtituted into the relevant property in
-        // your xaml
+
         public object Convert(object value, Type targetType, object paramater, CultureInfo culture)
         {
             string v;
-            v = "" + value;
-
+            if ((string)value == "0")
+            {
+                v = "red";
+            }
+            else v = "Yellow";
             return v;
         }
 
@@ -24,6 +26,5 @@ namespace Coursework_UI
         {
             throw new NotImplementedException();
         }
-
     }
 }

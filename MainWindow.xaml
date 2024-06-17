@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="640" Width="720">
     <Window.Resources>
-        <local:IntegerToStringConverter x:Key="CCConverter" />
+        <local:ColourCodeConverter x:Key="CCConverter" />
     </Window.Resources>
     <Grid>
         <Grid>
@@ -35,13 +35,9 @@
 
 
             <Button Name="Column1" Click="Column1_Click" Grid.Column="1" Grid.Row="0" Background="{x:Null}" BorderBrush="{x:Null}">
-                <Ellipse Width="40" Height="40" Fill="GreenYellow"></Ellipse>
+                <Ellipse Width="40" Height="40" Fill="{Binding Game.board.locations[0,0].Number, Converter={StaticResource CCConverter}}"></Ellipse>
             </Button>
             <TextBox Text="Place Counter" Grid.Column="1" Grid.Row="0" Background="{x:Null}" BorderBrush="{x:Null}" ></TextBox>
-
-
-
-            <TextBox Name="R0C0" Grid.Column="1" Grid.Row="7" Width="75" Height="75" Text="{Binding board.location, Converter={StaticResource CCConverter}}"></TextBox>
 
 
 

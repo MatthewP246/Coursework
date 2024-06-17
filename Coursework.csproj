@@ -69,13 +69,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Board.cs" />
+    <Compile Include="ColourCodeConverter.cs" />
     <Compile Include="Connect4.cs" />
     <Compile Include="Cons.cs" />
+    <Compile Include="Counter.cs" />
     <Compile Include="Grid.xaml.cs">
       <DependentUpon>Grid.xaml</DependentUpon>
     </Compile>
     <Compile Include="Human.cs" />
-    <Compile Include="IntegerToStringConverter.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
