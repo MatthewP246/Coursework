@@ -12,13 +12,13 @@ namespace Coursework_UI
 {
     internal class Board 
     {
-        private Counter[,] Locations = new Counter[7, 6];
+        private Counter[] Locations = new Counter[42];
 
         public Board()
         {
-            Locations[0, 0] = new Counter("0");
+            Locations[0] = new Counter("0");
         }
-        public Counter[,] locations
+        public Counter[] locations
         {
             get { return Locations; }
         }
@@ -41,11 +41,12 @@ namespace Coursework_UI
 
         public void PlaceCounter(int C, int R, string v)
         {
-            if (Locations[C, R].Number == null)
+            int pos = C * 7 + R;
+            if (Locations[pos].Number == null)
             {
-                Locations[C, R] = new Counter(v);
+                Locations[pos] = new Counter(v);
             }
-            else Locations[C, R].Number = v;
+            else Locations[pos].Number = v;
         }
 
 

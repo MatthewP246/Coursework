@@ -16,7 +16,7 @@ namespace Coursework_UI
             string v;
             if ((string)value == "0")
             {
-                v = "red";
+                v = "Red";
             }
             else v = "Yellow";
             return v;
