@@ -37,9 +37,29 @@
             <Button Name="Column1" Click="Column1_Click" Grid.Column="1" Grid.Row="0" Background="{x:Null}" BorderBrush="{x:Null}">
                 <Ellipse Width="40" Height="40" Fill="GreenYellow"></Ellipse>
             </Button>
-            
+            <Button Name="Column2" Click="Column2_Click" Grid.Column="2" Grid.Row="0" Background="{x:Null}" BorderBrush="{x:Null}">
+                <Ellipse Width="40" Height="40" Fill="GreenYellow"></Ellipse>
+            </Button>
+            <Button Name="Column3" Click="Column3_Click" Grid.Column="3" Grid.Row="0" Background="{x:Null}" BorderBrush="{x:Null}">
+                <Ellipse Width="40" Height="40" Fill="GreenYellow"></Ellipse>
+            </Button>
+            <Button Name="Column4" Click="Column4_Click" Grid.Column="4" Grid.Row="0" Background="{x:Null}" BorderBrush="{x:Null}">
+                <Ellipse Width="40" Height="40" Fill="GreenYellow"></Ellipse>
+            </Button>
+            <Button Name="Column5" Click="Column5_Click" Grid.Column="5" Grid.Row="0" Background="{x:Null}" BorderBrush="{x:Null}">
+                <Ellipse Width="40" Height="40" Fill="GreenYellow"></Ellipse>
+            </Button>
+            <Button Name="Column6" Click="Column6_Click" Grid.Column="6" Grid.Row="0" Background="{x:Null}" BorderBrush="{x:Null}">
+                <Ellipse Width="40" Height="40" Fill="GreenYellow"></Ellipse>
+            </Button>
+            <Button Name="Column7" Click="Column7_Click" Grid.Column="7" Grid.Row="0" Background="{x:Null}" BorderBrush="{x:Null}">
+                <Ellipse Width="40" Height="40" Fill="GreenYellow"></Ellipse>
+            </Button>
 
-            <Ellipse Name="R0C0" Grid.Column="1" Grid.Row="8" Fill="{Binding Game.board.locations[0].Number, Converter={StaticResource CCConverter}}"></Ellipse>
+
+
+            <Ellipse Name="R0C0" Grid.Column="1" Grid.Row="7" Width="75" Height="75" Fill="{Binding Game.board.l[0].Number, Converter={StaticResource CCConverter}}"></Ellipse>
+            <TextBlock Name="TextBox" Text="{Binding Game.board.l[0].Number, Converter={StaticResource CCConverter}}"></TextBlock>
 
 
 

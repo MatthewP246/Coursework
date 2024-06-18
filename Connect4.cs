@@ -26,9 +26,9 @@ namespace Coursework_UI
            // b.CreateBoard(7,6);
         //}
 
-        public void PlaceCounter(int C, int R, string v)
+        public void PlaceCounter(int C, string v)
         {
-            b.PlaceCounter(C,R,v);
+            b.PlaceCounter(C,v);
         }
     }
 }
