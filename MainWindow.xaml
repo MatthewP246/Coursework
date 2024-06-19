@@ -58,8 +58,8 @@
 
 
 
-            <Ellipse Name="R0C0" Grid.Column="1" Grid.Row="7" Width="75" Height="75" Fill="{Binding Game.board.l[0].Number, Converter={StaticResource CCConverter}}"></Ellipse>
-            <TextBlock Name="TextBox" Text="{Binding Game.board.l[0].Number, Converter={StaticResource CCConverter}}"></TextBlock>
+            <Ellipse Name="R0C0" Grid.Column="1" Grid.Row="7" Width="75" Height="75" Fill="{Binding board.l[0].Number, Converter={StaticResource CCConverter}}"></Ellipse>
+            <TextBlock Name="TextBox" Text="{Binding board.l[0].Number, Converter={StaticResource CCConverter}}"></TextBlock>
 
 
 

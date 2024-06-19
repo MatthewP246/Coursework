@@ -17,7 +17,6 @@ namespace Coursework_UI
         public Board()
         {
             Locations = new Counter[42];
-            Locations[0] = new Counter("0");
         }
         public Counter[] l
         {
@@ -42,13 +41,24 @@ namespace Coursework_UI
 
         public void PlaceCounter(int C, string v)
         {
-            for (int pos = C * 7; pos < C *7+7; pos++)
+            int pos = (C * 7)+6;
+
+            RecursiveCounter(pos,v, C*7);
+        }
+
+        private void RecursiveCounter(int x,string v,int lim)
+        {
+            if (x >= lim)
             {
-                if (Locations[pos] == null)
+                if (Locations[x] == null)
                 {
-                    Locations[pos] = new Counter(v);
+                    RecursiveCounter(x - 1, v, lim);
+                    Locations[x] = new Counter(v);
                 }
-                else Locations[pos].Number = v;
+            }
+            else
+            {
+
             }
         }
 
