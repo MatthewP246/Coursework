@@ -41,26 +41,21 @@ namespace Coursework_UI
 
         public void PlaceCounter(int C, string v)
         {
-            int pos = (C * 7)+6;
-
-            RecursiveCounter(pos,v, C*7);
-        }
-
-        private void RecursiveCounter(int x,string v,int lim)
-        {
-            if (x >= lim)
-            {
-                if (Locations[x] == null)
+            int pos = C * 7;
+            while (pos < C * 7 + 7)
+                if (Locations[pos] == null)
                 {
-                    RecursiveCounter(x - 1, v, lim);
-                    Locations[x] = new Counter(v);
+                    Locations[pos] = new Counter(v);
+                    break;
                 }
-            }
-            else
-            {
+                else
+                {
+                    pos++;
+                }
 
-            }
         }
+
+
 
 
     }

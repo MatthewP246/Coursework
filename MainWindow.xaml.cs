@@ -32,7 +32,7 @@ namespace Coursework_UI
 
         private void Column1_Click(object sender, RoutedEventArgs e)
         {
-            Game.PlaceCounter(0,"0");
+            Game.PlaceCounter(0, "0");
         }
 
         private void Column2_Click(object sender, RoutedEventArgs e)
