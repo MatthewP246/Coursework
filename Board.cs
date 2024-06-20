@@ -17,13 +17,21 @@ namespace Coursework_UI
         public Board()
         {
             Locations = new Counter[42];
+            for (int x = 0; x < Locations.Length; x++)
+            {
+                Locations[x] = new Counter("0");
+            }
+
         }
         public Counter[] l
         {
             get { return Locations; }
         }
 
-        //public void CreateBoard(int Width, int Height)
+        public void CreateBoard()
+        {
+
+        }
 
 
 
@@ -41,11 +49,11 @@ namespace Coursework_UI
 
         public void PlaceCounter(int C, string v)
         {
-            int pos = C * 7;
-            while (pos < C * 7 + 7)
-                if (Locations[pos] == null)
+            int pos = C * 6;
+            while (pos < C*6 + 6)
+                if (Locations[pos].Number == "0")
                 {
-                    Locations[pos] = new Counter(v);
+                    Locations[pos].Number = v;
                     break;
                 }
                 else
