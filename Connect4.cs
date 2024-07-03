@@ -23,7 +23,7 @@ namespace Coursework_UI
 
         //public void StartGame()
         //{
-           // b.CreateBoard(7,6);
+           // b.CreateBoard();
         //}
 
         public void PlaceCounter(int C, string v)
