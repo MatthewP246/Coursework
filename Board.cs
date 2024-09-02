@@ -74,5 +74,19 @@ namespace Coursework_UI
         }
 
 
+
+        public bool CheckWin(int l)
+        {
+            bool win = false;
+
+
+
+
+
+           return win;
+
+        }
+
+
     }
 }
