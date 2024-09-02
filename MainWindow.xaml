@@ -74,69 +74,143 @@
 
             
             <Border Grid.Column="1" Grid.Row="7" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Grid.Column="1" Grid.Row="7" Width="75" Height="75" Fill="{Binding board.l[0].Number, Converter={StaticResource CCConverter}}"></Ellipse>
+                <Ellipse Width="75" Height="75" Fill="{Binding board.l[0].Number, Converter={StaticResource CCConverter}}"></Ellipse>
             </Border>
             <Border Grid.Column="1" Grid.Row="6" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Grid.Column="1" Grid.Row="6" Width="75" Height="75" Fill="{Binding board.l[1].Number, Converter={StaticResource CCConverter}}"></Ellipse>
+                <Ellipse Width="75" Height="75" Fill="{Binding board.l[1].Number, Converter={StaticResource CCConverter}}"></Ellipse>
             </Border>
             <Border Grid.Column="1" Grid.Row="5" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Grid.Column="1" Grid.Row="5" Width="75" Height="75" Fill="{Binding board.l[2].Number, Converter={StaticResource CCConverter}}"></Ellipse>
+                <Ellipse Width="75" Height="75" Fill="{Binding board.l[2].Number, Converter={StaticResource CCConverter}}"></Ellipse>
             </Border>
             <Border Grid.Column="1" Grid.Row="4" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Grid.Column="1" Grid.Row="4" Width="75" Height="75" Fill="{Binding board.l[3].Number, Converter={StaticResource CCConverter}}"></Ellipse>
+                <Ellipse Width="75" Height="75" Fill="{Binding board.l[3].Number, Converter={StaticResource CCConverter}}"></Ellipse>
             </Border>
             <Border Grid.Column="1" Grid.Row="3" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Grid.Column="1" Grid.Row="3" Width="75" Height="75" Fill="{Binding board.l[4].Number, Converter={StaticResource CCConverter}}"></Ellipse>
+                <Ellipse Width="75" Height="75" Fill="{Binding board.l[4].Number, Converter={StaticResource CCConverter}}"></Ellipse>
             </Border>
             <Border Grid.Column="1" Grid.Row="2" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Grid.Column="1" Grid.Row="2" Width="75" Height="75" Fill="{Binding board.l[5].Number, Converter={StaticResource CCConverter}}"></Ellipse>
+                <Ellipse Width="75" Height="75" Fill="{Binding board.l[5].Number, Converter={StaticResource CCConverter}}"></Ellipse>
             </Border>
 
-            <Ellipse Grid.Column="2" Grid.Row="7" Width="75" Height="75" Fill="{Binding board.l[6].Number, Converter={StaticResource CCConverter}}"></Ellipse>
-            <Ellipse Grid.Column="2" Grid.Row="6" Width="75" Height="75" Fill="{Binding board.l[7].Number, Converter={StaticResource CCConverter}}"></Ellipse>
-            <Ellipse Grid.Column="2" Grid.Row="5" Width="75" Height="75" Fill="{Binding board.l[8].Number, Converter={StaticResource CCConverter}}"></Ellipse>
-            <Ellipse Grid.Column="2" Grid.Row="4" Width="75" Height="75" Fill="{Binding board.l[9].Number, Converter={StaticResource CCConverter}}"></Ellipse>
-            <Ellipse Grid.Column="2" Grid.Row="3" Width="75" Height="75" Fill="{Binding board.l[10].Number, Converter={StaticResource CCConverter}}"></Ellipse>
-            <Ellipse Grid.Column="2" Grid.Row="2" Width="75" Height="75" Fill="{Binding board.l[11].Number, Converter={StaticResource CCConverter}}"></Ellipse>
+            <Border Grid.Column="2" Grid.Row="7" BorderBrush="Blue" BorderThickness="1">
+                <Ellipse Grid.Column="2" Grid.Row="7" Width="75" Height="75" Fill="{Binding board.l[6].Number, Converter={StaticResource CCConverter}}"></Ellipse>
+            </Border>
+            <Border Grid.Column="2" Grid.Row="6" BorderBrush="Blue" BorderThickness="1">
+                <Ellipse Grid.Column="2" Grid.Row="6" Width="75" Height="75" Fill="{Binding board.l[7].Number, Converter={StaticResource CCConverter}}"></Ellipse>
+            </Border>
+            <Border Grid.Column="2" Grid.Row="5" BorderBrush="Blue" BorderThickness="1">
+                <Ellipse Grid.Column="2" Grid.Row="5" Width="75" Height="75" Fill="{Binding board.l[8].Number, Converter={StaticResource CCConverter}}"></Ellipse>
+            </Border>
+            <Border Grid.Column="2" Grid.Row="4" BorderBrush="Blue" BorderThickness="1">
+                <Ellipse Grid.Column="2" Grid.Row="4" Width="75" Height="75" Fill="{Binding board.l[9].Number, Converter={StaticResource CCConverter}}"></Ellipse>
+            </Border>
+            <Border Grid.Column="2" Grid.Row="3" BorderBrush="Blue" BorderThickness="1">
+                <Ellipse Grid.Column="2" Grid.Row="3" Width="75" Height="75" Fill="{Binding board.l[10].Number, Converter={StaticResource CCConverter}}"></Ellipse>
+            </Border>
+            <Border Grid.Column="2" Grid.Row="2" BorderBrush="Blue" BorderThickness="1">
+                <Ellipse Grid.Column="2" Grid.Row="2" Width="75" Height="75" Fill="{Binding board.l[11].Number, Converter={StaticResource CCConverter}}"></Ellipse>
+            </Border>
 
 
-            <Ellipse Grid.Column="3" Grid.Row="7" Width="75" Height="75" Fill="{Binding board.l[12].Number, Converter={StaticResource CCConverter}}"></Ellipse>
-            <Ellipse Grid.Column="3" Grid.Row="6" Width="75" Height="75" Fill="{Binding board.l[13].Number, Converter={StaticResource CCConverter}}"></Ellipse>
-            <Ellipse Grid.Column="3" Grid.Row="5" Width="75" Height="75" Fill="{Binding board.l[14].Number, Converter={StaticResource CCConverter}}"></Ellipse>
-            <Ellipse Grid.Column="3" Grid.Row="4" Width="75" Height="75" Fill="{Binding board.l[15].Number, Converter={StaticResource CCConverter}}"></Ellipse>
-            <Ellipse Grid.Column="3" Grid.Row="3" Width="75" Height="75" Fill="{Binding board.l[16].Number, Converter={StaticResource CCConverter}}"></Ellipse>
-            <Ellipse Grid.Column="3" Grid.Row="2" Width="75" Height="75" Fill="{Binding board.l[17].Number, Converter={StaticResource CCConverter}}"></Ellipse>
+            <Border Grid.Column="3" Grid.Row="7" BorderBrush="Blue" BorderThickness="1">
+                <Ellipse Grid.Column="3" Grid.Row="7" Width="75" Height="75" Fill="{Binding board.l[12].Number, Converter={StaticResource CCConverter}}"></Ellipse>
+            </Border>
+            <Border Grid.Column="3" Grid.Row="6" BorderBrush="Blue" BorderThickness="1">
+                <Ellipse Grid.Column="3" Grid.Row="6" Width="75" Height="75" Fill="{Binding board.l[13].Number, Converter={StaticResource CCConverter}}"></Ellipse>
+            </Border>
+            <Border Grid.Column="3" Grid.Row="5" BorderBrush="Blue" BorderThickness="1">
+                <Ellipse Grid.Column="3" Grid.Row="5" Width="75" Height="75" Fill="{Binding board.l[14].Number, Converter={StaticResource CCConverter}}"></Ellipse>
+            </Border>
+            <Border Grid.Column="3" Grid.Row="4" BorderBrush="Blue" BorderThickness="1">
+                <Ellipse Grid.Column="3" Grid.Row="4" Width="75" Height="75" Fill="{Binding board.l[15].Number, Converter={StaticResource CCConverter}}"></Ellipse>
+            </Border>
+            <Border Grid.Column="3" Grid.Row="3" BorderBrush="Blue" BorderThickness="1">
+                <Ellipse Grid.Column="3" Grid.Row="3" Width="75" Height="75" Fill="{Binding board.l[16].Number, Converter={StaticResource CCConverter}}"></Ellipse>
+            </Border>
+            <Border Grid.Column="3" Grid.Row="2" BorderBrush="Blue" BorderThickness="1">
+                <Ellipse Grid.Column="3" Grid.Row="2" Width="75" Height="75" Fill="{Binding board.l[17].Number, Converter={StaticResource CCConverter}}"></Ellipse>
+            </Border>
 
-
+            <Border Grid.Column="4" Grid.Row="7" BorderBrush="Blue" BorderThickness="1">
             <Ellipse Grid.Column="4" Grid.Row="7" Width="75" Height="75" Fill="{Binding board.l[18].Number, Converter={StaticResource CCConverter}}"></Ellipse>
+            </Border>
+            <Border Grid.Column="4" Grid.Row="6" BorderBrush="Blue" BorderThickness="1">
             <Ellipse Grid.Column="4" Grid.Row="6" Width="75" Height="75" Fill="{Binding board.l[19].Number, Converter={StaticResource CCConverter}}"></Ellipse>
+            </Border>
+            <Border Grid.Column="4" Grid.Row="5" BorderBrush="Blue" BorderThickness="1">
             <Ellipse Grid.Column="4" Grid.Row="5" Width="75" Height="75" Fill="{Binding board.l[20].Number, Converter={StaticResource CCConverter}}"></Ellipse>
+            </Border>
+            <Border Grid.Column="4" Grid.Row="4" BorderBrush="Blue" BorderThickness="1">
             <Ellipse Grid.Column="4" Grid.Row="4" Width="75" Height="75" Fill="{Binding board.l[21].Number, Converter={StaticResource CCConverter}}"></Ellipse>
+            </Border>
+            <Border Grid.Column="4" Grid.Row="3" BorderBrush="Blue" BorderThickness="1">
             <Ellipse Grid.Column="4" Grid.Row="3" Width="75" Height="75" Fill="{Binding board.l[22].Number, Converter={StaticResource CCConverter}}"></Ellipse>
+            </Border>
+            <Border Grid.Column="4" Grid.Row="2" BorderBrush="Blue" BorderThickness="1">
             <Ellipse Grid.Column="4" Grid.Row="2" Width="75" Height="75" Fill="{Binding board.l[23].Number, Converter={StaticResource CCConverter}}"></Ellipse>
+            </Border>
 
+            <Border Grid.Column="5" Grid.Row="7" BorderBrush="Blue" BorderThickness="1">
             <Ellipse Grid.Column="5" Grid.Row="7" Width="75" Height="75" Fill="{Binding board.l[24].Number, Converter={StaticResource CCConverter}}"></Ellipse>
+            </Border>
+            <Border Grid.Column="5" Grid.Row="6" BorderBrush="Blue" BorderThickness="1">
             <Ellipse Grid.Column="5" Grid.Row="6" Width="75" Height="75" Fill="{Binding board.l[25].Number, Converter={StaticResource CCConverter}}"></Ellipse>
+            </Border>
+            <Border Grid.Column="5" Grid.Row="5" BorderBrush="Blue" BorderThickness="1">
             <Ellipse Grid.Column="5" Grid.Row="5" Width="75" Height="75" Fill="{Binding board.l[26].Number, Converter={StaticResource CCConverter}}"></Ellipse>
+            </Border>
+            <Border Grid.Column="5" Grid.Row="4" BorderBrush="Blue" BorderThickness="1">
             <Ellipse Grid.Column="5" Grid.Row="4" Width="75" Height="75" Fill="{Binding board.l[27].Number, Converter={StaticResource CCConverter}}"></Ellipse>
+            </Border>
+            <Border Grid.Column="5" Grid.Row="3" BorderBrush="Blue" BorderThickness="1">
             <Ellipse Grid.Column="5" Grid.Row="3" Width="75" Height="75" Fill="{Binding board.l[28].Number, Converter={StaticResource CCConverter}}"></Ellipse>
+            </Border>
+            <Border Grid.Column="5" Grid.Row="2" BorderBrush="Blue" BorderThickness="1">
             <Ellipse Grid.Column="5" Grid.Row="2" Width="75" Height="75" Fill="{Binding board.l[29].Number, Converter={StaticResource CCConverter}}"></Ellipse>
+            </Border>
 
+            <Border Grid.Column="6" Grid.Row="7" BorderBrush="Blue" BorderThickness="1">
             <Ellipse Grid.Column="6" Grid.Row="7" Width="75" Height="75" Fill="{Binding board.l[30].Number, Converter={StaticResource CCConverter}}"></Ellipse>
+            </Border>
+            <Border Grid.Column="6" Grid.Row="6" BorderBrush="Blue" BorderThickness="1">
             <Ellipse Grid.Column="6" Grid.Row="6" Width="75" Height="75" Fill="{Binding board.l[31].Number, Converter={StaticResource CCConverter}}"></Ellipse>
+            </Border>
+            <Border Grid.Column="6" Grid.Row="5" BorderBrush="Blue" BorderThickness="1">
             <Ellipse Grid.Column="6" Grid.Row="5" Width="75" Height="75" Fill="{Binding board.l[32].Number, Converter={StaticResource CCConverter}}"></Ellipse>
+            </Border>
+            <Border Grid.Column="6" Grid.Row="4" BorderBrush="Blue" BorderThickness="1">
             <Ellipse Grid.Column="6" Grid.Row="4" Width="75" Height="75" Fill="{Binding board.l[33].Number, Converter={StaticResource CCConverter}}"></Ellipse>
+            </Border>
+            <Border Grid.Column="6" Grid.Row="3" BorderBrush="Blue" BorderThickness="1">
             <Ellipse Grid.Column="6" Grid.Row="3" Width="75" Height="75" Fill="{Binding board.l[34].Number, Converter={StaticResource CCConverter}}"></Ellipse>
+            </Border>
+            <Border Grid.Column="6" Grid.Row="2" BorderBrush="Blue" BorderThickness="1">
             <Ellipse Grid.Column="6" Grid.Row="2" Width="75" Height="75" Fill="{Binding board.l[35].Number, Converter={StaticResource CCConverter}}"></Ellipse>
+            </Border>
 
+            <Border Grid.Column="7" Grid.Row="7" BorderBrush="Blue" BorderThickness="1">
             <Ellipse Grid.Column="7" Grid.Row="7" Width="75" Height="75" Fill="{Binding board.l[36].Number, Converter={StaticResource CCConverter}}"></Ellipse>
+            </Border>
+            <Border Grid.Column="7" Grid.Row="6" BorderBrush="Blue" BorderThickness="1">
             <Ellipse Grid.Column="7" Grid.Row="6" Width="75" Height="75" Fill="{Binding board.l[37].Number, Converter={StaticResource CCConverter}}"></Ellipse>
+            </Border>
+            <Border Grid.Column="7" Grid.Row="5" BorderBrush="Blue" BorderThickness="1">
             <Ellipse Grid.Column="7" Grid.Row="5" Width="75" Height="75" Fill="{Binding board.l[38].Number, Converter={StaticResource CCConverter}}"></Ellipse>
+            </Border>
+            <Border Grid.Column="7" Grid.Row="4" BorderBrush="Blue" BorderThickness="1">
             <Ellipse Grid.Column="7" Grid.Row="4" Width="75" Height="75" Fill="{Binding board.l[39].Number, Converter={StaticResource CCConverter}}"></Ellipse>
+            </Border>
+            <Border Grid.Column="7" Grid.Row="3" BorderBrush="Blue" BorderThickness="1">
             <Ellipse Grid.Column="7" Grid.Row="3" Width="75" Height="75" Fill="{Binding board.l[40].Number, Converter={StaticResource CCConverter}}"></Ellipse>
+            </Border>
+            <Border Grid.Column="7" Grid.Row="2" BorderBrush="Blue" BorderThickness="1">
             <Ellipse Grid.Column="7" Grid.Row="2" Width="75" Height="75" Fill="{Binding board.l[41].Number, Converter={StaticResource CCConverter}}"></Ellipse>
+            </Border>
 
 
+            <TextBlock Grid.Column="8" Grid.Row="0" Text="Players Turn"></TextBlock>
+            <Ellipse Grid.Column="8" Grid.Row="0" Width="75" Height="75" Fill="{Binding board.u.Number, Converter={StaticResource CCConverter}}"></Ellipse>
+            
 
         </Grid>
     </Grid>

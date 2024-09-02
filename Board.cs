@@ -13,6 +13,8 @@ namespace Coursework_UI
     internal class Board 
     {
         private Counter[] Locations;
+        private Counter Player;
+
 
         public Board()
         {
@@ -21,6 +23,9 @@ namespace Coursework_UI
             {
                 Locations[x] = new Counter("0");
             }
+            Player = new Counter("0");
+
+
 
         }
         public Counter[] l
@@ -63,7 +68,10 @@ namespace Coursework_UI
 
         }
 
-
+        public void UpdatePlayer(string s)
+        {
+            Player.Number = s;
+        }
 
 
     }
