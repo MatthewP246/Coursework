@@ -33,10 +33,6 @@ namespace Coursework_UI
             get { return Locations; }
         }
 
-        public void CreateBoard()
-        {
-
-        }
 
 
 
