@@ -16,7 +16,7 @@ namespace Coursework_UI
             string v;
             if ((string)value == "0")
             {
-                v = "{x:Null}";
+                v = "{x:null}";
             }
             else if ((string)value == "1")
             {
