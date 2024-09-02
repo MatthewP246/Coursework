@@ -23,7 +23,7 @@ namespace Coursework_UI
             {
                 Locations[x] = new Counter("0");
             }
-            Player = new Counter("0");
+            Player = new Counter("1");
 
 
 
@@ -66,6 +66,10 @@ namespace Coursework_UI
                     pos++;
                 }
 
+        }
+        public Counter u
+        {
+            get { return Player; }
         }
 
         public void UpdatePlayer(string s)

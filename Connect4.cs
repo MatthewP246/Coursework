@@ -31,6 +31,7 @@ namespace Coursework_UI
             b.PlaceCounter(C,v);
             
 
+
         }
 
         public void UpdateGo(string v)

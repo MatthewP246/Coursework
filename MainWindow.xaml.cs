@@ -30,11 +30,7 @@ namespace Coursework_UI
             Game = new Connect4();
             DataContext = Game;
 
-            if (PlayerCount % 2 == 0)
-            {
-                Game.UpdateGo("1");
-            }
-            else Game.UpdateGo("2");
+
             
         }
 
@@ -43,8 +39,13 @@ namespace Coursework_UI
             if (PlayerCount % 2 == 0)
             {
                 Game.PlaceCounter(0, "1");
+                Game.UpdateGo("2");
             }
-            else Game.PlaceCounter(0, "2");
+            else
+            {
+                Game.PlaceCounter(0, "2");
+                Game.UpdateGo("1");
+            }
 
             PlayerCount++;
 
@@ -55,8 +56,13 @@ namespace Coursework_UI
             if (PlayerCount % 2 == 0)
             {
                 Game.PlaceCounter(1, "1");
+                Game.UpdateGo("2");
             }
-            else Game.PlaceCounter(1, "2");
+            else
+            {
+                Game.PlaceCounter(1, "2");
+                Game.UpdateGo("1");
+            }
 
             PlayerCount++;
         }
@@ -66,8 +72,13 @@ namespace Coursework_UI
             if (PlayerCount % 2 == 0)
             {
                 Game.PlaceCounter(2, "1");
+                Game.UpdateGo("2");
             }
-            else Game.PlaceCounter(2, "2");
+            else
+            {
+                Game.PlaceCounter(2, "2");
+                Game.UpdateGo("1");
+            }
 
             PlayerCount++;
         }
@@ -77,9 +88,13 @@ namespace Coursework_UI
             if (PlayerCount % 2 == 0)
             {
                 Game.PlaceCounter(3, "1");
+                Game.UpdateGo("2");
             }
-            else Game.PlaceCounter(3, "2");
-
+            else
+            {
+                Game.PlaceCounter(3, "2");
+                Game.UpdateGo("1");
+            }
             PlayerCount++;
         }
 
@@ -88,8 +103,13 @@ namespace Coursework_UI
             if (PlayerCount % 2 == 0)
             {
                 Game.PlaceCounter(4, "1");
+                Game.UpdateGo("2");
             }
-            else Game.PlaceCounter(4, "2");
+            else
+            {
+                Game.PlaceCounter(4, "2");
+                Game.UpdateGo("1");
+            }
 
             PlayerCount++;
         }
@@ -99,9 +119,13 @@ namespace Coursework_UI
             if (PlayerCount % 2 == 0)
             {
                 Game.PlaceCounter(5, "1");
+                Game.UpdateGo("2");
             }
-            else Game.PlaceCounter(5, "2");
-
+            else
+            {
+                Game.PlaceCounter(5, "2");
+                Game.UpdateGo("1");
+            }
             PlayerCount++;
         }
 
@@ -110,9 +134,13 @@ namespace Coursework_UI
             if (PlayerCount % 2 == 0)
             {
                 Game.PlaceCounter(6, "1");
+                Game.UpdateGo("2");
             }
-            else Game.PlaceCounter(6, "2");
-
+            else
+            {
+                Game.PlaceCounter(6, "2");
+                Game.UpdateGo("1");
+            }
             PlayerCount++;
         }
     }
