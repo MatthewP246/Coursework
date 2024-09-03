@@ -29,9 +29,9 @@ namespace Coursework_UI
 
         }
 
-        public void UpdateGo(string v)
+        public void UpdateGo()
         {
-            b.UpdatePlayer(v);
+            b.UpdatePlayer();
         }
 
     }

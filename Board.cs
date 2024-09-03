@@ -68,9 +68,10 @@ namespace Coursework_UI
             get { return Player; }
         }
 
-        public void UpdatePlayer(string s)
+        public void UpdatePlayer()
         {
-            Player.Number = s;
+            if (Player.Number == "1") Player.Number = "2";
+            else Player.Number = "1";
         }
 
 
