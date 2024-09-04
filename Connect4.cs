@@ -24,15 +24,9 @@ namespace Coursework_UI
         public void PlaceCounter(int C, string v)
         {
             b.PlaceCounter(C,v);
-            
-
-
         }
 
-        public void UpdateGo()
-        {
-            b.UpdatePlayer();
-        }
+
 
     }
 }

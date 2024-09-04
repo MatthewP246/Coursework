@@ -11,22 +11,22 @@ namespace Coursework_UI
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private string number;
+        private string colour;
         public Counter(string x)
         {
-            number = x;
+            colour = x;
         }
-        public string Number
+        public string Colour
         {
             get
             {
-                return number;
+                return colour;
             }
 
             set
             {
-                number = value;
-                OnPropertyChanged("Number");
+                colour = value;
+                OnPropertyChanged("Colour");
             }
         }
 

@@ -12,16 +12,16 @@ namespace Coursework_UI
 {
     internal class Board 
     {
-        private Counter[] Locations;
+        private Counter[] Grid;
         private Counter Player;
 
 
         public Board()
         {
-            Locations = new Counter[42];
-            for (int x = 0; x < Locations.Length; x++)
+            Grid = new Counter[42];
+            for (int x = 0; x < Grid.Length; x++)
             {
-                Locations[x] = new Counter("0");
+                Grid[x] = new Counter("0");
             }
             Player = new Counter("1");
 
@@ -30,7 +30,7 @@ namespace Coursework_UI
         }
         public Counter[] l
         {
-            get { return Locations; }
+            get { return Grid; }
         }
 
 
@@ -52,15 +52,16 @@ namespace Coursework_UI
         {
             int pos = C * 6;
             while (pos < C*6 + 6)
-                if (Locations[pos].Number == "0")
+                if (Grid[pos].Colour == "0")
                 {
-                    Locations[pos].Number = v;
+                    Grid[pos].Colour = v;
                     break;
                 }
                 else
                 {
                     pos++;
                 }
+            UpdatePlayer();
 
         }
         public Counter u
@@ -68,10 +69,10 @@ namespace Coursework_UI
             get { return Player; }
         }
 
-        public void UpdatePlayer()
+        private void UpdatePlayer()
         {
-            if (Player.Number == "1") Player.Number = "2";
-            else Player.Number = "1";
+            if (Player.Colour == "1") Player.Colour = "2";
+            else Player.Colour = "1";
         }
 
 
