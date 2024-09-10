@@ -92,12 +92,14 @@ namespace Coursework_UI
                     }  
                 }
                 pos++;
+                if (count >= 4)
+                {
+                    win = true;
+                    break;
+                }
 
             }
-            if(count >= 4)
-            {
-                win = true;
-            }
+            
 
             //Horizontal Check
 
