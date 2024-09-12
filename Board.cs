@@ -13,6 +13,7 @@ namespace Coursework_UI
     internal class Board 
     {
         private Counter[] Grid;
+        private Counter[,] Grid2D;
 
         private Counter CurrentPlayer;
 
@@ -20,10 +21,19 @@ namespace Coursework_UI
         public Board()
         {
             Grid = new Counter[42];
+            Grid2D = new Counter[7, 6];
 
             for (int x = 0; x < Grid.Length; x++)
             {
                 Grid[x] = new Counter("0");
+            }
+
+            for(int a = 0; a < 7; a++)
+            {
+                for (int b = 0; b < 6; b++)
+                {
+                    Grid2D[a, b] = new Counter("0");
+                }
             }
             CurrentPlayer = new Counter("1");
 
@@ -45,6 +55,7 @@ namespace Coursework_UI
                 if (Grid[pos].Colour == "0")
                 {
                     Grid[pos].Colour = v;
+                    Grid2D[C, pos % 6].Colour = v;
                     win = checkWin(C, v);
                     break;
                 }
@@ -77,60 +88,64 @@ namespace Coursework_UI
         {
             bool win = false;
             int count = 0;
-            int pos = x * 6;
 
             //Vertical Check
-
-            while(pos<x*6+6)
+            int y = 0;
+            while (y < 6)
             {
-                if(Grid[pos].Colour != "0")
+                if (Grid2D[x,y] != null)
                 {
-                    if (Grid[pos].Colour == Player) count++;
+                    if (Grid2D[x, y].Colour == Player) count++;
                     else
                     {
                         count = 0;
-                    }  
+                    }
+                    if (count >= 4)
+                    {
+                        win = true;
+                        break;
+                    }
+                    y++;
                 }
-                pos++;
-                if (count >= 4)
-                {
-                    win = true;
-                    break;
-                }
-
             }
-            
 
             //Horizontal Check
 
             if (win == false)
             {
                 count = 0;
-                for (int i = 0; i < 8; i++)
+                y = 0;
+                x = 0;
+                while (y < 6)
                 {
-                    for (int j = i; j < 42; j = j + 6)
+                    while (x < 7)
                     {
-                        if (Grid[j].Colour != "0")
+                        if (Grid2D[x, y] != null)
                         {
-                            if (Grid[j].Colour == Player) count++;
+                            if (Grid2D[x, y].Colour == Player) count++;
                             else
                             {
                                 count = 0;
                             }
-
+                            if (count >= 4)
+                            {
+                                win = true;
+                                break;
+                            }
+                            x++;
                         }
-                        if (count >= 4)
-                        {
-                            win = true;
-                            break;
-                        }
+                        
                     }
+                    if (win == true) break;
+                    else y++;
+
                 }
+                
             }
-            
-            
-            
-            
+
+
+
+
             return win;
         }
 
