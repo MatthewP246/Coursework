@@ -41,18 +41,9 @@ namespace Coursework_UI
         {
             int pos = C * 6;
             bool win = false;
-            while (pos < C*6 + 6)
-                if (Grid[pos].Colour == "0")
-                {
-                    Grid[pos].Colour = v;
-                    win = checkWin(C, v);
-                    break;
-                }
-                else
-                {
-                    pos++;
-                }
-            
+            RecursivePlace(C, pos, v);
+            win = checkWin(C, v);
+
             UpdatePlayer();
             if(win == true)
             {
@@ -60,6 +51,22 @@ namespace Coursework_UI
             }
 
         }
+
+        private void RecursivePlace(int C, int pos, string v)
+        {
+            if (pos < C * 6 + 6)
+            {
+                if (Grid[pos].Colour == "0")
+                {
+                    Grid[pos].Colour = v;
+                }
+                else RecursivePlace(C, pos + 1, v);
+            }
+            
+            
+        }
+
+
         public Counter u
         {
             get { return CurrentPlayer; }
