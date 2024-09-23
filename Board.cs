@@ -12,13 +12,14 @@ namespace Coursework_UI
 {
     internal class Board 
     {
+        
         private Counter[] Grid;
-
         private Counter CurrentPlayer;
 
 
         public Board()
         {
+            //initialising the grid as a blank array of 0's
             Grid = new Counter[42];
 
             for (int x = 0; x < Grid.Length; x++)
@@ -32,17 +33,20 @@ namespace Coursework_UI
         }
         public Counter[] l
         {
+            //get method for data binding
             get { return Grid; }
         }
 
 
 
-        public void PlaceCounter(int C, string v)
+        public void PlaceCounter(int C)
         {
+            //Placing counter in array
+            //Pos is actual index into 1d array
             int pos = C * 6;
             bool win = false;
-            RecursivePlace(C, pos, v);
-            win = checkWin(C, v);
+            RecursivePlace(C, pos, CurrentPlayer.Colour);
+            win = checkWin(C);
 
             UpdatePlayer();
             if(win == true)
@@ -54,6 +58,8 @@ namespace Coursework_UI
 
         private void RecursivePlace(int C, int pos, string v)
         {
+            //Recursive algorithm to place counter
+            
             if (pos < C * 6 + 6)
             {
                 if (Grid[pos].Colour == "0")
@@ -74,13 +80,14 @@ namespace Coursework_UI
 
         private void UpdatePlayer()
         {
+            //Updating which colour is placing a counter
             if (CurrentPlayer.Colour == "1") CurrentPlayer.Colour = "2";
             else CurrentPlayer.Colour = "1";
         }
 
 
 
-        private bool checkWin(int x, string Player)
+        private bool checkWin(int x)
         {
             bool win = false;
             int count = 0;
@@ -92,7 +99,7 @@ namespace Coursework_UI
             {
                 if(Grid[pos].Colour != "0")
                 {
-                    if (Grid[pos].Colour == Player) count++;
+                    if (Grid[pos].Colour == CurrentPlayer.Colour) count++;
                     else
                     {
                         count = 0;
@@ -106,20 +113,17 @@ namespace Coursework_UI
                 }
 
             }
-            
-
             //Horizontal Check
-
             if (win == false)
             {
                 count = 0;
-                for (int i = 0; i < 8; i++)
+                for (int a = 0; a < 8; a++)
                 {
-                    for (int j = i; j < 42; j = j + 6)
+                    for (int b = a; b < 42; b = b + 6)
                     {
-                        if (Grid[j].Colour != "0")
+                        if (Grid[b].Colour != "0")
                         {
-                            if (Grid[j].Colour == Player) count++;
+                            if (Grid[b].Colour == CurrentPlayer.Colour) count++;
                             else
                             {
                                 count = 0;

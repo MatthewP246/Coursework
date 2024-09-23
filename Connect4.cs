@@ -21,9 +21,9 @@ namespace Coursework_UI
         }
 
 
-        public void PlaceCounter(int C, string v)
+        public void PlaceCounter(int C)
         {
-            b.PlaceCounter(C,v);
+            b.PlaceCounter(C);
         }
 
 
