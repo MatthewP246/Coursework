@@ -29,7 +29,7 @@ namespace Coursework_UI
                 Grid[x] = new Counter("0");
             }
 
-            for(int a = 0; a < 7; a++)
+            for (int a = 0; a < 7; a++)
             {
                 for (int b = 0; b < 6; b++)
                 {
@@ -55,7 +55,7 @@ namespace Coursework_UI
             //Pos is actual index into 1d array
             int pos = C * 6;
             bool win = false;
-            RecursivePlace(C, pos, CurrentPlayer.Colour);
+            RecursivePlace(C, pos);
             win = checkWin(C);
 
             UpdatePlayer();
@@ -66,7 +66,7 @@ namespace Coursework_UI
 
         }
 
-        private void RecursivePlace(int C, int pos, string v)
+        private void RecursivePlace(int C, int pos)
         {
             //Recursive algorithm to place counter
             
@@ -74,11 +74,10 @@ namespace Coursework_UI
             {
                 if (Grid[pos].Colour == "0")
                 {
-                    Grid[pos].Colour = v;
-                    win = checkWin(C, v);
-                    break;
+                    Grid[pos].Colour = CurrentPlayer.Colour;
+                    Grid2D[C, pos % 6].Colour = CurrentPlayer.Colour;
                 }
-                else RecursivePlace(C, pos + 1, v);
+                else RecursivePlace(C, pos + 1);
             }
             
             
@@ -103,6 +102,31 @@ namespace Coursework_UI
         {
             bool win = false;
             int count = 0;
+            ulong Player1Bitboard = 0b;
+            ulong Player2Bitboard = 0b;
+
+            if(CurrentPlayer.Colour == "1")
+            {
+                for(int a = 0; a < 42; a++)
+                {
+                    if (Grid[a].Colour == CurrentPlayer.Colour)
+                    {
+                        Player1Bitboard = Player1Bitboard + 1;
+                    }
+                    else Player1Bitboard = Player1Bitboard + 0;
+                }
+            }
+            else
+            {
+                for (int a = 0; a < 42; a++)
+                {
+                    if (Grid[a].Colour == CurrentPlayer.Colour)
+                    {
+                        Player2Bitboard = Player2Bitboard + 1;
+                    }
+                    else Player2Bitboard = Player2Bitboard + 0;
+                }
+            }
 
             //Vertical Check
             int y = 0;
@@ -110,7 +134,7 @@ namespace Coursework_UI
             {
                 if (Grid2D[x,y] != null)
                 {
-                    if (Grid2D[x, y].Colour == Player) count++;
+                    if (Grid2D[x, y].Colour == CurrentPlayer.Colour) count++;
                     else
                     {
                         count = 0;
@@ -124,21 +148,21 @@ namespace Coursework_UI
                 }
             }
 
-            
+
 
             //Horizontal Check
             if (win == false)
+            {
                 y = 0;
                 x = 0;
-                while (y < 6)
                 count = 0;
-                    while (x < 7)
+                while (y < 6)
                 {
-                        if (Grid2D[x, y] != null)
+                    while (x < 7)
                     {
-                            if (Grid2D[x, y].Colour == Player) count++;
+                        if (Grid2D[x, y] != null)
                         {
-                            if (Grid[j].Colour == Player) count++;
+                            if (Grid2D[x, y].Colour == CurrentPlayer.Colour) count++;
                             else
                             {
                                 count = 0;
@@ -151,11 +175,12 @@ namespace Coursework_UI
                             x++;
                         }
                         
+
                     }
                     if (win == true) break;
                     else y++;
-
                 }
+                    
                 
             }
 
@@ -164,7 +189,5 @@ namespace Coursework_UI
 
             return win;
         }
-
-
     }
 }
