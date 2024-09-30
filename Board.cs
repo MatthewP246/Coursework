@@ -102,8 +102,8 @@ namespace Coursework_UI
         {
             bool win = false;
             int count = 0;
-            ulong Player1Bitboard = 0b;
-            ulong Player2Bitboard = 0b;
+            ulong Player1Bitboard = 0b0000000_0000000_0000000_0000000_0000000_0000000_0000000;
+            ulong Player2Bitboard = 0b0000000_0000000_0000000_0000000_0000000_0000000_0000000;
 
             if(CurrentPlayer.Colour == "1")
             {
