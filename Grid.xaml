@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Coursework_UI"
         mc:Ignorable="d"
-        Title="Grid" Height="640" Width="720">
+        Title="Grid" Height="1080" Width="1920">
     <Window.Resources>
         <local:ColourCodeConverter x:Key="CCConverter" />
     </Window.Resources>

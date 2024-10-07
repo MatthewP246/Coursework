@@ -111,7 +111,7 @@ namespace Coursework_UI
                 {
                     if (Grid[a].Colour == CurrentPlayer.Colour)
                     {
-                        Player1Bitboard = Player1Bitboard + 1;
+                        
                     }
                     else Player1Bitboard = Player1Bitboard + 0;
                 }
@@ -182,6 +182,86 @@ namespace Coursework_UI
                 }
                     
                 
+            }
+
+            //Diagonal Bottom Left-Top Right Check
+            if (win == false)
+            {
+                y = 0;
+                x = 0;
+                count = 0;
+                while (y < 6)
+                {
+                    while (x < 7)
+                    {
+                        for(int a = x; a < 7; a++)
+                        {
+                            for(int b = y; b < 6; b++)
+                            {
+                                if (Grid2D[a, b] != null)
+                                {
+                                    if (Grid2D[a, b].Colour == CurrentPlayer.Colour) count++;
+                                    else
+                                    {
+                                        count = 0;
+                                    }
+                                    if (count >= 4)
+                                    {
+                                        win = true;
+                                    }
+                                }
+                            }   
+                        
+                        }
+                        if (win == true) break;
+                        else x++;
+
+                    }
+                    if (win == true) break;
+                    else y++;
+                }
+
+
+            }
+
+            //Diagonal Bottom Right-Top Left Check
+            if (win == false)
+            {
+                y = 0;
+                x = 6;
+                count = 0;
+                while (y < 6)
+                {
+                    while (x >= 0)
+                    {
+                        for (int a = x; a >= 0; a--)
+                        {
+                            for (int b = y; b < 6; b++)
+                            {
+                                if (Grid2D[a, b] != null)
+                                {
+                                    if (Grid2D[a, b].Colour == CurrentPlayer.Colour) count++;
+                                    else
+                                    {
+                                        count = 0;
+                                    }
+                                    if (count >= 4)
+                                    {
+                                        win = true;
+                                    }
+                                }
+                            }
+
+                        }
+                        if (win == true) break;
+                        else x--;
+
+                    }
+                    if (win == true) break;
+                    else y++;
+                }
+
+
             }
 
 
