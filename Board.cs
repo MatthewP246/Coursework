@@ -102,170 +102,61 @@ namespace Coursework_UI
         {
             bool win = false;
             int count = 0;
-            ulong Player1Bitboard = 0b0000000_0000000_0000000_0000000_0000000_0000000_0000000;
-            ulong Player2Bitboard = 0b0000000_0000000_0000000_0000000_0000000_0000000_0000000;
+            string stringBitboard = "";
+
 
             if(CurrentPlayer.Colour == "1")
             {
                 for(int a = 0; a < 42; a++)
                 {
+                    if (a % 7 == 0)
+                    {
+                        stringBitboard = "_" + stringBitboard;
+                    }
                     if (Grid[a].Colour == CurrentPlayer.Colour)
                     {
-                        
+                        stringBitboard = "1" + stringBitboard;
                     }
-                    else Player1Bitboard = Player1Bitboard + 0;
+                    else stringBitboard = "0"+ stringBitboard;
                 }
             }
             else
             {
                 for (int a = 0; a < 42; a++)
                 {
+                    if (a % 7 == 0)
+                    {
+                        stringBitboard = "_" + stringBitboard;
+                    }
                     if (Grid[a].Colour == CurrentPlayer.Colour)
                     {
-                        Player2Bitboard = Player2Bitboard + 1;
+                        stringBitboard = "1" + stringBitboard;
                     }
-                    else Player2Bitboard = Player2Bitboard + 0;
+                    else stringBitboard = "0" + stringBitboard;
                 }
             }
 
-            //Vertical Check
-            int y = 0;
-            while (y < 6)
-            {
-                if (Grid2D[x,y] != null)
-                {
-                    if (Grid2D[x, y].Colour == CurrentPlayer.Colour) count++;
-                    else
-                    {
-                        count = 0;
-                    }
-                    if (count >= 4)
-                    {
-                        win = true;
-                        break;
-                    }
-                    y++;
-                }
-            }
+            stringBitboard = "0b" + stringBitboard;
+            stringBitboard = stringBitboard.Remove(stringBitboard.Length - 1);
+            //Converting the string into binary
+            ulong Bitboard = Convert.ToUInt64(stringBitboard);
 
+                // Function to check if a player has won (either horizontally, vertically, or diagonally
 
+                // Horizontal check: Shift by 1, 2, and 3 
+                ulong horizontal = Bitboard & (Bitboard >> 1) & (Bitboard >> 2) & (Bitboard >> 3);
 
-            //Horizontal Check
-            if (win == false)
-            {
-                y = 0;
-                x = 0;
-                count = 0;
-                while (y < 6)
-                {
-                    while (x < 7)
-                    {
-                        if (Grid2D[x, y] != null)
-                        {
-                            if (Grid2D[x, y].Colour == CurrentPlayer.Colour) count++;
-                            else
-                            {
-                                count = 0;
-                            }
-                            if (count >= 4)
-                            {
-                                win = true;
-                                break;
-                            }
-                            x++;
-                        }
-                        
+                // Vertical check: Shift by 7, 14, and 21 bits (7 bits per row
+                ulong vertical = Bitboard & (Bitboard >> 7) & (Bitboard >> 14) & (Bitboard >> 21);
 
-                    }
-                    if (win == true) break;
-                    else y++;
-                }
-                    
-                
-            }
+                // Diagonal check (bottom-left to top-right): Shift by 6, 12, and 18 
+                ulong diagonal1 = Bitboard & (Bitboard >> 6) & (Bitboard >> 12) & (Bitboard >> 18);
 
-            //Diagonal Bottom Left-Top Right Check
-            if (win == false)
-            {
-                y = 0;
-                x = 0;
-                count = 0;
-                while (y < 6)
-                {
-                    while (x < 7)
-                    {
-                        for(int a = x; a < 7; a++)
-                        {
-                            for(int b = y; b < 6; b++)
-                            {
-                                if (Grid2D[a, b] != null)
-                                {
-                                    if (Grid2D[a, b].Colour == CurrentPlayer.Colour) count++;
-                                    else
-                                    {
-                                        count = 0;
-                                    }
-                                    if (count >= 4)
-                                    {
-                                        win = true;
-                                    }
-                                }
-                            }   
-                        
-                        }
-                        if (win == true) break;
-                        else x++;
+                // Diagonal check (top-left to bottom-right): Shift by 8, 16, and 24 
+                ulong diagonal2 = Bitboard & (Bitboard >> 8) & (Bitboard >> 16) & (Bitboard >> 24);
 
-                    }
-                    if (win == true) break;
-                    else y++;
-                }
-
-
-            }
-
-            //Diagonal Bottom Right-Top Left Check
-            if (win == false)
-            {
-                y = 0;
-                x = 6;
-                count = 0;
-                while (y < 6)
-                {
-                    while (x >= 0)
-                    {
-                        for (int a = x; a >= 0; a--)
-                        {
-                            for (int b = y; b < 6; b++)
-                            {
-                                if (Grid2D[a, b] != null)
-                                {
-                                    if (Grid2D[a, b].Colour == CurrentPlayer.Colour) count++;
-                                    else
-                                    {
-                                        count = 0;
-                                    }
-                                    if (count >= 4)
-                                    {
-                                        win = true;
-                                    }
-                                }
-                            }
-
-                        }
-                        if (win == true) break;
-                        else x--;
-
-                    }
-                    if (win == true) break;
-                    else y++;
-                }
-
-
-            }
-
-
-
+                // Return true if any of the checks are non-zero, indicating a win
+                win = (horizontal != 0 || vertical != 0 || diagonal1 != 0 || diagonal2 != 0);
 
             return win;
         }

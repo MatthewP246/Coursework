@@ -22,7 +22,8 @@ namespace Coursework_UI
     public partial class MainWindow : Window
     {
         private Connect4 Game;
-        public int PlayerCount = 0;
+        private int PlayerCount = 0;
+        private string Player; 
 
         public MainWindow()
         {
@@ -30,7 +31,11 @@ namespace Coursework_UI
             Game = new Connect4();
             DataContext = Game;
 
-
+            if (PlayerCount % 2 == 0) ;
+            else
+            {
+                Game.PlaceCounter(7);
+            }
             
         }
 
