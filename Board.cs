@@ -13,7 +13,7 @@ namespace Coursework_UI
     internal class Board 
     {
         private Counter[] Grid;
-        public Counter[,] Grid2D;
+        private Counter[,] Grid2D;
 
         public Counter CurrentPlayer;
         Human h;
