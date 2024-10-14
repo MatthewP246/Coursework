@@ -13,9 +13,10 @@ namespace Coursework_UI
     internal class Board 
     {
         private Counter[] Grid;
-        private Counter[,] Grid2D;
+        public Counter[,] Grid2D;
 
-        private Counter CurrentPlayer;
+        public Counter CurrentPlayer;
+        Human h = new Human();
 
 
         public Board()
@@ -47,17 +48,21 @@ namespace Coursework_UI
             get { return Grid; }
         }
 
+        public Counter[,] ll
+        {
+            //get method for 2D array
+            get { return Grid2D; }
+        }
+
 
 
         public void PlaceCounter(int C)
         {
-            //Placing counter in array
-            //Pos is actual index into 1d array
-            int pos = C * 6;
-            bool win = false;
-            RecursivePlace(C, pos);
-            win = checkWin(C);
 
+            bool win = false;
+            h.PlaceCounter(C);
+            win = checkWin(C);
+            
             UpdatePlayer();
             if(win == true)
             {
@@ -66,22 +71,7 @@ namespace Coursework_UI
 
         }
 
-        private void RecursivePlace(int C, int pos)
-        {
-            //Recursive algorithm to place counter
-            
-            if (pos < C * 6 + 6)
-            {
-                if (Grid[pos].Colour == "0")
-                {
-                    Grid[pos].Colour = CurrentPlayer.Colour;
-                    Grid2D[C, pos % 6].Colour = CurrentPlayer.Colour;
-                }
-                else RecursivePlace(C, pos + 1);
-            }
-            
-            
-        }
+       
 
 
         public Counter u

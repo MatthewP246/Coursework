@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Coursework_UI
 {
-    internal class AI : Player
+    internal class Computer : Player
     {
         
         
@@ -15,7 +15,7 @@ namespace Coursework_UI
         {
             
         }
-        public override void PlaceCounter()
+        public override void PlaceCounter(int C)
         {
             
         }
