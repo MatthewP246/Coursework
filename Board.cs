@@ -16,12 +16,13 @@ namespace Coursework_UI
         public Counter[,] Grid2D;
 
         public Counter CurrentPlayer;
-        Human h = new Human();
+        Human h;
 
 
         public Board()
         {
             //initialising the grid as a blank array of 0's
+            h = new Human();
             Grid = new Counter[42];
             Grid2D = new Counter[7, 6];
 
