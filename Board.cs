@@ -16,13 +16,13 @@ namespace Coursework_UI
         private Counter[,] Grid2D;
 
         public Counter CurrentPlayer;
-        Human h;
+        private Human h;
 
 
         public Board()
         {
             //initialising the grid as a blank array of 0's
-            h = new Human();
+
             Grid = new Counter[42];
             Grid2D = new Counter[7, 6];
 
@@ -61,7 +61,8 @@ namespace Coursework_UI
         {
 
             bool win = false;
-            h.PlaceCounter(C);
+            int pos = C * 6;
+            RecursivePlace(C, pos);
             win = checkWin(C);
             
             UpdatePlayer();
@@ -72,10 +73,28 @@ namespace Coursework_UI
 
         }
 
-       
+
+    private void RecursivePlace(int C, int pos)
+    {
+        //Recursive algorithm to place counter
+
+        if (pos < C * 6 + 6)
+        {
+            if (l[pos].Colour == "0")
+            {
+                l[pos].Colour = CurrentPlayer.Colour;
+                ll[C, pos % 6].Colour = CurrentPlayer.Colour;
+            }
+            else RecursivePlace(C, pos + 1);
+        }
 
 
-        public Counter u
+    }
+
+
+
+
+    public Counter u
         {
             get { return CurrentPlayer; }
         }
@@ -93,7 +112,7 @@ namespace Coursework_UI
         {
             bool win = false;
             int count = 0;
-            string stringBitboard = "";
+            var Bitboard = "0b";
 
 
             if(CurrentPlayer.Colour == "1")
@@ -102,35 +121,21 @@ namespace Coursework_UI
                 {
                     if (a % 7 == 0)
                     {
-                        stringBitboard = "_" + stringBitboard;
+                        //stringBitboard = "_" + stringBitboard;
                     }
                     if (Grid[a].Colour == CurrentPlayer.Colour)
                     {
-                        stringBitboard = "1" + stringBitboard;
+                        Bitboard = "1" + Bitboard;
                     }
-                    else stringBitboard = "0"+ stringBitboard;
-                }
-            }
-            else
-            {
-                for (int a = 0; a < 42; a++)
-                {
-                    if (a % 7 == 0)
-                    {
-                        stringBitboard = "_" + stringBitboard;
-                    }
-                    if (Grid[a].Colour == CurrentPlayer.Colour)
-                    {
-                        stringBitboard = "1" + stringBitboard;
-                    }
-                    else stringBitboard = "0" + stringBitboard;
+                    else Bitboard = "0"+ Bitboard;
                 }
             }
 
-            stringBitboard = "0b" + stringBitboard;
-            stringBitboard = stringBitboard.Remove(stringBitboard.Length - 1);
+
+
+
             //Converting the string into binary
-            ulong Bitboard = Convert.ToUInt64(stringBitboard);
+            
 
                 // Function to check if a player has won (either horizontally, vertically, or diagonally
 
