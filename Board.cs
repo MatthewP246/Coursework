@@ -43,16 +43,20 @@ namespace Coursework_UI
 
 
         }
-        public Counter[] l
+        public Counter[] g
         {
             //get method for data binding
             get { return Grid; }
         }
 
-        public Counter[,] ll
+        public Counter[,] gg
         {
             //get method for 2D array
             get { return Grid2D; }
+        }
+        public Counter P
+        {
+            get { return CurrentPlayer; }
         }
 
 
@@ -80,10 +84,10 @@ namespace Coursework_UI
 
         if (pos < C * 6 + 6)
         {
-            if (l[pos].Colour == "0")
+            if (g[pos].Colour == "0")
             {
-                l[pos].Colour = CurrentPlayer.Colour;
-                ll[C, pos % 6].Colour = CurrentPlayer.Colour;
+                g[pos].Colour = CurrentPlayer.Colour;
+                gg[C, pos % 6].Colour = CurrentPlayer.Colour;
             }
             else RecursivePlace(C, pos + 1);
         }
@@ -94,10 +98,7 @@ namespace Coursework_UI
 
 
 
-    public Counter u
-        {
-            get { return CurrentPlayer; }
-        }
+
 
         private void UpdatePlayer()
         {
@@ -112,30 +113,28 @@ namespace Coursework_UI
         {
             bool win = false;
             int count = 0;
-            var Bitboard = "0b";
+            string stringBitboard = "";
 
 
-            if(CurrentPlayer.Colour == "1")
-            {
+
                 for(int a = 0; a < 42; a++)
                 {
-                    if (a % 7 == 0)
+                    if (a % 6 == 0 && a>0)
                     {
-                        //stringBitboard = "_" + stringBitboard;
+                        //stringBitboard = "_"+stringBitboard;
                     }
                     if (Grid[a].Colour == CurrentPlayer.Colour)
                     {
-                        Bitboard = "1" + Bitboard;
+                        stringBitboard = "1" + stringBitboard;
                     }
-                    else Bitboard = "0"+ Bitboard;
+                    else stringBitboard = "0" + stringBitboard;
                 }
-            }
 
 
 
 
             //Converting the string into binary
-            
+            ulong Bitboard = Convert.ToUInt64(stringBitboard);
 
                 // Function to check if a player has won (either horizontally, vertically, or diagonally
 
