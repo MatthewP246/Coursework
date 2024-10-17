@@ -128,6 +128,8 @@ namespace Coursework_UI
                         stringBitboard = "1" + stringBitboard;
                     }
                     else stringBitboard = "0" + stringBitboard;
+
+                Console.WriteLine(stringBitboard);
                 }
 
 
