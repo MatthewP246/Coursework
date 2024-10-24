@@ -211,7 +211,7 @@
 
 
             <TextBlock Grid.Column="8" Grid.Row="0" Text="Players Turn"></TextBlock>
-            <Ellipse Grid.Column="8" Grid.Row="0" Width="135" Height="135" Fill="{Binding board.u.Colour, Converter={StaticResource CCConverter}}"></Ellipse>
+            <Ellipse Grid.Column="8" Grid.Row="0" Width="135" Height="135" Fill="{Binding board.p.Colour, Converter={StaticResource CCConverter}}"></Ellipse>
             
 
         </Grid>

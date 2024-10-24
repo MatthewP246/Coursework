@@ -67,7 +67,7 @@ namespace Coursework_UI
             bool win = false;
             int pos = C * 6;
             RecursivePlace(C, pos);
-            win = checkWin(C);
+            //win = checkWin();
             
             UpdatePlayer();
             if(win == true)
@@ -109,51 +109,43 @@ namespace Coursework_UI
 
 
 
-        private bool checkWin(int x)
+        private bool checkWin()
         {
             bool win = false;
-            int count = 0;
-            string stringBitboard = "";
+            string[] ArrayBoard = { "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", };
+            string StringBoard = "";
 
 
 
-                for(int a = 0; a < 42; a++)
+            for (int a = 0; a < 42; a++)
+            {
+                if (Grid[a].Colour == CurrentPlayer.Colour)
                 {
-                    if (a % 6 == 0 && a>0)
-                    {
-                        //stringBitboard = "_"+stringBitboard;
-                    }
-                    if (Grid[a].Colour == CurrentPlayer.Colour)
-                    {
-                        stringBitboard = "1" + stringBitboard;
-                    }
-                    else stringBitboard = "0" + stringBitboard;
-
-                Console.WriteLine(stringBitboard);
+                    ArrayBoard[41 - a] = "1";
                 }
-
-
-
+                StringBoard = StringBoard + ArrayBoard[a];
+                Console.WriteLine(Grid[a].Colour);
+            }
 
             //Converting the string into binary
-            ulong Bitboard = Convert.ToUInt64(stringBitboard);
+            ulong Bitboard = Convert.ToUInt64(StringBoard);
 
-                // Function to check if a player has won (either horizontally, vertically, or diagonally
+            // Function to check if a player has won (either horizontally, vertically, or diagonally
 
-                // Horizontal check: Shift by 1, 2, and 3 
-                ulong horizontal = Bitboard & (Bitboard >> 1) & (Bitboard >> 2) & (Bitboard >> 3);
+            // Horizontal check: Shift by 1, 2, and 3 bits
+            ulong horizontal = Bitboard & (Bitboard >> 1) & (Bitboard >> 2) & (Bitboard >> 3);
 
-                // Vertical check: Shift by 7, 14, and 21 bits (7 bits per row
-                ulong vertical = Bitboard & (Bitboard >> 7) & (Bitboard >> 14) & (Bitboard >> 21);
+            // Vertical check: Shift by 7, 14, and 21 bits (7 bits per row
+            ulong vertical = Bitboard & (Bitboard >> 7) & (Bitboard >> 14) & (Bitboard >> 21);
 
-                // Diagonal check (bottom-left to top-right): Shift by 6, 12, and 18 
-                ulong diagonal1 = Bitboard & (Bitboard >> 6) & (Bitboard >> 12) & (Bitboard >> 18);
+            // Diagonal check (bottom-left to top-right): Shift by 6, 12, and 18 
+            ulong diagonal1 = Bitboard & (Bitboard >> 6) & (Bitboard >> 12) & (Bitboard >> 18);
 
-                // Diagonal check (top-left to bottom-right): Shift by 8, 16, and 24 
-                ulong diagonal2 = Bitboard & (Bitboard >> 8) & (Bitboard >> 16) & (Bitboard >> 24);
+            // Diagonal check (top-left to bottom-right): Shift by 8, 16, and 24 
+            ulong diagonal2 = Bitboard & (Bitboard >> 8) & (Bitboard >> 16) & (Bitboard >> 24);
 
-                // Return true if any of the checks are non-zero, indicating a win
-                win = (horizontal != 0 || vertical != 0 || diagonal1 != 0 || diagonal2 != 0);
+            // Return true if any of the checks are non-zero, indicating a win
+            win = (horizontal != 0 || vertical != 0 || diagonal1 != 0 || diagonal2 != 0);
 
             return win;
         }
