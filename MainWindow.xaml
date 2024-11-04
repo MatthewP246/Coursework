@@ -34,7 +34,7 @@
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Button x:Name="PlayGame" Content="PlayGame" Click="PlayGame_Click"></Button>
+            <Button x:Name="PlayGame" Content="Play Game" FontSize="50" Click="PlayGame_Click" Grid.Column="2" Grid.ColumnSpan="5" Margin="284,173,284,5" Grid.RowSpan="2" Background="OrangeRed"></Button>
 
 
         </Grid>
