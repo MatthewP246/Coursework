@@ -20,21 +20,12 @@ namespace Coursework_UI
     public partial class Grid : Window
     {
         private Connect4 Game;
-        private int PlayerCount = 2;
-        private string Player;
-
+        public int PlayerCount = 0;
         public Grid()
         {
             InitializeComponent();
             Game = new Connect4();
             DataContext = Game;
-
-            if (PlayerCount % 2 == 0) ;
-            else
-            {
-                Game.PlaceCounter(7);
-            }
-
         }
 
         private void Column1_Click(object sender, RoutedEventArgs e)
