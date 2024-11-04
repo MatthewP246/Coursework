@@ -21,60 +21,13 @@ namespace Coursework_UI
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Connect4 Game;
-        private int PlayerCount = 0;
-        private string Player; 
 
-        public MainWindow()
+
+        private void PlayGame_Click(object sender, RoutedEventArgs e)
         {
-            InitializeComponent(); 
-            Game = new Connect4();
-            DataContext = Game;
-
-            if (PlayerCount % 2 == 0) ;
-            else
-            {
-                Game.PlaceCounter(7);
-            }
-            
-        }
-
-        private void Column1_Click(object sender, RoutedEventArgs e)
-        {
-
-            Game.PlaceCounter(0);
-
-
-        }
-
-        private void Column2_Click(object sender, RoutedEventArgs e)
-        {
-            Game.PlaceCounter(1);
-        }
-
-        private void Column3_Click(object sender, RoutedEventArgs e)
-        {
-            Game.PlaceCounter(2);
-        }
-
-        private void Column4_Click(object sender, RoutedEventArgs e)
-        {
-            Game.PlaceCounter(3);
-        }
-
-        private void Column5_Click(object sender, RoutedEventArgs e)
-        {
-            Game.PlaceCounter(4);
-        }
-
-        private void Column6_Click(object sender, RoutedEventArgs e)
-        {
-            Game.PlaceCounter(5);
-        }
-
-        private void Column7_Click(object sender, RoutedEventArgs e)
-        {
-            Game.PlaceCounter(6);
+            Window w = new Grid();
+            w.Show();
+            this.Close();
         }
     }
 }
