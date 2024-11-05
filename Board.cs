@@ -112,23 +112,24 @@ namespace Coursework_UI
         private bool checkWin()
         {
             bool win = false;
-            string[] ArrayBoard = { "0d","0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", };
+            string[] ArrayBoard = {"0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", };
             string StringBoard = "";
+            ulong Bitboard = 0b0000000_0000000_0000000_0000000_0000000_0000000;
 
 
-
-            for (int a = 1; a < 43; a++)
+            for (int a = 0; a < 42; a++)
             {
-                if (Grid[a-1].Colour == CurrentPlayer.Colour)
+                if (Grid[a].Colour == CurrentPlayer.Colour)
                 {
-                    ArrayBoard[42 - a] = "1";
+                    //ArrayBoard[41 - a] = "1";
+                    Bitboard = Bitboard+ Convert.ToUInt64(Math.Pow(2,a));
                 }
-                StringBoard = StringBoard + ArrayBoard[a];
-                Console.WriteLine(Grid[a-1].Colour);
+                //StringBoard = StringBoard + ArrayBoard[a];
+                
             }
-
+            
             //Converting the string into binary
-            ulong Bitboard = Convert.ToUInt64(StringBoard);
+            //ulong Bitboard = Convert.ToUInt64(StringBoard);
 
             // Function to check if a player has won (either horizontally, vertically, or diagonally
 
@@ -142,7 +143,7 @@ namespace Coursework_UI
             ulong diagonal1 = Bitboard & (Bitboard >> 6) & (Bitboard >> 12) & (Bitboard >> 18);
 
             // Diagonal check (top-left to bottom-right): Shift by 8, 16, and 24 
-            ulong diagonal2 = Bitboard & (Bitboard >> 8) & (Bitboard >> 16) & (Bitboard >> 24);
+            ulong diagonal2 = Bitboard & (Bitboard >> 5) & (Bitboard >> 10) & (Bitboard >> 15);
 
             // Return true if any of the checks are non-zero, indicating a win
             win = (horizontal != 0 || vertical != 0 || diagonal1 != 0 || diagonal2 != 0);
