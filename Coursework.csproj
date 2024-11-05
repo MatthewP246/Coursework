@@ -70,7 +70,6 @@
     </Compile>
     <Compile Include="Board.cs" />
     <Compile Include="ColourCodeConverter.cs" />
-    <Compile Include="Connect4.cs" />
     <Compile Include="Cons.cs" />
     <Compile Include="Counter.cs" />
     <Compile Include="Grid.xaml.cs">

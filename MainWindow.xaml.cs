@@ -29,5 +29,15 @@ namespace Coursework_UI
             w.Show();
             this.Close();
         }
+
+        private void Rules_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Leaderboard_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

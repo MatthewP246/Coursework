@@ -67,7 +67,7 @@ namespace Coursework_UI
             bool win = false;
             int pos = C * 6;
             RecursivePlace(C, pos);
-            //win = checkWin();
+            win = checkWin();
             
             UpdatePlayer();
             if(win == true)
@@ -112,19 +112,19 @@ namespace Coursework_UI
         private bool checkWin()
         {
             bool win = false;
-            string[] ArrayBoard = { "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", };
+            string[] ArrayBoard = { "0d","0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", };
             string StringBoard = "";
 
 
 
-            for (int a = 0; a < 42; a++)
+            for (int a = 1; a < 43; a++)
             {
-                if (Grid[a].Colour == CurrentPlayer.Colour)
+                if (Grid[a-1].Colour == CurrentPlayer.Colour)
                 {
-                    ArrayBoard[41 - a] = "1";
+                    ArrayBoard[42 - a] = "1";
                 }
                 StringBoard = StringBoard + ArrayBoard[a];
-                Console.WriteLine(Grid[a].Colour);
+                Console.WriteLine(Grid[a-1].Colour);
             }
 
             //Converting the string into binary

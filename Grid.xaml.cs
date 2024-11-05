@@ -19,20 +19,20 @@ namespace Coursework_UI
     /// </summary>
     public partial class Grid : Window
     {
-        private Connect4 Game;
+        private Board Board;
         private int PlayerCount = 2;
         private string Player;
 
         public Grid()
         {
             InitializeComponent();
-            Game = new Connect4();
-            DataContext = Game;
+            Board = new Board();
+            DataContext = Board;
 
             if (PlayerCount % 2 == 0) ;
             else
             {
-                Game.PlaceCounter(7);
+                Board.PlaceCounter(7);
             }
 
         }
@@ -40,39 +40,39 @@ namespace Coursework_UI
         private void Column1_Click(object sender, RoutedEventArgs e)
         {
 
-            Game.PlaceCounter(0);
+            Board.PlaceCounter(0);
 
 
         }
 
         private void Column2_Click(object sender, RoutedEventArgs e)
         {
-            Game.PlaceCounter(1);
+            Board.PlaceCounter(1);
         }
 
         private void Column3_Click(object sender, RoutedEventArgs e)
         {
-            Game.PlaceCounter(2);
+            Board.PlaceCounter(2);
         }
 
         private void Column4_Click(object sender, RoutedEventArgs e)
         {
-            Game.PlaceCounter(3);
+            Board.PlaceCounter(3);
         }
 
         private void Column5_Click(object sender, RoutedEventArgs e)
         {
-            Game.PlaceCounter(4);
+            Board.PlaceCounter(4);
         }
 
         private void Column6_Click(object sender, RoutedEventArgs e)
         {
-            Game.PlaceCounter(5);
+            Board.PlaceCounter(5);
         }
 
         private void Column7_Click(object sender, RoutedEventArgs e)
         {
-            Game.PlaceCounter(6);
+            Board.PlaceCounter(6);
         }
     }
 }
