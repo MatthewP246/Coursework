@@ -112,19 +112,15 @@ namespace Coursework_UI
         private bool checkWin()
         {
             bool win = false;
-            string[] ArrayBoard = {"0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", };
-            string StringBoard = "";
-            ulong Bitboard = 0b0000000_0000000_0000000_0000000_0000000_0000000;
+            ulong Bitboard = 0b0;
 
 
             for (int a = 0; a < 42; a++)
             {
                 if (Grid[a].Colour == CurrentPlayer.Colour)
                 {
-                    //ArrayBoard[41 - a] = "1";
-                    Bitboard = Bitboard+ Convert.ToUInt64(Math.Pow(2,a));
+                    Bitboard = Bitboard + Convert.ToUInt64(Math.Pow(2,a));
                 }
-                //StringBoard = StringBoard + ArrayBoard[a];
                 
             }
             
