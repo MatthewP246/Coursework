@@ -21,7 +21,11 @@ namespace Coursework_UI
     /// </summary>
     public partial class MainWindow : Window
     {
+        public MainWindow()
+        {
+        }
 
+         
 
         private void PlayGame_Click(object sender, RoutedEventArgs e)
         {

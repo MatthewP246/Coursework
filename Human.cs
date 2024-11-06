@@ -12,7 +12,7 @@ namespace Coursework_UI
         public Human(String Forename, String Surname)
         {
         }
-        public override void PlaceCounter(int C)
+        public override void PlaceCounter(int C, Board b)
         { }
         public void NewPlayer(string Name, string Colour)
         {

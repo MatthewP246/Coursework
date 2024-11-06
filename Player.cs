@@ -8,10 +8,9 @@ namespace Coursework_UI
 {
     abstract class Player
     {
-        public string Name;
         public string Colour;
 
-        public abstract void PlaceCounter(int C);
+        public abstract void PlaceCounter(int C, Board b);
 
     }
 }

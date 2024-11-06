@@ -19,13 +19,12 @@ namespace Coursework_UI
     /// </summary>
     public partial class PlayUser : Window
     {
-        private Game Game;
-
+        private Game Connect4 = new Game();
         public PlayUser()
         {
             InitializeComponent();
-            Game = new Game();
-            DataContext = Game;
+            Connect4.NewGame();
+            DataContext = Connect4;
 
 
         }
@@ -33,39 +32,39 @@ namespace Coursework_UI
         private void Column1_Click(object sender, RoutedEventArgs e)
         {
 
-            Game.PlaceCounter(0);
+            Connect4.PlaceCounter(0);
 
 
         }
 
         private void Column2_Click(object sender, RoutedEventArgs e)
         {
-            Game.PlaceCounter(1);
+            Connect4.PlaceCounter(1);
         }
 
         private void Column3_Click(object sender, RoutedEventArgs e)
         {
-            Game.PlaceCounter(2);
+            Connect4.PlaceCounter(2);
         }
 
         private void Column4_Click(object sender, RoutedEventArgs e)
         {
-            Game.PlaceCounter(3);
+            Connect4.PlaceCounter(3);
         }
 
         private void Column5_Click(object sender, RoutedEventArgs e)
         {
-            Game.PlaceCounter(4);
+            Connect4.PlaceCounter(4);
         }
 
         private void Column6_Click(object sender, RoutedEventArgs e)
         {
-            Game.PlaceCounter(5);
+            Connect4.PlaceCounter(5);
         }
 
         private void Column7_Click(object sender, RoutedEventArgs e)
         {
-            Game.PlaceCounter(6);
+            Connect4.PlaceCounter(6);
         }
     }
 }
