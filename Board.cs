@@ -112,9 +112,10 @@ namespace Coursework_UI
         private bool checkWin()
         {
             bool win = false;
-            ulong Bitboard = 0b0;
+            ulong Bitboard = 0;
 
 
+            //converts the grid array into a decimal equivalent of a binary bitboard
             for (int a = 0; a < 42; a++)
             {
                 if (Grid[a].Colour == CurrentPlayer.Colour)
@@ -124,8 +125,6 @@ namespace Coursework_UI
                 
             }
             
-            //Converting the string into binary
-            //ulong Bitboard = Convert.ToUInt64(StringBoard);
 
             // Function to check if a player has won (either horizontally, vertically, or diagonally
 
@@ -138,7 +137,7 @@ namespace Coursework_UI
             // Diagonal check (bottom-left to top-right): Shift by 6, 12, and 18 
             ulong diagonal1 = Bitboard & (Bitboard >> 6) & (Bitboard >> 12) & (Bitboard >> 18);
 
-            // Diagonal check (top-left to bottom-right): Shift by 8, 16, and 24 
+            // Diagonal check (top-left to bottom-right): Shift by 5, 10, and 15 
             ulong diagonal2 = Bitboard & (Bitboard >> 5) & (Bitboard >> 10) & (Bitboard >> 15);
 
             // Return true if any of the checks are non-zero, indicating a win

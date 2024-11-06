@@ -25,7 +25,7 @@ namespace Coursework_UI
 
         private void PlayGame_Click(object sender, RoutedEventArgs e)
         {
-            Window w = new Grid();
+            Window w = new PlayUser();
             w.Show();
             this.Close();
         }

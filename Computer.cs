@@ -10,11 +10,7 @@ namespace Coursework_UI
     {
         
         
-        
-        public override void NewPlayer(string Name, string Colour)
-        {
-            
-        }
+       
         public override void PlaceCounter(int C)
         {
             

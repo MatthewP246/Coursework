@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace Coursework_UI
 {
-    abstract class Player : Board
+    abstract class Player
     {
         public string Name;
         public string Colour;
 
-
-        public abstract void NewPlayer(string Name, string Colour);
         public abstract void PlaceCounter(int C);
 
     }

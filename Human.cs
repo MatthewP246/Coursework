@@ -9,15 +9,15 @@ namespace Coursework_UI
     internal class Human : Player
     {
         
-        public Human()
+        public Human(String Forename, String Surname)
         {
-        }
-
-        public override void NewPlayer(string Name, string Colour)
-        {
-
         }
         public override void PlaceCounter(int C)
         { }
+        public void NewPlayer(string Name, string Colour)
+        {
+
+        }
+
     }
 }
