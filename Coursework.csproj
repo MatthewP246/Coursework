@@ -68,6 +68,7 @@
     <Compile Include="ColourCodeConverter.cs" />
     <Compile Include="Cons.cs" />
     <Compile Include="Counter.cs" />
+    <Compile Include="Game.cs" />
     <Compile Include="Human.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
