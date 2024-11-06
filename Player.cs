@@ -11,6 +11,7 @@ namespace Coursework_UI
         public string Colour;
 
         public abstract void PlaceCounter(int C, Board b);
+        public abstract void NewPlayer(string Firstname, string Surname);
 
     }
 }

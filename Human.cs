@@ -10,18 +10,18 @@ namespace Coursework_UI
     {
         string Firstname;
         string Surname;
-        public Human(String F, String S)
+        public Human()
         {
-            Firstname = F;
-            Surname = S;
+
         }
         public override void PlaceCounter(int C, Board b)
         {
             
         }
-        public void NewPlayer(string Name, string Colour)
+        public override void NewPlayer(string F, string S)
         {
-
+            Firstname = F;
+            Surname = S;
         }
 
     }
