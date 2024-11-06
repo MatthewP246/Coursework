@@ -8,12 +8,17 @@ namespace Coursework_UI
 {
     internal class Human : Player
     {
-        
-        public Human(String Forename, String Surname)
+        string Firstname;
+        string Surname;
+        public Human(String F, String S)
         {
+            Firstname = F;
+            Surname = S;
         }
         public override void PlaceCounter(int C, Board b)
-        { }
+        {
+            
+        }
         public void NewPlayer(string Name, string Colour)
         {
 
