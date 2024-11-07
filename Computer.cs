@@ -15,5 +15,29 @@ namespace Coursework_UI
         {
             
         }
+
+        private int Heuristic()
+        {
+            int HValue = 0;
+            ulong Bitboard = 0;
+
+            for (int a = 0; a < 42; a++)
+            {
+                if (g[a].Colour == p.Colour)
+                {
+                    Bitboard = Bitboard + Convert.ToUInt64(Math.Pow(2, a));
+                }
+
+            }
+
+            
+
+
+
+
+
+
+            return HValue;
+        }
     }
 }

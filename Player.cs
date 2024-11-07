@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Coursework_UI
 {
-    abstract class Player
+    abstract class Player :Board
     {
         public string Colour;
 
         public abstract void PlaceCounter(int C, Board b);
-        public abstract void NewPlayer(string Firstname, string Surname);
+
 
     }
 }

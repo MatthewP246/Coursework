@@ -50,7 +50,7 @@
                 <TextBlock Background="{x:Null}" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Grid.RowSpan="8" Grid.ColumnSpan="1" Width="284"></TextBlock>
             </Button>
 
-            <TextBlock Grid.Row="0" Text="Place Counter" FontSize="20" HorizontalAlignment="Center"></TextBlock>
+            <TextBlock Grid.Column="4" Grid.Row="0" Text="Place Counter" FontSize="20" HorizontalAlignment="Center"></TextBlock>
             <Button Click="Column4_Click" Grid.Column="4" Grid.Row="2" Background="{x:Null}" BorderBrush="{x:Null}" Height="Auto" Grid.RowSpan="6" Grid.ColumnSpan="1" Width="Auto">
                 <TextBlock Background="{x:Null}" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Grid.RowSpan="8" Grid.ColumnSpan="1" Width="284"></TextBlock>
             </Button>
@@ -211,7 +211,7 @@
 
 
             <TextBlock Grid.Column="8" Grid.Row="0" Text="Players Turn" FontSize="20" HorizontalAlignment="Center"></TextBlock>
-            <Ellipse Grid.Column="8" Grid.Row="0" Width="135" Height="135" Fill="{Binding b.P.Colour, Converter={StaticResource CCConverter}}"></Ellipse>
+            <Ellipse Grid.Column="8" Grid.Row="0" Width="135" Height="135" Fill="{Binding b.p.Colour, Converter={StaticResource CCConverter}}"></Ellipse>
 
 
         </Grid>

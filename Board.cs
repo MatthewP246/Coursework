@@ -54,7 +54,7 @@ namespace Coursework_UI
             //get method for 2D array
             get { return Grid2D; }
         }
-        public Counter P
+        public Counter p
         {
             get { return CurrentPlayer; }
         }
@@ -73,6 +73,7 @@ namespace Coursework_UI
             if(win == true)
             {
                 CurrentPlayer.Colour = "0";
+                
             }
 
         }
@@ -115,7 +116,7 @@ namespace Coursework_UI
             ulong Bitboard = 0;
 
 
-            //converts the grid array into a decimal equivalent of a binary bitboard
+            //converts the grid array into a binary bitboard
             for (int a = 0; a < 42; a++)
             {
                 if (Grid[a].Colour == CurrentPlayer.Colour)
@@ -124,24 +125,26 @@ namespace Coursework_UI
                 }
                 
             }
-            
+            //1010_1111_0010_0001
 
             // Function to check if a player has won (either horizontally, vertically, or diagonally
 
-            // Horizontal check: Shift by 1, 2, and 3 bits
-            ulong horizontal = Bitboard & (Bitboard >> 1) & (Bitboard >> 2) & (Bitboard >> 3);
+            // Vertical check: Shift by 1, 2, and 3 bits
+            ulong vertical = Bitboard & (Bitboard >> 1) & (Bitboard >> 2) & (Bitboard >> 3);
 
-            // Vertical check: Shift by 7, 14, and 21 bits (7 bits per row
-            ulong vertical = Bitboard & (Bitboard >> 7) & (Bitboard >> 14) & (Bitboard >> 21);
+            // Horizontal check: Shift by 6, 12, and 18 bits
+            ulong horizontal = Bitboard & (Bitboard >> 6) & (Bitboard >> 12) & (Bitboard >> 18);
 
-            // Diagonal check (bottom-left to top-right): Shift by 6, 12, and 18 
-            ulong diagonal1 = Bitboard & (Bitboard >> 6) & (Bitboard >> 12) & (Bitboard >> 18);
+            // Diagonal check (bottom-left to top-right): Shift by 7, 14, and 21 
+            ulong diagonal1 = Bitboard & (Bitboard >> 7) & (Bitboard >> 14) & (Bitboard >> 21);
 
             // Diagonal check (top-left to bottom-right): Shift by 5, 10, and 15 
-            ulong diagonal2 = Bitboard & (Bitboard >> 5) & (Bitboard >> 10) & (Bitboard >> 15);
+            ulong diagonal2 = Bitboard & (Bitboard >> 8) & (Bitboard >> 16) & (Bitboard >> 24);
 
             // Return true if any of the checks are non-zero, indicating a win
             win = (horizontal != 0 || vertical != 0 || diagonal1 != 0 || diagonal2 != 0);
+
+
 
             return win;
         }

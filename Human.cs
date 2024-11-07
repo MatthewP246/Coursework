@@ -8,8 +8,8 @@ namespace Coursework_UI
 {
     internal class Human : Player
     {
-        string Firstname;
-        string Surname;
+        private string Firstname;
+        private string Surname;
         public Human()
         {
 
@@ -18,7 +18,7 @@ namespace Coursework_UI
         {
             
         }
-        public override void NewPlayer(string F, string S)
+        public void NewPlayer(string F, string S)
         {
             Firstname = F;
             Surname = S;
