@@ -21,6 +21,9 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
@@ -31,6 +34,7 @@
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
+                
             </Grid.RowDefinitions>
 
 
@@ -210,8 +214,8 @@
 
 
 
-            <TextBlock Grid.Column="8" Grid.Row="0" Text="Players Turn" FontSize="20" HorizontalAlignment="Center"></TextBlock>
-            <Ellipse Grid.Column="8" Grid.Row="0" Width="135" Height="135" Fill="{Binding b.p.Colour, Converter={StaticResource CCConverter}}"></Ellipse>
+            <TextBlock Grid.Column="8" Grid.Row="4" Text="Players Turn" FontSize="20" HorizontalAlignment="Center"></TextBlock>
+            <Ellipse Grid.Column="8" Grid.Row="4" Width="135" Height="135" Fill="{Binding b.p.Colour, Converter={StaticResource CCConverter}}"></Ellipse>
 
 
         </Grid>
