@@ -14,7 +14,7 @@ namespace Coursework_UI
         {
 
         }
-        public override void PlaceCounter(int C, Board b)
+        public override void PlaceCounter(int C)
         {
             
         }

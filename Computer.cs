@@ -11,19 +11,19 @@ namespace Coursework_UI
         
         
        
-        public override void PlaceCounter(int C, Board b)
+        public override void PlaceCounter(int C)
         {
             
         }
 
-        private int Heuristic()
+        private int Heuristic(Board b)
         {
             int HValue = 0;
             ulong Bitboard = 0;
 
             for (int a = 0; a < 42; a++)
             {
-                if (g[a].Colour == p.Colour)
+                if (b.g[a].Colour == b.p.Colour)
                 {
                     Bitboard = Bitboard + Convert.ToUInt64(Math.Pow(2, a));
                 }

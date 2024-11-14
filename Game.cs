@@ -21,9 +21,9 @@ namespace Coursework_UI
             get { return board; }
         }
 
-        public void NewGame()
+        public void NewGame(string FirstPlayer)
         {
-            board = new Board();
+            board = new Board(FirstPlayer);
         }
 
         public void PlaceCounter(int C)

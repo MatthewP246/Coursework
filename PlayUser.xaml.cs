@@ -23,7 +23,7 @@ namespace Coursework_UI
         public PlayUser()
         {
             InitializeComponent();
-            Connect4.NewGame();
+            Connect4.NewGame("1");
             DataContext = Connect4;
 
 

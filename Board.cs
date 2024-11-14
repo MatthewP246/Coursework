@@ -19,7 +19,7 @@ namespace Coursework_UI
         private Human h;
 
 
-        public Board()
+        public Board(string FirstPlayer)
         {
             //initialising the grid as a blank array of 0's
 
@@ -38,7 +38,8 @@ namespace Coursework_UI
                     Grid2D[a, b] = new Counter("0");
                 }
             }
-            CurrentPlayer = new Counter("1");
+
+            CurrentPlayer = new Counter(FirstPlayer);
 
 
 
