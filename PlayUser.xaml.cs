@@ -20,10 +20,12 @@ namespace Coursework_UI
     public partial class PlayUser : Window
     {
         private Game Connect4 = new Game();
+        private string FirstPlayer;
         public PlayUser()
         {
             InitializeComponent();
-            Connect4.NewGame("1");
+            FirstPlayer = "1";
+            Connect4.NewGame(FirstPlayer);
             DataContext = Connect4;
 
 
