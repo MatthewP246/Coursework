@@ -19,7 +19,7 @@ namespace Coursework_UI
         private Human h;
 
 
-        public Board(string FirstPlayer)
+        public Board(string Player)
         {
             //initialising the grid as a blank array of 0's
 
@@ -38,10 +38,7 @@ namespace Coursework_UI
                     Grid2D[a, b] = new Counter("0");
                 }
             }
-
-            CurrentPlayer = new Counter(FirstPlayer);
-
-
+            CurrentPlayer = new Counter(Player);
 
         }
         public Counter[] g
@@ -64,34 +61,32 @@ namespace Coursework_UI
 
         public void PlaceCounter(int C)
         {
-
             bool win = false;
-            int pos = C * 6;
-            RecursivePlace(C, pos);
+            RecursivePlace(C);
             win = checkWin();
             
+
             UpdatePlayer();
             if(win == true)
             {
-                CurrentPlayer.Colour = "0";
-                
+                CurrentPlayer.Colour = "0"; 
             }
 
         }
 
 
-    private void RecursivePlace(int C, int pos)
+    private void RecursivePlace(int C)
     {
         //Recursive algorithm to place counter
-
-        if (pos < C * 6 + 6)
+        //prevents counters spilling over into other columns
+        if (C<42)
         {
-            if (g[pos].Colour == "0")
+            //Checks for lowest clear space in column
+            if (g[C].Colour == "0")
             {
-                g[pos].Colour = CurrentPlayer.Colour;
-                gg[C, pos % 6].Colour = CurrentPlayer.Colour;
+                g[C].Colour = CurrentPlayer.Colour;
             }
-            else RecursivePlace(C, pos + 1);
+            else RecursivePlace(C+7);
         }
 
 
@@ -153,7 +148,6 @@ namespace Coursework_UI
             if (diagonal2 != 0) win = true;
 
             return win;
-
         }
     }
 }

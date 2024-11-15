@@ -25,7 +25,7 @@ namespace Coursework_UI
         {
             InitializeComponent();
             FirstPlayer = "1";
-            Connect4.NewGame(FirstPlayer);
+            Connect4.NewPlayerGame(FirstPlayer);
             DataContext = Connect4;
 
 
