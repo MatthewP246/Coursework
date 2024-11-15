@@ -140,6 +140,11 @@ namespace Coursework_UI
             if (vertical != 0) win = true;
 
             // Diagonal check (bottom-left to top-right): Shift by 6 bits for diagonal alignment
+
+
+
+
+            //The check win doesnt work when a counter is placed in the first column as 6 binary shifts doesnt go over into the next row as designed
             ulong diagonal1 = Bitboard & (Bitboard >> 6) & (Bitboard >> 12) & (Bitboard >> 18);
             if (diagonal1 != 0) win = true;
 
