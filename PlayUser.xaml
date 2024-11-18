@@ -38,6 +38,9 @@
             </Grid.RowDefinitions>
 
 
+            <Image 
+            Source="\images\images.png" Grid.Row="2" Grid.Column="1" Grid.RowSpan="7" Grid.ColumnSpan="7" Height="auto"/>
+
             <Button Click="Column1_Click" Grid.Column="1" Grid.Row="2" Background="{x:Null}" BorderBrush="{x:Null}" Height="Auto" Grid.RowSpan="6" Grid.ColumnSpan="1" Width="Auto">
                 <TextBlock Background="{x:Null}" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Grid.RowSpan="8" Grid.ColumnSpan="1" Width="284"></TextBlock>
             </Button>

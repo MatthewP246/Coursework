@@ -94,6 +94,8 @@ namespace Coursework_UI
 
         private bool ExtraDiagonalCheck()
         {
+            //Extra check for edge case situations where a counter is placed in the first column as 6 binary shifts doesnt go over into the next row as designed
+
             bool win = false;
             for(int x = 0; x < 3; x++)
             {
@@ -168,8 +170,6 @@ namespace Coursework_UI
 
 
             // Diagonal check (top-left to bottom-right): Shift by 6 bits for diagonal alignment
-
-            //The check win doesnt work when a counter is placed in the first column as 6 binary shifts doesnt go over into the next row as designed
             ulong diagonal1 = Bitboard & (Bitboard >> 6) & (Bitboard >> 12) & (Bitboard >> 18);
             if (diagonal1 != 0 && ExtraDiagonalCheck() == true) win = true;
 
