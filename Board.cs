@@ -97,7 +97,11 @@ namespace Coursework_UI
             bool win = false;
             for(int x = 0; x < 3; x++)
             {
-                if (gg[6, x].Colour == CurrentPlayer.Colour && gg[6, x].Colour == gg[5, x + 1].Colour && gg[5, x + 1].Colour == gg[4, x + 2].Colour && gg[4, x + 2].Colour == gg[3, x + 3].Colour) win = true;
+                if (gg[6, x].Colour == CurrentPlayer.Colour && gg[6, x].Colour == gg[5, x + 1].Colour && gg[5, x + 1].Colour == gg[4, x + 2].Colour && gg[4, x + 2].Colour == gg[3, x + 3].Colour)
+                {
+                    win = true;
+                    break;
+                }
             }
 
             return win;
@@ -119,6 +123,14 @@ namespace Coursework_UI
 
         private bool checkWin()
         {
+            for (int a = 0; a < 7; a++)
+            {
+                for (int b = 0; b < 6; b++)
+                {
+                    Console.WriteLine(Grid2D[a, b].Colour);
+                }
+            }
+
             bool win = false;
             string[] ArrayBoard = new string[42];
 
@@ -148,25 +160,25 @@ namespace Coursework_UI
 
             // Vertical check: Shift by 7 bits for alignment across rows
             ulong vertical = Bitboard & (Bitboard >> 7) & (Bitboard >> 14) & (Bitboard >> 21);
-            if (vertical != 0 && ExtraDiagonalCheck()==true) win = true;
+            if (vertical != 0) win = true;
 
 
 
 
 
 
-            // Diagonal check (bottom-left to top-right): Shift by 6 bits for diagonal alignment
+            // Diagonal check (top-left to bottom-right): Shift by 6 bits for diagonal alignment
 
             //The check win doesnt work when a counter is placed in the first column as 6 binary shifts doesnt go over into the next row as designed
             ulong diagonal1 = Bitboard & (Bitboard >> 6) & (Bitboard >> 12) & (Bitboard >> 18);
-            if (diagonal1 != 0) win = true;
+            if (diagonal1 != 0 && ExtraDiagonalCheck() == true) win = true;
 
 
 
 
-            // Diagonal check (top-left to bottom-right): Shift by 8 bits for the opposite diagonal
+            // Diagonal check (bottom-left to top-right): Shift by 8 bits for the opposite diagonal
             ulong diagonal2 = Bitboard & (Bitboard >> 8) & (Bitboard >> 16) & (Bitboard >> 24);
-            if (diagonal2 != 0) win = true;
+            if (diagonal2 != 0 ) win = true;
 
             return win;
         }
