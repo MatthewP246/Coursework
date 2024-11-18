@@ -75,22 +75,33 @@ namespace Coursework_UI
         }
 
 
-    private void RecursivePlace(int C)
-    {
-        //Recursive algorithm to place counter
-        //prevents counters spilling over into other columns
-        if (C<42)
+        private void RecursivePlace(int C)
         {
-            //Checks for lowest clear space in column
-            if (g[C].Colour == "0")
+            //Recursive algorithm to place counter
+            //prevents counters spilling over into other columns
+            if (C<42)
             {
-                g[C].Colour = CurrentPlayer.Colour;
+                //Checks for lowest clear space in column
+                if (g[C].Colour == "0")
+                {
+                    g[C].Colour = CurrentPlayer.Colour;
+                    gg[C%7,C/7].Colour = CurrentPlayer.Colour;
+                }
+                else RecursivePlace(C+7);
             }
-            else RecursivePlace(C+7);
         }
 
 
-    }
+        private bool ExtraDiagonalCheck()
+        {
+            bool win = false;
+            for(int x = 0; x < 3; x++)
+            {
+                if (gg[6, x].Colour == CurrentPlayer.Colour && gg[6, x].Colour == gg[5, x + 1].Colour && gg[5, x + 1].Colour == gg[4, x + 2].Colour && gg[4, x + 2].Colour == gg[3, x + 3].Colour) win = true;
+            }
+
+            return win;
+        }
 
 
 
@@ -137,16 +148,21 @@ namespace Coursework_UI
 
             // Vertical check: Shift by 7 bits for alignment across rows
             ulong vertical = Bitboard & (Bitboard >> 7) & (Bitboard >> 14) & (Bitboard >> 21);
-            if (vertical != 0) win = true;
+            if (vertical != 0 && ExtraDiagonalCheck()==true) win = true;
+
+
+
+
+
 
             // Diagonal check (bottom-left to top-right): Shift by 6 bits for diagonal alignment
-
-
-
 
             //The check win doesnt work when a counter is placed in the first column as 6 binary shifts doesnt go over into the next row as designed
             ulong diagonal1 = Bitboard & (Bitboard >> 6) & (Bitboard >> 12) & (Bitboard >> 18);
             if (diagonal1 != 0) win = true;
+
+
+
 
             // Diagonal check (top-left to bottom-right): Shift by 8 bits for the opposite diagonal
             ulong diagonal2 = Bitboard & (Bitboard >> 8) & (Bitboard >> 16) & (Bitboard >> 24);
