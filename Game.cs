@@ -9,7 +9,8 @@ namespace Coursework_UI
     internal class Game
     {
         private Board board;
-        private Player[] Players;
+        private Player P1;
+        private Player P2;
 
         public Game()
         {
