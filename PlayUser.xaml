@@ -37,7 +37,7 @@
 
             </Grid.RowDefinitions>
 
-            
+            <Image Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="7" Grid.RowSpan="6" Source="/Images/Connect4.png"/>
 
 
             <Button Click="Column1_Click" Grid.Column="1" Grid.Row="2" Background="{x:Null}" BorderBrush="{x:Null}" Height="Auto" Grid.RowSpan="6" Grid.ColumnSpan="1" Width="Auto">
@@ -93,10 +93,10 @@
 
 
             <Border Grid.Column="1" Grid.Row="7" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Width="135" Height="135" Fill="{Binding b.g[0].Colour, Converter={StaticResource CCConverter}}"></Ellipse>
+                <Ellipse Fill="{Binding b.g[0].Colour, Converter={StaticResource CCConverter}}" Margin="37,-75,59,135"/>
             </Border>
             <Border Grid.Column="1" Grid.Row="6" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Width="135" Height="135" Fill="{Binding b.g[1].Colour, Converter={StaticResource CCConverter}}"></Ellipse>
+                <Ellipse Margin="37,-75,59,135" Fill="{Binding b.g[1].Colour, Converter={StaticResource CCConverter}}"></Ellipse>
             </Border>
             <Border Grid.Column="1" Grid.Row="5" BorderBrush="Blue" BorderThickness="1">
                 <Ellipse Width="135" Height="135" Fill="{Binding b.g[2].Colour, Converter={StaticResource CCConverter}}"></Ellipse>
