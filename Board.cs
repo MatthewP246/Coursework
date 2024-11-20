@@ -65,31 +65,41 @@ namespace Coursework_UI
             bool win = false;
             int pos = C * 6;
 
+            if (RecursivePlace(C, pos) == true)
+            { 
+                win = checkWin();
 
-            RecursivePlace(C, pos);
-            win = checkWin();
-
-            UpdatePlayer();
-            if (win == true)
-            {
-                CurrentPlayer.Colour = "0";
+                UpdatePlayer();
+                if (win == true)
+                {
+                    CurrentPlayer.Colour = "0";
+                }
             }
         }
 
 
-        private void RecursivePlace(int C, int pos)
+        private bool RecursivePlace(int C, int pos)
         {
             //Recursive algorithm to place counter
-
+            bool Placed = true;
             if (pos < C * 6 + 6)
             {
+
                 if (g[pos].Colour == "0")
                 {
                     g[pos].Colour = CurrentPlayer.Colour;
                     gg[C, pos % 6].Colour = CurrentPlayer.Colour;
                 }
-                else RecursivePlace(C, pos + 1);
+                else 
+                {
+                    Placed = RecursivePlace(C, pos + 1);
+
+                }
+                
             }
+            else Placed = false;
+
+            return Placed;
         }
 
 
