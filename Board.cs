@@ -28,7 +28,7 @@ namespace Coursework_UI
 
             for (int x = 0; x < Grid.Length; x++)
             {
-                Grid[x] = new Counter("0");
+                Grid[x] = new Counter("1");
             }
 
 
