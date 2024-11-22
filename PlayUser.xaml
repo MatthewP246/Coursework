@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Coursework_UI"
         mc:Ignorable="d"
-        Title="Grid" Width="1920" Height="1080">
+        Title="Grid" Width="{x:Static SystemParameters.PrimaryScreenWidth}" Height="{x:Static SystemParameters.PrimaryScreenHeight}">
     <Window.Resources>
         <local:ColourCodeConverter x:Key="CCConverter" />
     </Window.Resources>
@@ -28,205 +28,110 @@
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
-                <RowDefinition Height="95"></RowDefinition>
-                <RowDefinition Height="95"></RowDefinition>
-                <RowDefinition Height="95"></RowDefinition>
-                <RowDefinition Height="95"></RowDefinition>
-                <RowDefinition Height="95"></RowDefinition>
-                <RowDefinition Height="95"></RowDefinition>
+                <RowDefinition Height="93"></RowDefinition>
+                <RowDefinition Height="93"></RowDefinition>
+                <RowDefinition Height="93"></RowDefinition>
+                <RowDefinition Height="93"></RowDefinition>
+                <RowDefinition Height="93"></RowDefinition>
+                <RowDefinition Height="93"></RowDefinition>
                 <RowDefinition Height="52"></RowDefinition>
 
             </Grid.RowDefinitions>
 
-            <Image Source="/Images/Connect4.png" Margin="148,127,199,-280" Grid.ColumnSpan="9" Grid.RowSpan="9"/>
+
+            <Image Source="/Images/Connect4.png" Margin="105,277,242,-447" Grid.ColumnSpan="9" Grid.RowSpan="9"/>
 
 
             <Button Click="Column1_Click" Grid.Column="1" Grid.Row="2" Background="{x:Null}" BorderBrush="{x:Null}" Height="Auto" Grid.RowSpan="6" Grid.ColumnSpan="1" Width="Auto">
-                <TextBlock Background="{x:Null}" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Grid.RowSpan="8" Grid.ColumnSpan="1" Width="284"></TextBlock>
+                <TextBlock Background="{x:Null}" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Grid.RowSpan="8" Grid.ColumnSpan="1" Width="284"/>
             </Button>
             <Button Click="Column2_Click" Grid.Column="2" Grid.Row="2" Background="{x:Null}" BorderBrush="{x:Null}" Height="Auto" Grid.RowSpan="6" Grid.ColumnSpan="1" Width="Auto">
-                <TextBlock Background="{x:Null}" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Grid.RowSpan="8" Grid.ColumnSpan="1" Width="284"></TextBlock>
+                <TextBlock Background="{x:Null}" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Grid.RowSpan="8" Grid.ColumnSpan="1" Width="284"/>
             </Button>
             <Button Click="Column3_Click" Grid.Column="3" Grid.Row="2" Background="{x:Null}" BorderBrush="{x:Null}" Height="Auto" Grid.RowSpan="6" Grid.ColumnSpan="1" Width="Auto">
-                <TextBlock Background="{x:Null}" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Grid.RowSpan="8" Grid.ColumnSpan="1" Width="284"></TextBlock>
+                <TextBlock Background="{x:Null}" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Grid.RowSpan="8" Grid.ColumnSpan="1" Width="284"/>
             </Button>
             <Button Click="Column4_Click" Grid.Column="4" Grid.Row="2" Background="{x:Null}" BorderBrush="{x:Null}" Height="Auto" Grid.RowSpan="6" Grid.ColumnSpan="1" Width="Auto">
-                <TextBlock Background="{x:Null}" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Grid.RowSpan="8" Grid.ColumnSpan="1" Width="284"></TextBlock>
+                <TextBlock Background="{x:Null}" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Grid.RowSpan="8" Grid.ColumnSpan="1" Width="284"/>
             </Button>
             <Button Click="Column5_Click" Grid.Column="5" Grid.Row="2" Background="{x:Null}" BorderBrush="{x:Null}" Height="Auto" Grid.RowSpan="6" Grid.ColumnSpan="1" Width="Auto">
-                <TextBlock Background="{x:Null}" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Grid.RowSpan="8" Grid.ColumnSpan="1" Width="284"></TextBlock>
+                <TextBlock Background="{x:Null}" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Grid.RowSpan="8" Grid.ColumnSpan="1" Width="284"/>
             </Button>
             <Button Click="Column6_Click" Grid.Column="6" Grid.Row="2" Background="{x:Null}" BorderBrush="{x:Null}" Height="Auto" Grid.RowSpan="6" Grid.ColumnSpan="1" Width="Auto">
-                <TextBlock Background="{x:Null}" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Grid.RowSpan="8" Grid.ColumnSpan="1" Width="284"></TextBlock>
+                <TextBlock Background="{x:Null}" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Grid.RowSpan="8" Grid.ColumnSpan="1" Width="284"/>
             </Button>
             <Button Click="Column7_Click" Grid.Column="7" Grid.Row="2" Background="{x:Null}" BorderBrush="{x:Null}" Height="Auto" Grid.RowSpan="6" Grid.ColumnSpan="1" Width="Auto">
-                <TextBlock Background="{x:Null}" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Grid.RowSpan="8" Grid.ColumnSpan="1" Width="284"></TextBlock>
+                <TextBlock Background="{x:Null}" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Grid.RowSpan="8" Grid.ColumnSpan="1" Width="284"/>
             </Button>
 
 
 
 
-            <Image Grid.Column="1" Grid.Row="7" Height="200" Width="200" Source="{Binding b.g[0].Colour, Converter={StaticResource CCConverter}}"></Image>
-            <Image Grid.Column="1" Grid.Row="6" Height="200" Width="200" Source="{Binding b.g[1].Colour, Converter={StaticResource CCConverter}}"></Image>
-            
-
-            <Border Grid.Column="1" Grid.Row="5" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Width="Auto" Height="Auto" Fill="{Binding b.g[2].Colour, Converter={StaticResource CCConverter}}"></Ellipse>
-            </Border>
-            <Border Grid.Column="1" Grid.Row="4" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Width="Auto" Height="Auto" Fill="{Binding b.g[3].Colour, Converter={StaticResource CCConverter}}"></Ellipse>
-            </Border>
-            <Border Grid.Column="1" Grid.Row="3" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Width="Auto" Height="Auto" Fill="{Binding b.g[4].Colour, Converter={StaticResource CCConverter}}"></Ellipse>
-            </Border>
-            <Border Grid.Column="1" Grid.Row="2" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Width="Auto" Height="Auto" Fill="{Binding b.g[5].Colour, Converter={StaticResource CCConverter}}"></Ellipse>
-            </Border>
+            <Image Grid.Column="1" Grid.Row="7" Height="Auto" Width="Auto" Source="{Binding b.g[0].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="1" Grid.Row="6" Height="Auto" Width="Auto" Source="{Binding b.g[1].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="1" Grid.Row="5" Height="Auto" Width="Auto" Source="{Binding b.g[2].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="1" Grid.Row="4" Height="Auto" Width="Auto" Source="{Binding b.g[3].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="1" Grid.Row="3" Height="Auto" Width="Auto" Source="{Binding b.g[4].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="1" Grid.Row="2" Height="Auto" Width="Auto" Source="{Binding b.g[5].Colour, Converter={StaticResource CCConverter}}"/>
 
 
+            <Image Grid.Column="2" Grid.Row="7" Height="Auto" Width="Auto" Source="{Binding b.g[6].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="2" Grid.Row="6" Height="Auto" Width="Auto" Source="{Binding b.g[7].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="2" Grid.Row="5" Height="Auto" Width="Auto" Source="{Binding b.g[8].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="2" Grid.Row="4" Height="Auto" Width="Auto" Source="{Binding b.g[9].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="2" Grid.Row="3" Height="Auto" Width="Auto" Source="{Binding b.g[10].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="2" Grid.Row="2" Height="Auto" Width="Auto" Source="{Binding b.g[11].Colour, Converter={StaticResource CCConverter}}"/>
 
 
-            <Border Grid.Column="2" Grid.Row="7" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Grid.Column="2" Grid.Row="7" Width="Auto" Height="Auto" Fill="{Binding b.g[6].Colour, Converter={StaticResource CCConverter}}"></Ellipse>
-            </Border>
-            <Border Grid.Column="2" Grid.Row="6" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Grid.Column="2" Grid.Row="6" Width="Auto" Height="Auto" Fill="{Binding b.g[7].Colour, Converter={StaticResource CCConverter}}"></Ellipse>
-            </Border>
-            <Border Grid.Column="2" Grid.Row="5" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Grid.Column="2" Grid.Row="5" Width="Auto" Height="Auto" Fill="{Binding b.g[8].Colour, Converter={StaticResource CCConverter}}"></Ellipse>
-            </Border>
-            <Border Grid.Column="2" Grid.Row="4" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Grid.Column="2" Grid.Row="4" Width="Auto" Height="Auto" Fill="{Binding b.g[9].Colour, Converter={StaticResource CCConverter}}"></Ellipse>
-            </Border>
-            <Border Grid.Column="2" Grid.Row="3" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Grid.Column="2" Grid.Row="3" Width="Auto" Height="Auto" Fill="{Binding b.g[10].Colour, Converter={StaticResource CCConverter}}"></Ellipse>
-            </Border>
-            <Border Grid.Column="2" Grid.Row="2" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Grid.Column="2" Grid.Row="2" Width="Auto" Height="Auto" Fill="{Binding b.g[11].Colour, Converter={StaticResource CCConverter}}"></Ellipse>
-            </Border>
+            <Image Grid.Column="3" Grid.Row="7" Height="Auto" Width="Auto" Source="{Binding b.g[12].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="3" Grid.Row="6" Height="Auto" Width="Auto" Source="{Binding b.g[13].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="3" Grid.Row="5" Height="Auto" Width="Auto" Source="{Binding b.g[14].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="3" Grid.Row="4" Height="Auto" Width="Auto" Source="{Binding b.g[15].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="3" Grid.Row="3" Height="Auto" Width="Auto" Source="{Binding b.g[16].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="3" Grid.Row="2" Height="Auto" Width="Auto" Source="{Binding b.g[17].Colour, Converter={StaticResource CCConverter}}"/>
 
 
+            <Image Grid.Column="4" Grid.Row="7" Height="Auto" Width="Auto" Source="{Binding b.g[18].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="4" Grid.Row="6" Height="Auto" Width="Auto" Source="{Binding b.g[19].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="4" Grid.Row="5" Height="Auto" Width="Auto" Source="{Binding b.g[20].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="4" Grid.Row="4" Height="Auto" Width="Auto" Source="{Binding b.g[21].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="4" Grid.Row="3" Height="Auto" Width="Auto" Source="{Binding b.g[22].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="4" Grid.Row="2" Height="Auto" Width="Auto" Source="{Binding b.g[23].Colour, Converter={StaticResource CCConverter}}"/>
 
 
+            <Image Grid.Column="5" Grid.Row="7" Height="Auto" Width="Auto" Source="{Binding b.g[24].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="5" Grid.Row="6" Height="Auto" Width="Auto" Source="{Binding b.g[25].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="5" Grid.Row="5" Height="Auto" Width="Auto" Source="{Binding b.g[26].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="5" Grid.Row="4" Height="Auto" Width="Auto" Source="{Binding b.g[27].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="5" Grid.Row="3" Height="Auto" Width="Auto" Source="{Binding b.g[28].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="5" Grid.Row="2" Height="Auto" Width="Auto" Source="{Binding b.g[29].Colour, Converter={StaticResource CCConverter}}"/>
 
-            <Border Grid.Column="3" Grid.Row="7" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Grid.Column="3" Grid.Row="7" Width="Auto" Height="Auto" Fill="{Binding b.g[12].Colour, Converter={StaticResource CCConverter}}"></Ellipse>
-            </Border>
-            <Border Grid.Column="3" Grid.Row="6" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Grid.Column="3" Grid.Row="6" Width="Auto" Height="Auto" Fill="{Binding b.g[13].Colour, Converter={StaticResource CCConverter}}"></Ellipse>
-            </Border>
-            <Border Grid.Column="3" Grid.Row="5" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Grid.Column="3" Grid.Row="5" Width="Auto" Height="Auto" Fill="{Binding b.g[14].Colour, Converter={StaticResource CCConverter}}"></Ellipse>
-            </Border>
-            <Border Grid.Column="3" Grid.Row="4" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Grid.Column="3" Grid.Row="4" Width="Auto" Height="Auto" Fill="{Binding b.g[15].Colour, Converter={StaticResource CCConverter}}"></Ellipse>
-            </Border>
-            <Border Grid.Column="3" Grid.Row="3" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Grid.Column="3" Grid.Row="3" Width="Auto" Height="Auto" Fill="{Binding b.g[16].Colour, Converter={StaticResource CCConverter}}"></Ellipse>
-            </Border>
-            <Border Grid.Column="3" Grid.Row="2" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Grid.Column="3" Grid.Row="2" Width="Auto" Height="Auto" Fill="{Binding b.g[17].Colour, Converter={StaticResource CCConverter}}"></Ellipse>
-            </Border>
+
+            <Image Grid.Column="6" Grid.Row="7" Height="Auto" Width="Auto" Source="{Binding b.g[30].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="6" Grid.Row="6" Height="Auto" Width="Auto" Source="{Binding b.g[31].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="6" Grid.Row="5" Height="Auto" Width="Auto" Source="{Binding b.g[32].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="6" Grid.Row="4" Height="Auto" Width="Auto" Source="{Binding b.g[33].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="6" Grid.Row="3" Height="Auto" Width="Auto" Source="{Binding b.g[34].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="6" Grid.Row="2" Height="Auto" Width="Auto" Source="{Binding b.g[35].Colour, Converter={StaticResource CCConverter}}"/>
+
+
+            <Image Grid.Column="7" Grid.Row="7" Height="Auto" Width="Auto" Source="{Binding b.g[36].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="7" Grid.Row="6" Height="Auto" Width="Auto" Source="{Binding b.g[37].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="7" Grid.Row="5" Height="Auto" Width="Auto" Source="{Binding b.g[38].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="7" Grid.Row="4" Height="Auto" Width="Auto" Source="{Binding b.g[39].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="7" Grid.Row="3" Height="Auto" Width="Auto" Source="{Binding b.g[40].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="7" Grid.Row="2" Height="Auto" Width="Auto" Source="{Binding b.g[41].Colour, Converter={StaticResource CCConverter}}"/>
 
 
 
 
 
-            <Border Grid.Column="4" Grid.Row="7" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Grid.Column="4" Grid.Row="7" Width="Auto" Height="Auto" Fill="{Binding b.g[18].Colour, Converter={StaticResource CCConverter}}"></Ellipse>
-            </Border>
-            <Border Grid.Column="4" Grid.Row="6" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Grid.Column="4" Grid.Row="6" Width="Auto" Height="Auto" Fill="{Binding b.g[19].Colour, Converter={StaticResource CCConverter}}"></Ellipse>
-            </Border>
-            <Border Grid.Column="4" Grid.Row="5" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Grid.Column="4" Grid.Row="5" Width="Auto" Height="Auto" Fill="{Binding b.g[20].Colour, Converter={StaticResource CCConverter}}"></Ellipse>
-            </Border>
-            <Border Grid.Column="4" Grid.Row="4" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Grid.Column="4" Grid.Row="4" Width="Auto" Height="Auto" Fill="{Binding b.g[21].Colour, Converter={StaticResource CCConverter}}"></Ellipse>
-            </Border>
-            <Border Grid.Column="4" Grid.Row="3" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Grid.Column="4" Grid.Row="3" Width="Auto" Height="Auto" Fill="{Binding b.g[22].Colour, Converter={StaticResource CCConverter}}"></Ellipse>
-            </Border>
-            <Border Grid.Column="4" Grid.Row="2" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Grid.Column="4" Grid.Row="2" Width="Auto" Height="Auto" Fill="{Binding b.g[23].Colour, Converter={StaticResource CCConverter}}"></Ellipse>
-            </Border>
+            <TextBlock Grid.Column="9" Grid.Row="4" Text="Players Turn" FontSize="20" HorizontalAlignment="Center"/>
+            <Image Grid.Column="9" Grid.Row="4" Width="93" Height="95" Source="{Binding b.P.Colour, Converter={StaticResource CCConverter}}"/>
 
 
 
-
-            <Border Grid.Column="5" Grid.Row="7" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Grid.Column="5" Grid.Row="7" Width="Auto" Height="Auto" Fill="{Binding b.g[24].Colour, Converter={StaticResource CCConverter}}"></Ellipse>
-            </Border>
-            <Border Grid.Column="5" Grid.Row="6" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Grid.Column="5" Grid.Row="6" Width="Auto" Height="Auto" Fill="{Binding b.g[25].Colour, Converter={StaticResource CCConverter}}"></Ellipse>
-            </Border>
-            <Border Grid.Column="5" Grid.Row="5" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Grid.Column="5" Grid.Row="5" Width="Auto" Height="Auto" Fill="{Binding b.g[26].Colour, Converter={StaticResource CCConverter}}"></Ellipse>
-            </Border>
-            <Border Grid.Column="5" Grid.Row="4" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Grid.Column="5" Grid.Row="4" Width="Auto" Height="Auto" Fill="{Binding b.g[27].Colour, Converter={StaticResource CCConverter}}"></Ellipse>
-            </Border>
-            <Border Grid.Column="5" Grid.Row="3" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Grid.Column="5" Grid.Row="3" Width="Auto" Height="Auto" Fill="{Binding b.g[28].Colour, Converter={StaticResource CCConverter}}"></Ellipse>
-            </Border>
-            <Border Grid.Column="5" Grid.Row="2" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Grid.Column="5" Grid.Row="2" Width="Auto" Height="Auto" Fill="{Binding b.g[29].Colour, Converter={StaticResource CCConverter}}"></Ellipse>
-            </Border>
-
-
-
-
-            <Border Grid.Column="6" Grid.Row="7" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Grid.Column="6" Grid.Row="7" Width="Auto" Height="Auto" Fill="{Binding b.g[30].Colour, Converter={StaticResource CCConverter}}"></Ellipse>
-            </Border>
-            <Border Grid.Column="6" Grid.Row="6" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Grid.Column="6" Grid.Row="6" Width="Auto" Height="Auto" Fill="{Binding b.g[31].Colour, Converter={StaticResource CCConverter}}"></Ellipse>
-            </Border>
-            <Border Grid.Column="6" Grid.Row="5" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Grid.Column="6" Grid.Row="5" Width="Auto" Height="Auto" Fill="{Binding b.g[32].Colour, Converter={StaticResource CCConverter}}"></Ellipse>
-            </Border>
-            <Border Grid.Column="6" Grid.Row="4" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Grid.Column="6" Grid.Row="4" Width="Auto" Height="Auto" Fill="{Binding b.g[33].Colour, Converter={StaticResource CCConverter}}"></Ellipse>
-            </Border>
-            <Border Grid.Column="6" Grid.Row="3" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Grid.Column="6" Grid.Row="3" Width="Auto" Height="Auto" Fill="{Binding b.g[34].Colour, Converter={StaticResource CCConverter}}"></Ellipse>
-            </Border>
-            <Border Grid.Column="6" Grid.Row="2" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Grid.Column="6" Grid.Row="2" Width="Auto" Height="Auto" Fill="{Binding b.g[35].Colour, Converter={StaticResource CCConverter}}"></Ellipse>
-            </Border>
-
-
-
-
-
-            <Border Grid.Column="7" Grid.Row="7" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Grid.Column="7" Grid.Row="7" Width="Auto" Height="Auto" Fill="{Binding b.g[36].Colour, Converter={StaticResource CCConverter}}"></Ellipse>
-            </Border>
-            <Border Grid.Column="7" Grid.Row="6" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Grid.Column="7" Grid.Row="6" Width="Auto" Height="Auto" Fill="{Binding b.g[37].Colour, Converter={StaticResource CCConverter}}"></Ellipse>
-            </Border>
-            <Border Grid.Column="7" Grid.Row="5" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Grid.Column="7" Grid.Row="5" Width="Auto" Height="Auto" Fill="{Binding b.g[38].Colour, Converter={StaticResource CCConverter}}"></Ellipse>
-            </Border>
-            <Border Grid.Column="7" Grid.Row="4" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Grid.Column="7" Grid.Row="4" Width="Auto" Height="Auto" Fill="{Binding b.g[39].Colour, Converter={StaticResource CCConverter}}"></Ellipse>
-            </Border>
-            <Border Grid.Column="7" Grid.Row="3" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Grid.Column="7" Grid.Row="3" Width="Auto" Height="Auto" Fill="{Binding b.g[40].Colour, Converter={StaticResource CCConverter}}"></Ellipse>
-            </Border>
-            <Border Grid.Column="7" Grid.Row="2" BorderBrush="Blue" BorderThickness="1">
-                <Ellipse Grid.Column="7" Grid.Row="2" Width="Auto" Height="Auto" Fill="{Binding b.g[41].Colour, Converter={StaticResource CCConverter}}"/>
-            </Border>
-
-
-
-
-            <TextBlock Grid.Column="9" Grid.Row="4" Text="Players Turn" FontSize="20" HorizontalAlignment="Center"></TextBlock>
-            <Ellipse Grid.Column="9" Grid.Row="4" Width="93" Height="95" Fill="{Binding b.P.Colour, Converter={StaticResource CCConverter}}"></Ellipse>
-
-
-
-            <Button Grid.Row="0" Grid.Column="11" Background="{x:Null}"></Button>
+            <Button Grid.Row="0" Grid.Column="11" Background="{x:Null}"/>
 
         </Grid>
     </Grid>
