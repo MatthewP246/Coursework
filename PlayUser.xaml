@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Grid" Width="{x:Static SystemParameters.PrimaryScreenWidth}" Height="{x:Static SystemParameters.PrimaryScreenHeight}">
     <Window.Resources>
-        <local:ColourCodeConverter x:Key="CCConverter" />
+        <local:CounterColourConverter x:Key="CCConverter" />
     </Window.Resources>
     <Grid>
         <Grid>

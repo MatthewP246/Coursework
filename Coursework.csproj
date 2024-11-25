@@ -69,9 +69,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Board.cs" />
-    <Compile Include="CounterColourConverter.cs" />
     <Compile Include="Cons.cs" />
     <Compile Include="Counter.cs" />
+    <Compile Include="CounterColourConverter.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameSettings.xaml.cs">
       <DependentUpon>GameSettings.xaml</DependentUpon>
