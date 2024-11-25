@@ -9,7 +9,7 @@ using System.Windows.Media.Imaging;
 
 namespace Coursework_UI
 {
-    class ColourCodeConverter : IValueConverter
+    class CounterColourConverter : IValueConverter
     {
 
         public object Convert(object value, Type targetType, object paramater, CultureInfo culture)
