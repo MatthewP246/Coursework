@@ -8,11 +8,35 @@
         Title="Grid" Width="{x:Static SystemParameters.PrimaryScreenWidth}" Height="{x:Static SystemParameters.PrimaryScreenHeight}">
     <Window.Resources>
         <local:CounterColourConverter x:Key="CCConverter" />
+        
+        <Style x:Key="NoBackground" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" 
+                        BorderThickness="1"
+                        BorderBrush="{x:Null}" 
+                        CornerRadius="10" 
+                        Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="Black"/>
+                                <Setter TargetName="border" Property="Background" Value="Red"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
+    
     <Grid>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition ></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition Width="200"></ColumnDefinition>
                 <ColumnDefinition Width="200"></ColumnDefinition>
                 <ColumnDefinition Width="200"></ColumnDefinition>
@@ -20,11 +44,11 @@
                 <ColumnDefinition Width="200"></ColumnDefinition>
                 <ColumnDefinition Width="200"></ColumnDefinition>
                 <ColumnDefinition Width="200"></ColumnDefinition>
-                <ColumnDefinition ></ColumnDefinition>
-                <ColumnDefinition ></ColumnDefinition>
-                <ColumnDefinition ></ColumnDefinition>
-                <ColumnDefinition ></ColumnDefinition>
-                <ColumnDefinition ></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition ></RowDefinition>
@@ -44,26 +68,26 @@
             <Image Source="/Images/Connect4.png" Grid.Row="2" Grid.Column="1" Grid.RowSpan="6" Grid.ColumnSpan="7"  Width="1400" Height="1200"   />
 
 
-            <Button Click="Column1_Click" Grid.Row="2" Background="{x:Null}" BorderBrush="{x:Null}" Height="Auto" Grid.RowSpan="6" Grid.ColumnSpan="2" Width="Auto" Margin="213,12,0,0">
-                <TextBlock Background="{x:Null}" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Grid.RowSpan="8" Grid.ColumnSpan="1" Width="284"/>
+            <Button Click="Column1_Click" Grid.Column="1" Grid.Row="2" Background="{x:Null}" BorderBrush="{x:Null}" Height="Auto" Grid.RowSpan="6" Width="Auto" Opacity="0.7">
+                <TextBlock Background="{x:Null}" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Grid.RowSpan="6" Width="200" Opacity="100"/>
             </Button>
-            <Button Click="Column2_Click" Grid.Column="2" Grid.Row="2" Background="{x:Null}" BorderBrush="{x:Null}" Height="Auto" Grid.RowSpan="6" Width="Auto" Margin="16,12,10,0">
-                <TextBlock Background="{x:Null}" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Grid.RowSpan="8" Grid.ColumnSpan="1" Width="284"/>
+            <Button Click="Column2_Click" Grid.Column="2" Grid.Row="2" Background="{x:Null}" BorderBrush="{x:Null}" Height="Auto" Grid.RowSpan="6" Width="Auto" Opacity="0.5">
+                <TextBlock Background="{x:Null}" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Grid.RowSpan="6" Width="200"/>
             </Button>
-            <Button Click="Column3_Click" Grid.Column="3" Grid.Row="2" Background="{x:Null}" BorderBrush="{x:Null}" Height="Auto" Grid.RowSpan="6" Width="Auto" Margin="38,12,4,0">
-                <TextBlock Background="{x:Null}" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Grid.RowSpan="8" Grid.ColumnSpan="1" Width="284"/>
+            <Button Click="Column3_Click" Grid.Column="3" Grid.Row="2" Background="{x:Null}" BorderBrush="{x:Null}" Height="Auto" Grid.RowSpan="6" Width="Auto" Opacity="0.5">
+                <TextBlock Background="{x:Null}" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Grid.RowSpan="6" Width="200"/>
             </Button>
-            <Button Click="Column4_Click" Grid.Column="4" Grid.Row="2" Background="{x:Null}" BorderBrush="{x:Null}" Height="Auto" Grid.RowSpan="6" Width="Auto" Margin="0,12,11,0">
-                <TextBlock Background="{x:Null}" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Grid.RowSpan="8" Grid.ColumnSpan="1" Width="284"/>
+            <Button Click="Column4_Click" Grid.Column="4" Grid.Row="2" Background="{x:Null}" BorderBrush="{x:Null}" Height="Auto" Grid.RowSpan="6" Width="Auto" Opacity="0.5">
+                <TextBlock Background="{x:Null}" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Grid.RowSpan="6" Width="200"/>
             </Button>
-            <Button Click="Column5_Click" Grid.Column="5" Grid.Row="2" Background="{x:Null}" BorderBrush="{x:Null}" Height="Auto" Grid.RowSpan="6" Width="Auto" Margin="0,12,8,0">
-                <TextBlock Background="{x:Null}" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Grid.RowSpan="8" Grid.ColumnSpan="1" Width="284"/>
+            <Button Click="Column5_Click" Grid.Column="5" Grid.Row="2" Background="{x:Null}" BorderBrush="{x:Null}" Height="Auto" Grid.RowSpan="6" Width="Auto" Opacity="0.5">
+                <TextBlock Background="{x:Null}" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Grid.RowSpan="6" Width="200"/>
             </Button>
-            <Button Click="Column6_Click" Grid.Column="6" Grid.Row="2" Background="{x:Null}" BorderBrush="{x:Null}" Height="Auto" Grid.RowSpan="6" Width="Auto" Margin="0,12,0,0">
-                <TextBlock Background="{x:Null}" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Grid.RowSpan="8" Grid.ColumnSpan="1" Width="284"/>
+            <Button Click="Column6_Click" Grid.Column="6" Grid.Row="2" Background="{x:Null}" BorderBrush="{x:Null}" Height="Auto" Grid.RowSpan="6" Width="Auto" Opacity="0.5">
+                <TextBlock Background="{x:Null}" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Grid.RowSpan="6" Width="200"/>
             </Button>
-            <Button Click="Column7_Click" Grid.Column="7" Grid.Row="2" Background="{x:Null}" BorderBrush="{x:Null}" Height="Auto" Grid.RowSpan="6" Width="Auto" Margin="1,12,0,0">
-                <TextBlock Background="{x:Null}" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Grid.RowSpan="8" Grid.ColumnSpan="1" Width="284"/>
+            <Button Click="Column7_Click" Grid.Column="7" Grid.Row="2" Background="{x:Null}" BorderBrush="{x:Null}" Height="Auto" Grid.RowSpan="6" Width="Auto" Opacity="0.5">
+                <TextBlock Background="{x:Null}" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Grid.RowSpan="6" Width="200"/>
             </Button>
 
 
@@ -128,12 +152,14 @@
 
 
 
-            <TextBlock Grid.Column="9" Grid.Row="4" Text="Players Turn" FontSize="20" HorizontalAlignment="Center" Margin="0,8,0,0" Width="108"/>
-            <Image Grid.Column="9" Grid.Row="4" Source="{Binding b.P.Colour, Converter={StaticResource CCConverter}}" Margin="60,42,61,41"/>
+            <TextBlock Grid.Column="9" Grid.Row="4" Text="Players Turn" FontSize="20" HorizontalAlignment="Center" Width="108"/>
+            <Image Grid.Column="9" Grid.Row="4" Width="150" Height="150" Source="{Binding b.P.Colour, Converter={StaticResource CCConverter}}" />
 
 
 
-            <Button Grid.Row="0" Grid.Column="11" Background="{x:Null}"/>
+            <Button Grid.Row="0" Grid.Column="12" Width="Auto" Height="Auto" Background="{x:Null}" BorderBrush="{x:Null}" Style="{StaticResource NoBackground}">
+                <Image Source="/Images/Cross.png"></Image>
+            </Button>
 
         </Grid>
     </Grid>
