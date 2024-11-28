@@ -68,5 +68,10 @@ namespace Coursework_UI
         {
             Connect4.PlaceCounter(6);
         }
+
+        private void Cross_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
