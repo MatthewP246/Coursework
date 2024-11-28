@@ -119,50 +119,36 @@ namespace Coursework_UI
         {
 
             bool win = false;
-            string[] ArrayBoard = new string[42];
+            ulong Bitboard = 0;
 
-            // Build ArrayBoard for player pieces based on the CurrentPlayer's color
             for (int a = 0; a < 42; a++)
             {
-                ArrayBoard[a] = (Grid[a].Colour == CurrentPlayer.Colour) ? "1" : "0";
-            }
-
-
-            // Concatenate ArrayBoard into a single binary string representing the board
-            string StringBoard = string.Join("", ArrayBoard);
-
-
-            // Convert the binary string into a 64-bit unsigned integer
-            ulong Bitboard = Convert.ToUInt64(StringBoard.PadLeft(64, '0'), 2);
-
-
-            // Horizontal check: Iterate over each row and apply bitwise shifts within each row's 7-bit section
-            for (int row = 0; row < 6; row++) // 6 rows in Connect 4
-            {
-                int rowStart = row * 7;
-                ulong rowBits = (Bitboard >> rowStart) & 0x7F; // Extract 7 bits for each row
-                if ((rowBits & (rowBits >> 1) & (rowBits >> 2) & (rowBits >> 3)) != 0)
+                if (Grid[a].Colour == CurrentPlayer.Colour)
                 {
-                    win = true;
-                    break;
+                    Bitboard = Bitboard + Convert.ToUInt64(Math.Pow(2, a));
                 }
+
             }
 
 
-            // Vertical check: Shift by 7 bits for alignment across rows
+            // Horizontal check: Shift by 1, 2, and 3 bits
+            ulong horizontal = Bitboard & (Bitboard >> 1) & (Bitboard >> 2) & (Bitboard >> 3);
+
+            // Vertical check: Shift by 7, 14, and 21 bits (7 bits per row
             ulong vertical = Bitboard & (Bitboard >> 7) & (Bitboard >> 14) & (Bitboard >> 21);
-            if (vertical != 0) win = true;
 
-            // Diagonal check (bottom-left to top-right): Shift by 6 bits for diagonal alignment
+            // Diagonal check (bottom-left to top-right): Shift by 6, 12, and 18 
             ulong diagonal1 = Bitboard & (Bitboard >> 6) & (Bitboard >> 12) & (Bitboard >> 18);
-            if (diagonal1 != 0) win = true;
 
-            // Diagonal check (top-left to bottom-right): Shift by 8 bits for the opposite diagonal
+            // Diagonal check (bottom-left to top-right): Shift by 8 bits for the opposite diagonal
             ulong diagonal2 = Bitboard & (Bitboard >> 8) & (Bitboard >> 16) & (Bitboard >> 24);
-            if (diagonal2 != 0) win = true;
 
+            // Return true if any of the checks are non-zero, indicating a win
+            win = (horizontal != 0 || vertical != 0 || diagonal1 != 0 || diagonal2 != 0);
 
             return win;
+
+
         }
     }
 }
