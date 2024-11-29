@@ -170,30 +170,5 @@ namespace Coursework_UI
 
             return win;
         }
-
-
-        private void something()
-        {
-            bool win;
-            ulong Bitboard = 0;
-            Console.WriteLine(Bitboard);
-
-
-            // Horizontal check: Shift by 1, 2, and 3 bits
-            ulong vertical = Bitboard & (Bitboard >> 1) & (Bitboard >> 2) & (Bitboard >> 3);
-
-            // Vertical check: Shift by 7, 14, and 21 bits (7 bits per row
-            ulong horizontal = Bitboard & (Bitboard >> 7) & (Bitboard >> 14) & (Bitboard >> 21);
-
-            // Diagonal check (bottom-right to top-left): Shift by 6, 12, and 18 
-            ulong diagonal1 = Bitboard & (Bitboard >> 6) & (Bitboard >> 12) & (Bitboard >> 18);
-
-            // Diagonal check (bottom-left to top-right): Shift by 8 bits for the opposite diagonal
-            ulong diagonal2 = Bitboard & (Bitboard >> 8) & (Bitboard >> 16) & (Bitboard >> 24);
-
-            // Return true if any of the checks are non-zero, indicating a win
-            win = (horizontal != 0 || vertical != 0 || diagonal1 != 0 || diagonal2 != 0);
-
-        }
     }
 }
