@@ -137,7 +137,7 @@ namespace Coursework_UI
             // Vertical check: Shift by 7, 14, and 21 bits (7 bits per row
             ulong vertical = Bitboard & (Bitboard >> 7) & (Bitboard >> 14) & (Bitboard >> 21);
 
-            // Diagonal check (bottom-left to top-right): Shift by 6, 12, and 18 
+            // Diagonal check (bottom-right to top-left): Shift by 6, 12, and 18 
             ulong diagonal1 = Bitboard & (Bitboard >> 6) & (Bitboard >> 12) & (Bitboard >> 18);
 
             // Diagonal check (bottom-left to top-right): Shift by 8 bits for the opposite diagonal
