@@ -9,8 +9,8 @@
     <Grid>
 
 
-        <Button Margin="191,36,173,227" Click="QuitToDesktop_Click" Content="Quit to Desktop" FontSize="40" />
-        <Button Margin="191,215,173,48" Click="ReturnToMenu_Click" Content="Return to Main Menu" FontSize="40"/>
+        <Button Margin="191,215,173,48" Click="QuitToDesktop_Click" Content="Quit to Desktop" FontSize="40" />
+        <Button Margin="191,36,173,227" Click="ReturnToMenu_Click" Content="Return to Main Menu" FontSize="40"/>
 
     </Grid>
 </Window>
