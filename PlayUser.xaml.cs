@@ -29,6 +29,7 @@ namespace Coursework_UI
             DataContext = Connect4;
 
 
+
         }
 
         private void Column1_Click(object sender, RoutedEventArgs e)
@@ -72,6 +73,16 @@ namespace Coursework_UI
         private void Cross_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Restart_Click(object sender, RoutedEventArgs e)
+        {
+            Window w = new PlayUser();
+            w.Show();
+            this.Close();
+
+            
+
         }
     }
 }

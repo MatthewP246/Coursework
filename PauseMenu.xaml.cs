@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -11,34 +10,26 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Coursework_UI
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for PauseMenu.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class PauseMenu : Window
     {
-        public MainWindow()
+        public PauseMenu()
         {
+            InitializeComponent();
         }
 
-         
-
-        private void PlayGame_Click(object sender, RoutedEventArgs e)
-        {
-            Window w = new PlayUser();
-            w.Show();
-        }
-
-        private void Rules_Click(object sender, RoutedEventArgs e)
+        private void QuitToDesktop_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void Leaderboard_Click(object sender, RoutedEventArgs e)
+        private void ReturnToMenu_Click(object sender, RoutedEventArgs e)
         {
 
         }

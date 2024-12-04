@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Coursework_UI"
         mc:Ignorable="d"
+        WindowState="Maximized"
         Title="MainWindow" Width="{x:Static SystemParameters.PrimaryScreenWidth}" Height="{x:Static SystemParameters.PrimaryScreenHeight}">
     <Window.Resources>
         <local:CounterColourConverter x:Key="CCConverter" />
@@ -34,11 +35,11 @@
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Button x:Name="PlayGame" Content="Play Game" FontSize="50" Click="PlayGame_Click" Grid.Column="2" Grid.ColumnSpan="5" Margin="284,173,284,5" Grid.RowSpan="2" Background="OrangeRed"></Button>
+            <Button x:Name="PlayGame" Content="Play Game" FontSize="50" Click="PlayGame_Click" Grid.Column="2" Grid.ColumnSpan="5" Margin="284,173,284,5" Grid.RowSpan="2" Background="OrangeRed" Cursor="Hand"/>
 
-            <Button x:Name="Rules" Content="Rules" FontSize="50" Click="Rules_Click" Grid.Column="2" Grid.ColumnSpan="5" Grid.Row="2" Margin="284,173,284,5" Grid.RowSpan="2" Background="OrangeRed"></Button>
+            <Button x:Name="Rules" Content="Rules" FontSize="50" Click="Rules_Click" Grid.Column="2" Grid.ColumnSpan="5" Grid.Row="2" Margin="284,173,284,5" Grid.RowSpan="2" Background="OrangeRed" Cursor="Hand"/>
 
-            <Button x:Name="Leaderboard" Content="Leaderboard" FontSize="50" Click="Leaderboard_Click" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="5" Margin="284,173,284,5" Grid.RowSpan="2" Background="OrangeRed"></Button>
+            <Button x:Name="Leaderboard" Content="Leaderboard" FontSize="50" Click="Leaderboard_Click" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="5" Margin="284,173,284,5" Grid.RowSpan="2" Background="OrangeRed" Cursor="Hand"/>
 
 
         </Grid>

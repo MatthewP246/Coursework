@@ -4,6 +4,8 @@
              xmlns:local="clr-namespace:Coursework_UI"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style x:Name="MouseOVerNonDefault" 
+               <Setter Property="OverridesDefaultStyle" Value="True" />
+               ></Style>
     </Application.Resources>
 </Application>

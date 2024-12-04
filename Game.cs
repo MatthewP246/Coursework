@@ -35,5 +35,6 @@ namespace Coursework_UI
         {
             board.PlaceCounter(C);
         }
+
     }
 }

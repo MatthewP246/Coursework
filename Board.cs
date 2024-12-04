@@ -115,12 +115,11 @@ namespace Coursework_UI
 
 
 
-        private bool checkWin()
+        public bool checkWin()
         {
 
             bool win = false;
             ulong[] Rows = new ulong[6];
-            ulong Bitboard = 0;
 
             //Creates a bitboard for each row in the grid
             for (int x = 0; x < 7; x++)
@@ -129,7 +128,7 @@ namespace Coursework_UI
                 {
                     if (Grid[x+y*7].Colour == CurrentPlayer.Colour)
                     {
-                        Rows[y] = Rows[y] + Convert.ToUInt64(Math.Pow(2, 6-x));
+                        Rows[y] = Rows[y] + Convert.ToUInt64(Math.Pow(2, x));
                     }
                 }
             }
@@ -142,10 +141,10 @@ namespace Coursework_UI
                 ulong Horizontal = Rows[i] & (Rows[i] << 1) & (Rows[i] << 2) & (Rows[i] << 3);
 
 
-                //Prevents index out of bounds errors
                 ulong Vertical = 0;
                 ulong Diagonal1 = 0;
                 ulong Diagonal2 = 0;
+                //Prevents index out of bounds errors
                 if (i < 3)
                 {
                     //Vertical Check:
@@ -153,10 +152,10 @@ namespace Coursework_UI
                     Vertical = Rows[i] & Rows[i + 1] & Rows[i + 2] & Rows[i + 3];
 
                     //Diagonal Check (bottom-left to top-right)
-                    Diagonal1 = Rows[i] & (Rows[i + 1] << (i + 1)) & (Rows[i + 2] << (i + 2)) & (Rows[i + 3] << (i + 3));
+                    Diagonal1 = Rows[i] & (Rows[i + 1] << 1) & (Rows[i + 2] << 2) & (Rows[i + 3] << 3);
 
                     //Diagonal Check (bottom-right to top-left)
-                    Diagonal2 = Rows[i] & (Rows[i + 1] >> (i + 1)) & (Rows[i + 2] >> (i + 2)) & (Rows[i + 3] >> (i + 3));
+                    Diagonal2 = (Rows[i] << 3) & (Rows[i+1] << 2) & (Rows[i+2] << 1) & Rows[i+3];
                 }
                 // Return true if any of the checks are non-zero, indicating a win
                 if(Horizontal != 0 || Vertical != 0 || Diagonal1 != 0 || Diagonal2 != 0)
