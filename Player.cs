@@ -8,7 +8,7 @@ namespace Coursework_UI
 {
     abstract class Player
     {
-        public string Colour;
+        public string Colour { get;  set; }
 
         public abstract void PlaceCounter(int C);
 

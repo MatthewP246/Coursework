@@ -10,9 +10,9 @@ namespace Coursework_UI
     {
         private string Firstname;
         private string Surname;
-        public Human()
+        public Human(string Col)
         {
-
+            Colour = Col;
         }
         public override void PlaceCounter(int C)
         {

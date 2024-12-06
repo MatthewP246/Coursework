@@ -131,18 +131,20 @@ namespace Coursework_UI
                     }
                 }
             }
-
+            
+            //Intitialise all variables to check
+            ulong Horizontal = 0;
+            ulong Vertical = 0;
+            ulong Diagonal1 = 0;
+            ulong Diagonal2 = 0;
 
 
             for (int i = 0; i < 6; i++)
             {
                 //Horizontal Check:
-                ulong Horizontal = Rows[i] & (Rows[i] << 1) & (Rows[i] << 2) & (Rows[i] << 3);
+                Horizontal = Rows[i] & (Rows[i] << 1) & (Rows[i] << 2) & (Rows[i] << 3);
 
 
-                ulong Vertical = 0;
-                ulong Diagonal1 = 0;
-                ulong Diagonal2 = 0;
                 //Prevents index out of bounds errors
                 if (i < 3)
                 {
@@ -160,6 +162,7 @@ namespace Coursework_UI
                 if(Horizontal != 0 || Vertical != 0 || Diagonal1 != 0 || Diagonal2 != 0)
                 {
                     win = true;
+                    //exits out of loop as soon as win is found
                     break;
                 }
             }
