@@ -72,6 +72,8 @@ namespace Coursework_UI
 
         private void Cross_Click(object sender, RoutedEventArgs e)
         {
+            Window w = new PauseMenu();
+            w.ShowDialog();
             this.Close();
         }
 

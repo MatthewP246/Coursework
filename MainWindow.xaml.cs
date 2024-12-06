@@ -29,8 +29,10 @@ namespace Coursework_UI
 
         private void PlayGame_Click(object sender, RoutedEventArgs e)
         {
+
             Window w = new PlayUser();
-            w.Show();
+            w.ShowDialog();
+
         }
 
         private void Rules_Click(object sender, RoutedEventArgs e)

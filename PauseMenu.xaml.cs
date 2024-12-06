@@ -26,12 +26,13 @@ namespace Coursework_UI
 
         private void QuitToDesktop_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
+            Application.Current.Windows[0].Close();
         }
 
         private void ReturnToMenu_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
     }
 }

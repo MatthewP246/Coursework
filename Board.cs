@@ -67,13 +67,12 @@ namespace Coursework_UI
             if (RecursivePlace(C) == true)
             { 
                 win = checkWin();
-
-                UpdatePlayer();
                 if (win == true)
                 {
                     CurrentPlayer.Colour = "0";
                     
-                }
+                } 
+                else UpdatePlayer();
             }
         }
 

@@ -36,5 +36,10 @@ namespace Coursework_UI
             board.PlaceCounter(C);
         }
 
+        public bool CheckWin()
+        {
+            return board.checkWin();
+        }
+
     }
 }
