@@ -55,7 +55,7 @@ namespace Coursework_UI
             get { return Grid2D; }
         }
 
-        public Counter P
+        public Counter p
         {
             get { return CurrentPlayer; }
         }
@@ -74,6 +74,7 @@ namespace Coursework_UI
                 } 
                 else UpdatePlayer();
             }
+
         }
 
 

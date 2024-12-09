@@ -10,13 +10,13 @@ namespace Coursework_UI
     {
         private string Firstname;
         private string Surname;
-        public Human(string Col)
+        public Human()
         {
-            Colour = Col;
+
         }
-        public override void PlaceCounter(int C)
+        public override void PlaceCounter(int C, Board b)
         {
-            
+            b.PlaceCounter(C);
         }
         public void NewPlayer(string F, string S)
         {

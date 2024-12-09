@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Coursework_UI
 {
@@ -21,6 +22,8 @@ namespace Coursework_UI
     {
         private Game Connect4 = new Game();
         private string FirstPlayer;
+        private DispatcherTimer GameTime;
+        private int TimeElapsed=0;
         public PlayUser()
         {
             InitializeComponent();
@@ -29,45 +32,57 @@ namespace Coursework_UI
             DataContext = Connect4;
 
 
+            GameTime = new DispatcherTimer(); // creating a new timer
+            GameTime.Interval = TimeSpan.FromSeconds(1); // this timer will trigger every second
+            GameTime.Start(); // starting the timer
+            GameTime.Tick += ClockTick; // with each tick it will trigger this function
 
+
+
+        }
+
+
+        private void ClockTick(object sender, EventArgs e)
+        {
+            TimeElapsed++;
+            Time.Text = "Time: "+Convert.ToString(TimeElapsed);
         }
 
         private void Column1_Click(object sender, RoutedEventArgs e)
         {
 
-            Connect4.PlaceCounter(0);
-
+            PlaceCounter(0);
 
         }
 
         private void Column2_Click(object sender, RoutedEventArgs e)
         {
-            Connect4.PlaceCounter(1);
+            PlaceCounter(1);
         }
 
         private void Column3_Click(object sender, RoutedEventArgs e)
         {
-            Connect4.PlaceCounter(2);
-        }
+            PlaceCounter(2);
+        }   
 
         private void Column4_Click(object sender, RoutedEventArgs e)
         {
-            Connect4.PlaceCounter(3);
+            PlaceCounter(3);
         }
 
         private void Column5_Click(object sender, RoutedEventArgs e)
         {
-            Connect4.PlaceCounter(4);
+            PlaceCounter(4);
         }
 
         private void Column6_Click(object sender, RoutedEventArgs e)
         {
-            Connect4.PlaceCounter(5);
+            PlaceCounter(5);
         }
 
         private void Column7_Click(object sender, RoutedEventArgs e)
         {
-            Connect4.PlaceCounter(6);
+            PlaceCounter(6);
         }
 
         private void Cross_Click(object sender, RoutedEventArgs e)
@@ -85,6 +100,15 @@ namespace Coursework_UI
 
             
 
+        }
+
+        private void PlaceCounter(int C)
+        {
+            Connect4.PlaceCounter(C);
+            if (Connect4.CheckWin() == true)
+            {
+                GameTime.Stop();
+            }
         }
     }
 }
