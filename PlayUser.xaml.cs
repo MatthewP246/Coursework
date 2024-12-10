@@ -23,7 +23,7 @@ namespace Coursework_UI
         private Game Connect4 = new Game();
         private string FirstPlayer;
         private DispatcherTimer GameTime;
-        private int TimeElapsed=0;
+        private int TimeLeft=300;
         public PlayUser()
         {
             InitializeComponent();
@@ -44,8 +44,16 @@ namespace Coursework_UI
 
         private void ClockTick(object sender, EventArgs e)
         {
-            TimeElapsed++;
-            Time.Text = "Time: "+Convert.ToString(TimeElapsed);
+            TimeLeft--;
+            Time.Text = "Time "+ Convert.ToString(TimeLeft / 60)+":" + Convert.ToString(TimeLeft % 60);
+        }
+
+        private void KeyPressed(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Escape)
+            {
+                Cross_Click(sender, e);
+            }
         }
 
         private void Column1_Click(object sender, RoutedEventArgs e)
@@ -87,9 +95,12 @@ namespace Coursework_UI
 
         private void Cross_Click(object sender, RoutedEventArgs e)
         {
+            GameTime.Stop();
             Window w = new PauseMenu();
+            w.Owner = this;
             w.ShowDialog();
-            this.Close();
+            
+            GameTime.Start();
         }
 
         private void Restart_Click(object sender, RoutedEventArgs e)

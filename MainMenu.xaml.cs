@@ -17,11 +17,11 @@ using System.Windows.Shapes;
 namespace Coursework_UI
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for MainMenu.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainMenu : Window
     {
-        public MainWindow()
+        public MainMenu()
         {
         }
 
@@ -31,7 +31,9 @@ namespace Coursework_UI
         {
 
             Window w = new PlayUser();
+            this.Hide();
             w.ShowDialog();
+            
 
         }
 

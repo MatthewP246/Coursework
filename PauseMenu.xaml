@@ -5,12 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Coursework_UI"
         mc:Ignorable="d"
+        ResizeMode="NoResize"
         Title="PauseMenu" Height="400" Width="1000">
+        
     <Grid>
 
-
         <Button Margin="191,215,173,48" Click="QuitToDesktop_Click" Content="Quit to Desktop" FontSize="40" />
-        <Button Margin="191,36,173,227" Click="ReturnToMenu_Click" Content="Return to Main Menu" FontSize="40"/>
+        <Button Margin="191,71,173,192" Click="ReturnToMenu_Click" Content="Return to Main Menu" FontSize="40"/>
 
     </Grid>
 </Window>
