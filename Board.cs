@@ -112,9 +112,6 @@ namespace Coursework_UI
         }
 
 
-
-
-
         public bool checkWin()
         {
 
@@ -171,6 +168,11 @@ namespace Coursework_UI
             
 
             return win;
+        }
+
+        public void EndGame()
+        {
+
         }
     }
 }

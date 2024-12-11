@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -23,11 +24,12 @@ namespace Coursework_UI
         private Game Connect4 = new Game();
         private string FirstPlayer;
         private DispatcherTimer GameTime;
-        private int TimeLeft=300;
-        public PlayUser()
+        private int TimeLeft=600;
+        public PlayUser(string Colour)
         {
             InitializeComponent();
-            FirstPlayer = "1";
+            this.Focus();
+            FirstPlayer = Colour;
             Connect4.NewPlayerGame(FirstPlayer);
             DataContext = Connect4;
 
@@ -37,6 +39,8 @@ namespace Coursework_UI
             GameTime.Start(); // starting the timer
             GameTime.Tick += ClockTick; // with each tick it will trigger this function
 
+
+            this.KeyDown += new KeyEventHandler(KeyPressed);
 
 
         }
@@ -48,13 +52,7 @@ namespace Coursework_UI
             Time.Text = "Time "+ Convert.ToString(TimeLeft / 60)+":" + Convert.ToString(TimeLeft % 60);
         }
 
-        private void KeyPressed(object sender, KeyEventArgs e)
-        {
-            if(e.Key == Key.Escape)
-            {
-                Cross_Click(sender, e);
-            }
-        }
+
 
         private void Column1_Click(object sender, RoutedEventArgs e)
         {
@@ -66,6 +64,7 @@ namespace Coursework_UI
         private void Column2_Click(object sender, RoutedEventArgs e)
         {
             PlaceCounter(1);
+            
         }
 
         private void Column3_Click(object sender, RoutedEventArgs e)
@@ -93,19 +92,64 @@ namespace Coursework_UI
             PlaceCounter(6);
         }
 
+        private void KeyPressed(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+            {
+                Close.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
+            }
+            
+            if (e.Key == Key.D1)
+            {
+                Column1.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
+            }
+            
+            if (e.Key == Key.D2)
+            {
+                Column2.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
+            }
+            
+            if (e.Key == Key.D3)
+            {
+                Column3.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
+            }
+            
+            if (e.Key == Key.D4)
+            {
+                Column4.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
+            }
+            
+            if (e.Key == Key.D5)
+            {
+                Column5.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
+            }
+            
+            if (e.Key == Key.D6)
+            {
+                Column6.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
+            }
+            
+            if (e.Key == Key.D7)
+            {
+                Column7.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
+            }
+        }
+
         private void Cross_Click(object sender, RoutedEventArgs e)
         {
             GameTime.Stop();
             Window w = new PauseMenu();
             w.Owner = this;
             w.ShowDialog();
-            
-            GameTime.Start();
+            if (Connect4.CheckWin() != true)
+            {
+                GameTime.Start();
+            }
         }
 
         private void Restart_Click(object sender, RoutedEventArgs e)
         {
-            Window w = new PlayUser();
+            Window w = new PlayUser(FirstPlayer);
             w.Show();
             this.Close();
 
@@ -121,5 +165,7 @@ namespace Coursework_UI
                 GameTime.Stop();
             }
         }
+
+
     }
 }
