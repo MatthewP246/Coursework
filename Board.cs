@@ -130,7 +130,7 @@ namespace Coursework_UI
                 }
             }
             
-            //Intitialise all variables to check
+            //Intitialise all variables
             ulong Horizontal = 0;
             ulong Vertical = 0;
             ulong Diagonal1 = 0;
@@ -157,10 +157,30 @@ namespace Coursework_UI
                     Diagonal2 = (Rows[i] << 3) & (Rows[i+1] << 2) & (Rows[i+2] << 1) & Rows[i+3];
                 }
                 // Return true if any of the checks are non-zero, indicating a win
-                if(Horizontal != 0 || Vertical != 0 || Diagonal1 != 0 || Diagonal2 != 0)
+                if(Horizontal != 0)
                 {
                     win = true;
+                    FindWinLocation("H");
+                    
                     //exits out of loop as soon as win is found
+                    break;
+                }
+                if(Vertical != 0)
+                {
+                    win = true;
+                    FindWinLocation("V");
+                    break;
+                }
+                if (Diagonal1 != 0)
+                {
+                    win = true;
+                    FindWinLocation("D1");
+                    break;
+                }
+                if (Diagonal2 != 0)
+                {
+                    win = true;
+                    FindWinLocation("D2");
                     break;
                 }
             }
@@ -170,9 +190,67 @@ namespace Coursework_UI
             return win;
         }
 
-        public void EndGame()
+        private void FindWinLocation(string Method)
         {
+            //Horizontal Check
+            if (Method == "H")
+            {
+                for (int y = 0; y < 6; y++)
+                {
+                    for (int x = 0; x < 4; x++)
+                    {
+                        if (Grid2D[x, y].Colour == CurrentPlayer.Colour && Grid2D[x + 1, y].Colour == CurrentPlayer.Colour && Grid2D[x + 2, y].Colour == CurrentPlayer.Colour && Grid2D[x + 3, y].Colour == CurrentPlayer.Colour)
+                        {
+                            
+                        }
+                    }
+                }
+            }
 
+            if (Method == "V")
+            {
+                for (int x = 0; x < 7; x++)
+                {
+                    for (int y = 0; y < 3; y++)
+                    {
+                        if (Grid2D[x, y].Colour == CurrentPlayer.Colour && Grid2D[x, y + 1].Colour == CurrentPlayer.Colour && Grid2D[x, y + 2].Colour == CurrentPlayer.Colour && Grid2D[x, y + 3].Colour == CurrentPlayer.Colour)
+                        {
+                            Grid[x + y * 7].Colour = "0";
+                            Grid[x + (y+1) * 7].Colour = "0";
+                            Grid[x + (y + 2) * 7].Colour = "0";
+                            Grid[x + (y + 3) * 7].Colour = "0";
+                        }
+                    }
+                }
+            }
+
+            if (Method == "D1")
+            {
+                for (int x = 0; x < 4; x++)
+                {
+                    for (int y = 3; y < 6; y++)
+                    {
+                        if (Grid2D[x, y].Colour == CurrentPlayer.Colour && Grid2D[x + 1, y - 1].Colour == CurrentPlayer.Colour && Grid2D[x + 2, y - 2].Colour == CurrentPlayer.Colour && Grid2D[x + 3, y - 3].Colour == CurrentPlayer.Colour)
+                        {
+                            
+                        }
+                    }
+                }
+            }
+
+            if (Method == "D2")
+            {
+                for (int x = 0; x < 4; x++)
+                {
+                    for (int y = 0; y < 3; y++)
+                    {
+                        if (Grid2D[x, y].Colour == CurrentPlayer.Colour && Grid2D[x + 1, y + 1].Colour == CurrentPlayer.Colour && Grid2D[x + 2, y + 2].Colour == CurrentPlayer.Colour && Grid2D[x + 3, y + 3].Colour == CurrentPlayer.Colour)
+                        {
+
+                        }
+                    }
+                }
+            }
         }
     }
 }

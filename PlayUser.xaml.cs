@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +26,7 @@ namespace Coursework_UI
         private string FirstPlayer;
         private DispatcherTimer GameTime;
         private int TimeLeft=600;
+
         public PlayUser(string Colour)
         {
             InitializeComponent();
@@ -58,6 +60,7 @@ namespace Coursework_UI
         {
 
             PlaceCounter(0);
+            
 
         }
 
