@@ -33,7 +33,7 @@ namespace Coursework_UI
         private void PlayGame_Click(object sender, RoutedEventArgs e)
         {
 
-            Window w = new PlayUser("1");
+            Window w = new PlayUser("R");
             this.Hide();
             w.ShowDialog();
             

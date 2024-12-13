@@ -107,8 +107,8 @@ namespace Coursework_UI
         private void UpdatePlayer()
         {
             //Updating which colour is placing a counter
-            if (CurrentPlayer.Colour == "1") CurrentPlayer.Colour = "2";
-            else CurrentPlayer.Colour = "1";
+            if (CurrentPlayer.Colour == "R") CurrentPlayer.Colour = "Y";
+            else CurrentPlayer.Colour = "R";
         }
 
 
@@ -192,6 +192,8 @@ namespace Coursework_UI
 
         private void FindWinLocation(string Method)
         {
+            string Colour = CurrentPlayer.Colour + Method;
+
             //Horizontal Check
             if (Method == "H")
             {
@@ -201,7 +203,11 @@ namespace Coursework_UI
                     {
                         if (Grid2D[x, y].Colour == CurrentPlayer.Colour && Grid2D[x + 1, y].Colour == CurrentPlayer.Colour && Grid2D[x + 2, y].Colour == CurrentPlayer.Colour && Grid2D[x + 3, y].Colour == CurrentPlayer.Colour)
                         {
-                            
+
+                            Grid[x+y*7].Colour = Colour;
+                            Grid[(x+1) + y * 7].Colour = Colour;
+                            Grid[(x + 2) + y * 7].Colour = Colour;
+                            Grid[(x + 3) + y * 7].Colour = Colour;
                         }
                     }
                 }
@@ -215,10 +221,11 @@ namespace Coursework_UI
                     {
                         if (Grid2D[x, y].Colour == CurrentPlayer.Colour && Grid2D[x, y + 1].Colour == CurrentPlayer.Colour && Grid2D[x, y + 2].Colour == CurrentPlayer.Colour && Grid2D[x, y + 3].Colour == CurrentPlayer.Colour)
                         {
-                            Grid[x + y * 7].Colour = "0";
-                            Grid[x + (y+1) * 7].Colour = "0";
-                            Grid[x + (y + 2) * 7].Colour = "0";
-                            Grid[x + (y + 3) * 7].Colour = "0";
+
+                            Grid[x + y * 7].Colour = Colour;
+                            Grid[x + (y+1) * 7].Colour = Colour;
+                            Grid[x + (y + 2) * 7].Colour = Colour;
+                            Grid[x + (y + 3) * 7].Colour = Colour;
                         }
                     }
                 }
@@ -232,7 +239,11 @@ namespace Coursework_UI
                     {
                         if (Grid2D[x, y].Colour == CurrentPlayer.Colour && Grid2D[x + 1, y - 1].Colour == CurrentPlayer.Colour && Grid2D[x + 2, y - 2].Colour == CurrentPlayer.Colour && Grid2D[x + 3, y - 3].Colour == CurrentPlayer.Colour)
                         {
-                            
+
+                            Grid[x + y * 7].Colour = Colour;
+                            Grid[(x + 1) + (y-1) * 7].Colour = Colour;
+                            Grid[(x + 2) + (y-2) * 7].Colour = Colour;
+                            Grid[(x + 3) + (y-3) * 7].Colour = Colour;
                         }
                     }
                 }
@@ -246,7 +257,11 @@ namespace Coursework_UI
                     {
                         if (Grid2D[x, y].Colour == CurrentPlayer.Colour && Grid2D[x + 1, y + 1].Colour == CurrentPlayer.Colour && Grid2D[x + 2, y + 2].Colour == CurrentPlayer.Colour && Grid2D[x + 3, y + 3].Colour == CurrentPlayer.Colour)
                         {
-
+                            
+                            Grid[x + y * 7].Colour = Colour;
+                            Grid[(x + 1) + (y + 1) * 7].Colour = Colour;
+                            Grid[(x + 2) + (y + 2) * 7].Colour = Colour;
+                            Grid[(x + 3) + (y + 3) * 7].Colour = Colour;
                         }
                     }
                 }

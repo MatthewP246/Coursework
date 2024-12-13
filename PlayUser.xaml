@@ -132,7 +132,7 @@
 
 
 
-            <TextBlock Grid.Column="1" Grid.Row="1" Text="Players Turn" Foreground="White" FontSize="20" HorizontalAlignment="Center" Width="108"/>
+            <TextBlock Grid.Column="1" Grid.Row="1" Text="Players Turn"  FontSize="20" HorizontalAlignment="Center" Width="108"/>
             <Image Grid.Column="1" Grid.Row="1" Width="130" Height="130" Source="{Binding b.p.Colour, Converter={StaticResource CCConverter}}" Margin="51,39,50,135" Grid.RowSpan="2" />
 
 
@@ -145,7 +145,7 @@
                 <Image Source="/Images/Restart.png"/>
             </Button>
 
-            <TextBlock Grid.Row="1" Grid.Column="9" Name="Time" Text="Time 10:00" Foreground="White" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="1" Grid.Column="9" Name="Time" Text="Time 10:00"  FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
 
 

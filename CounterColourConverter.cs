@@ -15,15 +15,52 @@ namespace Coursework_UI
         public object Convert(object value, Type targetType, object paramater, CultureInfo culture)
         {
             string path;
-            if ((string)value == "0")
-            {
-                path = "{x:null}";
-            }
-            else if ((string)value == "1")
+
+            if ((string)value == "R")
             {
                 path = "/Images/Red.png";
             }
-            else path= "/Images/Yellow.png";
+            else if ((string)value == "RH")
+            {
+                path = "/Images/Red H.png";
+            }
+            else if ((string)value == "RV")
+            {
+                path = "/Images/Red V.png";
+            }
+            else if ((string)value == "RD1")
+            {
+                path = "/Images/Red D1.png";
+            }
+            else if ((string)value == "RD2")
+            {
+                path = "/Images/Red D2.png";
+            }
+            else if ((string)value == "Y")
+            {
+                path = "/Images/Yellow.png";
+            }
+            else if ((string)value == "YH")
+            {
+                path = "/Images/Yellow H.png";
+            }
+            else if ((string)value == "YV")
+            {
+                path = "/Images/Yellow V.png";
+            }
+            else if ((string)value == "YD1")
+            {
+                path = "/Images/Yellow D1.png";
+            }
+            else if((string)value == "YD2")
+            {
+                path = "/Images/Yellow D2.png";
+            }
+            else
+            {
+                path = "{x:null}";
+            }
+
 
             return new BitmapImage(new Uri(path, UriKind.Relative));
         }

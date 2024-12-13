@@ -127,6 +127,10 @@
     <Resource Include="Images\Connect4.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\Red D1.png" />
+    <Resource Include="Images\Red D2.png" />
+    <Resource Include="Images\Yellow D1.png" />
+    <Resource Include="Images\Yellow D2.png" />
     <Resource Include="Images\Yellow.png" />
   </ItemGroup>
   <ItemGroup>
@@ -137,6 +141,14 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Restart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Red H.png" />
+    <Resource Include="Images\Red V.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Yellow H.png" />
+    <Resource Include="Images\Yellow V.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
