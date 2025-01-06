@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Navigation;
 using System.Xaml.Schema;
 
 namespace Coursework_UI
@@ -100,6 +101,44 @@ namespace Coursework_UI
             else Placed = false;
 
             return Placed;
+        }
+
+
+        public string[] validLocations()
+        {
+            string[] validLocations = [];
+
+            for(int i = 0; i < 7; i++)
+            {
+                if (RecursiveValid(i) == true)
+                {
+
+                } 
+            }
+
+
+
+
+
+            return validLocations;
+        }
+
+
+        private bool RecursiveValid(int C)
+        {
+            bool valid = true;
+            if(C<42)
+            {
+                if (g[C].Colour == "0") ;
+                else
+                {
+                    valid = RecursiveValid(C+7);
+                }
+            }
+            else valid = false;
+
+
+            return valid;
         }
 
 
@@ -213,7 +252,8 @@ namespace Coursework_UI
                 }
             }
 
-            if (Method == "V")
+            //Vertical Check
+            else if (Method == "V")
             {
                 for (int x = 0; x < 7; x++)
                 {
@@ -231,7 +271,8 @@ namespace Coursework_UI
                 }
             }
 
-            if (Method == "D1")
+            //Diagonal Check (Bottom right - Top left)
+            else if (Method == "D1")
             {
                 for (int x = 0; x < 4; x++)
                 {
@@ -248,8 +289,8 @@ namespace Coursework_UI
                     }
                 }
             }
-
-            if (Method == "D2")
+            //Diagonal Check (Bottom left - Top right)
+            else if (Method == "D2")
             {
                 for (int x = 0; x < 4; x++)
                 {
