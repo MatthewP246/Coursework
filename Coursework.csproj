@@ -78,7 +78,6 @@
       <DependentUpon>GameSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Human.cs" />
-    <Compile Include="LinkList.cs" />
     <Compile Include="MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -93,7 +92,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Node.cs" />
     <Compile Include="PauseMenu.xaml.cs">
       <DependentUpon>PauseMenu.xaml</DependentUpon>
     </Compile>

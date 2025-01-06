@@ -106,7 +106,7 @@ namespace Coursework_UI
 
         public string[] validLocations()
         {
-            string[] validLocations = [];
+            string[] validLocations = {};
 
             for(int i = 0; i < 7; i++)
             {

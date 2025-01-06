@@ -25,14 +25,12 @@ namespace Coursework_UI
             for (int r = 0; r < 6; r++)
             {
                 //creates an array of each individual row
-                string[] rowArray;
-                rowArray = [b.gg[0, r].Colour, b.gg[1, r].Colour, b.gg[2, r].Colour, b.gg[3, r].Colour, b.gg[4, r].Colour, b.gg[5, r].Colour];
+                string[] rowArray = { b.gg[0, r].Colour, b.gg[1, r].Colour, b.gg[2, r].Colour, b.gg[3, r].Colour, b.gg[4, r].Colour, b.gg[5, r].Colour};
                 for(int c = 0; c < 4; c++)
                 {
                     //4 to prevent index out of bounds error
                     //creates a window of 4 spaces horizontally which could be used to win
-                    string[] Window;
-                    Window = [rowArray[c], rowArray[c + 1], rowArray[c + 2], rowArray[c + 3], rowArray[c+4]];
+                    string[] Window = { rowArray[c], rowArray[c + 1], rowArray[c + 2], rowArray[c + 3], rowArray[c + 4]};
                     //4 in the window
                     if ((Window.Count(s => s == Current.Colour) == 4))
                     {
