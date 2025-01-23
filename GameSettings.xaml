@@ -6,7 +6,44 @@
         xmlns:local="clr-namespace:Coursework_UI"
         mc:Ignorable="d"
         Title="GameSettings" Width="{x:Static SystemParameters.PrimaryScreenWidth}" Height="{x:Static SystemParameters.PrimaryScreenHeight}">
+
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+
+        <Border  BorderBrush="OrangeRed" BorderThickness="10" CornerRadius="50" Grid.Column="1" Grid.ColumnSpan="5" Grid.Row="1" Grid.RowSpan="5" >
+            <TextBox Text="SETTINGS" Foreground="Red" FontSize="100" Margin="0,0,0,822" HorizontalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}"/>
+        </Border>
+
+        <StackPanel Grid.Row="2" Grid.Column="2" VerticalAlignment="Top" Orientation="Vertical" >
+            <ComboBox x:Name="Mode"  IsEditable="True" IsReadOnly="True" Height="30">
+                <ComboBoxItem Content="Player vs Player"/>
+                <ComboBoxItem Content="Player vs Computer"/>
+            </ComboBox>
+            <Rectangle Height="30" Fill="{x:Null}"/>
+            <ComboBox x:Name="Username" IsEditable="True" IsReadOnly="True" Height="30">
+                <ComboBoxItem Content="Enter new Username"/>
+                <ComboBoxItem Content="Database values"/>
+            </ComboBox>
+        </StackPanel>
+
     </Grid>
 </Window>

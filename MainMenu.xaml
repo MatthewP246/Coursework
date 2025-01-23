@@ -17,31 +17,22 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
+
             </Grid.RowDefinitions>
 
-            <Button x:Name="PlayGame" Content="Play Game" FontSize="50" Click="PlayGame_Click" Grid.Column="2" Grid.ColumnSpan="5" Margin="284,173,284,5" Grid.RowSpan="2" Background="OrangeRed" Cursor="Hand"/>
+            <StackPanel Grid.Column="1" Grid.Row="1">
+                <Button x:Name="PlayGame" Content="Play Game" FontSize="50" Click="PlayGame_Click"  Height="200" Background="OrangeRed" Cursor="Hand"/>
+                <Separator Opacity="0" Height="50"/>
 
-            <Button x:Name="Rules" Content="Rules" FontSize="50" Click="Rules_Click" Grid.Column="2" Grid.ColumnSpan="5" Grid.Row="2" Margin="284,173,284,5" Grid.RowSpan="2" Background="OrangeRed" Cursor="Hand"/>
+                <Button x:Name="Rules" Content="Rules" FontSize="50" Click="Rules_Click"  Height="200" Background="OrangeRed" Cursor="Hand"/>
+                <Separator Opacity="0" Height="50"/>
+                <Button x:Name="Leaderboard" Content="Leaderboard" FontSize="50" Click="Leaderboard_Click" Height="200"  Background="OrangeRed" Cursor="Hand"/>
 
-            <Button x:Name="Leaderboard" Content="Leaderboard" FontSize="50" Click="Leaderboard_Click" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="5" Margin="284,173,284,5" Grid.RowSpan="2" Background="OrangeRed" Cursor="Hand"/>
-
-
+            </StackPanel>
         </Grid>
     </Grid>
 </Window>

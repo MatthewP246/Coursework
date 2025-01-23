@@ -104,27 +104,23 @@ namespace Coursework_UI
         }
 
 
-        public string[] validLocations()
+        public List<int> getValidLocations()
         {
-            string[] validLocations = {};
+            List<int> ValidLocations = new List<int>();
 
             for(int i = 0; i < 7; i++)
             {
-                if (RecursiveValid(i) == true)
+                if (isValidLocation(i) == true)
                 {
-
+                    ValidLocations.Add(i);
                 } 
             }
 
-
-
-
-
-            return validLocations;
+            return ValidLocations;
         }
 
 
-        private bool RecursiveValid(int C)
+        public bool isValidLocation(int C)
         {
             bool valid = true;
             if(C<42)
@@ -132,7 +128,7 @@ namespace Coursework_UI
                 if (g[C].Colour == "0") ;
                 else
                 {
-                    valid = RecursiveValid(C+7);
+                    valid = isValidLocation(C+7);
                 }
             }
             else valid = false;
@@ -140,6 +136,7 @@ namespace Coursework_UI
 
             return valid;
         }
+
 
 
 
