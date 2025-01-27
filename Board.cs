@@ -11,7 +11,7 @@ using System.Xaml.Schema;
 
 namespace Coursework_UI
 {
-    internal class Board
+    internal class Board : ICloneable
     {
         private Counter[] Grid;
         private Counter[,] Grid2D;
@@ -19,7 +19,10 @@ namespace Coursework_UI
         public Counter CurrentPlayer;
         private Human h;
 
-
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
         public Board(string FirstPlayer)
         {
             //initialising the grid as a blank array of 0's

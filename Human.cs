@@ -8,20 +8,22 @@ namespace Coursework_UI
 {
     internal class Human : Player
     {
-        private string Firstname;
-        private string Surname;
-        public Human()
+        private string name;
+        public Human(string Colour) : base(Colour)
         {
-
+            Colour = this.getColour;
         }
         public override void PlaceCounter(int C, Board b)
         {
             b.PlaceCounter(C);
         }
-        public void NewPlayer(string F, string S)
+        public string getName
         {
-            Firstname = F;
-            Surname = S;
+            get { return name; }
+        }
+        public void NewPlayer(string N)
+        {
+            name = N;
         }
 
     }

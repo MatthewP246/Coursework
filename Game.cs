@@ -9,11 +9,20 @@ namespace Coursework_UI
     internal class Game
     {
         private Board board;
-        private Player[] Players;
+        private Player[] Players = new Player[2];
+        bool AIGame;
 
-        public Game()
+        public Game(string PlayerColour, bool AI)
         {
+            AIGame = AI;
+            Players[0] = new Human(PlayerColour);
+            if(PlayerColour == "R")
+            {
+                if (AIGame) Players[1] = new Computer("Y");
+                else Players[1] = new Human("Y");
+            }
             
+            board = new Board(PlayerColour);
         }
 
         public Board b
@@ -21,19 +30,17 @@ namespace Coursework_UI
             get { return board; }
         }
 
-        public void NewPlayerGame(string FirstPlayer)
-        {
-            board = new Board(FirstPlayer);
-        }
 
-        public void NewComputerGame(string PlayerColour)
-        {
-            board = new Board(PlayerColour);
-        }
+
 
         public void PlaceCounter(int C)
         {
-            board.PlaceCounter(C);
+            Players[1].PlaceCounter(C, board);
+            //Players[0].PlaceCounter(C, board);
+            //if (AIGame)
+            //{
+
+            //}
         }
 
         public bool CheckWin()

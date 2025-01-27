@@ -11,8 +11,12 @@ namespace Coursework_UI
     internal class Computer : Player
     {
         private Random Rgen = new Random();
-        
-       
+
+        public Computer(string Colour) : base( Colour)
+        {
+            Colour = this.getColour;
+        }
+
         public override void PlaceCounter(int C, Board b)
         {
             C = BestMove(b);
@@ -27,12 +31,12 @@ namespace Coursework_UI
             for (int row = 0; row < 6; row++)
             {
                 //creates an array of each individual row
-                string[] rowArray = { b.gg[0, row].Colour, b.gg[1, row].Colour, b.gg[2, row].Colour, b.gg[3, row].Colour, b.gg[4, row].Colour, b.gg[5, row].Colour};
+                string[] rowArray = { b.gg[0, row].Colour, b.gg[1, row].Colour, b.gg[2, row].Colour, b.gg[3, row].Colour, b.gg[4, row].Colour, b.gg[5, row].Colour, b.gg[6, row].Colour };
                 for(int col = 0; col < 4; col++)
                 {
                     //4 to prevent index out of bounds error
                     //creates a window of 4 spaces horizontally which could be used to win
-                    string[] Window = { rowArray[col], rowArray[col + 1], rowArray[col + 2], rowArray[col + 3], rowArray[col + 4]};
+                    string[] Window = { rowArray[col], rowArray[col + 1], rowArray[col + 2], rowArray[col + 3]};
                     //4 in the window
                     if ((Window.Count(s => s == b.CurrentPlayer.Colour) == 4))
                     {
@@ -47,28 +51,28 @@ namespace Coursework_UI
                 }
             }
             //Vertical Score
-            for (int col = 0; col < 7; col++)
-            {
-                //creates an array of each individual column
-                string[] colArray = { b.gg[col, 0].Colour, b.gg[col, 1].Colour, b.gg[col, 2].Colour, b.gg[col, 3].Colour, b.gg[col, 4].Colour, b.gg[col, 5].Colour , b.gg[col,6].Colour };
-                for (int row = 0; row < 3; col++)
-                {
-                    //3 to prevent index out of bounds error
-                    //creates a window of 4 spaces Vertically which could be used to win
-                    string[] Window = { colArray[row], colArray[row + 1], colArray[row + 2], colArray[row + 3]};
-                    //4 in the window
-                    if ((Window.Count(s => s == b.CurrentPlayer.Colour) == 4))
-                    {
-                        HValue += 100;
-                    }
-                    //3 in the window
-                    else if ((Window.Count(s => s == b.CurrentPlayer.Colour) == 3) && (Window.Count(s => s == "0")) == 1)
-                    {
-                        HValue += 10;
-                    }
-
-                }
-            }
+            //for (int col = 0; col < 7; col++)
+            //{
+            //    //creates an array of each individual column
+            //    string[] colArray = { b.gg[col, 0].Colour, b.gg[col, 1].Colour, b.gg[col, 2].Colour, b.gg[col, 3].Colour, b.gg[col, 4].Colour, b.gg[col, 5].Colour };
+            //    for (int row = 0; row < 3; col++)
+            //    {
+            //        //3 to prevent index out of bounds error
+            //        //creates a window of 4 spaces Vertically which could be used to win
+            //        string[] Window = { colArray[row], colArray[row + 1], colArray[row + 2], colArray[row + 3]};
+            //        //4 in the window
+            //        if ((Window.Count(s => s == b.CurrentPlayer.Colour) == 4))
+            //        {
+            //            HValue += 100;
+            //        }
+            //        //3 in the window
+            //        else if ((Window.Count(s => s == b.CurrentPlayer.Colour) == 3) && (Window.Count(s => s == "0")) == 1)
+            //        {
+            //            HValue += 10;
+            //        }
+            //
+            //    }
+            //}
 
 
 
@@ -90,9 +94,9 @@ namespace Coursework_UI
 
             foreach(int l in validLocation)
             {
-                Board tempBoard = b;
+                Board tempBoard = (Board)b.Clone();
                 tempBoard.PlaceCounter(l);
-                int score = Heuristic(tempBoard, b.CurrentPlayer);
+                int score = Heuristic(tempBoard);
                 if (score > bestScore)
                 {
                     bestScore = score;
