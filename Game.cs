@@ -35,12 +35,12 @@ namespace Coursework_UI
 
         public void PlaceCounter(int C)
         {
-            Players[1].PlaceCounter(C, board);
-            //Players[0].PlaceCounter(C, board);
-            //if (AIGame)
-            //{
-
-            //}
+            
+            Players[0].PlaceCounter(C, board);
+            if (AIGame)
+            {
+                Players[1].PlaceCounter(C, board);
+            }
         }
 
         public bool CheckWin()

@@ -16,12 +16,12 @@ namespace Coursework_UI
         private Counter[] Grid;
         private Counter[,] Grid2D;
 
-        public Counter CurrentPlayer;
+        private Counter CurrentPlayer;
         private Human h;
 
         public object Clone()
         {
-            return this.MemberwiseClone();
+            return new Board(CurrentPlayer.Colour);
         }
         public Board(string FirstPlayer)
         {
@@ -57,6 +57,7 @@ namespace Coursework_UI
         {
             //get method for 2D array
             get { return Grid2D; }
+            set { Grid2D = value; }
         }
 
         public Counter p
@@ -113,7 +114,7 @@ namespace Coursework_UI
 
             for(int i = 0; i < 7; i++)
             {
-                if (isValidLocation(i) == true)
+                if (isValidLocation(i))
                 {
                     ValidLocations.Add(i);
                 } 
@@ -129,13 +130,10 @@ namespace Coursework_UI
             if(C<42)
             {
                 if (g[C].Colour == "0") ;
-                else
-                {
-                    valid = isValidLocation(C+7);
-                }
+                else valid = isValidLocation(C+7);
+                
             }
-            else valid = false;
-
+            else valid= false;
 
             return valid;
         }
