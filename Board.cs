@@ -11,18 +11,14 @@ using System.Xaml.Schema;
 
 namespace Coursework_UI
 {
-    internal class Board : ICloneable
+    internal class Board
     {
         private Counter[] Grid;
         private Counter[,] Grid2D;
 
         private Counter CurrentPlayer;
-        private Human h;
 
-        public object Clone()
-        {
-            return new Board(CurrentPlayer.Colour);
-        }
+
         public Board(string FirstPlayer)
         {
             //initialising the grid as a blank array of 0's
@@ -65,19 +61,26 @@ namespace Coursework_UI
             get { return CurrentPlayer; }
         }
 
-        public void PlaceCounter(int C)
+        public void PlaceCounter(int C, bool temp)
         {
             bool win = false;
-
-            if (RecursivePlace(C) == true)
-            { 
-                win = checkWin();
-                if (win == true)
+            if(C== -1)
+            {
+                win = true;
+                CurrentPlayer.Colour = "0";
+            }
+            else if (RecursivePlace(C) == true)
+            {
+                if (temp == false)
                 {
-                    CurrentPlayer.Colour = "0";
-                    
-                } 
-                else UpdatePlayer();
+                    win = checkWin();
+                    if (win == true)
+                    {
+                        CurrentPlayer.Colour = "0";
+
+                    }
+                    else UpdatePlayer();
+                }
             }
 
         }
@@ -90,10 +93,10 @@ namespace Coursework_UI
             if (C<42)
             {
 
-                if (g[C].Colour == "0")
+                if (Grid[C].Colour == "0")
                 {
-                    g[C].Colour = CurrentPlayer.Colour;
-                    gg[C%7,C/7].Colour = CurrentPlayer.Colour;
+                    Grid[C].Colour = CurrentPlayer.Colour;
+                    Grid2D[C%7,C/7].Colour = CurrentPlayer.Colour;
                 }
                 else 
                 {
@@ -124,18 +127,10 @@ namespace Coursework_UI
         }
 
 
-        public bool isValidLocation(int C)
+        private bool isValidLocation(int C)
         {
-            bool valid = true;
-            if(C<42)
-            {
-                if (g[C].Colour == "0") ;
-                else valid = isValidLocation(C+7);
-                
-            }
-            else valid= false;
-
-            return valid;
+            if (Grid2D[C, 5].Colour == "0") return true;
+            else return false;
         }
 
 

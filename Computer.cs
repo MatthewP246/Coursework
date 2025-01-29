@@ -1,124 +1,285 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.Tracing;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace Coursework_UI
 {
     internal class Computer : Player
     {
         private Random Rgen = new Random();
+        private string OpponentColour = "R";
+            
 
         public Computer(string Colour) : base( Colour)
         {
             Colour = this.getColour;
+            if (Colour == "R") OpponentColour = "Y";
         }
 
         public override void PlaceCounter(int C, Board b)
         {
-            C = BestMove(b);
-            b.PlaceCounter(C);
+            //C=BestMove(b);
+            C = MinMax(b, 3, true).Item1;
+            b.PlaceCounter(C, false);
+        }
+
+        private int BestMove(Board b)
+        {
+            List<int> validLocation = b.getValidLocations();
+            int bestColumn = -1;
+            int bestScore = 0;
+
+            if (validLocation != null)
+            {
+                bestColumn = validLocation[Rgen.Next(validLocation.Count)];
+
+
+
+                foreach (int l in validLocation)
+                {
+                    Board tempBoard = new Board(b.p.Colour);
+                    for (int x = 0; x < 7; x++)
+                    {
+                        for (int y = 0; y < 6; y++)
+                        {
+                            if (b.gg[x, y].Colour == "R") tempBoard.gg[x, y].Colour = "R";
+                            else if (b.gg[x, y].Colour == "Y") tempBoard.gg[x, y].Colour = "Y";
+                            else tempBoard.gg[x, y].Colour = "0";
+
+                        }
+                    }
+                    for (int i = 0; i < 42; i++)
+                    {
+                        if (b.g[i].Colour == "R") tempBoard.g[i].Colour = "R";
+                        else if (b.g[i].Colour == "Y") tempBoard.g[i].Colour = "Y";
+                        else tempBoard.g[i].Colour = "0";
+                    }
+                    tempBoard.PlaceCounter(l, true);
+                    int score = Heuristic(tempBoard);
+                    if (score > bestScore)
+                    {
+                        bestScore = score;
+                        bestColumn = l;
+                    }
+                }
+            }
+
+            return bestColumn;
         }
 
         private int Heuristic(Board b)
         {
             int HValue = 0;
 
+            //Centre Score
+            string[] CentreArray = { b.gg[3, 0].Colour, b.gg[3, 1].Colour, b.gg[3, 2].Colour, b.gg[3, 3].Colour, b.gg[3, 4].Colour, b.gg[3, 5].Colour };
+            int CentreCount = 0;
+            for (int i = 0;i < CentreArray.Length; i++)
+            {
+                if (CentreArray[i] != "0") CentreCount++;
+            }
+            HValue += CentreCount * 6;
+
+
             //Horizontal score
             for (int row = 0; row < 6; row++)
             {
                 //creates an array of each individual row
                 string[] rowArray = { b.gg[0, row].Colour, b.gg[1, row].Colour, b.gg[2, row].Colour, b.gg[3, row].Colour, b.gg[4, row].Colour, b.gg[5, row].Colour, b.gg[6, row].Colour };
-                for(int col = 0; col < 4; col++)
+                for (int col = 0; col < 4; col++)
                 {
                     //4 to prevent index out of bounds error
                     //creates a window of 4 spaces horizontally which could be used to win
                     string[] Window = { rowArray[col], rowArray[col + 1], rowArray[col + 2], rowArray[col + 3] };
-                    int count = 0;
-                    int zerocount = 0;
-                    for(int i = 0; i < Window.Length; i++)
-                    {
-                        if (Window[i] == b.p.Colour) count++;
-                        if (Window[i]== "0") zerocount++;
-                    }
-                    
-                    //4 in the window
-                    if (count == 4) HValue += 100;
-                    //3 in the window
-                    else if ((count == 3) && (zerocount == 1)) HValue += 10;
-                    //2 in the window
-                    else if ((count == 3) && zerocount == 1) HValue += 1;
+                    HValue += WindowCheck(Window, b);
+
 
 
 
                 }
             }
             //Vertical Score
-            //for (int col = 0; col < 7; col++)
-            //{
-            //    //creates an array of each individual column
-            //    string[] colArray = { b.gg[col, 0].Colour, b.gg[col, 1].Colour, b.gg[col, 2].Colour, b.gg[col, 3].Colour, b.gg[col, 4].Colour, b.gg[col, 5].Colour };
-            //    for (int row = 0; row < 3; col++)
-            //    {
-            //        //3 to prevent index out of bounds error
-            //        //creates a window of 4 spaces Vertically which could be used to win
-            //        string[] Window = { colArray[row], colArray[row + 1], colArray[row + 2], colArray[row + 3]};
-            //        //4 in the window
-            //        if ((Window.Count(s => s == b.CurrentPlayer.Colour) == 4))
-            //        {
-            //            HValue += 100;
-            //        }
-            //        //3 in the window
-            //        else if ((Window.Count(s => s == b.CurrentPlayer.Colour) == 3) && (Window.Count(s => s == "0")) == 1)
-            //        {
-            //            HValue += 10;
-            //        }
-            //
-            //    }
-            //}
+            for (int col = 0; col < 7; col++)
+            {
+                //creates an array of each individual column
+                string[] colArray = { b.gg[col, 0].Colour, b.gg[col, 1].Colour, b.gg[col, 2].Colour, b.gg[col, 3].Colour, b.gg[col, 4].Colour, b.gg[col, 5].Colour };
+                for (int row = 0; row < 3; row++)
+                {
+                    //3 to prevent index out of bounds error
+                    //creates a window of 4 spaces Vertically which could be used to win
+                    string[] Window = { colArray[row], colArray[row + 1], colArray[row + 2], colArray[row + 3] };
+                    HValue += WindowCheck(Window, b);
 
+                }
+            }
 
-
-
-
-
-
-
+            //Diagonal 1 (Bottom Left - Top Right)
+            for (int row = 0; row < 3; row++)
+            {
+                for (int col = 0; col < 4; col++)
+                {
+                    string[] Window = { b.gg[col, row].Colour, b.gg[col + 1, row + 1].Colour, b.gg[col + 2, row + 2].Colour, b.gg[col + 3, row + 3].Colour };
+                    HValue += WindowCheck(Window, b);
+                }
+            }
+            //Diagonal 2 (Top Left - Bottom Right)
+            for (int row = 0; row < 3; row++)
+            {
+                for (int col = 0; col < 4; col++)
+                {
+                    string[] Window = { b.gg[col, row+3].Colour, b.gg[col + 1, row +2].Colour, b.gg[col + 2, row +1].Colour, b.gg[col + 3, row].Colour };
+                    HValue += WindowCheck(Window, b);
+                    
+                }
+            }
 
             return HValue;
         }
 
-        private int BestMove(Board b)
+        private int WindowCheck(string[] Window, Board b)
         {
-            List<int> validLocation = b.getValidLocations();
-            int bestScore = 0;
-            int bestColumn = validLocation[Rgen.Next(validLocation.Count)];
+            int HValue = 0;
             
-
-            foreach(int l in validLocation)
+            //4 in window
+            if ((Window.Count(s => s == b.p.Colour) == 4))
             {
-                Board tempBoard = new Board(b.p.Colour);
-                for (int x = 0; x < 7; x++)
-                {
-                    for (int y = 0; y < 6; y++)
-                    {
-                        tempBoard.gg[x, y] = b.gg[x, y];
-                    }
-                }
-                tempBoard.PlaceCounter(l);
-                int score = Heuristic(tempBoard);
-                if (score > bestScore)
-                {
-                    bestScore = score;
-                    bestColumn = l;
-                }
+                HValue += 100;
+            }
+            //3 in the window
+            else if ((Window.Count(s => s == b.p.Colour) == 3) && (Window.Count(s => s == "0")) == 1)
+            {
+                HValue += 10;
+            }
+            //2 in window
+            else if ((Window.Count(s => s == b.p.Colour) == 2) && (Window.Count(s => s == "0")) == 2)
+            {
+                HValue += 5;
             }
 
-            return bestColumn;
+
+            //Opponent has 3 in a row
+            if ((Window.Count(s => s == OpponentColour) == 3) && (Window.Count(s => s == "0")) == 1)
+            {
+                HValue -= 80;
+            }
+
+            return HValue;
+
         }
+
+        private (int,int) MinMax(Board b, int depth, bool MaximisingPlayer)
+        {
+            List<int> ValidLocations = b.getValidLocations();
+            bool Terminal = TerminalNode(b);
+
+            
+
+
+            if (depth == 0 || Terminal)
+            {
+                if (Terminal)
+                {
+                    if (getColour == b.p.Colour) return (-1, 1000000000);
+                    else if (getColour != b.p.Colour) return (-1,-1000000000);
+                    else return (-1, 0);
+                }
+                else 
+                {
+                    //Depth=0
+                    return (-1, Heuristic(b));
+                }
+            }
+            if (MaximisingPlayer)
+            {
+                int value=int.MinValue;
+                int bestColumn = ValidLocations[Rgen.Next(ValidLocations.Count)];
+
+                foreach (int l in ValidLocations)
+                {
+                    Board tempBoard = new Board(getColour);
+                    for (int x = 0; x < 7; x++)
+                    {
+                        for (int y = 0; y < 6; y++)
+                        {
+                            if (b.gg[x, y].Colour == "R") tempBoard.gg[x, y].Colour = "R";
+                            else if (b.gg[x, y].Colour == "Y") tempBoard.gg[x, y].Colour = "Y";
+                            else tempBoard.gg[x, y].Colour = "0";
+
+                        }
+                    }
+                    for (int i = 0; i < 42; i++)
+                    {
+                        if (b.g[i].Colour == "R") tempBoard.g[i].Colour = "R";
+                        else if (b.g[i].Colour == "Y") tempBoard.g[i].Colour = "Y";
+                        else tempBoard.g[i].Colour = "0";
+                    }
+                    tempBoard.PlaceCounter(l, true);
+                    int newScore = MinMax(tempBoard, depth - 1, false).Item2;
+                    if (newScore > value)
+                    {
+                        value = newScore;
+                        bestColumn = l;
+                    }
+                    
+                }
+                return (bestColumn, value);
+            }
+            else //Minimising Player
+            {
+                int value = int.MaxValue;
+                int bestColumn = ValidLocations[Rgen.Next(ValidLocations.Count)];
+
+
+                foreach (int l in ValidLocations)
+                {
+                    Board tempBoard = new Board(getColour);
+                    for (int x = 0; x < 7; x++)
+                    {
+                        for (int y = 0; y < 6; y++)
+                        {
+                            if (b.gg[x, y].Colour == "R") tempBoard.gg[x, y].Colour = "R";
+                            else if (b.gg[x, y].Colour == "Y") tempBoard.gg[x, y].Colour = "Y";
+                            else tempBoard.gg[x, y].Colour = "0";
+
+                        }
+                    }
+                    for (int i = 0; i < 42; i++)
+                    {
+                        if (b.g[i].Colour == "R") tempBoard.g[i].Colour = "R";
+                        else if (b.g[i].Colour == "Y") tempBoard.g[i].Colour = "Y";
+                        else tempBoard.g[i].Colour = "0";
+                    }
+                    tempBoard.PlaceCounter(l, true);
+                    int newScore = MinMax(tempBoard, depth - 1, true).Item2;
+                    if (newScore < value)
+                    {
+                        value = newScore;
+                        bestColumn = l;
+                    }
+                    
+                }
+                return (bestColumn, value);
+
+            }
+
+        }
+
+        private bool TerminalNode(Board b)
+        {
+            if (b.checkWin() || b.getValidLocations().Count == 0) return true;
+            else return false;
+        } 
+
+
+
+        
     }
 }

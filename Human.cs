@@ -15,7 +15,7 @@ namespace Coursework_UI
         }
         public override void PlaceCounter(int C, Board b)
         {
-            b.PlaceCounter(C);
+            b.PlaceCounter(C, false);
         }
         public string getName
         {

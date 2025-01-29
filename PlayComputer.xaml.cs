@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -33,85 +34,99 @@ namespace Coursework_UI
 
         }
 
-        private void Column1_Click(object sender, RoutedEventArgs e)
+        private async void Column1_Click(object sender, RoutedEventArgs e)
         {
 
             PlaceCounter(0);
+            await Task.Delay(500);
+            //-1 indicates computer makes move
+            PlaceCounter(-1);
 
 
         }
 
-        private void Column2_Click(object sender, RoutedEventArgs e)
+        private async void Column2_Click(object sender, RoutedEventArgs e)
         {
             PlaceCounter(1);
-
+            await Task.Delay(500);
+            PlaceCounter(-1);
         }
 
-        private void Column3_Click(object sender, RoutedEventArgs e)
+        private async void Column3_Click(object sender, RoutedEventArgs e)
         {
             PlaceCounter(2);
+            await Task.Delay(500);
+            PlaceCounter(-1);
         }
 
-        private void Column4_Click(object sender, RoutedEventArgs e)
+        private async void Column4_Click(object sender, RoutedEventArgs e)
         {
             PlaceCounter(3);
+            await Task.Delay(500);
+            PlaceCounter(-1);
         }
 
-        private void Column5_Click(object sender, RoutedEventArgs e)
+        private async void Column5_Click(object sender, RoutedEventArgs e)
         {
             PlaceCounter(4);
+            await Task.Delay(500);
+            PlaceCounter(-1);
         }
 
-        private void Column6_Click(object sender, RoutedEventArgs e)
+        private async void Column6_Click(object sender, RoutedEventArgs e)
         {
             PlaceCounter(5);
+            await Task.Delay(500);
+            PlaceCounter(-1);
         }
 
-        private void Column7_Click(object sender, RoutedEventArgs e)
+        private async void Column7_Click(object sender, RoutedEventArgs e)
         {
             PlaceCounter(6);
+            await Task.Delay(500);
+            PlaceCounter(-1);
         }
 
         private void KeyPressed(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Escape)
             {
-                Close.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
+                this.Cross_Click(sender, e);
             }
 
             if (e.Key == Key.D1)
             {
-                Column1.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
+                this.Column1_Click(sender, e);
             }
 
             if (e.Key == Key.D2)
             {
-                Column2.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
+                this.Column2_Click(sender, e);
             }
 
             if (e.Key == Key.D3)
             {
-                Column3.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
+                this.Column3_Click(sender, e);
             }
 
             if (e.Key == Key.D4)
             {
-                Column4.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
+                this.Column4_Click(sender, e);
             }
 
             if (e.Key == Key.D5)
             {
-                Column5.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
+                this.Column5_Click(sender, e);
             }
 
             if (e.Key == Key.D6)
             {
-                Column6.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
+                this.Column6_Click(sender, e);
             }
 
             if (e.Key == Key.D7)
             {
-                Column7.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
+                this.Column7_Click(sender, e);
             }
         }
 

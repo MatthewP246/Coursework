@@ -9,7 +9,7 @@ namespace Coursework_UI
     abstract class Player
     {
 
-        private string colour;
+        public string colour;
         
         public Player(string Colour)
         {
@@ -18,7 +18,7 @@ namespace Coursework_UI
 
         
 
-        public string getColour
+        public virtual string getColour
         {
             get { return colour; }
         }
