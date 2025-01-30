@@ -27,7 +27,7 @@ namespace Coursework_UI
         public override void PlaceCounter(int C, Board b)
         {
             //C=BestMove(b);
-            C = MinMax(b, 3, true).Item1;
+            C = MinMax(b, 6,int.MinValue, int.MaxValue, true).Item1;
             b.PlaceCounter(C, false);
         }
 
@@ -84,9 +84,9 @@ namespace Coursework_UI
             int CentreCount = 0;
             for (int i = 0;i < CentreArray.Length; i++)
             {
-                if (CentreArray[i] != "0") CentreCount++;
+                if (CentreArray[i] == getColour) CentreCount++;
             }
-            HValue += CentreCount * 6;
+            HValue += CentreCount * 3;
 
 
             //Horizontal score
@@ -149,33 +149,37 @@ namespace Coursework_UI
             int HValue = 0;
             
             //4 in window
-            if ((Window.Count(s => s == b.p.Colour) == 4))
+            if ((Window.Count(s => s == getColour) == 4))
             {
-                HValue += 100;
+                HValue += 100000;
             }
             //3 in the window
-            else if ((Window.Count(s => s == b.p.Colour) == 3) && (Window.Count(s => s == "0")) == 1)
+            else if ((Window.Count(s => s == getColour) == 3) && (Window.Count(s => s == "0")) == 1)
             {
-                HValue += 10;
+                HValue += 8;
             }
             //2 in window
-            else if ((Window.Count(s => s == b.p.Colour) == 2) && (Window.Count(s => s == "0")) == 2)
+            else if ((Window.Count(s => s == getColour) == 2) && (Window.Count(s => s == "0")) == 2)
             {
-                HValue += 5;
+                HValue += 2;
             }
 
 
-            //Opponent has 3 in a row
+            //Opponent has 3 in window
             if ((Window.Count(s => s == OpponentColour) == 3) && (Window.Count(s => s == "0")) == 1)
             {
-                HValue -= 80;
+                HValue -= 6;
             }
-
+            //Opponent has 2 in window
+            else if ((Window.Count(s => s == OpponentColour) == 2) && (Window.Count(s => s == "0")) == 2)
+            {
+                HValue -= 4;
+            }
             return HValue;
 
         }
 
-        private (int,int) MinMax(Board b, int depth, bool MaximisingPlayer)
+        private (int,int) MinMax(Board b, int depth,int alpha, int beta, bool MaximisingPlayer)
         {
             List<int> ValidLocations = b.getValidLocations();
             bool Terminal = TerminalNode(b);
@@ -204,6 +208,7 @@ namespace Coursework_UI
 
                 foreach (int l in ValidLocations)
                 {
+                    //creates a copy of the Board with the intended player making a move
                     Board tempBoard = new Board(getColour);
                     for (int x = 0; x < 7; x++)
                     {
@@ -222,12 +227,14 @@ namespace Coursework_UI
                         else tempBoard.g[i].Colour = "0";
                     }
                     tempBoard.PlaceCounter(l, true);
-                    int newScore = MinMax(tempBoard, depth - 1, false).Item2;
+                    int newScore = MinMax(tempBoard, depth - 1, alpha, beta, false).Item2;
                     if (newScore > value)
                     {
                         value = newScore;
                         bestColumn = l;
                     }
+                    alpha = Math.Max(value, alpha);
+                    if (alpha >= beta) break;
                     
                 }
                 return (bestColumn, value);
@@ -240,7 +247,7 @@ namespace Coursework_UI
 
                 foreach (int l in ValidLocations)
                 {
-                    Board tempBoard = new Board(getColour);
+                    Board tempBoard = new Board(OpponentColour);
                     for (int x = 0; x < 7; x++)
                     {
                         for (int y = 0; y < 6; y++)
@@ -258,12 +265,14 @@ namespace Coursework_UI
                         else tempBoard.g[i].Colour = "0";
                     }
                     tempBoard.PlaceCounter(l, true);
-                    int newScore = MinMax(tempBoard, depth - 1, true).Item2;
+                    int newScore = MinMax(tempBoard, depth - 1, alpha, beta, true).Item2;
                     if (newScore < value)
                     {
                         value = newScore;
                         bestColumn = l;
                     }
+                    beta = Math.Min(beta, value);
+                    if (alpha >= beta) break;
                     
                 }
                 return (bestColumn, value);
