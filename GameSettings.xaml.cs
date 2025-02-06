@@ -32,9 +32,9 @@ namespace Coursework_UI
         {
             InitializeComponent();
             Mode = Gamemode;
-            if (Mode == "Conmputer")
+            if (Mode == "Computer")
             {
-                Player2Name.Visibility = Visibility.Hidden;
+                Column2.Visibility = Visibility.Hidden;
             }
                 this.KeyDown += new KeyEventHandler(KeyPressed);
 
@@ -42,13 +42,22 @@ namespace Coursework_UI
 
         private void Start_Click(object sender, RoutedEventArgs e)
         {
+            P1Name = Player1Name.Text;
+            P2Name = Player2Name.Text;
+            if (Colour.Text == "Red") FirstPlayer = "R";
+            else FirstPlayer = "Y";
             if (Mode == "User")
             {
-                Window w = new PlayUser(FirstPlayer);
+                
+                Window w = new PlayUser(FirstPlayer, P1Name, P2Name);
+                w.Show();
+                this.Close();
             }
             else
             {
-                Window w = new PlayComputer(FirstPlayer);
+                Window w = new PlayComputer(FirstPlayer, P1Name, P2Name);
+                w.Show();
+                this.Close();
             }
         }
 

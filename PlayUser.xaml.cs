@@ -24,16 +24,20 @@ namespace Coursework_UI
     {
         private Game Connect4;
         private string Colour;
+        private string P1Name;
+        private string P2Name;
         private DispatcherTimer GameTime;
         private int TimeLeft=600;
 
-        public PlayUser(string colour)
+        public PlayUser(string colour, string P1, string P2)
         {
             InitializeComponent();
             this.Focus();
+            P1Name = P1;
+            P2Name = P2;
             Colour = colour;
 
-            Connect4 = new Game(Colour, false);
+            Connect4 = new Game(Colour, false, P1Name, P2Name);
 
             DataContext = Connect4;
 
@@ -154,7 +158,7 @@ namespace Coursework_UI
 
         private void Restart_Click(object sender, RoutedEventArgs e)
         {
-            Window w = new PlayUser(Colour);
+            Window w = new PlayUser(Colour, P1Name, P2Name);
             w.Show();
             this.Close();
 

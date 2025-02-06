@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace Coursework_UI
 {
@@ -24,11 +25,16 @@ namespace Coursework_UI
 
         private Game Connect4;
         private string Colour;
-        public PlayComputer(string colour)
+        private string P1Name;
+        private string P2Name;
+        public PlayComputer(string colour, string P1, string P2)
         {
             InitializeComponent();
             Colour = colour;
-            Connect4 = new Game(Colour, true);
+            P1Name = P1;
+            P2Name = P2;
+
+            Connect4 = new Game(Colour, true, P1Name, P2Name);
             DataContext = Connect4;
             this.KeyDown += new KeyEventHandler(KeyPressed);
 
@@ -139,7 +145,7 @@ namespace Coursework_UI
 
         private void Restart_Click(object sender, RoutedEventArgs e)
         {
-            Window w = new PlayComputer(Colour);
+            Window w = new PlayComputer(Colour, P1Name, P2Name);
             w.Show();
             this.Close();
 

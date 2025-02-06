@@ -35,23 +35,36 @@
         </Border>
 
 
-        <StackPanel Grid.Row="2" Grid.Column="2" VerticalAlignment="Top" Orientation="Vertical" Width="Auto">
+        <StackPanel x:Name="Column1" Grid.Row="2" Grid.Column="2" VerticalAlignment="Top" Orientation="Vertical" Width="Auto">
+            <TextBlock Text="Select Player 1" FontSize="30"/>
             <ComboBox x:Name="Player1Name" IsEditable="True" IsReadOnly="True" Height="30">
                 <ComboBoxItem Content="Database values" Cursor="Hand"/>
             </ComboBox>
+            <Separator Height="30"/>
+            <TextBlock Text="Select Colour" FontSize="30"/>
+            <ComboBox x:Name="Colour">
+                <ComboBoxItem Content="Red"/>
+                <ComboBoxItem Content="Yellow"/>
+            </ComboBox>
         </StackPanel>
 
-        <StackPanel Grid.Row="2" Grid.Column="3" VerticalAlignment="Top" Orientation="Vertical">
+        <StackPanel x:Name="Column2" Grid.Row="2" Grid.Column="3" VerticalAlignment="Top" Orientation="Vertical" >
+            <TextBlock Text="Select Player 2" FontSize="30"/>
             <ComboBox x:Name="Player2Name" IsEditable="True" IsReadOnly="True" Height="30" >
                 <ComboBoxItem Content="Database values" Cursor="Hand"/>
             </ComboBox>
-            <Button Content="Add new User" FontSize="20"></Button>
+            <Separator Height="30"></Separator>
+            
+        </StackPanel>
+        
+        
+        <StackPanel x:Name="Column3" Grid.Row="2" Grid.Column="4" >
+            <Button Content="Add new User" FontSize="20" ></Button>
             <Separator Height="30"></Separator>
             <TextBox x:Name="NewUser" Text="Enter Username" FontSize="20"></TextBox>
         </StackPanel>
 
 
-        
         <Button Grid.Column="5" Grid.Row="1" x:Name="Start" Content="Start Game" Background="{x:Null}" Click="Start_Click" />
         
 

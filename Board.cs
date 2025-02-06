@@ -131,6 +131,7 @@ namespace Coursework_UI
 
         private bool isValidLocation(int C)
         {
+            //Checks if the toplocation of each column is empty
             if (Grid[35+C].Colour == "0") return true;
             else return false;
         }

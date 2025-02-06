@@ -12,18 +12,21 @@ namespace Coursework_UI
         private Player[] Players = new Player[2];
         bool AIGame;
 
-        public Game(string PlayerColour, bool AI)
+        public Game(string FirstPlayer, bool AI, string P1Name, string P2Name)
         {
             string OpponentColour;
             AIGame = AI;
-            Players[0] = new Human(PlayerColour);
-            if (PlayerColour == "R") OpponentColour = "Y";
+            Players[0] = new Human(FirstPlayer,P1Name);
+            if (FirstPlayer == "R") OpponentColour = "Y";
             else OpponentColour = "R";
 
             if (AIGame) Players[1] = new Computer(OpponentColour);
-            else Players[1] = new Human(OpponentColour);
+            else
+            {
+                Players[1] = new Human(OpponentColour, P2Name);
+            }
 
-            board = new Board(PlayerColour);
+            board = new Board(FirstPlayer);
         }
 
         public Board b

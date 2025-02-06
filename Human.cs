@@ -9,9 +9,10 @@ namespace Coursework_UI
     internal class Human : Player
     {
         private string name;
-        public Human(string Colour) : base(Colour)
+        public Human(string Colour, string Name) : base(Colour)
         {
             Colour = this.getColour;
+            Name = name;
         }
         public override void PlaceCounter(int C, Board b)
         {
@@ -20,10 +21,6 @@ namespace Coursework_UI
         public string getName
         {
             get { return name; }
-        }
-        public void NewPlayer(string N)
-        {
-            name = N;
         }
 
     }
