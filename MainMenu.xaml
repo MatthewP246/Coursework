@@ -14,23 +14,25 @@
 
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="50"></RowDefinition>
-                <RowDefinition></RowDefinition>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
 
             </Grid.RowDefinitions>
+            <Button x:Name="PlayUser" Content="Play a Friend" Grid.Row="1" FontSize="50" Click="PlayUser_Click"  Height="200" Width="400" Background="OrangeRed" Cursor="Hand" Grid.ColumnSpan="2" Margin="653,10,653,1164"/>
+            <Button x:Name="PlayComputer" Content="Play Computer" Grid.Row="1" Grid.Column="1" FontSize="50" Click="PlayComputer_Click"  Height="200" Width="400" Background="OrangeRed" Cursor="Hand" Margin="653,10,653,1164" Grid.ColumnSpan="2"/>
 
             <StackPanel Grid.Column="1" Grid.Row="1">
-                <Button x:Name="PlayGame" Content="Play Game" FontSize="50" Click="PlayGame_Click"  Height="200" Background="OrangeRed" Cursor="Hand"/>
-                <Separator Opacity="0" Height="50"/>
+
+                <Separator Opacity="0" Height="250"/>
 
                 <Button x:Name="Rules" Content="Rules" FontSize="50" Click="Rules_Click"  Height="200" Background="OrangeRed" Cursor="Hand"/>
                 <Separator Opacity="0" Height="50"/>
-                <Button x:Name="Leaderboard" Content="Leaderboard" FontSize="50" Click="Leaderboard_Click" Height="200"  Background="OrangeRed" Cursor="Hand"/>
+                <DataGrid x:Name="Leaderboard" AutoGenerateColumns="True" Margin="10" Height="150" IsReadOnly="True"></DataGrid>
 
             </StackPanel>
         </Grid>

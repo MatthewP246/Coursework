@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Coursework_UI"
         mc:Ignorable="d"
+        WindowState="Maximized"
         Title="GameSettings" Width="{x:Static SystemParameters.PrimaryScreenWidth}" Height="{x:Static SystemParameters.PrimaryScreenHeight}">
 
     <Grid>
@@ -28,22 +29,31 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-
+        <Rectangle Grid.Column="5" Grid.Row="1" Fill="Lime" RadiusX="50" RadiusY="50" />
         <Border  BorderBrush="OrangeRed" BorderThickness="10" CornerRadius="50" Grid.Column="1" Grid.ColumnSpan="5" Grid.Row="1" Grid.RowSpan="5" >
             <TextBox Text="SETTINGS" Foreground="Red" FontSize="100" Margin="0,0,0,822" HorizontalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}"/>
         </Border>
 
-        <StackPanel Grid.Row="2" Grid.Column="2" VerticalAlignment="Top" Orientation="Vertical" >
-            <ComboBox x:Name="Mode"  IsEditable="True" IsReadOnly="True" Height="30">
-                <ComboBoxItem Content="Player vs Player"/>
-                <ComboBoxItem Content="Player vs Computer"/>
-            </ComboBox>
-            <Rectangle Height="30" Fill="{x:Null}"/>
-            <ComboBox x:Name="Username" IsEditable="True" IsReadOnly="True" Height="30">
-                <ComboBoxItem Content="Enter new Username"/>
-                <ComboBoxItem Content="Database values"/>
+
+        <StackPanel Grid.Row="2" Grid.Column="2" VerticalAlignment="Top" Orientation="Vertical" Width="Auto">
+            <ComboBox x:Name="Player1Name" IsEditable="True" IsReadOnly="True" Height="30">
+                <ComboBoxItem Content="Database values" Cursor="Hand"/>
             </ComboBox>
         </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="3" VerticalAlignment="Top" Orientation="Vertical">
+            <ComboBox x:Name="Player2Name" IsEditable="True" IsReadOnly="True" Height="30" >
+                <ComboBoxItem Content="Database values" Cursor="Hand"/>
+            </ComboBox>
+            <Button Content="Add new User" FontSize="20"></Button>
+            <Separator Height="30"></Separator>
+            <TextBox x:Name="NewUser" Text="Enter Username" FontSize="20"></TextBox>
+        </StackPanel>
+
+
+        
+        <Button Grid.Column="5" Grid.Row="1" x:Name="Start" Content="Start Game" Background="{x:Null}" Click="Start_Click" />
+        
 
     </Grid>
 </Window>

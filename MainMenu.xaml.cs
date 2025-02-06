@@ -17,9 +17,7 @@ using System.Windows.Shapes;
 
 namespace Coursework_UI
 {
-    /// <summary>
-    /// Interaction logic for MainMenu.xaml
-    /// </summary>
+
     public partial class MainMenu : Window
     {
         public MainMenu()
@@ -28,12 +26,20 @@ namespace Coursework_UI
             this.KeyDown += new KeyEventHandler(KeyPressed);
         }
 
-         
-
-        private void PlayGame_Click(object sender, RoutedEventArgs e)
+        private void PlayUser_Click(object sender, RoutedEventArgs e)
         {
 
-            Window w = new PlayComputer("R", true);
+            Window w = new GameSettings("User");
+            this.Hide();
+            w.ShowDialog();
+
+
+        }
+
+        private void PlayComputer_Click(object sender, RoutedEventArgs e)
+        {
+
+            Window w = new GameSettings("Computer");
             this.Hide();
             w.ShowDialog();
             
@@ -45,10 +51,6 @@ namespace Coursework_UI
 
         }
 
-        private void Leaderboard_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void KeyPressed(object sender, KeyEventArgs e)
         {

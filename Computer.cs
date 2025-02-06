@@ -27,53 +27,11 @@ namespace Coursework_UI
         public override void PlaceCounter(int C, Board b)
         {
             //C=BestMove(b);
-            C = MinMax(b, 6,int.MinValue, int.MaxValue, true).Item1;
+            C = MinMax(b, 7,int.MinValue, int.MaxValue, true).Item1;
             b.PlaceCounter(C, false);
         }
 
-        private int BestMove(Board b)
-        {
-            List<int> validLocation = b.getValidLocations();
-            int bestColumn = -1;
-            int bestScore = 0;
-
-            if (validLocation != null)
-            {
-                bestColumn = validLocation[Rgen.Next(validLocation.Count)];
-
-
-
-                foreach (int l in validLocation)
-                {
-                    Board tempBoard = new Board(b.p.Colour);
-                    for (int x = 0; x < 7; x++)
-                    {
-                        for (int y = 0; y < 6; y++)
-                        {
-                            if (b.gg[x, y].Colour == "R") tempBoard.gg[x, y].Colour = "R";
-                            else if (b.gg[x, y].Colour == "Y") tempBoard.gg[x, y].Colour = "Y";
-                            else tempBoard.gg[x, y].Colour = "0";
-
-                        }
-                    }
-                    for (int i = 0; i < 42; i++)
-                    {
-                        if (b.g[i].Colour == "R") tempBoard.g[i].Colour = "R";
-                        else if (b.g[i].Colour == "Y") tempBoard.g[i].Colour = "Y";
-                        else tempBoard.g[i].Colour = "0";
-                    }
-                    tempBoard.PlaceCounter(l, true);
-                    int score = Heuristic(tempBoard);
-                    if (score > bestScore)
-                    {
-                        bestScore = score;
-                        bestColumn = l;
-                    }
-                }
-            }
-
-            return bestColumn;
-        }
+        
 
         private int Heuristic(Board b)
         {
@@ -116,6 +74,7 @@ namespace Coursework_UI
                     //3 to prevent index out of bounds error
                     //creates a window of 4 spaces Vertically which could be used to win
                     string[] Window = { colArray[row], colArray[row + 1], colArray[row + 2], colArray[row + 3] };
+                    //Assigns a value to this window
                     HValue += WindowCheck(Window, b);
 
                 }
@@ -178,21 +137,69 @@ namespace Coursework_UI
             return HValue;
 
         }
+        private int BestMove(Board b)
+        {
+            List<int> validLocation = b.getValidLocations();
+            int bestColumn = -1;
+            int bestScore = 0;
+
+            if (validLocation != null)
+            {
+                bestColumn = validLocation[Rgen.Next(validLocation.Count)];
+
+
+
+                foreach (int l in validLocation)
+                {
+                    Board tempBoard = new Board(b.p.Colour);
+                    for (int x = 0; x < 7; x++)
+                    {
+                        for (int y = 0; y < 6; y++)
+                        {
+                            if (b.gg[x, y].Colour == "R") tempBoard.gg[x, y].Colour = "R";
+                            else if (b.gg[x, y].Colour == "Y") tempBoard.gg[x, y].Colour = "Y";
+                            else tempBoard.gg[x, y].Colour = "0";
+
+                        }
+                    }
+                    for (int i = 0; i < 42; i++)
+                    {
+                        if (b.g[i].Colour == "R") tempBoard.g[i].Colour = "R";
+                        else if (b.g[i].Colour == "Y") tempBoard.g[i].Colour = "Y";
+                        else tempBoard.g[i].Colour = "0";
+                    }
+                    tempBoard.PlaceCounter(l, true);
+                    int score = Heuristic(tempBoard);
+                    if (score > bestScore)
+                    {
+                        bestScore = score;
+                        bestColumn = l;
+                    }
+                }
+            }
+
+            return bestColumn;
+        }
 
         private (int,int) MinMax(Board b, int depth,int alpha, int beta, bool MaximisingPlayer)
         {
             List<int> ValidLocations = b.getValidLocations();
+            int bestColumn = ValidLocations[Rgen.Next(ValidLocations.Count)];
+            int value;
             bool Terminal = TerminalNode(b);
 
-            
+
 
 
             if (depth == 0 || Terminal)
             {
                 if (Terminal)
                 {
+                    //win
                     if (getColour == b.p.Colour) return (-1, 1000000000);
+                    //loss
                     else if (getColour != b.p.Colour) return (-1,-1000000000);
+                    //Board full
                     else return (-1, 0);
                 }
                 else 
@@ -203,9 +210,9 @@ namespace Coursework_UI
             }
             if (MaximisingPlayer)
             {
-                int value=int.MinValue;
-                int bestColumn = ValidLocations[Rgen.Next(ValidLocations.Count)];
-
+                value=int.MinValue;
+                
+                //loops through each valid column
                 foreach (int l in ValidLocations)
                 {
                     //creates a copy of the Board with the intended player making a move
@@ -226,23 +233,26 @@ namespace Coursework_UI
                         else if (b.g[i].Colour == "Y") tempBoard.g[i].Colour = "Y";
                         else tempBoard.g[i].Colour = "0";
                     }
+                    //Temporarily places a counter to check the situation if the computer makes a move in column l
                     tempBoard.PlaceCounter(l, true);
+                    //recursviely calls minmax where maximising player alternates for each call
                     int newScore = MinMax(tempBoard, depth - 1, alpha, beta, false).Item2;
                     if (newScore > value)
                     {
                         value = newScore;
                         bestColumn = l;
                     }
+                    //uses alpha-beta pruning to increase algorithm efficiency
                     alpha = Math.Max(value, alpha);
                     if (alpha >= beta) break;
                     
                 }
+                //returns score for the algorithm and column for the location in which there is the highest score
                 return (bestColumn, value);
             }
             else //Minimising Player
             {
-                int value = int.MaxValue;
-                int bestColumn = ValidLocations[Rgen.Next(ValidLocations.Count)];
+                value = int.MaxValue;
 
 
                 foreach (int l in ValidLocations)

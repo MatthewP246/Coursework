@@ -24,11 +24,11 @@ namespace Coursework_UI
 
         private Game Connect4;
         private string Colour;
-        public PlayComputer(string colour, bool AIGame)
+        public PlayComputer(string colour)
         {
             InitializeComponent();
             Colour = colour;
-            Connect4 = new Game(Colour, AIGame);
+            Connect4 = new Game(Colour, true);
             DataContext = Connect4;
             this.KeyDown += new KeyEventHandler(KeyPressed);
 
@@ -139,7 +139,7 @@ namespace Coursework_UI
 
         private void Restart_Click(object sender, RoutedEventArgs e)
         {
-            Window w = new PlayComputer(Colour, true);
+            Window w = new PlayComputer(Colour);
             w.Show();
             this.Close();
 

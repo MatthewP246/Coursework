@@ -18,6 +18,8 @@ namespace Coursework_UI
 
         private Counter CurrentPlayer;
 
+        
+
 
         public Board(string FirstPlayer)
         {
@@ -129,7 +131,7 @@ namespace Coursework_UI
 
         private bool isValidLocation(int C)
         {
-            if (Grid2D[C, 5].Colour == "0") return true;
+            if (Grid[35+C].Colour == "0") return true;
             else return false;
         }
 
