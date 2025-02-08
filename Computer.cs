@@ -139,18 +139,19 @@ namespace Coursework_UI
         }
         private int BestMove(Board b)
         {
-            List<int> validLocation = b.getValidLocations();
+            LinkList validLocation = b.getValidLocations();
             int bestColumn = -1;
             int bestScore = 0;
 
             if (validLocation != null)
             {
-                bestColumn = validLocation[Rgen.Next(validLocation.Count)];
+                bestColumn = validLocation.peek(Rgen.Next(validLocation.Count()));
 
 
 
-                foreach (int l in validLocation)
+                for(int i = 0;i<validLocation.Count(); i++ )
                 {
+                    int l = validLocation.peek(i);
                     Board tempBoard = new Board(b.p.Colour);
                     for (int x = 0; x < 7; x++)
                     {
@@ -162,11 +163,11 @@ namespace Coursework_UI
 
                         }
                     }
-                    for (int i = 0; i < 42; i++)
+                    for (int x = 0; x < 42; x++)
                     {
-                        if (b.g[i].Colour == "R") tempBoard.g[i].Colour = "R";
-                        else if (b.g[i].Colour == "Y") tempBoard.g[i].Colour = "Y";
-                        else tempBoard.g[i].Colour = "0";
+                        if (b.g[x].Colour == "R") tempBoard.g[x].Colour = "R";
+                        else if (b.g[x].Colour == "Y") tempBoard.g[x].Colour = "Y";
+                        else tempBoard.g[x].Colour = "0";
                     }
                     tempBoard.PlaceCounter(l, true);
                     int score = Heuristic(tempBoard);
@@ -183,8 +184,8 @@ namespace Coursework_UI
 
         private (int,int) MinMax(Board b, int depth,int alpha, int beta, bool MaximisingPlayer)
         {
-            List<int> ValidLocations = b.getValidLocations();
-            int bestColumn = ValidLocations[Rgen.Next(ValidLocations.Count)];
+            LinkList ValidLocations = b.getValidLocations();
+            int bestColumn = ValidLocations.peek(Rgen.Next(ValidLocations.Count()));
             int value;
             bool Terminal = TerminalNode(b);
 
@@ -211,10 +212,11 @@ namespace Coursework_UI
             if (MaximisingPlayer)
             {
                 value=int.MinValue;
-                
+
                 //loops through each valid column
-                foreach (int l in ValidLocations)
+                for (int i = 0; i < ValidLocations.Count(); i++)
                 {
+                    int l = ValidLocations.peek(i);
                     //creates a copy of the Board with the intended player making a move
                     Board tempBoard = new Board(getColour);
                     for (int x = 0; x < 7; x++)
@@ -227,11 +229,11 @@ namespace Coursework_UI
 
                         }
                     }
-                    for (int i = 0; i < 42; i++)
+                    for (int j = 0; j < 42; j++)
                     {
-                        if (b.g[i].Colour == "R") tempBoard.g[i].Colour = "R";
-                        else if (b.g[i].Colour == "Y") tempBoard.g[i].Colour = "Y";
-                        else tempBoard.g[i].Colour = "0";
+                        if (b.g[j].Colour == "R") tempBoard.g[j].Colour = "R";
+                        else if (b.g[j].Colour == "Y") tempBoard.g[j].Colour = "Y";
+                        else tempBoard.g[j].Colour = "0";
                     }
                     //Temporarily places a counter to check the situation if the computer makes a move in column l
                     tempBoard.PlaceCounter(l, true);
@@ -255,9 +257,11 @@ namespace Coursework_UI
                 value = int.MaxValue;
 
 
-                foreach (int l in ValidLocations)
+                for (int i = 0; i < ValidLocations.Count(); i++)
                 {
-                    Board tempBoard = new Board(OpponentColour);
+                    int l = ValidLocations.peek(i);
+                    //creates a copy of the Board with the intended player making a move
+                    Board tempBoard = new Board(getColour);
                     for (int x = 0; x < 7; x++)
                     {
                         for (int y = 0; y < 6; y++)
@@ -268,11 +272,11 @@ namespace Coursework_UI
 
                         }
                     }
-                    for (int i = 0; i < 42; i++)
+                    for (int j = 0; j < 42; j++)
                     {
-                        if (b.g[i].Colour == "R") tempBoard.g[i].Colour = "R";
-                        else if (b.g[i].Colour == "Y") tempBoard.g[i].Colour = "Y";
-                        else tempBoard.g[i].Colour = "0";
+                        if (b.g[j].Colour == "R") tempBoard.g[j].Colour = "R";
+                        else if (b.g[j].Colour == "Y") tempBoard.g[j].Colour = "Y";
+                        else tempBoard.g[j].Colour = "0";
                     }
                     tempBoard.PlaceCounter(l, true);
                     int newScore = MinMax(tempBoard, depth - 1, alpha, beta, true).Item2;
@@ -293,7 +297,7 @@ namespace Coursework_UI
 
         private bool TerminalNode(Board b)
         {
-            if (b.checkWin() || b.getValidLocations().Count == 0) return true;
+            if (b.checkWin() || b.getValidLocations().Count() == 0) return true;
             else return false;
         } 
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -68,6 +69,12 @@ namespace Coursework_UI
                 Application.Current.MainWindow.Show();
                 this.Close();
             }
+        }
+
+        protected void OnExit(ExitEventArgs e)
+        {
+            this.OnExit(e);
+            Application.Current.Shutdown();
         }
     }
 }

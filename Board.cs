@@ -113,16 +113,14 @@ namespace Coursework_UI
         }
 
 
-        public List<int> getValidLocations()
+        public LinkList getValidLocations()
         {
-            List<int> ValidLocations = new List<int>();
+            LinkList ValidLocations = new LinkList();
 
             for(int i = 0; i < 7; i++)
             {
-                if (isValidLocation(i))
-                {
-                    ValidLocations.Add(i);
-                } 
+                if (isValidLocation(i)) ValidLocations.addToRear(i);
+
             }
 
             return ValidLocations;

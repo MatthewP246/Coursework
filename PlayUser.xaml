@@ -9,7 +9,6 @@
         Title="Grid" Width="{x:Static SystemParameters.PrimaryScreenWidth}" Height="{x:Static SystemParameters.PrimaryScreenHeight}">
     <Window.Resources>
         <local:CounterColourConverter x:Key="CCConverter" />
-
     </Window.Resources>
 
     <Grid>

@@ -157,5 +157,11 @@ namespace Coursework_UI
         {
             Connect4.PlaceCounter(C);
         }
+
+        protected void OnExit(ExitEventArgs e)
+        {
+            this.OnExit(e);
+            Application.Current.Shutdown();
+        }
     }
 }

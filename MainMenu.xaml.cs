@@ -59,5 +59,11 @@ namespace Coursework_UI
                 Application.Current.Shutdown();
             }
         }
+        protected void OnExit(ExitEventArgs e)
+        {
+            this.OnExit(e);
+            Application.Current.Shutdown();
+        }
     }
 }
+
