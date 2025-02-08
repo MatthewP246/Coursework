@@ -9,19 +9,22 @@ namespace Coursework_UI
     abstract class Player
     {
 
-        public string colour;
+        private string colour;
+
         
         public Player(string Colour)
         {
             colour = Colour;
         }
 
-        
-
-        public virtual string getColour
+        public string getColour
         {
             get { return colour; }
         }
+
+
+
+
         public abstract void PlaceCounter(int C, Board b);
 
         

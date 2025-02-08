@@ -119,7 +119,7 @@ namespace Coursework_UI
 
             for(int i = 0; i < 7; i++)
             {
-                if (isValidLocation(i)) ValidLocations.addToRear(i);
+                if (isValidLocation(i)) ValidLocations.Add(i);
 
             }
 

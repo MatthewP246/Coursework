@@ -8,7 +8,7 @@ namespace Coursework_UI
 {
     internal class LinkList
     {
-        Node head;
+        private Node head;
 
         public LinkList()
         {
@@ -17,7 +17,7 @@ namespace Coursework_UI
 
         }
 
-        public int listLength()
+        public int Count()
         {
             return Length(head);
         }
@@ -96,7 +96,7 @@ namespace Coursework_UI
                     temp.next = n;
                     if (n.next != null) n.next.previous = n;
                 }
-                else addToRear(s);
+                else Add(s);
             }
         }
 
@@ -164,7 +164,7 @@ namespace Coursework_UI
         {
             Node a = head;
 
-            for (int x = 0; x < position - 1; x++)
+            for (int x = 0; x < position; x++)
             {
                 if (a != null)
                 {

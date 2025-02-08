@@ -11,17 +11,16 @@ namespace Coursework_UI
         private string name;
         public Human(string Colour, string Name) : base(Colour)
         {
-            Colour = this.getColour;
-            Name = name;
+            name = Name;
         }
         public override void PlaceCounter(int C, Board b)
         {
             b.PlaceCounter(C, false);
         }
-        public string getName
+
+        public string Name
         {
             get { return name; }
         }
-
     }
 }
