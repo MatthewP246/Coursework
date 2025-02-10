@@ -77,7 +77,7 @@ namespace Coursework_UI
         {
             Node a = head;
 
-            for (int x = 0; x < position-1; x++)
+            for (int x = 0; x < position; x++)
             {
                 if (a != null)
                 {
