@@ -31,16 +31,9 @@ namespace Coursework_UI
             for (int x = 0; x < Grid.Length; x++)
             {
                 Grid[x] = new Counter("0");
+                Grid2D[x % 7, x / 7] = new Counter("0");
             }
 
-
-            for (int a = 0; a < 7; a++)
-            {
-                for (int b = 0; b < 6; b++)
-                {
-                    Grid2D[a, b] = new Counter("0");
-                }
-            }
             CurrentPlayer = new Counter(FirstPlayer);
         }
         public Counter[] g

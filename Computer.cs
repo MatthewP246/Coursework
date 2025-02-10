@@ -80,7 +80,7 @@ namespace Coursework_UI
                 }
             }
 
-            //Diagonal 1 (Bottom Left - Top Right)
+            //Diagonal 1 (Bottom Left -> Top Right)
             for (int row = 0; row < 3; row++)
             {
                 for (int col = 0; col < 4; col++)
@@ -89,7 +89,7 @@ namespace Coursework_UI
                     HValue += WindowCheck(Window, b);
                 }
             }
-            //Diagonal 2 (Top Left - Bottom Right)
+            //Diagonal 2 (Top Left -> Bottom Right)
             for (int row = 0; row < 3; row++)
             {
                 for (int col = 0; col < 4; col++)
@@ -192,6 +192,7 @@ namespace Coursework_UI
 
 
 
+
             if (depth == 0 || Terminal)
             {
                 if (Terminal)
@@ -219,21 +220,19 @@ namespace Coursework_UI
                     int l = ValidLocations.peek(i);
                     //creates a copy of the Board with the intended player making a move
                     Board tempBoard = new Board(getColour);
-                    for (int x = 0; x < 7; x++)
-                    {
-                        for (int y = 0; y < 6; y++)
-                        {
-                            if (b.gg[x, y].Colour == "R") tempBoard.gg[x, y].Colour = "R";
-                            else if (b.gg[x, y].Colour == "Y") tempBoard.gg[x, y].Colour = "Y";
-                            else tempBoard.gg[x, y].Colour = "0";
 
-                        }
-                    }
                     for (int j = 0; j < 42; j++)
                     {
-                        if (b.g[j].Colour == "R") tempBoard.g[j].Colour = "R";
-                        else if (b.g[j].Colour == "Y") tempBoard.g[j].Colour = "Y";
-                        else tempBoard.g[j].Colour = "0";
+                        if (b.g[j].Colour == "R")
+                        {
+                            tempBoard.g[j].Colour = "R";
+                            tempBoard.gg[j % 7, j / 7].Colour = "R";
+                        }
+                        else if (b.g[j].Colour == "Y")
+                        {
+                            tempBoard.g[j].Colour = "Y";
+                            tempBoard.gg[j % 7, j / 7].Colour = "Y";
+                        }
                     }
                     //Temporarily places a counter to check the situation if the computer makes a move in column l
                     tempBoard.PlaceCounter(l, true);
@@ -262,21 +261,18 @@ namespace Coursework_UI
                     int l = ValidLocations.peek(i);
                     //creates a copy of the Board with the intended player making a move
                     Board tempBoard = new Board(getColour);
-                    for (int x = 0; x < 7; x++)
-                    {
-                        for (int y = 0; y < 6; y++)
-                        {
-                            if (b.gg[x, y].Colour == "R") tempBoard.gg[x, y].Colour = "R";
-                            else if (b.gg[x, y].Colour == "Y") tempBoard.gg[x, y].Colour = "Y";
-                            else tempBoard.gg[x, y].Colour = "0";
-
-                        }
-                    }
                     for (int j = 0; j < 42; j++)
                     {
-                        if (b.g[j].Colour == "R") tempBoard.g[j].Colour = "R";
-                        else if (b.g[j].Colour == "Y") tempBoard.g[j].Colour = "Y";
-                        else tempBoard.g[j].Colour = "0";
+                        if (b.g[j].Colour == "R")
+                        {
+                            tempBoard.g[j].Colour = "R";
+                            tempBoard.gg[j % 7, j / 7].Colour = "R";
+                        }
+                        else if (b.g[j].Colour == "Y")
+                        {
+                            tempBoard.g[j].Colour = "Y";
+                            tempBoard.gg[j % 7, j / 7].Colour = "Y";
+                        }
                     }
                     tempBoard.PlaceCounter(l, true);
                     int newScore = MinMax(tempBoard, depth - 1, alpha, beta, true).Item2;

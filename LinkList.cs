@@ -50,7 +50,7 @@ namespace Coursework_UI
 
 
         }
-        public void addToRear(int s)
+        public void Add(int s)
         {
 
             Node a = head;
