@@ -46,13 +46,10 @@ namespace Coursework_UI
 
             head = n;
 
-
-
-
         }
         public void Add(int s)
         {
-
+            //Adds to the back of the list
             Node a = head;
             if (a != null)
             {
@@ -76,95 +73,11 @@ namespace Coursework_UI
         }
 
 
-        public void addToMiddle(int s, int position)
-        {
-            Node n = new Node();
-            n.data = s;
-            if (position == 1) addToFront(s);
-            else
-            {
-                Node temp = head;
-                for (int x = 0; x < position - 1; x++)
-                {
-                    if (temp != null) temp = temp.next;
-
-                }
-                if (temp.next != null)
-                {
-                    n.next = temp.next;
-                    n.previous = temp;
-                    temp.next = n;
-                    if (n.next != null) n.next.previous = n;
-                }
-                else Add(s);
-            }
-        }
-
-
-
-        public int removeFromFront()
-        {
-            Node a = head;
-            if (a.next == null) head = null;
-            else
-            {
-                a.next.previous = null;
-                head = a.next;
-            }
-            return a.data;
-        }
-
-        
-
-        public int removeFromRear()
-        {
-            Node a = head;
-
-
-            while (a.next != null)
-            {
-                if (a.next != null)
-                {
-                    a = a.next;
-                }
-            }
-            a.previous.next = null;
-            return a.data;
-
-        }
-
-        public int removeFromMiddle(int position)
-        {
-            if (position == 1) return removeFromFront();
-            else
-            {
-                Node temp = head;
-                for (int x = 0; x < position - 1; x++)
-                {
-                    if (temp != null) temp = temp.next;
-                }
-                if (temp.next != null)
-                {
-                    Node a = temp.next;
-                    a.next = temp.next.next;
-                    a.previous = temp;
-
-                    return a.data;
-
-                }
-                else
-                {
-                    temp.next = null;
-                    return removeFromRear();
-                }
-            }
-        }
-
         public int peek(int position)
         {
             Node a = head;
 
-            for (int x = 0; x < position; x++)
+            for (int x = 0; x < position-1; x++)
             {
                 if (a != null)
                 {

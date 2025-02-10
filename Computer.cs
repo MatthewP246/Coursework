@@ -20,7 +20,6 @@ namespace Coursework_UI
 
         public Computer(string Colour) : base( Colour)
         {
-            Colour = this.getColour;
             if (Colour == "R") OpponentColour = "Y";
         }
 
@@ -218,7 +217,7 @@ namespace Coursework_UI
                 for (int i = 0; i < ValidLocations.Count(); i++)
                 {
                     int l = ValidLocations.peek(i);
-                    //creates a copy of the Board with the intended player making a move
+                    //creates a copy of the Board with the intended player making the move
                     Board tempBoard = new Board(getColour);
 
                     for (int j = 0; j < 42; j++)
