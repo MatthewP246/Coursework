@@ -37,7 +37,7 @@
 
         <StackPanel x:Name="Column1" Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" Orientation="Vertical" Width="Auto" Grid.ColumnSpan="2" Height="495" Margin="205,0,0,0" Grid.RowSpan="4">
             <TextBlock Text="Select Player 1" FontSize="30"/>
-            <ComboBox x:Name="Player1Name" IsEditable="True" IsReadOnly="True" Height="30">
+            <ComboBox x:Name="Player1Name" Height="30">
                 <ComboBoxItem Content="Database values" Cursor="Hand"/>
             </ComboBox>
             <Separator Height="30"/>
@@ -50,7 +50,7 @@
 
         <StackPanel x:Name="Column2" Grid.Row="2" Grid.Column="2" VerticalAlignment="Top" Orientation="Vertical" Grid.ColumnSpan="3" Height="505" Margin="206,0,206,0" Grid.RowSpan="5" >
             <TextBlock Text="Select Player 2" FontSize="30"/>
-            <ComboBox x:Name="Player2Name" IsEditable="True" IsReadOnly="True" Height="30" >
+            <ComboBox x:Name="Player2Name" Height="30" >
                 <ComboBoxItem Content="Database values" Cursor="Hand"/>
             </ComboBox>
             <Separator Height="30"></Separator>
