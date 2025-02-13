@@ -184,6 +184,7 @@ namespace Coursework_UI
         private (int,int) MinMax(Board b, int depth,int alpha, int beta, bool MaximisingPlayer)
         {
             LinkList ValidLocations = b.getValidLocations();
+            ValidLocations.printList();
             int bestColumn = ValidLocations.peek(Rgen.Next(ValidLocations.Count()));
             int value;
             bool Terminal = TerminalNode(b);

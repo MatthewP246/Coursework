@@ -10,6 +10,5 @@ namespace Coursework_UI
     {
         public int data;
         public Node next;
-        public Node previous;
     }
 }

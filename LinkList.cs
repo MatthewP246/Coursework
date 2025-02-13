@@ -39,10 +39,7 @@ namespace Coursework_UI
             Node n = new Node();
             n.data = s;
             n.next = head;
-            if (head != null)
-            {
-                head.previous = n;
-            }
+            
 
             head = n;
 
@@ -60,7 +57,6 @@ namespace Coursework_UI
                 Node n = new Node();
                 n.data = s;
                 a.next = n;
-                n.previous = a;
             }
             else
             {
@@ -87,6 +83,22 @@ namespace Coursework_UI
             return a.data;
         }
 
-        
+        public void Clear()
+        {
+            head=null;
+        }
+
+        public void printList()
+        {
+            Node a = head;
+            while (a != null)
+            {
+                Console.WriteLine(a.data);
+                a = a.next;
+            }
+
+        }
+
+
     }
 }
