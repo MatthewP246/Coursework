@@ -1,12 +1,14 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 
 namespace Coursework_UI
 {
-    internal class LinkList
+    internal class LinkList : IEnumerable
     {
         private Node head;
 
@@ -15,6 +17,21 @@ namespace Coursework_UI
             head = null;
 
 
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            Node a = head;
+            while (a != null)
+            {
+                yield return a.data;
+                a = a.next;
+            }
+        }
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+
+            return this.GetEnumerator();
         }
 
         public int Count()
