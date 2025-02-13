@@ -19,20 +19,7 @@ namespace Coursework_UI
 
         }
 
-        public IEnumerator GetEnumerator()
-        {
-            Node a = head;
-            while (a != null)
-            {
-                yield return a.data;
-                a = a.next;
-            }
-        }
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-
-            return this.GetEnumerator();
-        }
+        
 
         public int Count()
         {
@@ -114,6 +101,21 @@ namespace Coursework_UI
                 a = a.next;
             }
 
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            Node a = head;
+            while (a != null)
+            {
+                yield return a.data;
+                a = a.next;
+            }
+        }
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+
+            return this.GetEnumerator();
         }
 
 
