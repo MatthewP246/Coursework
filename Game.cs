@@ -16,14 +16,14 @@ namespace Coursework_UI
         {
             string OpponentColour;
             AIGame = AI;
-            Players[0] = new Human(FirstPlayer,P1Name);
+            Players[0] = new Human(FirstPlayer,P1Name, 0,0);
             if (FirstPlayer == "R") OpponentColour = "Y";
             else OpponentColour = "R";
 
             if (AIGame) Players[1] = new Computer(OpponentColour);
             else
             {
-                Players[1] = new Human(OpponentColour, P2Name);
+                Players[1] = new Human(OpponentColour, P2Name,0,0);
             }
 
             board = new Board(FirstPlayer);

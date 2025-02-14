@@ -32,7 +32,11 @@
 
                 <Button x:Name="Rules" Content="Rules" FontSize="50" Click="Rules_Click"  Height="200" Background="OrangeRed" Cursor="Hand"/>
                 <Separator Opacity="0" Height="50"/>
-                <DataGrid x:Name="Leaderboard" AutoGenerateColumns="True" Margin="10" Height="150" IsReadOnly="True"></DataGrid>
+                <DataGrid x:Name="Leaderboard" ItemsSource="{Binding PlayerList}"  AutoGenerateColumns="False" Margin="10" Height="150" IsReadOnly="True">
+                    <DataGridTextColumn Header="Username" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Wins" Binding="{Binding Wins}"/>
+                </DataGrid>
+
 
             </StackPanel>
         </Grid>

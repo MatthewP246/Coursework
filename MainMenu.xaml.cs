@@ -20,8 +20,11 @@ namespace Coursework_UI
 
     public partial class MainMenu : Window
     {
+        private PlayerViewer viewer;
         public MainMenu()
         {
+            viewer = new PlayerViewer();
+            DataContext = viewer;
             this.Focus();
             this.KeyDown += new KeyEventHandler(KeyPressed);
         }

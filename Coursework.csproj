@@ -89,7 +89,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Board.cs" />
-    <Compile Include="Cons.cs" />
     <Compile Include="Counter.cs" />
     <Compile Include="CounterColourConverter.cs" />
     <Compile Include="DatabaseAccess.cs" />
@@ -125,6 +124,7 @@
       <DependentUpon>PlayComputer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Player.cs" />
+    <Compile Include="PlayerViewer.cs" />
     <Compile Include="PlayUser.xaml.cs">
       <DependentUpon>PlayUser.xaml</DependentUpon>
     </Compile>
@@ -146,6 +146,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <None Include="Connect4DB.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

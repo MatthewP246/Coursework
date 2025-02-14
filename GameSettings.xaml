@@ -38,13 +38,13 @@
         <StackPanel x:Name="Column1" Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" Orientation="Vertical" Width="Auto" Grid.ColumnSpan="2" Height="495" Margin="205,0,0,0" Grid.RowSpan="4">
             <TextBlock Text="Select Player 1" FontSize="30"/>
             <ComboBox x:Name="Player1Name" Height="30">
-                <ComboBoxItem Content="Database values" Cursor="Hand"/>
+                
             </ComboBox>
             <Separator Height="30"/>
             <TextBlock Text="Select Colour" FontSize="30"/>
             <ComboBox x:Name="Colour">
-                <ComboBoxItem Content="Red"/>
-                <ComboBoxItem Content="Yellow"/>
+                <ComboBoxItem Content="Red" Cursor="Hand"/>
+                <ComboBoxItem Content="Yellow" Cursor="Hand"/>
             </ComboBox>
         </StackPanel>
 
@@ -59,7 +59,7 @@
 
 
         <StackPanel x:Name="Column3" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2" Margin="0,0,205,10" Grid.RowSpan="4" >
-            <Button Content="Add new User" FontSize="20" ></Button>
+            <Button Content="Add new User" FontSize="20" Cursor="Hand"></Button>
             <Separator Height="30"></Separator>
             <TextBox x:Name="NewUser" Text="Enter Username" FontSize="20"></TextBox>
         </StackPanel>

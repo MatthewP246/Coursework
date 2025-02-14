@@ -8,18 +8,18 @@ namespace Coursework_UI
 {
     abstract class Player
     {
-
-        private string colour;
+        private string Colour { get; set; }
+        
 
         
         public Player(string Colour)
         {
-            colour = Colour;
+            this.Colour = Colour;
         }
 
         public string getColour
         {
-            get { return colour; }
+            get { return Colour; }
         }
 
 
