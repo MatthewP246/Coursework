@@ -33,7 +33,7 @@ namespace Coursework_UI
             using (var conn = new SQLiteConnection(connectionString))
             {
                 conn.Open();
-                string query = "SELECT Username, Wins, Losses FROM Players";
+                string query = "SELECT Username, Wins, Losses FROM Players ORDER BY Wins DESC" ;
                 using (var cmd = new SQLiteCommand(query, conn))
                 using (var reader = cmd.ExecuteReader())
                 {

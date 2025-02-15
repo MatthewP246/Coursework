@@ -26,16 +26,23 @@ namespace Coursework_UI
         private string P1Name;
         private string P2Name;
 
-        public IObservable<string> ComputerGame;
+        private PlayerViewer viewer;
 
 
         public GameSettings(string Gamemode)
         {
             InitializeComponent();
             Mode = Gamemode;
+            viewer = new PlayerViewer();
+            DataContext = viewer;
             if (Mode == "Computer")
             {
-                Column2.Visibility = Visibility.Hidden;
+                Column2.Visibility = Visibility.Collapsed;
+                Colour.Text = "Select Colour";
+            }
+            else
+            {
+                StackDifficulty.Visibility = Visibility.Collapsed;
             }
                 this.KeyDown += new KeyEventHandler(KeyPressed);
 
@@ -60,6 +67,20 @@ namespace Coursework_UI
                 w.Show();
                 this.Close();
             }
+        }
+
+        private void AddPlayer_Click(object sender, RoutedEventArgs e)
+        {
+            string name = NewUser.Text.Trim();
+            if(string.IsNullOrWhiteSpace(name) || name=="Enter Username")
+            {
+                MessageBox.Show("Please enter a valid name!", "Invalid input", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            viewer.AddPlayer(name);
+            NewUser.Clear();
+            NewUser.Text = "Enter Username";
+            
         }
 
         private void KeyPressed(object sender, KeyEventArgs e)

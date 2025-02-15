@@ -35,31 +35,39 @@
         </Border>
 
 
-        <StackPanel x:Name="Column1" Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" Orientation="Vertical" Width="Auto" Grid.ColumnSpan="2" Height="495" Margin="205,0,0,0" Grid.RowSpan="4">
+        <StackPanel x:Name="Column1" Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" Orientation="Vertical" Grid.ColumnSpan="2" Height="804" Margin="365,0,0,0" Grid.RowSpan="4" >
             <TextBlock Text="Select Player 1" FontSize="30"/>
-            <ComboBox x:Name="Player1Name" Height="30">
-                
+            <ComboBox x:Name="Player1Name" Height="30" ItemsSource="{Binding PlayerList}" DisplayMemberPath="Name" SelectedValuePath="Name" SelectedValue="{Binding Path=Name}"/>
+
+
+            <Separator Height="30"/>
+            <TextBlock Text="Select First Player Colour" FontSize="30"/>
+            <ComboBox x:Name="Colour">
+                <ComboBoxItem Content="Red" />
+                <ComboBoxItem Content="Yellow" />
             </ComboBox>
             <Separator Height="30"/>
-            <TextBlock Text="Select Colour" FontSize="30"/>
-            <ComboBox x:Name="Colour">
-                <ComboBoxItem Content="Red" Cursor="Hand"/>
-                <ComboBoxItem Content="Yellow" Cursor="Hand"/>
+            
+        </StackPanel>
+        <StackPanel x:Name="StackDifficulty" Grid.Row="3" Grid.Column="2" VerticalAlignment="Top" Orientation="Vertical">
+            <TextBlock Text="Select Difficulty" FontSize="30"/>
+            <ComboBox x:Name="Difficulty">
+                <ComboBoxItem Content="Easy"/>
+                <ComboBoxItem Content="Medium"/>
+                <ComboBoxItem Content="Hard"/>
             </ComboBox>
         </StackPanel>
 
-        <StackPanel x:Name="Column2" Grid.Row="2" Grid.Column="2" VerticalAlignment="Top" Orientation="Vertical" Grid.ColumnSpan="3" Height="505" Margin="206,0,206,0" Grid.RowSpan="5" >
+        <StackPanel x:Name="Column2" Grid.Row="2" Grid.Column="2" VerticalAlignment="Top" Orientation="Vertical" Grid.ColumnSpan="3" Height="804" Margin="366,0,366,0" Grid.RowSpan="4" >
             <TextBlock Text="Select Player 2" FontSize="30"/>
-            <ComboBox x:Name="Player2Name" Height="30" >
-                <ComboBoxItem Content="Database values" Cursor="Hand"/>
-            </ComboBox>
+            <ComboBox x:Name="Player2Name" Height="30" ItemsSource="{Binding PlayerList}" DisplayMemberPath="Name" SelectedValuePath="Name" SelectedValue="{Binding Path=Name}"/>
             <Separator Height="30"></Separator>
 
         </StackPanel>
 
 
-        <StackPanel x:Name="Column3" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2" Margin="0,0,205,10" Grid.RowSpan="4" >
-            <Button Content="Add new User" FontSize="20" Cursor="Hand"></Button>
+        <StackPanel x:Name="Column3" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2" Margin="0,0,365,10" Grid.RowSpan="4" >
+            <Button Content="Add new User" FontSize="20" Click="AddPlayer_Click" Cursor="Hand"></Button>
             <Separator Height="30"></Separator>
             <TextBox x:Name="NewUser" Text="Enter Username" FontSize="20"></TextBox>
         </StackPanel>

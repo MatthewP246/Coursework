@@ -8,9 +8,9 @@ namespace Coursework_UI
 {
     internal class Human : Player
     {
-        private string name {  get; set; }  
-        private int wins { get; set; }
-        private int losses { get; set; }
+        private string name;
+        private int wins;
+        private int losses;
 
         public Human(string Colour, string Name, int win, int loss) : base(Colour)
         {

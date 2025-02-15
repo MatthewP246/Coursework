@@ -27,6 +27,7 @@ namespace Coursework_UI
             DataContext = viewer;
             this.Focus();
             this.KeyDown += new KeyEventHandler(KeyPressed);
+            
         }
 
         private void PlayUser_Click(object sender, RoutedEventArgs e)
@@ -62,11 +63,12 @@ namespace Coursework_UI
                 Application.Current.Shutdown();
             }
         }
-        protected void OnExit(ExitEventArgs e)
-        {
-            this.OnExit(e);
-            Application.Current.Shutdown();
-        }
+
+
+
+        
     }
+
+    
 }
 

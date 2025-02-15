@@ -1,23 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Coursework_UI
 {
+
     abstract class Player
     {
-        private string Colour { get; set; }
+        [Bindable(false)]
+        private string Colour;
         
-
+         
         
         public Player(string Colour)
         {
             this.Colour = Colour;
         }
 
-        public string getColour
+        
+        protected string getColour
         {
             get { return Colour; }
         }

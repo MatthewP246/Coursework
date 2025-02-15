@@ -7,9 +7,7 @@
         mc:Ignorable="d"
         WindowState="Maximized"
         Title="MainMenu" Width="{x:Static SystemParameters.PrimaryScreenWidth}" Height="{x:Static SystemParameters.PrimaryScreenHeight}">
-    <Window.Resources>
-        <local:CounterColourConverter x:Key="CCConverter" />
-    </Window.Resources>
+
     <Grid>
 
         <Grid>
@@ -19,23 +17,21 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="492"/>
                 <RowDefinition/>
 
             </Grid.RowDefinitions>
-            <Button x:Name="PlayUser" Content="Play a Friend" Grid.Row="1" FontSize="50" Click="PlayUser_Click"  Height="200" Width="400" Background="OrangeRed" Cursor="Hand" Grid.ColumnSpan="2" />
-            <Button x:Name="PlayComputer" Content="Play Computer" Grid.Row="1" Grid.Column="1" FontSize="50" Click="PlayComputer_Click"  Height="200" Width="400" Background="OrangeRed" Cursor="Hand"  Grid.ColumnSpan="2"/>
+            <Button x:Name="PlayUser" Content="Play a Friend" FontSize="50" Click="PlayUser_Click" Background="OrangeRed" Cursor="Hand" Margin="454,318,794,842" Grid.ColumnSpan="2" Grid.RowSpan="2" />
+            <Button x:Name="PlayComputer" Content="Play Computer" Grid.Column="1" FontSize="50" Click="PlayComputer_Click" Background="OrangeRed" Cursor="Hand"  Grid.ColumnSpan="2" Margin="794,318,454,842" Grid.RowSpan="2"/>
 
-            <StackPanel Grid.Column="1" Grid.Row="1">
+            <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Margin="853,0,853,0">
 
                 <Separator Opacity="0" Height="250"/>
 
                 <Button x:Name="Rules" Content="Rules" FontSize="50" Click="Rules_Click"  Height="200" Background="OrangeRed" Cursor="Hand"/>
                 <Separator Opacity="0" Height="50"/>
-                <DataGrid x:Name="Leaderboard" ItemsSource="{Binding PlayerList}"  AutoGenerateColumns="False" Margin="10" Height="150" IsReadOnly="True">
-                    <DataGridTextColumn Header="Username" Binding="{Binding Name}"/>
-                    <DataGridTextColumn Header="Wins" Binding="{Binding Wins}"/>
-                </DataGrid>
+                <DataGrid x:Name="Leaderboard" ItemsSource="{Binding PlayerList}"  AutoGenerateColumns="True" Margin="10" Height="150" IsReadOnly="True" CanUserSortColumns="False" VerticalScrollBarVisibility="Visible" CanUserResizeColumns="False" CanUserResizeRows="False"/>
+
 
 
             </StackPanel>
