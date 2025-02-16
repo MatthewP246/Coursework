@@ -29,7 +29,7 @@ namespace Coursework_UI
 
 
 
-        public abstract void PlaceCounter(int C, Board b);
+        public abstract string PlaceCounter(int C, Board b);
 
         
 

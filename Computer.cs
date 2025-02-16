@@ -23,11 +23,11 @@ namespace Coursework_UI
             if (Colour == "R") OpponentColour = "Y";
         }
 
-        public override void PlaceCounter(int C, Board b)
+        public override string PlaceCounter(int C, Board b)
         {
             //C=BestMove(b);
             C = MinMax(b, 7,int.MinValue, int.MaxValue, true).Item1;
-            b.PlaceCounter(C, false);
+            return b.PlaceCounter(C, false);
         }
 
         
@@ -185,6 +185,7 @@ namespace Coursework_UI
         {
             LinkList ValidLocations = b.getValidLocations();
             bool Terminal = TerminalNode(b);
+            int bestColumn = -1;
 
 
 
@@ -206,7 +207,6 @@ namespace Coursework_UI
             if (MaximisingPlayer)
             {
                 int value = int.MinValue;
-                int bestColumn = ValidLocations.peek(Rgen.Next(ValidLocations.Count()));
 
                 foreach (int l in ValidLocations)
                 {
@@ -244,7 +244,6 @@ namespace Coursework_UI
             else //Minimising Player
             {
                 int value = int.MaxValue;
-                int bestColumn = ValidLocations.peek(Rgen.Next(ValidLocations.Count()));
 
 
                 foreach (int l in ValidLocations)

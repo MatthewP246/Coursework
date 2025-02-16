@@ -34,9 +34,18 @@ namespace Coursework_UI
             get { return losses; }
             set { wins = losses; }
         }
-        public override void PlaceCounter(int C, Board b)
+
+        public int WinLossRatio
         {
-            b.PlaceCounter(C, false);
+            get 
+            { if (wins == 0 || losses == 0) return 0;
+                else return wins / losses; 
+            }
+        }
+
+        public override string PlaceCounter(int C, Board b)
+        {
+            return b.PlaceCounter(C, false);
         }
 
          

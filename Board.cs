@@ -18,6 +18,7 @@ namespace Coursework_UI
 
         private Counter CurrentPlayer;
 
+
         
 
 
@@ -56,27 +57,21 @@ namespace Coursework_UI
             get { return CurrentPlayer; }
         }
 
-        public void PlaceCounter(int C, bool temp)
+        public string PlaceCounter(int C, bool temp)
         {
-            bool win = false;
-            if(C== -1)
-            {
-                win = true;
-                CurrentPlayer.Colour = "0";
-            }
+            string Status = "Ongoing";
+            if (C == -1) Status= "Draw";
             else if (RecursivePlace(C) == true)
             {
                 if (temp == false)
                 {
-                    win = checkWin();
-                    if (win == true)
-                    {
-                        CurrentPlayer.Colour = "0";
 
-                    }
+                    if (checkWin()) Status= "Win";
                     else UpdatePlayer();
                 }
             }
+
+            return Status;
 
         }
 

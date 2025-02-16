@@ -48,6 +48,35 @@ namespace Coursework_UI
             return Players;
         }
 
+        public void AddWin(string Username)
+        {
+            using (var conn = new SQLiteConnection(connectionString))
+            {
+                conn.Open();
+                string query = "UPDATE Players SET Wins=Wins+1 WHERE Username=@user";
+                using (var cmd = new SQLiteCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@user", Username);
+                    cmd.ExecuteNonQuery();
+                }
+                conn.Close();
+            }
+        }
+        public void AddLoss(string Username)
+        {
+            using (var conn = new SQLiteConnection(connectionString))
+            {
+                conn.Open();
+                string query = "UPDATE Players SET Losses=Losses+1 WHERE Username=@user";
+                using (var cmd = new SQLiteCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@user", Username);
+                    cmd.ExecuteNonQuery();
+                }
+                conn.Close();
+            }
+        }
+
         public void AddPlayer(string Username)
         {
             using (var conn = new SQLiteConnection(connectionString))

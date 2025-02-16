@@ -48,12 +48,12 @@ namespace Coursework_UI
             GameTime.Tick += ClockTick; // with each tick it will trigger this function
 
 
-            this.KeyDown += new KeyEventHandler(KeyPressed);
+            this.KeyDown += new KeyEventHandler(KeyPressed); //Event handler to recognise key presses
 
 
         }
 
-
+        //Clock tick down
         private void ClockTick(object sender, EventArgs e)
         {
             TimeLeft--;
@@ -61,7 +61,7 @@ namespace Coursework_UI
         }
 
 
-
+        //Clicks to place counter in each column
         private void Column1_Click(object sender, RoutedEventArgs e)
         {
 
@@ -101,7 +101,8 @@ namespace Coursework_UI
             PlaceCounter(6);
         }
 
-        private void KeyPressed(object sender, KeyEventArgs e)
+        
+        private void KeyPressed(object sender, KeyEventArgs e) //Method for recognising keystrokes
         {
             if (e.Key == Key.Escape)
             {
@@ -144,7 +145,7 @@ namespace Coursework_UI
             }
         }
 
-        private void Cross_Click(object sender, RoutedEventArgs e)
+        private void Cross_Click(object sender, RoutedEventArgs e) //Closes the game
         {
             GameTime.Stop();
             Window w = new PauseMenu();
@@ -156,7 +157,7 @@ namespace Coursework_UI
             }
         }
 
-        private void Restart_Click(object sender, RoutedEventArgs e)
+        private void Restart_Click(object sender, RoutedEventArgs e) //Restarts the game
         {
             Window w = new PlayUser(Colour, P1Name, P2Name);
             w.Show();
@@ -172,6 +173,16 @@ namespace Coursework_UI
             if (Connect4.CheckWin() == true)
             {
                 GameTime.Stop();
+                if(Connect4.b.p.Colour == P1Name)
+                {
+                    Window w = new WinScreen();
+                    w.Show();
+                }
+                else
+                {
+                    Window w = new WinScreen();
+                    w.Show();
+                }
             }
         }
 
