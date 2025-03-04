@@ -16,15 +16,17 @@ namespace Coursework_UI
         private string Player1Name;
         private string Player2Name;
         private string OpponentColour;
+        private string Difficulty;
         private DatabaseAccess Database;
 
-        public Game(string FirstPlayer, bool AI, string P1Name, string P2Name)
+        public Game(string FirstPlayer, bool AI, string P1Name, string P2Name, string Diff)
         {
             Database = new DatabaseAccess();
             Player1Colour=FirstPlayer;
             Player1Name=P1Name;
             Player2Name=P2Name;
             AIGame = AI;
+            Difficulty = Diff;
 
             Players[0] = new Human(Player1Colour,Player1Name, 0,0);
             if (FirstPlayer == "R") OpponentColour = "Y";
@@ -51,14 +53,14 @@ namespace Coursework_UI
             string Losser="";
             if (C == -1 && AIGame)
             {
-                if(Players[1].PlaceCounter(C, board) == "Win")
+                if(Players[1].PlaceCounter(C, board,Difficulty) == "Win")
                 {
                     Losser = Player1Name;
                 }
             }
             else if (Player1Colour == board.p.Colour)
             {
-                if(Players[0].PlaceCounter(C, board)=="Win")
+                if(Players[0].PlaceCounter(C, board, Difficulty)=="Win")
                 {
                     Winner = Player1Name;
                     if(!AIGame) Losser = Player2Name;
@@ -67,7 +69,7 @@ namespace Coursework_UI
             }
             else
             {
-                if (Players[1].PlaceCounter(C, board) == "Win")
+                if (Players[1].PlaceCounter(C, board, Difficulty) == "Win")
                 {
                     Winner= Player2Name;
                     Losser = Player1Name;

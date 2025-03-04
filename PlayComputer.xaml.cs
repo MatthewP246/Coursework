@@ -27,14 +27,16 @@ namespace Coursework_UI
         private string Colour;
         private string P1Name;
         private string P2Name;
-        public PlayComputer(string colour, string P1, string P2)
+        private string Difficulty;
+        public PlayComputer(string colour, string P1, string P2, string Diff)
         {
             InitializeComponent();
             Colour = colour;
             P1Name = P1;
             P2Name = P2;
+            Difficulty = Diff;
 
-            Connect4 = new Game(Colour, true, P1Name, P2Name);
+            Connect4 = new Game(Colour, true, P1Name, P2Name, Difficulty);
             DataContext = Connect4;
             this.KeyDown += new KeyEventHandler(KeyPressed);
 
@@ -145,7 +147,7 @@ namespace Coursework_UI
 
         private void Restart_Click(object sender, RoutedEventArgs e)
         {
-            Window w = new PlayComputer(Colour, P1Name, P2Name);
+            Window w = new PlayComputer(Colour, P1Name, P2Name, Difficulty);
             w.Show();
             this.Close();
 

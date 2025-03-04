@@ -43,7 +43,7 @@ namespace Coursework_UI
             }
         }
 
-        public override string PlaceCounter(int C, Board b)
+        public override string PlaceCounter(int C, Board b, string Difficulty)
         {
             return b.PlaceCounter(C, false);
         }

@@ -23,10 +23,13 @@ namespace Coursework_UI
             if (Colour == "R") OpponentColour = "Y";
         }
 
-        public override string PlaceCounter(int C, Board b)
+        public override string PlaceCounter(int C, Board b, string Difficulty)
         {
             //C=BestMove(b);
-            C = MinMax(b, 7,int.MinValue, int.MaxValue, true).Item1;
+            if(Difficulty=="Hard") C = MinMax(b, 7, int.MinValue, int.MaxValue, true).Item1;
+            else if (Difficulty=="Medium") C = MinMax(b, 5, int.MinValue, int.MaxValue, true).Item1;
+            else C = MinMax(b, 3, int.MinValue, int.MaxValue, true).Item1;
+
             return b.PlaceCounter(C, false);
         }
 

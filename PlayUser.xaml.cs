@@ -37,7 +37,7 @@ namespace Coursework_UI
             P2Name = P2;
             Colour = colour;
 
-            Connect4 = new Game(Colour, false, P1Name, P2Name);
+            Connect4 = new Game(Colour, false, P1Name, P2Name, "");
 
             DataContext = Connect4;
 

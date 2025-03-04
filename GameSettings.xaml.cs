@@ -63,7 +63,7 @@ namespace Coursework_UI
             }
             else
             {
-                Window w = new PlayComputer(FirstPlayer, P1Name, P2Name);
+                Window w = new PlayComputer(FirstPlayer, P1Name, P2Name, Difficulty.Text);
                 w.Show();
                 this.Close();
             }
