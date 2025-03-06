@@ -9,10 +9,10 @@ namespace Coursework_UI
     internal class Human : Player
     {
         private string name;
-        private int wins;
-        private int losses;
+        private float wins;
+        private float losses;
 
-        public Human(string Colour, string Name, int win, int loss) : base(Colour)
+        public Human(string Colour, string Name, float win, float loss) : base(Colour)
         {
             name = Name;
             wins = win;
@@ -24,18 +24,18 @@ namespace Coursework_UI
             set { name = value; }
         }
 
-        public int Wins
+        public float Wins
         {
             get { return wins; }
             set { wins = value; }
         }
-        public int Losses
+        public float Losses
         {
             get { return losses; }
             set { wins = losses; }
         }
 
-        public int WinLossRatio
+        public float WinLossRatio
         {
             get 
             { if (wins == 0 || losses == 0) return 0;

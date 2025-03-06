@@ -14,22 +14,29 @@ namespace Coursework_UI
 {
     internal class Computer : Player
     {
+        //Creates new random generator
         private Random Rgen = new Random();
-        private string OpponentColour = "R";
+        //assumes player colour is red
+        private string PlayerColour = "R";
             
 
         public Computer(string Colour) : base( Colour)
         {
-            if (Colour == "R") OpponentColour = "Y";
+            //if Computer colour is red, player colour is yellow instead
+            if (Colour == "R") PlayerColour = "Y";
         }
 
         public override string PlaceCounter(int C, Board b, string Difficulty)
         {
+            //Alternate computer algorithm just checking each move on the given board, no lookingf further ahead
             //C=BestMove(b);
+
+            //Checks difficulty selected before calling minmax with different depths for each difficulty
             if(Difficulty=="Hard") C = MinMax(b, 7, int.MinValue, int.MaxValue, true).Item1;
             else if (Difficulty=="Medium") C = MinMax(b, 5, int.MinValue, int.MaxValue, true).Item1;
             else C = MinMax(b, 3, int.MinValue, int.MaxValue, true).Item1;
 
+            //Actually places the counter on the board and returns the state of the game
             return b.PlaceCounter(C, false);
         }
 
@@ -40,10 +47,12 @@ namespace Coursework_UI
             int HValue = 0;
 
             //Centre Score
+            //Adds extra weight to the centre column as it has more options to win
             string[] CentreArray = { b.gg[3, 0].Colour, b.gg[3, 1].Colour, b.gg[3, 2].Colour, b.gg[3, 3].Colour, b.gg[3, 4].Colour, b.gg[3, 5].Colour };
             int CentreCount = 0;
             for (int i = 0;i < CentreArray.Length; i++)
             {
+                //Increments a counter based on number of player counters in the Middle column
                 if (CentreArray[i] == getColour) CentreCount++;
             }
             HValue += CentreCount * 3;
@@ -59,6 +68,7 @@ namespace Coursework_UI
                     //4 to prevent index out of bounds error
                     //creates a window of 4 spaces horizontally which could be used to win
                     string[] Window = { rowArray[col], rowArray[col + 1], rowArray[col + 2], rowArray[col + 3] };
+                    //Assings a value based on the number of player counters in the window and adds to a total
                     HValue += WindowCheck(Window, b);
 
 
@@ -109,9 +119,10 @@ namespace Coursework_UI
         {
             int HValue = 0;
             
-            //4 in window
+            //if 4 player counters in the window, increment the score by the given value
             if ((Window.Count(s => s == getColour) == 4))
             {
+                //4 indicates a win so add a much greater value for wins over anything else
                 HValue += 100000;
             }
             //3 in the window
@@ -127,12 +138,13 @@ namespace Coursework_UI
 
 
             //Opponent has 3 in window
-            if ((Window.Count(s => s == OpponentColour) == 3) && (Window.Count(s => s == "0")) == 1)
+            if ((Window.Count(s => s == PlayerColour) == 3) && (Window.Count(s => s == "0")) == 1)
             {
+                //Adds ability to block the player winning over getting more in a row for the computer
                 HValue -= 6;
             }
             //Opponent has 2 in window
-            else if ((Window.Count(s => s == OpponentColour) == 2) && (Window.Count(s => s == "0")) == 2)
+            else if ((Window.Count(s => s == PlayerColour) == 2) && (Window.Count(s => s == "0")) == 2)
             {
                 HValue -= 4;
             }
@@ -142,18 +154,22 @@ namespace Coursework_UI
         private int BestMove(Board b)
         {
             LinkList validLocation = b.getValidLocations();
+            //Assings initial value of -1 for best column as this indicates the board is full
             int bestColumn = -1;
             int bestScore = 0;
 
             if (validLocation != null)
             {
+                //if there are moves available, assing a random column as the best column
                 bestColumn = validLocation.peek(Rgen.Next(validLocation.Count()));
 
 
 
                 for(int i = 0;i<validLocation.Count(); i++ )
                 {
+                    //Assings l to each location in valid Location s
                     int l = validLocation.peek(i);
+                    //Initialises a temporary board and assings all counter to their respective locations based on the main board
                     Board tempBoard = new Board(b.p.Colour);
                     for (int x = 0; x < 7; x++)
                     {
@@ -171,8 +187,11 @@ namespace Coursework_UI
                         else if (b.g[x].Colour == "Y") tempBoard.g[x].Colour = "Y";
                         else tempBoard.g[x].Colour = "0";
                     }
+                    //Places a counter in the temporary board
                     tempBoard.PlaceCounter(l, true);
+                    //Assigns a score to the board based on the heuristic values
                     int score = Heuristic(tempBoard);
+                    //Assigns best column to the board which placing in that column returns the greatest score
                     if (score > bestScore)
                     {
                         bestScore = score;
@@ -187,18 +206,21 @@ namespace Coursework_UI
         private (int, int) MinMax(Board b, int depth, int alpha, int beta, bool MaximisingPlayer)
         {
             LinkList ValidLocations = b.getValidLocations();
+            //Checks if the node of the minmax array is a terminal node
             bool Terminal = TerminalNode(b);
+            //-1 indicates the board is full
             int bestColumn = -1;
 
 
 
-
+            //Depth indicates how far the minmax algorithm can look ahead
             if (depth == 0 || Terminal)
             {
                 if (Terminal)
                 {
-                    if (getColour == b.p.Colour) return (-1, 1000000000);
-                    else if (getColour != b.p.Colour) return (-1, -1000000000);
+                    //returns a value based on if the computer is playing, the human is playing or its a draw
+                    if (b.p.Colour == getColour) return (-1, 1000000000);
+                    else if (b.p.Colour == PlayerColour) return (-1, -1000000000);
                     else return (-1, 0);
                 }
                 else
@@ -207,6 +229,7 @@ namespace Coursework_UI
                     return (-1, Heuristic(b));
                 }
             }
+            //the player is trying to maximise the heuristic value of the board
             if (MaximisingPlayer)
             {
                 int value = int.MinValue;
@@ -231,6 +254,7 @@ namespace Coursework_UI
                         else if (b.g[i].Colour == "Y") tempBoard.g[i].Colour = "Y";
                         else tempBoard.g[i].Colour = "0";
                     }
+                    //places a counter in the temporary board
                     tempBoard.PlaceCounter(l, true);
                     int newScore = MinMax(tempBoard, depth - 1, alpha, beta, false).Item2;
                     if (newScore > value)
@@ -251,7 +275,7 @@ namespace Coursework_UI
 
                 foreach (int l in ValidLocations)
                 {
-                    Board tempBoard = new Board(OpponentColour);
+                    Board tempBoard = new Board(PlayerColour);
                     for (int x = 0; x < 7; x++)
                     {
                         for (int y = 0; y < 6; y++)

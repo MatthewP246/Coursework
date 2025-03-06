@@ -42,7 +42,8 @@ namespace Coursework_UI
             }
             else
             {
-                StackDifficulty.Visibility = Visibility.Collapsed;
+                Difficulty.Visibility = Visibility.Collapsed;
+                DifficultyText.Visibility = Visibility.Collapsed;
             }
                 this.KeyDown += new KeyEventHandler(KeyPressed);
 

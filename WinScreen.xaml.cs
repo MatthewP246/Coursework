@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -19,17 +20,19 @@ namespace Coursework_UI
     /// </summary>
     public partial class WinScreen : Window
     {
-        public WinScreen()
+        private DatabaseAccess Database;
+        public WinScreen(string Winner)
         {
             InitializeComponent();
+            Playerwin.Text = Winner + " Wins";
+            CloseWindow();
 
         }
 
-        private async void CloseWindow(object sender, EventArgs e)
+        private async void CloseWindow()
         {
             await Task.Delay(5000);
-            Window w = new MainMenu();
-            w.Show();
+            Application.Current.MainWindow.Show();
             this.Close();
         }
     }

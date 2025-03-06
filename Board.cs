@@ -15,7 +15,6 @@ namespace Coursework_UI
     {
         private Counter[] Grid;
         private Counter[,] Grid2D;
-
         private Counter CurrentPlayer;
 
 
@@ -28,18 +27,19 @@ namespace Coursework_UI
             Grid = new Counter[42];
             Grid2D = new Counter[7, 6];
 
-
+            
             for (int x = 0; x < Grid.Length; x++)
             {
                 Grid[x] = new Counter("0");
                 Grid2D[x % 7, x / 7] = new Counter("0");
             }
-
+            //Assigning the first player based on input
             CurrentPlayer = new Counter(FirstPlayer);
         }
         public Counter[] g
         {
-            //get method for data binding
+            //get method for 1D grid
+            //Used for data binding
             get { return Grid; }
         }
 
@@ -54,15 +54,22 @@ namespace Coursework_UI
 
         public Counter p
         {
+            //Get method for Player making the move
+            //Used foir data binding
             get { return CurrentPlayer; }
         }
 
         public string PlaceCounter(int C, bool temp)
         {
+            
             string Status = "Ongoing";
+            //Checks if the board is full
             if (C == -1) Status= "Draw";
+            //Only checks for win if a counter is placed
             else if (RecursivePlace(C) == true)
             {
+                //Doesnt check for a win if temporarily placing counter
+                //Used in minmax algorithm
                 if (temp == false)
                 {
 
@@ -103,6 +110,7 @@ namespace Coursework_UI
 
         public LinkList getValidLocations()
         {
+            //Checks which columns are a valid location and returns a list of valid columns
             LinkList ValidLocations = new LinkList();
 
             for(int i = 0; i < 7; i++)
@@ -117,7 +125,7 @@ namespace Coursework_UI
 
         private bool isValidLocation(int C)
         {
-            //Checks if the toplocation of each column is empty
+            //Checks if the top row of each column is empty
             if (Grid[35+C].Colour == "0") return true;
             else return false;
         }
@@ -127,7 +135,7 @@ namespace Coursework_UI
 
         private void UpdatePlayer()
         {
-            //Updating which colour is placing a counter
+            //Updating which colour is placing a counter after each go
             if (CurrentPlayer.Colour == "R") CurrentPlayer.Colour = "Y";
             else CurrentPlayer.Colour = "R";
         }
@@ -181,6 +189,7 @@ namespace Coursework_UI
                 if(Horizontal != 0)
                 {
                     win = true;
+                    //Calls method to change winning moves into counters to make it obvious where the win is
                     FindWinLocation("H");
                     
                     //exits out of loop as soon as win is found
@@ -213,6 +222,7 @@ namespace Coursework_UI
 
         private void FindWinLocation(string Method)
         {
+            //Creates the code to indicate the type of strike through needed for a win
             string Colour = CurrentPlayer.Colour + Method;
 
             //Horizontal Check
@@ -222,6 +232,7 @@ namespace Coursework_UI
                 {
                     for (int x = 0; x < 4; x++)
                     {
+                        //Checks if the window is a winning location and Converts it to a counter with a strike through
                         if (Grid2D[x, y].Colour == CurrentPlayer.Colour && Grid2D[x + 1, y].Colour == CurrentPlayer.Colour && Grid2D[x + 2, y].Colour == CurrentPlayer.Colour && Grid2D[x + 3, y].Colour == CurrentPlayer.Colour)
                         {
 

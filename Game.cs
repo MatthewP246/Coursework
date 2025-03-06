@@ -14,8 +14,8 @@ namespace Coursework_UI
         private bool AIGame;
         private string Player1Colour;
         private string Player1Name;
+        private string Player2Colour;
         private string Player2Name;
-        private string OpponentColour;
         private string Difficulty;
         private DatabaseAccess Database;
 
@@ -29,11 +29,11 @@ namespace Coursework_UI
             Difficulty = Diff;
 
             Players[0] = new Human(Player1Colour,Player1Name, 0,0);
-            if (FirstPlayer == "R") OpponentColour = "Y";
-            else OpponentColour = "R";
+            if (FirstPlayer == "R") Player2Colour = "Y";
+            else Player2Colour = "R";
 
-            if (AIGame) Players[1] = new Computer(OpponentColour);
-            else Players[1] = new Human(OpponentColour, Player2Name,0,0);
+            if (AIGame) Players[1] = new Computer(Player2Colour);
+            else Players[1] = new Human(Player2Colour, Player2Name,0,0);
 
 
             board = new Board(FirstPlayer);
@@ -47,39 +47,43 @@ namespace Coursework_UI
 
 
 
-        public void PlaceCounter(int C)
+        public string PlaceCounter(int C)
         {
             string Winner="";
-            string Losser="";
+            string Loser="";
+            string Status;
             if (C == -1 && AIGame)
             {
-                if(Players[1].PlaceCounter(C, board,Difficulty) == "Win")
+                Status=Players[1].PlaceCounter(C, board, Difficulty);
+                if (Status == "Win")
                 {
-                    Losser = Player1Name;
+                    Loser = Player1Name;
                 }
             }
             else if (Player1Colour == board.p.Colour)
             {
-                if(Players[0].PlaceCounter(C, board, Difficulty)=="Win")
+                Status = Players[0].PlaceCounter(C, board, Difficulty);
+                if (Status=="Win")
                 {
                     Winner = Player1Name;
-                    if(!AIGame) Losser = Player2Name;
+                    if(!AIGame) Loser = Player2Name;
                     
                 }
             }
             else
             {
-                if (Players[1].PlaceCounter(C, board, Difficulty) == "Win")
+                Status = (Players[1].PlaceCounter(C, board, Difficulty));
+                if (Status == "Win")
                 {
                     Winner= Player2Name;
-                    Losser = Player1Name;
+                    Loser = Player1Name;
                 }
             }
 
             if (Winner != "") Database.AddWin(Winner);
-            Database.AddLoss(Losser);
+            Database.AddLoss(Loser);
 
-            
+            return Status;
         }
 
         public bool CheckWin()

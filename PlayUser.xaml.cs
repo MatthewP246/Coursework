@@ -169,19 +169,21 @@ namespace Coursework_UI
 
         private void PlaceCounter(int C)
         {
-            Connect4.PlaceCounter(C);
-            if (Connect4.CheckWin() == true)
+            
+            if (Connect4.PlaceCounter(C) == "Win")
             {
                 GameTime.Stop();
-                if(Connect4.b.p.Colour == P1Name)
+                if(Connect4.b.p.Colour == P2Name)
                 {
-                    Window w = new WinScreen();
-                    w.Show();
+                    Window w = new WinScreen(P1Name);
+                    w.ShowDialog();
+                    this.Close();
                 }
                 else
                 {
-                    Window w = new WinScreen();
-                    w.Show();
+                    Window w = new WinScreen(P2Name);
+                    w.ShowDialog();
+                    this.Close();
                 }
             }
         }

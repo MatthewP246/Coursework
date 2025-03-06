@@ -6,7 +6,6 @@
         xmlns:local="clr-namespace:Coursework_UI"
         mc:Ignorable="d"
         WindowState="Normal"
-        Activated="CloseWindow"
         ResizeMode="NoResize"
         Title="WinScreen" Width="1000" Height="200">
 

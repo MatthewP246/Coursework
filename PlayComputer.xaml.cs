@@ -42,57 +42,39 @@ namespace Coursework_UI
 
         }
 
-        private async void Column1_Click(object sender, RoutedEventArgs e)
+        private void Column1_Click(object sender, RoutedEventArgs e)
         {
-
             PlaceCounter(0);
-            await Task.Delay(500);
-            //-1 indicates computer makes move
-            PlaceCounter(-1);
-
-
         }
 
-        private async void Column2_Click(object sender, RoutedEventArgs e)
+        private void Column2_Click(object sender, RoutedEventArgs e)
         {
             PlaceCounter(1);
-            await Task.Delay(500);
-            PlaceCounter(-1);
         }
 
-        private async void Column3_Click(object sender, RoutedEventArgs e)
+        private void Column3_Click(object sender, RoutedEventArgs e)
         {
             PlaceCounter(2);
-            await Task.Delay(500);
-            PlaceCounter(-1);
         }
 
-        private async void Column4_Click(object sender, RoutedEventArgs e)
+        private void Column4_Click(object sender, RoutedEventArgs e)
         {
             PlaceCounter(3);
-            await Task.Delay(500);
-            PlaceCounter(-1);
         }
 
-        private async void Column5_Click(object sender, RoutedEventArgs e)
+        private void Column5_Click(object sender, RoutedEventArgs e)
         {
             PlaceCounter(4);
-            await Task.Delay(500);
-            PlaceCounter(-1);
         }
 
-        private async void Column6_Click(object sender, RoutedEventArgs e)
+        private void Column6_Click(object sender, RoutedEventArgs e)
         {
             PlaceCounter(5);
-            await Task.Delay(500);
-            PlaceCounter(-1);
         }
 
-        private async void Column7_Click(object sender, RoutedEventArgs e)
+        private void Column7_Click(object sender, RoutedEventArgs e)
         {
             PlaceCounter(6);
-            await Task.Delay(500);
-            PlaceCounter(-1);
         }
 
         private void KeyPressed(object sender, KeyEventArgs e)
@@ -155,15 +137,28 @@ namespace Coursework_UI
 
         }
 
-        private void PlaceCounter(int C)
+        private async void PlaceCounter(int C)
         {
             Connect4.PlaceCounter(C);
+            if (Connect4.CheckWin() == true)
+            {
+                Window w = new WinScreen(P1Name);
+                w.ShowDialog();
+                this.Close();
+            }
+            else
+            {
+                await Task.Delay(500);
+                PlaceCounter(-1);
+                if (Connect4.CheckWin() == true)
+                {
+                    Window w = new WinScreen("Computer");
+                    w.ShowDialog();
+                    this.Close();
+                }
+            }
+            
         }
 
-        protected void OnExit(ExitEventArgs e)
-        {
-            this.OnExit(e);
-            Application.Current.Shutdown();
-        }
     }
 }

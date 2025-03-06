@@ -15,18 +15,24 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="492"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
                 <RowDefinition/>
 
             </Grid.RowDefinitions>
-            <Button x:Name="PlayUser" Content="Play a Friend" FontSize="50" Click="PlayUser_Click" Background="OrangeRed" Cursor="Hand" Margin="454,318,794,842" Grid.ColumnSpan="2" Grid.RowSpan="2" />
-            <Button x:Name="PlayComputer" Content="Play Computer" Grid.Column="1" FontSize="50" Click="PlayComputer_Click" Background="OrangeRed" Cursor="Hand"  Grid.ColumnSpan="2" Margin="794,318,454,842" Grid.RowSpan="2"/>
+            <Button x:Name="PlayUser" Content="Play a Friend" FontSize="50" Click="PlayUser_Click" Background="OrangeRed" Cursor="Hand" Grid.Column="1" Grid.Row="1" />
+            <Button x:Name="PlayComputer" Content="Play Computer" FontSize="50" Click="PlayComputer_Click" Background="OrangeRed" Cursor="Hand"  Grid.Row="1" Grid.Column="3"/>
 
-            <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Margin="853,0,853,0">
+            <StackPanel Grid.Row="2" Grid.Column="2" Margin="0,0,0,1" Grid.RowSpan="3"
+                        >
 
-                <Separator Opacity="0" Height="250"/>
+                
 
                 <Button x:Name="Rules" Content="Rules" FontSize="50" Click="Rules_Click"  Height="200" Background="OrangeRed" Cursor="Hand"/>
                 <Separator Opacity="0" Height="50"/>
