@@ -21,21 +21,45 @@ namespace Coursework_UI
     public partial class MainMenu : Window
     {
         private PlayerViewer viewer;
+        private bool SavedGame;
+        
         public MainMenu()
         {
             viewer = new PlayerViewer();
             DataContext = viewer;
-            this.Focus();
+
+            SavedGame = false;
+
             this.KeyDown += new KeyEventHandler(KeyPressed);
             
         }
 
         private void PlayUser_Click(object sender, RoutedEventArgs e)
         {
+            if (SavedGame)
+            {
+                var result = MessageBox.Show("Would you like to continue the previous game?", "Load Game", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
+                {
 
-            Window w = new GameSettings("User");
-            this.Hide();
-            w.ShowDialog();
+                }
+                else if (result == MessageBoxResult.No)
+                {
+                    Window w = new GameSettings("User");
+                    this.Hide();
+                    w.ShowDialog();
+                }
+                else ;
+
+            }
+            else
+            {
+                Window w = new GameSettings("User");
+                this.Hide();
+                w.ShowDialog();
+            }
+
+
 
 
         }
@@ -43,10 +67,29 @@ namespace Coursework_UI
         private void PlayComputer_Click(object sender, RoutedEventArgs e)
         {
 
-            Window w = new GameSettings("Computer");
-            this.Hide();
-            w.ShowDialog();
-            
+            if (SavedGame)
+            {
+                var result = MessageBox.Show("Would you like to continue the previous game?", "Load game", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
+                {
+
+                }
+                else if (result == MessageBoxResult.No)
+                {
+                    Window w = new GameSettings("Computer");
+                    this.Hide();
+                    w.ShowDialog();
+                }
+                else ;
+
+            }
+            else
+            {
+                Window w = new GameSettings("Computer");
+                this.Hide();
+                w.ShowDialog();
+            }
+
 
         }
 
@@ -63,6 +106,8 @@ namespace Coursework_UI
                 Application.Current.Shutdown();
             }
         }
+
+        
 
 
 

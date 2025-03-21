@@ -34,6 +34,10 @@
             <TextBox Text="SETTINGS" Foreground="Red" FontSize="100" Margin="0,0,0,822" HorizontalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}"/>
         </Border>
 
+        <Button x:Name ="Close" Click="Cross_Click" Grid.Row="0" Grid.Column="12" Width="150" Height="150" Background="{x:Null}" BorderBrush="{x:Null}"  Cursor="Hand">
+            <Image Source="/Images/Cross.png"/>
+        </Button>
+
 
         <StackPanel x:Name="Column1" Grid.Row="2" Grid.Column="2" VerticalAlignment="Top" Orientation="Vertical" Width="Auto" Height="804" Grid.RowSpan="4" >
             <TextBlock Text="Select Player 1" FontSize="25"/>
@@ -41,7 +45,7 @@
 
 
             <Separator Opacity="0" Height="30"/>
-            <TextBlock Text="Select First Player Colour" FontSize="25"/>
+            <TextBlock x:Name="ColourText" Text="Select First Player Colour" FontSize="25"/>
             <ComboBox x:Name="Colour">
                 <ComboBoxItem Content="Red" />
                 <ComboBoxItem Content="Yellow" />

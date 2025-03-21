@@ -17,24 +17,24 @@ namespace Coursework_UI
         //Creates new random generator
         private Random Rgen = new Random();
         //assumes player colour is red
-        private string PlayerColour = "R";
+        private string PlayerColour = "Y";
             
 
         public Computer(string Colour) : base( Colour)
         {
             //if Computer colour is red, player colour is yellow instead
-            if (Colour == "R") PlayerColour = "Y";
+            if (Colour == "Y") PlayerColour = "R";
         }
 
         public override string PlaceCounter(int C, Board b, string Difficulty)
         {
-            //Alternate computer algorithm just checking each move on the given board, no lookingf further ahead
+            //Alternate computer algorithm just checking each move on the given board, no looking more than 1 move ahead
             //C=BestMove(b);
 
             //Checks difficulty selected before calling minmax with different depths for each difficulty
             if(Difficulty=="Hard") C = MinMax(b, 7, int.MinValue, int.MaxValue, true).Item1;
             else if (Difficulty=="Medium") C = MinMax(b, 5, int.MinValue, int.MaxValue, true).Item1;
-            else C = MinMax(b, 3, int.MinValue, int.MaxValue, true).Item1;
+            else C = MinMax(b, 2, int.MinValue, int.MaxValue, true).Item1;
 
             //Actually places the counter on the board and returns the state of the game
             return b.PlaceCounter(C, false);
@@ -256,12 +256,15 @@ namespace Coursework_UI
                     }
                     //places a counter in the temporary board
                     tempBoard.PlaceCounter(l, true);
+                    //Recursively calls the algorithm and assings an integer value to the search ahead
                     int newScore = MinMax(tempBoard, depth - 1, alpha, beta, false).Item2;
                     if (newScore > value)
                     {
+                        //if the next move is better than the previous, assing a new best column
                         value = newScore;
                         bestColumn = l;
                     }
+                    //use of alpha-beta pruning to increase the efficiency of the alogrithm
                     alpha = Math.Max(value, alpha);
                     if (alpha >= beta) break;
 

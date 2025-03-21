@@ -14,33 +14,30 @@
     <Grid>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition Width="150"></ColumnDefinition>
-                <ColumnDefinition Width="150"></ColumnDefinition>
-                <ColumnDefinition Width="150"></ColumnDefinition>
-                <ColumnDefinition Width="150"></ColumnDefinition>
-                <ColumnDefinition Width="150"></ColumnDefinition>
-                <ColumnDefinition Width="150"></ColumnDefinition>
-                <ColumnDefinition Width="150"></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition ></RowDefinition>
-                <RowDefinition ></RowDefinition>
-                <RowDefinition Height="150"></RowDefinition>
-                <RowDefinition Height="150"></RowDefinition>
-                <RowDefinition Height="150"></RowDefinition>
-                <RowDefinition Height="150"></RowDefinition>
-                <RowDefinition Height="150"></RowDefinition>
-                <RowDefinition Height="150"></RowDefinition>
-                <RowDefinition ></RowDefinition>
-
-
-
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="150"/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
 
 
@@ -131,8 +128,12 @@
 
 
 
-            <TextBlock Grid.Column="1" Grid.Row="1" Text="Players Turn"  FontSize="20" HorizontalAlignment="Center" Width="108"/>
-            <Image Grid.Column="1" Grid.Row="1" Width="130" Height="130" Source="{Binding b.p.Colour, Converter={StaticResource CCConverter}}" Margin="51,39,50,135" Grid.RowSpan="2" />
+            <StackPanel x:Name="CurrentPlayer" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2">
+                <TextBlock Grid.Column="1" Grid.Row="1" Text="Players Turn"  FontSize="20" HorizontalAlignment="Center" Width="108"/>
+                <Image Grid.Column="1" Grid.Row="1" Width="130" Height="130" Source="{Binding b.p.Colour, Converter={StaticResource CCConverter}}" Margin="51,39,50,135" Grid.RowSpan="2" />
+            </StackPanel>
+
+            <TextBlock Grid.Column="4" Grid.ColumnSpan="3" x:Name="GameWinner" Text="Player Wins" FontSize="40" VerticalAlignment="Top" Margin="0,22,0,0" Grid.RowSpan="2" HorizontalAlignment="Center" Visibility="Hidden"/>
 
 
 

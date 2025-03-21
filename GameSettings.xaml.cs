@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 
 namespace Coursework_UI
@@ -38,7 +39,7 @@ namespace Coursework_UI
             if (Mode == "Computer")
             {
                 Column2.Visibility = Visibility.Collapsed;
-                Colour.Text = "Select Colour";
+                ColourText.Text = "Select Colour";
             }
             else
             {
@@ -51,10 +52,18 @@ namespace Coursework_UI
 
         private void Start_Click(object sender, RoutedEventArgs e)
         {
+            
             P1Name = Player1Name.Text;
             P2Name = Player2Name.Text;
-            if (Colour.Text == "Red") FirstPlayer = "R";
-            else FirstPlayer = "Y";
+            if(string.IsNullOrWhiteSpace(P1Name) || (Mode!="Computer" && string.IsNullOrWhiteSpace(P2Name)) ||(Mode=="Computer" && string.IsNullOrWhiteSpace(Difficulty.Text)) || string.IsNullOrWhiteSpace(Colour.Text))
+            {
+                
+                MessageBox.Show("Please enter all required data!", "Invalid input", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            
+            if (Colour.Text == "Yellow") FirstPlayer = "Y";
+            else FirstPlayer = "R";
             if (Mode == "User")
             {
                 
@@ -82,6 +91,12 @@ namespace Coursework_UI
             NewUser.Clear();
             NewUser.Text = "Enter Username";
             
+        }
+
+        private void Cross_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.MainWindow.Show();
+            this.Close();
         }
 
         private void KeyPressed(object sender, KeyEventArgs e)

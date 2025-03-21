@@ -18,6 +18,7 @@ namespace Coursework_UI
             wins = win;
             losses = loss;
         }
+        //Get/Set methods for binding
         public string Name
         {
             get { return name; }
@@ -42,7 +43,7 @@ namespace Coursework_UI
                 else return wins / losses; 
             }
         }
-
+        //Place Counter method for human players
         public override string PlaceCounter(int C, Board b, string Difficulty)
         {
             return b.PlaceCounter(C, false);

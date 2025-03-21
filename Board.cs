@@ -64,7 +64,7 @@ namespace Coursework_UI
             
             string Status = "Ongoing";
             //Checks if the board is full
-            if (C == -1) Status= "Draw";
+            if (getValidLocations().Count() == 0) Status = "Draw";
             //Only checks for win if a counter is placed
             else if (RecursivePlace(C) == true)
             {
@@ -73,10 +73,11 @@ namespace Coursework_UI
                 if (temp == false)
                 {
 
-                    if (checkWin()) Status= "Win";
-                    else UpdatePlayer();
+                    if (checkWin()) Status = "Win"; //Returns win based on check win function
+                    else UpdatePlayer(); //If the player didn't win, update for it to be the next players go
                 }
             }
+            else Status = "No Move";
 
             return Status;
 
@@ -195,19 +196,19 @@ namespace Coursework_UI
                     //exits out of loop as soon as win is found
                     break;
                 }
-                if(Vertical != 0)
+                else if(Vertical != 0)
                 {
                     win = true;
                     FindWinLocation("V");
                     break;
                 }
-                if (Diagonal1 != 0)
+                else if (Diagonal1 != 0)
                 {
                     win = true;
                     FindWinLocation("D1");
                     break;
                 }
-                if (Diagonal2 != 0)
+                else if (Diagonal2 != 0)
                 {
                     win = true;
                     FindWinLocation("D2");

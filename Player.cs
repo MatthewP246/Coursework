@@ -10,7 +10,7 @@ namespace Coursework_UI
 
     abstract class Player
     {
-        [Bindable(false)]
+        //Initialises Colour as needed for all players
         private string Colour;
         
          
@@ -20,7 +20,7 @@ namespace Coursework_UI
             this.Colour = Colour;
         }
 
-        
+        //Protected to prevent it appearing in the Leaderboard
         protected string getColour
         {
             get { return Colour; }
@@ -28,7 +28,7 @@ namespace Coursework_UI
 
 
 
-
+        //Creates abstract place counter method as all players can place counter
         public abstract string PlaceCounter(int C, Board b, string Difficulty);
 
         

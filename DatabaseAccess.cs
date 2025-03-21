@@ -92,5 +92,16 @@ namespace Coursework_UI
             }
 
         }
+
+        public void SaveGame(Board b)
+        {
+
+        }
+
+        public Board ReturnGame()
+        {
+            Board b = new Board("R");
+            return b;
+        }
     }
 }
