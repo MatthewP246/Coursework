@@ -45,10 +45,11 @@
 
 
             <Separator Opacity="0" Height="30"/>
-            <TextBlock x:Name="ColourText" Text="Select First Player Colour" FontSize="25"/>
+            <TextBlock x:Name="ColourText" Text="Player 1 Colour" FontSize="25"/>
             <ComboBox x:Name="Colour">
                 <ComboBoxItem Content="Red" />
                 <ComboBoxItem Content="Yellow" />
+                <ComboBoxItem Content="Random"/>
             </ComboBox>
             <Separator Opacity="0" Height="30"/>
             <TextBlock x:Name="DifficultyText" Text="Select Difficulty" FontSize="25"/>

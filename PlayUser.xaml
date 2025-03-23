@@ -145,9 +145,6 @@
                 <Image Source="/Images/Restart.png"/>
             </Button>
 
-            <TextBlock Grid.Row="1" Grid.Column="9" Name="Time" Text="Time 10:00"  FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
-
 
         </Grid>
     </Grid>

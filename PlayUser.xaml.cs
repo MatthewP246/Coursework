@@ -23,7 +23,6 @@ namespace Coursework_UI
     public partial class PlayUser : Window
     {
         private Game Connect4;
-        private string Colour;
         private string Player1Name;
         private string Player2Name;
         private string Player1Colour;
@@ -31,39 +30,24 @@ namespace Coursework_UI
         private DispatcherTimer GameTime;
         private int TimeLeft=600;
 
-        public PlayUser(string Columnour, string P1Name, string P2Name)
+        public PlayUser(string colour, string P1Name, string P2Name)
         {
             InitializeComponent();
             this.Focus();
             Player1Name = P1Name;
             Player2Name = P2Name;
-            Player1Colour = Columnour;
+            Player1Colour = colour;
             if (Player1Colour == "R") Player2Colour = "Y";
             else Player2Colour = "R";
-            Colour = Columnour;
 
-            Connect4 = new Game(Colour, false, Player1Name, Player2Name, "");
+            Connect4 = new Game(Player1Colour, false, Player1Name, Player2Name, "");
 
             DataContext = Connect4;
-
-
-            GameTime = new DispatcherTimer(); // creating a new timer
-            GameTime.Interval = TimeSpan.FromSeconds(1); // this timer will trigger every second
-            GameTime.Start(); // starting the timer
-            GameTime.Tick += ClockTick; // with each tick it will trigger this function
 
 
             this.KeyDown += new KeyEventHandler(KeyPressed); //Event handler to recognise key presses
 
 
-        }
-
-        //Clock tick down
-        private void ClockTick(object sender, EventArgs e)
-        {
-            TimeLeft++;
-            //Converts timer to minutes and seconds
-            Time.Text = $"Time {Convert.ToString(TimeLeft / 60)}:{Convert.ToString(TimeLeft % 60)}";
         }
 
 
@@ -166,7 +150,7 @@ namespace Coursework_UI
 
         private void Restart_Click(object sender, RoutedEventArgs e) //Restarts the game with the original settings
         {
-            Window w = new PlayUser(Colour, Player1Name, Player2Name);
+            Window w = new PlayUser(Player1Colour, Player1Name, Player2Name);
             w.Show();
             this.Close();
 

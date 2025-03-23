@@ -49,7 +49,7 @@ namespace Coursework_UI
         {
             //get method for 2D grid array
             get { return Grid2D; }
-            set { Grid2D = Value; }
+            set { Grid2D = value; }
         }
 
         public Counter player

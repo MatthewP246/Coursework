@@ -26,6 +26,7 @@ namespace Coursework_UI
         private string FirstPlayer;
         private string P1Name;
         private string P2Name;
+        private Random Rgen = new Random();
 
         private PlayerViewer Viewer;
 
@@ -61,9 +62,15 @@ namespace Coursework_UI
                 MessageBox.Show("Please enter all required data!", "Invalid input", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            
+            if (P1Name == P2Name)
+            {
+                MessageBox.Show("Please select 2 different usernames","Invalid input", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+
             if (Colour.Text == "Yellow") FirstPlayer = "Y";
-            else FirstPlayer = "R";
+            else if (Colour.Text == "Red") FirstPlayer = "R";
+            //if randomly generated number is even, first player is red
+            else if (Rgen.Next() % 2 == 0) FirstPlayer = "R";
             if (Mode == "User")
             {
                 
