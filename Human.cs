@@ -44,9 +44,9 @@ namespace Coursework_UI
             }
         }
         //Place Counter method for human players
-        public override string PlaceCounter(int C, Board b, string Difficulty)
+        public override string PlaceCounter(int Column, Board Board, string Difficulty)
         {
-            return b.PlaceCounter(C, false);
+            return Board.PlaceCounter(Column, false);
         }
 
          

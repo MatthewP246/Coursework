@@ -46,7 +46,6 @@ namespace Coursework_UI
         private void Column1_Click(object sender, RoutedEventArgs e)
         {
             PlaceCounter(0);
-            Column1.Height = Column1.Height - 150;
         }
 
         private void Column2_Click(object sender, RoutedEventArgs e)
@@ -86,37 +85,38 @@ namespace Coursework_UI
                 Cross_Click(sender, e);
             }
 
-            if (e.Key == Key.D1)
+            //Allows the use of the numpad or the top Row of numbers
+            if (e.Key == Key.D1 || e.Key == Key.NumPad1)
             {
                 Column1_Click(sender, e);
             }
 
-            if (e.Key == Key.D2)
+            if (e.Key == Key.D2 || e.Key == Key.NumPad2)
             {
                 Column2_Click(sender, e);
             }
 
-            if (e.Key == Key.D3)
+            if (e.Key == Key.D3 || e.Key == Key.NumPad3)
             {
                 Column3_Click(sender, e);
             }
 
-            if (e.Key == Key.D4)
+            if (e.Key == Key.D4 || e.Key == Key.NumPad4)
             {
                 Column4_Click(sender, e);
             }
 
-            if (e.Key == Key.D5)
+            if (e.Key == Key.D5 || e.Key == Key.NumPad5)
             {
                 Column5_Click(sender, e);
             }
 
-            if (e.Key == Key.D6)
+            if (e.Key == Key.D6 || e.Key == Key.NumPad6)
             {
                 Column6_Click(sender, e);
             }
 
-            if (e.Key == Key.D7)
+            if (e.Key == Key.D7 || e.Key == Key.NumPad7)
             {
                 Column7_Click(sender, e);
             }
@@ -135,9 +135,6 @@ namespace Coursework_UI
             Window w = new PlayComputer(Colour, P1Name, P2Name, Difficulty);
             w.Show();
             this.Close();
-
-
-
         }
 
         private async void PlaceCounter(int C)
@@ -148,7 +145,7 @@ namespace Coursework_UI
             else if (Status == "Win") GameEnd(true);
             else if(Status != "No Move")
             {
-                await Task.Delay(100);
+                await Task.Delay(500);
                 Status = Connect4.PlaceCounter(-1);
                 if (Status == "Draw") GameEnd();
                 if (Status == "Win") GameEnd(false);
@@ -157,28 +154,6 @@ namespace Coursework_UI
             
         }
 
-        private async void GameEnd(bool Win)
-        {
-            //Prevents the user placing any more counters
-            Column1.Visibility = Visibility.Collapsed;
-            Column2.Visibility = Visibility.Collapsed;
-            Column3.Visibility = Visibility.Collapsed;
-            Column4.Visibility = Visibility.Collapsed;
-            Column5.Visibility = Visibility.Collapsed;
-            Column6.Visibility = Visibility.Collapsed;
-            Column7.Visibility = Visibility.Collapsed;
-            //Prevents the user starting a new game
-            Restart.Visibility = Visibility.Hidden;
-            Close.Visibility = Visibility.Hidden;
-            CurrentPlayer.Visibility = Visibility.Hidden;
-
-            GameWinner.Text = $"You {(Win?"Win":"Lose")}";
-            GameWinner.Visibility = Visibility.Visible;
-            
-            await Task.Delay(5000);
-            Application.Current.MainWindow.Show();
-            this.Close();
-        }
         private async void GameEnd()
         {
             //Prevents the user placing any more counters
@@ -201,6 +176,31 @@ namespace Coursework_UI
             Application.Current.MainWindow.Show();
             this.Close();
         }
+
+        //Overload for GameEnd method
+        private async void GameEnd(bool Win)
+        {
+            //Prevents the user placing any more counters
+            Column1.Visibility = Visibility.Collapsed;
+            Column2.Visibility = Visibility.Collapsed;
+            Column3.Visibility = Visibility.Collapsed;
+            Column4.Visibility = Visibility.Collapsed;
+            Column5.Visibility = Visibility.Collapsed;
+            Column6.Visibility = Visibility.Collapsed;
+            Column7.Visibility = Visibility.Collapsed;
+            //Prevents the user starting a new game
+            Restart.Visibility = Visibility.Hidden;
+            Close.Visibility = Visibility.Hidden;
+            CurrentPlayer.Visibility = Visibility.Hidden;
+
+            GameWinner.Text = $"You {(Win?"Win":"Lose")}";
+            GameWinner.Visibility = Visibility.Visible;
+            
+            await Task.Delay(5000);
+            Application.Current.MainWindow.Show();
+            this.Close();
+        }
+        
 
     }
 }

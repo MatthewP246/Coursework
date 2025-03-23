@@ -8,7 +8,7 @@ namespace Coursework_UI
 {
     internal class Node
     {
-        public int data;
-        public Node next;
+        public int Data;
+        public Node Next;
     }
 }

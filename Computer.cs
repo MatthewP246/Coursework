@@ -16,60 +16,61 @@ namespace Coursework_UI
     {
         //Creates new random generator
         private Random Rgen = new Random();
-        //assumes player colour is red
+        //assumes player Columnour is Yellow
         private string PlayerColour = "Y";
             
 
         public Computer(string Colour) : base( Colour)
         {
-            //if Computer colour is red, player colour is yellow instead
+            //if Computer Columnour is yellow, player Columnour is red and vice versa
             if (Colour == "Y") PlayerColour = "R";
         }
 
-        public override string PlaceCounter(int C, Board b, string Difficulty)
+        public override string PlaceCounter(int Column, Board Board, string Difficulty)
         {
-            //Alternate computer algorithm just checking each move on the given board, no looking more than 1 move ahead
-            //C=BestMove(b);
+            //Alternate computer algorithm just checking each move on the given board, no looking more than 1 move aHead
+            //C=BestMove(Board);
 
             //Checks difficulty selected before calling minmax with different depths for each difficulty
-            if(Difficulty=="Hard") C = MinMax(b, 7, int.MinValue, int.MaxValue, true).Item1;
-            else if (Difficulty=="Medium") C = MinMax(b, 5, int.MinValue, int.MaxValue, true).Item1;
-            else C = MinMax(b, 2, int.MinValue, int.MaxValue, true).Item1;
+            //Minmax returns the best Column to place the counter
+            if(Difficulty=="Hard") Column = MinMax(Board, 7, int.MinValue, int.MaxValue, true).Item1;
+            else if (Difficulty=="Medium") Column = MinMax(Board, 5, int.MinValue, int.MaxValue, true).Item1;
+            else Column = MinMax(Board, 2, int.MinValue, int.MaxValue, true).Item1;
 
             //Actually places the counter on the board and returns the state of the game
-            return b.PlaceCounter(C, false);
+            return Board.PlaceCounter(Column, false);
         }
 
         
 
-        private int Heuristic(Board b)
+        private int Heuristic(Board Board)
         {
             int HValue = 0;
 
             //Centre Score
-            //Adds extra weight to the centre column as it has more options to win
-            string[] CentreArray = { b.gg[3, 0].Colour, b.gg[3, 1].Colour, b.gg[3, 2].Colour, b.gg[3, 3].Colour, b.gg[3, 4].Colour, b.gg[3, 5].Colour };
+            //Adds extra weight to the centre Column as it has more options to win
+            string[] CentreArray = { Board.grid2D[3, 0].Colour, Board.grid2D[3, 1].Colour, Board.grid2D[3, 2].Colour, Board.grid2D[3, 3].Colour, Board.grid2D[3, 4].Colour, Board.grid2D[3, 5].Colour };
             int CentreCount = 0;
             for (int i = 0;i < CentreArray.Length; i++)
             {
-                //Increments a counter based on number of player counters in the Middle column
-                if (CentreArray[i] == getColour) CentreCount++;
+                //Increments a counter based on number of player counters in the Middle Column
+                if (CentreArray[i] == GetColour) CentreCount++;
             }
             HValue += CentreCount * 3;
 
 
-            //Horizontal score
-            for (int row = 0; row < 6; row++)
+            //Horizontal Score
+            for (int Row = 0; Row < 6; Row++)
             {
-                //creates an array of each individual row
-                string[] rowArray = { b.gg[0, row].Colour, b.gg[1, row].Colour, b.gg[2, row].Colour, b.gg[3, row].Colour, b.gg[4, row].Colour, b.gg[5, row].Colour, b.gg[6, row].Colour };
-                for (int col = 0; col < 4; col++)
+                //creates an array of each individual Row
+                string[] RowArray = { Board.grid2D[0, Row].Colour, Board.grid2D[1, Row].Colour, Board.grid2D[2, Row].Colour, Board.grid2D[3, Row].Colour, Board.grid2D[4, Row].Colour, Board.grid2D[5, Row].Colour, Board.grid2D[6, Row].Colour };
+                for (int Column = 0; Column < 4; Column++)
                 {
                     //4 to prevent index out of bounds error
                     //creates a window of 4 spaces horizontally which could be used to win
-                    string[] Window = { rowArray[col], rowArray[col + 1], rowArray[col + 2], rowArray[col + 3] };
-                    //Assings a value based on the number of player counters in the window and adds to a total
-                    HValue += WindowCheck(Window, b);
+                    string[] Window = { RowArray[Column], RowArray  [Column + 1], RowArray[Column + 2], RowArray[Column + 3] };
+                    //Assings a Value based on the number of player counters in the window and adds to a total
+                    HValue += WindowCheck(Window);
 
 
 
@@ -77,37 +78,37 @@ namespace Coursework_UI
                 }
             }
             //Vertical Score
-            for (int col = 0; col < 7; col++)
+            for (int Column = 0; Column < 7; Column++)
             {
-                //creates an array of each individual column
-                string[] colArray = { b.gg[col, 0].Colour, b.gg[col, 1].Colour, b.gg[col, 2].Colour, b.gg[col, 3].Colour, b.gg[col, 4].Colour, b.gg[col, 5].Colour };
-                for (int row = 0; row < 3; row++)
+                //creates an array of each individual Column
+                string[] ColumnArray = { Board.grid2D[Column, 0].Colour, Board.grid2D[Column, 1].Colour, Board.grid2D[Column, 2].Colour, Board.grid2D[Column, 3].Colour, Board.grid2D[Column, 4].Colour, Board.grid2D[Column, 5].Colour };
+                for (int Row = 0; Row < 3; Row++)
                 {
                     //3 to prevent index out of bounds error
                     //creates a window of 4 spaces Vertically which could be used to win
-                    string[] Window = { colArray[row], colArray[row + 1], colArray[row + 2], colArray[row + 3] };
-                    //Assigns a value to this window
-                    HValue += WindowCheck(Window, b);
+                    string[] Window = { ColumnArray[Row], ColumnArray[Row + 1], ColumnArray[Row + 2], ColumnArray[Row + 3] };
+                    //Assigns a Value to this window
+                    HValue += WindowCheck(Window);
 
                 }
             }
 
             //Diagonal 1 (Bottom Left -> Top Right)
-            for (int row = 0; row < 3; row++)
+            for (int Row = 0; Row < 3; Row++)
             {
-                for (int col = 0; col < 4; col++)
+                for (int Column = 0; Column < 4; Column++)
                 {
-                    string[] Window = { b.gg[col, row].Colour, b.gg[col + 1, row + 1].Colour, b.gg[col + 2, row + 2].Colour, b.gg[col + 3, row + 3].Colour };
-                    HValue += WindowCheck(Window, b);
+                    string[] Window = { Board.grid2D[Column, Row].Colour, Board.grid2D[Column + 1, Row + 1].Colour, Board.grid2D[Column + 2, Row + 2].Colour, Board.grid2D[Column + 3, Row + 3].Colour };
+                    HValue += WindowCheck(Window);
                 }
             }
             //Diagonal 2 (Top Left -> Bottom Right)
-            for (int row = 0; row < 3; row++)
+            for (int Row = 0; Row < 3; Row++)
             {
-                for (int col = 0; col < 4; col++)
+                for (int Column = 0; Column < 4; Column++)
                 {
-                    string[] Window = { b.gg[col, row+3].Colour, b.gg[col + 1, row +2].Colour, b.gg[col + 2, row +1].Colour, b.gg[col + 3, row].Colour };
-                    HValue += WindowCheck(Window, b);
+                    string[] Window = { Board.grid2D[Column, Row+3].Colour, Board.grid2D[Column + 1, Row +2].Colour, Board.grid2D[Column + 2, Row +1].Colour, Board.grid2D[Column + 3, Row].Colour };
+                    HValue += WindowCheck(Window);
                     
                 }
             }
@@ -115,206 +116,213 @@ namespace Coursework_UI
             return HValue;
         }
 
-        private int WindowCheck(string[] Window, Board b)
+        private int WindowCheck(string[] Window)
         {
+            //Assigns a Value to each window
             int HValue = 0;
+
             
-            //if 4 player counters in the window, increment the score by the given value
-            if ((Window.Count(s => s == getColour) == 4))
+            if (Window.Count(s => s == "0") == 4) ;//Don't check for any counters if the window is empty
+            else
             {
-                //4 indicates a win so add a much greater value for wins over anything else
-                HValue += 100000;
-            }
-            //3 in the window
-            else if ((Window.Count(s => s == getColour) == 3) && (Window.Count(s => s == "0")) == 1)
-            {
-                HValue += 8;
-            }
-            //2 in window
-            else if ((Window.Count(s => s == getColour) == 2) && (Window.Count(s => s == "0")) == 2)
-            {
-                HValue += 2;
-            }
+
+                //if 4 player counters in the window, increment the Score by the given Value
+                if ((Window.Count(s => s == GetColour) == 4))
+                {
+                    //4 indicates a win so add a much greater Value for wins over anything else
+                    HValue += 100000;
+                }
+                //3 in the window
+                else if ((Window.Count(s => s == GetColour) == 3) && (Window.Count(s => s == "0")) == 1)
+                {
+                    HValue += 8;
+                }
+                //2 in window
+                else if ((Window.Count(s => s == GetColour) == 2) && (Window.Count(s => s == "0")) == 2)
+                {
+                    HValue += 2;
+                }
 
 
-            //Opponent has 3 in window
-            if ((Window.Count(s => s == PlayerColour) == 3) && (Window.Count(s => s == "0")) == 1)
-            {
-                //Adds ability to block the player winning over getting more in a row for the computer
-                HValue -= 6;
-            }
-            //Opponent has 2 in window
-            else if ((Window.Count(s => s == PlayerColour) == 2) && (Window.Count(s => s == "0")) == 2)
-            {
-                HValue -= 4;
+                //Opponent has 3 in window
+                if ((Window.Count(s => s == PlayerColour) == 3) && (Window.Count(s => s == "0")) == 1)
+                {
+                    //Adds ability to block the player winning over getting more in a Row for the computer
+                    //Value is less than the player winning so it always wins the game for itself first
+                    HValue -= 6;
+                }
+                //Opponent has 2 in window
+                else if ((Window.Count(s => s == PlayerColour) == 2) && (Window.Count(s => s == "0")) == 2)
+                {
+                    HValue -= 4;
+                }
             }
             return HValue;
 
         }
-        private int BestMove(Board b)
+        private int BestMove(Board Board)
         {
-            LinkList validLocation = b.getValidLocations();
-            //Assings initial value of -1 for best column as this indicates the board is full
-            int bestColumn = -1;
-            int bestScore = 0;
+            LinkList ValidLocation = Board.GetValidLocations();
+            //Assings initial Value of -1 for best Column as this indicates the board is full
+            int BestColumn = -1;
+            int BestScore = 0;
 
-            if (validLocation != null)
+            if (ValidLocation != null)
             {
-                //if there are moves available, assing a random column as the best column
-                bestColumn = validLocation.peek(Rgen.Next(validLocation.Count()));
+                //if there are moves available, assign a random Column as the best Column
+                BestColumn = ValidLocation.Peek(Rgen.Next(ValidLocation.Count()));
 
 
 
-                for(int i = 0;i<validLocation.Count(); i++ )
+                for(int i = 0;i<ValidLocation.Count(); i++ )
                 {
                     //Assings l to each location in valid Location s
-                    int l = validLocation.peek(i);
-                    //Initialises a temporary board and assings all counter to their respective locations based on the main board
-                    Board tempBoard = new Board(b.p.Colour);
-                    for (int x = 0; x < 7; x++)
+                    int l = ValidLocation.Peek(i);
+                    //Initialises a temporary board and assigns all counters to their respective locations based on the main board
+                    Board TempBoard = new Board(Board.player.Colour);
+                    for (int j = 0; j < 42; j++)
                     {
-                        for (int y = 0; y < 6; y++)
+                        if (Board.grid[j].Colour == "R")
                         {
-                            if (b.gg[x, y].Colour == "R") tempBoard.gg[x, y].Colour = "R";
-                            else if (b.gg[x, y].Colour == "Y") tempBoard.gg[x, y].Colour = "Y";
-                            else tempBoard.gg[x, y].Colour = "0";
-
+                            TempBoard.grid[j].Colour = "R";
+                            TempBoard.grid2D[j % 7, j / 7].Colour = "R";
                         }
-                    }
-                    for (int x = 0; x < 42; x++)
-                    {
-                        if (b.g[x].Colour == "R") tempBoard.g[x].Colour = "R";
-                        else if (b.g[x].Colour == "Y") tempBoard.g[x].Colour = "Y";
-                        else tempBoard.g[x].Colour = "0";
+                        else if (Board.grid[j].Colour == "Y")
+                        {
+                            TempBoard.grid[j].Colour = "Y";
+                            TempBoard.grid2D[j % 7, j / 7].Colour = "Y";
+                        }
+
                     }
                     //Places a counter in the temporary board
-                    tempBoard.PlaceCounter(l, true);
-                    //Assigns a score to the board based on the heuristic values
-                    int score = Heuristic(tempBoard);
-                    //Assigns best column to the board which placing in that column returns the greatest score
-                    if (score > bestScore)
+                    TempBoard.PlaceCounter(l, true);
+                    //Assigns a Score to the board based on the heuristic values
+                    int Score = Heuristic(TempBoard);
+                    //Assigns best Column to the board which placing in that Column returns the greatest Score
+                    if (Score > BestScore)
                     {
-                        bestScore = score;
-                        bestColumn = l;
+                        BestScore = Score;
+                        BestColumn = l;
                     }
                 }
             }
 
-            return bestColumn;
+            return BestColumn;
         }
 
-        private (int, int) MinMax(Board b, int depth, int alpha, int beta, bool MaximisingPlayer)
+        private (int, int) MinMax(Board Board, int Depth, int Alpha, int Beta, bool MaximisingPlayer)
         {
-            LinkList ValidLocations = b.getValidLocations();
+            LinkList ValidLocations = Board.GetValidLocations();
             //Checks if the node of the minmax array is a terminal node
-            bool Terminal = TerminalNode(b);
+            bool Terminal = TerminalNode(Board);
             //-1 indicates the board is full
-            int bestColumn = -1;
+            int BestColumn = -1;
 
 
 
-            //Depth indicates how far the minmax algorithm can look ahead
-            if (depth == 0 || Terminal)
+            //Depth indicates how far the minmax algorithm can look aHead
+            if (Depth == 0 || Terminal)
             {
                 if (Terminal)
                 {
-                    //returns a value based on if the computer is playing, the human is playing or its a draw
-                    if (b.p.Colour == getColour) return (-1, 1000000000);
-                    else if (b.p.Colour == PlayerColour) return (-1, -1000000000);
+                    //returns a Value based on if the computer is playing, the human is playing or its a draw
+                    //also returns a Column of -1 to indicate the game is over
+                    if (Board.player.Colour == GetColour) return (-1, 1000000000);
+                    else if (Board.player.Colour == PlayerColour) return (-1, -1000000000);
                     else return (-1, 0);
                 }
                 else
                 {
                     //Depth=0
-                    return (-1, Heuristic(b));
+                    return (-1, Heuristic(Board));
                 }
             }
-            //the player is trying to maximise the heuristic value of the board
+            //the player is trying to maximise the heuristic Value of the board
             if (MaximisingPlayer)
             {
-                int value = int.MinValue;
+                int Value = int.MinValue;
 
                 foreach (int l in ValidLocations)
                 {
                     //creates a copy of the Board with the intended player making a move
-                    Board tempBoard = new Board(getColour);
-                    for (int x = 0; x < 7; x++)
-                    {
-                        for (int y = 0; y < 6; y++)
-                        {
-                            if (b.gg[x, y].Colour == "R") tempBoard.gg[x, y].Colour = "R";
-                            else if (b.gg[x, y].Colour == "Y") tempBoard.gg[x, y].Colour = "Y";
-                            else tempBoard.gg[x, y].Colour = "0";
-
-                        }
-                    }
+                    Board TempBoard = new Board(GetColour);
                     for (int i = 0; i < 42; i++)
                     {
-                        if (b.g[i].Colour == "R") tempBoard.g[i].Colour = "R";
-                        else if (b.g[i].Colour == "Y") tempBoard.g[i].Colour = "Y";
-                        else tempBoard.g[i].Colour = "0";
+                        if (Board.grid[i].Colour == "R")
+                        {
+                            TempBoard.grid[i].Colour = "R";
+                            TempBoard.grid2D[i % 7, i / 7].Colour = "R";
+                        }
+                        else if (Board.grid[i].Colour == "Y")
+                        {
+                            TempBoard.grid[i].Colour = "Y";
+                            TempBoard.grid2D[i % 7, i / 7].Colour = "Y";
+                        }
+
                     }
                     //places a counter in the temporary board
-                    tempBoard.PlaceCounter(l, true);
-                    //Recursively calls the algorithm and assings an integer value to the search ahead
-                    int newScore = MinMax(tempBoard, depth - 1, alpha, beta, false).Item2;
-                    if (newScore > value)
+                    TempBoard.PlaceCounter(l, true);
+                    //Recursively calls the algorithm and assings an integer Value to the search aHead
+                    //recursive call returns the heuristic Value of each move
+                    int NewScore = MinMax(TempBoard, Depth - 1, Alpha, Beta, false).Item2;
+                    if (NewScore > Value)
                     {
-                        //if the next move is better than the previous, assing a new best column
-                        value = newScore;
-                        bestColumn = l;
+                        //if the next move is better than the previous, assing a new best Column
+                        Value = NewScore;
+                        BestColumn = l;
                     }
                     //use of alpha-beta pruning to increase the efficiency of the alogrithm
-                    alpha = Math.Max(value, alpha);
-                    if (alpha >= beta) break;
+                    //eliminates certain checks from being needed based on already known information
+                    Alpha = Math.Max(Value, Alpha);
+                    if (Alpha >= Beta) break;
 
                 }
-                return (bestColumn, value);
+                //Returns both the best Column and heuristic Value of placing in that Column
+                return (BestColumn, Value);
             }
             else //Minimising Player
             {
-                int value = int.MaxValue;
+                int Value = int.MaxValue;
 
 
                 foreach (int l in ValidLocations)
                 {
-                    Board tempBoard = new Board(PlayerColour);
-                    for (int x = 0; x < 7; x++)
-                    {
-                        for (int y = 0; y < 6; y++)
-                        {
-                            if (b.gg[x, y].Colour == "R") tempBoard.gg[x, y].Colour = "R";
-                            else if (b.gg[x, y].Colour == "Y") tempBoard.gg[x, y].Colour = "Y";
-                            else tempBoard.gg[x, y].Colour = "0";
-
-                        }
-                    }
+                    Board TempBoard = new Board(PlayerColour);
                     for (int i = 0; i < 42; i++)
                     {
-                        if (b.g[i].Colour == "R") tempBoard.g[i].Colour = "R";
-                        else if (b.g[i].Colour == "Y") tempBoard.g[i].Colour = "Y";
-                        else tempBoard.g[i].Colour = "0";
+                        if (Board.grid[i].Colour == "R")
+                        {
+                            TempBoard.grid[i].Colour = "R";
+                            TempBoard.grid2D[i % 7, i / 7].Colour = "R";
+                        }
+                        else if (Board.grid[i].Colour == "Y")
+                        {
+                            TempBoard.grid[i].Colour = "Y";
+                            TempBoard.grid2D[i % 7, i / 7].Colour = "Y";
+                        }
+
                     }
-                    tempBoard.PlaceCounter(l, true);
-                    int newScore = MinMax(tempBoard, depth - 1, alpha, beta, true).Item2;
-                    if (newScore < value)
+                    TempBoard.PlaceCounter(l, true);
+                    int NewScore = MinMax(TempBoard, Depth - 1, Alpha, Beta, true).Item2;
+                    if (NewScore < Value)
                     {
-                        value = newScore;
-                        bestColumn = l;
+                        Value = NewScore;
+                        BestColumn = l;
                     }
-                    beta = Math.Min(beta, value);
-                    if (alpha >= beta) break;
+                    Beta = Math.Min(Beta, Value);
+                    if (Alpha >= Beta) break;
 
                 }
-                return (bestColumn, value);
+                return (BestColumn, Value);
 
             }
 
         }
 
-        private bool TerminalNode(Board b)
+        private bool TerminalNode(Board Board)
         {
-            if (b.checkWin() || b.getValidLocations().Count() == 0) return true;
+            //Checks if the game is over or no more moves are possible
+            if (Board.CheckWin() || Board.GetValidLocations().Count() == 0) return true;
             else return false;
         } 
 

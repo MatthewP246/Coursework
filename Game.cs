@@ -10,7 +10,7 @@ namespace Coursework_UI
     internal class Game
     {
         //Initialising variables
-        private Board board;
+        private Board Board;
         //Array for the 2 players, can be computer or human
         private Player[] Players = new Player[2];
         private bool AIGame;
@@ -40,33 +40,33 @@ namespace Coursework_UI
             else Players[1] = new Human(Player2Colour, Player2Name,0,0);
 
 
-            board = new Board(FirstPlayer);
+            Board = new Board(FirstPlayer);
         }
 
-        public Board b
+        public Board board
         {
-            get { return board; }
+            get { return Board; }
         }
 
 
 
 
-        public string PlaceCounter(int C)
+        public string PlaceCounter(int Column)
         {
             string Winner="";
             string Loser="";
             string Status;
-            if (C == -1 && AIGame)
+            if (Column == -1 && AIGame)
             {
-                Status=Players[1].PlaceCounter(C, board, Difficulty);
+                Status=Players[1].PlaceCounter(Column, Board, Difficulty);
                 if (Status == "Win")
                 {
                     Loser = Player1Name;
                 }
             }
-            else if (Player1Colour == board.p.Colour)
+            else if (Player1Colour == Board.player.Colour)
             {
-                Status = Players[0].PlaceCounter(C, board, Difficulty);
+                Status = Players[0].PlaceCounter(Column, Board, Difficulty);
                 if (Status=="Win")
                 {
                     Winner = Player1Name;
@@ -76,7 +76,7 @@ namespace Coursework_UI
             }
             else
             {
-                Status = (Players[1].PlaceCounter(C, board, Difficulty));
+                Status = (Players[1].PlaceCounter(Column, Board, Difficulty));
                 if (Status == "Win")
                 {
                     Winner= Player2Name;
@@ -92,7 +92,7 @@ namespace Coursework_UI
 
         public bool CheckWin()
         {
-            return b.checkWin();
+            return Board.CheckWin();
         }
 
         

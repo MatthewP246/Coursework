@@ -31,16 +31,16 @@ namespace Coursework_UI
         private DispatcherTimer GameTime;
         private int TimeLeft=600;
 
-        public PlayUser(string colour, string P1Name, string P2Name)
+        public PlayUser(string Columnour, string P1Name, string P2Name)
         {
             InitializeComponent();
             this.Focus();
             Player1Name = P1Name;
             Player2Name = P2Name;
-            Player1Colour = colour;
+            Player1Colour = Columnour;
             if (Player1Colour == "R") Player2Colour = "Y";
             else Player2Colour = "R";
-            Colour = colour;
+            Colour = Columnour;
 
             Connect4 = new Game(Colour, false, Player1Name, Player2Name, "");
 
@@ -59,19 +59,15 @@ namespace Coursework_UI
         }
 
         //Clock tick down
-        private async void ClockTick(object sender, EventArgs e)
+        private void ClockTick(object sender, EventArgs e)
         {
-            TimeLeft--;
+            TimeLeft++;
             //Converts timer to minutes and seconds
-            Time.Text = "Time "+ Convert.ToString(TimeLeft / 60)+":" + Convert.ToString(TimeLeft % 60);
-            if (TimeLeft==0)
-            {
-                GameWin("No one");
-            }
+            Time.Text = $"Time {Convert.ToString(TimeLeft / 60)}:{Convert.ToString(TimeLeft % 60)}";
         }
 
 
-        //Clicks to place counter in each column
+        //Clicks to place counter in each Column
         private void Column1_Click(object sender, RoutedEventArgs e)
         {
             PlaceCounter(0);
@@ -80,13 +76,12 @@ namespace Coursework_UI
         private void Column2_Click(object sender, RoutedEventArgs e)
         {
             PlaceCounter(1);
-            
         }
 
         private void Column3_Click(object sender, RoutedEventArgs e)
         {
             PlaceCounter(2);
-        }   
+        }
 
         private void Column4_Click(object sender, RoutedEventArgs e)
         {
@@ -108,14 +103,14 @@ namespace Coursework_UI
             PlaceCounter(6);
         }
 
-        
+
         private void KeyPressed(object sender, KeyEventArgs e) //Method for recognising keystrokes
         {
             if (e.Key == Key.Escape)
             {
                 Cross_Click(sender, e);
             }
-            
+            //Allows the use of the numpad or the top Row of numbers
             if (e.Key == Key.D1 || e.Key==Key.NumPad1)
             {
                 Column1_Click(sender, e);
@@ -180,7 +175,7 @@ namespace Coursework_UI
             if (Status == "Win")
             {
                 //if someone wins end the game and indicate who
-                if (Connect4.b.p.Colour == Player1Colour) GameWin(Player1Name);
+                if (Connect4.board.player.Colour == Player1Colour) GameWin(Player1Name);
                 else GameWin(Player2Name);
             }
             //if a draw, also end the game where no one wins

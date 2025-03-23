@@ -12,59 +12,59 @@ namespace Coursework_UI
     class CounterColourConverter : IValueConverter
     {
 
-        public object Convert(object value, Type targetType, object paramater, CultureInfo culture)
+        public object Convert(object Value, Type targetType, object paramater, CultureInfo culture)
         {
-            string path;
+            string Path;
 
-            if ((string)value == "R")
+            if ((string)Value == "R")
             {
-                path = "/Images/Red.png";
+                Path = "/Images/Red.png";
             }
-            else if ((string)value == "RH")
+            else if ((string)Value == "RH")
             {
-                path = "/Images/Red H.png";
+                Path = "/Images/Red H.png";
             }
-            else if ((string)value == "RV")
+            else if ((string)Value == "RV")
             {
-                path = "/Images/Red V.png";
+                Path = "/Images/Red V.png";
             }
-            else if ((string)value == "RD1")
+            else if ((string)Value == "RD1")
             {
-                path = "/Images/Red D1.png";
+                Path = "/Images/Red D1.png";
             }
-            else if ((string)value == "RD2")
+            else if ((string)Value == "RD2")
             {
-                path = "/Images/Red D2.png";
+                Path = "/Images/Red D2.png";
             }
-            else if ((string)value == "Y")
+            else if ((string)Value == "Y")
             {
-                path = "/Images/Yellow.png";
+                Path = "/Images/Yellow.png";
             }
-            else if ((string)value == "YH")
+            else if ((string)Value == "YH")
             {
-                path = "/Images/Yellow H.png";
+                Path = "/Images/Yellow H.png";
             }
-            else if ((string)value == "YV")
+            else if ((string)Value == "YV")
             {
-                path = "/Images/Yellow V.png";
+                Path = "/Images/Yellow V.png";
             }
-            else if ((string)value == "YD1")
+            else if ((string)Value == "YD1")
             {
-                path = "/Images/Yellow D1.png";
+                Path = "/Images/Yellow D1.png";
             }
-            else if((string)value == "YD2")
+            else if((string)Value == "YD2")
             {
-                path = "/Images/Yellow D2.png";
+                Path = "/Images/Yellow D2.png";
             }
             else
             {
-                path = "{x:null}";
+                Path = "{x:null}";
             }
 
 
-            return new BitmapImage(new Uri(path, UriKind.Relative));
+            return new BitmapImage(new Uri(Path, UriKind.Relative));
         }
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object ConvertBack(object Value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             throw new NotImplementedException();
         }

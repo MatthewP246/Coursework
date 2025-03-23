@@ -10,20 +10,18 @@ namespace Coursework_UI
 {
     internal class LinkList : IEnumerable
     {
-        private Node head;
+        private Node Head;
 
         public LinkList()
         {
-            head = null;
-
-
+            Head = null;
         }
 
         
 
         public int Count()
         {
-            return Length(head);
+            return Length(Head);
         }
 
         private int Length(Node a)
@@ -34,37 +32,35 @@ namespace Coursework_UI
             }
             else
             {
-                return 1 + Length(a.next);
+                return 1 + Length(a.Next);
             }
         }
 
-        public void addToFront(int s)
+        public void AddToFront(int s)
         {
             Node n = new Node();
-            n.data = s;
-            n.next = head;
-            
-
-            head = n;
+            n.Data = s;
+            n.Next = Head;
+            Head = n;
 
         }
         public void Add(int s)
         {
             //Adds to the back of the list
-            Node a = head;
+            Node a = Head;
             if (a != null)
             {
-                while (a.next != null)
+                while (a.Next != null)
                 {
-                    a = a.next;
+                    a = a.Next;
                 }
                 Node n = new Node();
-                n.data = s;
-                a.next = n;
+                n.Data = s;
+                a.Next = n;
             }
             else
             {
-                addToFront(s);
+                AddToFront(s);
             }
 
 
@@ -73,48 +69,32 @@ namespace Coursework_UI
         }
 
 
-        public int peek(int position)
+        public int Peek(int position)
         {
-            Node a = head;
+            Node a = Head;
 
             for (int x = 0; x < position; x++)
             {
                 if (a != null)
                 {
-                    a = a.next;
+                    a = a.Next;
                 }
             }
-            return a.data;
+            return a.Data;
         }
 
-        public void Clear()
-        {
-            head=null;
-        }
-
-        public void printList()
-        {
-            Node a = head;
-            while (a != null)
-            {
-                Console.WriteLine(a.data);
-                a = a.next;
-            }
-
-        }
 
         public IEnumerator GetEnumerator()
         {
-            Node a = head;
+            Node a = Head;
             while (a != null)
             {
-                yield return a.data;
-                a = a.next;
+                yield return a.Data;
+                a = a.Next;
             }
         }
         IEnumerator IEnumerable.GetEnumerator()
         {
-
             return this.GetEnumerator();
         }
 

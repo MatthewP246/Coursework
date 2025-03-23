@@ -25,17 +25,17 @@ namespace Coursework_UI
         {
             Access.AddPlayer(name);
             PlayerList.Clear();
-            foreach(var  player in Access.PlayersLeaderboard())
+            foreach(var Player in Access.PlayersLeaderboard())
             {
-                PlayerList.Add(player);
+                PlayerList.Add(Player);
             }
             OnPropertyChanged(nameof(PlayerList));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(string propertyName)
+        protected void OnPropertyChanged(string PropertyName)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
         }
     }
 }

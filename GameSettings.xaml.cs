@@ -27,15 +27,15 @@ namespace Coursework_UI
         private string P1Name;
         private string P2Name;
 
-        private PlayerViewer viewer;
+        private PlayerViewer Viewer;
 
 
         public GameSettings(string Gamemode)
         {
             InitializeComponent();
             Mode = Gamemode;
-            viewer = new PlayerViewer();
-            DataContext = viewer;
+            Viewer = new PlayerViewer();
+            DataContext = Viewer;
             if (Mode == "Computer")
             {
                 Column2.Visibility = Visibility.Collapsed;
@@ -87,7 +87,7 @@ namespace Coursework_UI
                 MessageBox.Show("Please enter a valid name!", "Invalid input", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            viewer.AddPlayer(name);
+            Viewer.AddPlayer(name);
             NewUser.Clear();
             NewUser.Text = "Enter Username";
             

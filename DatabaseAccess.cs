@@ -10,11 +10,11 @@ namespace Coursework_UI
 {
     class DatabaseAccess
     {
-        private string connectionString;
+        private string ConnectionString;
 
         public DatabaseAccess()
         {
-            connectionString = "Data Source=|DataDirectory|Connect4DB.db; Version=3;";
+            ConnectionString = "Data Source=|DataDirectory|Connect4DB.db; Version=3;";
 
             if (!File.Exists(GetDatabasePath()))
             {
@@ -30,11 +30,11 @@ namespace Coursework_UI
         public List<Human> PlayersLeaderboard()
         {
             List<Human> Players = new List<Human>();
-            using (var conn = new SQLiteConnection(connectionString))
+            using (var Conn = new SQLiteConnection(ConnectionString))
             {
-                conn.Open();
+                Conn.Open();
                 string query = "SELECT Username, Wins, Losses FROM Players ORDER BY Wins DESC" ;
-                using (var cmd = new SQLiteCommand(query, conn))
+                using (var cmd = new SQLiteCommand(query, Conn))
                 using (var reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
@@ -43,65 +43,65 @@ namespace Coursework_UI
                         
                     }
                 }
-                conn.Close();
+                Conn.Close();
             }
             return Players;
         }
 
         public void AddWin(string Username)
         {
-            using (var conn = new SQLiteConnection(connectionString))
+            using (var Conn = new SQLiteConnection(ConnectionString))
             {
-                conn.Open();
+                Conn.Open();
                 string query = "UPDATE Players SET Wins=Wins+1 WHERE Username=@user";
-                using (var cmd = new SQLiteCommand(query, conn))
+                using (var cmd = new SQLiteCommand(query, Conn))
                 {
                     cmd.Parameters.AddWithValue("@user", Username);
                     cmd.ExecuteNonQuery();
                 }
-                conn.Close();
+                Conn.Close();
             }
         }
         public void AddLoss(string Username)
         {
-            using (var conn = new SQLiteConnection(connectionString))
+            using (var Conn = new SQLiteConnection(ConnectionString))
             {
-                conn.Open();
+                Conn.Open();
                 string query = "UPDATE Players SET Losses=Losses+1 WHERE Username=@user";
-                using (var cmd = new SQLiteCommand(query, conn))
+                using (var cmd = new SQLiteCommand(query, Conn))
                 {
                     cmd.Parameters.AddWithValue("@user", Username);
                     cmd.ExecuteNonQuery();
                 }
-                conn.Close();
+                Conn.Close();
             }
         }
 
         public void AddPlayer(string Username)
         {
-            using (var conn = new SQLiteConnection(connectionString))
+            using (var Conn = new SQLiteConnection(ConnectionString))
             {
-                conn.Open();
+                Conn.Open();
                 string query = "INSERT INTO Players (Username) VALUES (@user)";
-                using (var cmd = new SQLiteCommand(query, conn))
+                using (var cmd = new SQLiteCommand(query, Conn))
                 {
                     cmd.Parameters.AddWithValue("@user", Username);
                     cmd.ExecuteNonQuery();
                 }
-                conn.Close();
+                Conn.Close();
             }
 
         }
 
-        public void SaveGame(Board b)
+        public void SaveGame(Board Board)
         {
 
         }
 
         public Board ReturnGame()
         {
-            Board b = new Board("R");
-            return b;
+            Board Board = new Board("R");
+            return Board;
         }
     }
 }

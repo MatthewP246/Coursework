@@ -36,7 +36,7 @@ namespace Coursework_UI
             //Assigning the first player based on input
             CurrentPlayer = new Counter(FirstPlayer);
         }
-        public Counter[] g
+        public Counter[] grid
         {
             //get method for 1D grid
             //Used for data binding
@@ -45,35 +45,38 @@ namespace Coursework_UI
 
 
 
-        public Counter[,] gg
+        public Counter[,] grid2D
         {
-            //get method for 2D array
+            //get method for 2D grid array
             get { return Grid2D; }
-            set { Grid2D = value; }
+            set { Grid2D = Value; }
         }
 
-        public Counter p
+        public Counter player
         {
             //Get method for Player making the move
-            //Used foir data binding
+            //Used for data binding
             get { return CurrentPlayer; }
         }
 
-        public string PlaceCounter(int C, bool temp)
+        public string PlaceCounter(int Column, bool Temp)
         {
             
             string Status = "Ongoing";
             //Checks if the board is full
-            if (getValidLocations().Count() == 0) Status = "Draw";
+            if (GetValidLocations().Count() == 0)
+            {
+                Status = "Draw";
+            }
             //Only checks for win if a counter is placed
-            else if (RecursivePlace(C) == true)
+            else if (RecursivePlace(Column))
             {
                 //Doesnt check for a win if temporarily placing counter
                 //Used in minmax algorithm
-                if (temp == false)
+                if (Temp == false)
                 {
 
-                    if (checkWin()) Status = "Win"; //Returns win based on check win function
+                    if (CheckWin()) Status = "Win"; //Returns win based on check win function
                     else UpdatePlayer(); //If the player didn't win, update for it to be the next players go
                 }
             }
@@ -84,21 +87,21 @@ namespace Coursework_UI
         }
 
 
-        private bool RecursivePlace(int C)
+        private bool RecursivePlace(int Column)
         {
             //Recursive algorithm to place counter
             bool Placed = true;
-            if (C<42)
+            if (Column <42)
             {
 
-                if (Grid[C].Colour == "0")
+                if (Grid[Column].Colour == "0")
                 {
-                    Grid[C].Colour = CurrentPlayer.Colour;
-                    Grid2D[C%7,C/7].Colour = CurrentPlayer.Colour;
+                    Grid[Column].Colour = CurrentPlayer.Colour;
+                    Grid2D[Column %7,Column/7].Colour = CurrentPlayer.Colour;
                 }
                 else 
                 {
-                    Placed = RecursivePlace(C+7);
+                    Placed = RecursivePlace(Column +7);
 
                 }
                 
@@ -109,14 +112,14 @@ namespace Coursework_UI
         }
 
 
-        public LinkList getValidLocations()
+        public LinkList GetValidLocations()
         {
-            //Checks which columns are a valid location and returns a list of valid columns
+            //Checks which Columnumns are a valid location and returns a list of valid Columnumns
             LinkList ValidLocations = new LinkList();
 
             for(int i = 0; i < 7; i++)
             {
-                if (isValidLocation(i)) ValidLocations.Add(i);
+                if (IsValidLocation(i)) ValidLocations.Add(i);
 
             }
 
@@ -124,10 +127,10 @@ namespace Coursework_UI
         }
 
 
-        private bool isValidLocation(int C)
+        private bool IsValidLocation(int Column)
         {
-            //Checks if the top row of each column is empty
-            if (Grid[35+C].Colour == "0") return true;
+            //Checks if the top Row of each Column is empty
+            if (Grid[35+Column].Colour == "0") return true;
             else return false;
         }
 
@@ -136,19 +139,19 @@ namespace Coursework_UI
 
         private void UpdatePlayer()
         {
-            //Updating which colour is placing a counter after each go
+            //Updating which Columnour is placing a counter after each go
             if (CurrentPlayer.Colour == "R") CurrentPlayer.Colour = "Y";
             else CurrentPlayer.Colour = "R";
         }
 
 
-        public bool checkWin()
+        public bool CheckWin()
         {
 
-            bool win = false;
+            bool Win = false;
             ulong[] Rows = new ulong[6];
 
-            //Creates a bitboard for each row in the grid
+            //Creates a bitboard for each Row in the grid
             for (int x = 0; x < 7; x++)
             {
                 for(int y = 0; y < 6; y++)
@@ -189,7 +192,7 @@ namespace Coursework_UI
                 // Return true if any of the checks are non-zero, indicating a win
                 if(Horizontal != 0)
                 {
-                    win = true;
+                    Win = true;
                     //Calls method to change winning moves into counters to make it obvious where the win is
                     FindWinLocation("H");
                     
@@ -198,19 +201,19 @@ namespace Coursework_UI
                 }
                 else if(Vertical != 0)
                 {
-                    win = true;
+                    Win = true;
                     FindWinLocation("V");
                     break;
                 }
                 else if (Diagonal1 != 0)
                 {
-                    win = true;
+                    Win = true;
                     FindWinLocation("D1");
                     break;
                 }
                 else if (Diagonal2 != 0)
                 {
-                    win = true;
+                    Win = true;
                     FindWinLocation("D2");
                     break;
                 }
@@ -218,7 +221,7 @@ namespace Coursework_UI
 
             
 
-            return win;
+            return Win;
         }
 
         private void FindWinLocation(string Method)

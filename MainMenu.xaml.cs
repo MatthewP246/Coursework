@@ -20,13 +20,13 @@ namespace Coursework_UI
 
     public partial class MainMenu : Window
     {
-        private PlayerViewer viewer;
+        private PlayerViewer Viewer;
         private bool SavedGame;
         
         public MainMenu()
         {
-            viewer = new PlayerViewer();
-            DataContext = viewer;
+            Viewer = new PlayerViewer();
+            DataContext = Viewer;
 
             SavedGame = false;
 
@@ -38,12 +38,12 @@ namespace Coursework_UI
         {
             if (SavedGame)
             {
-                var result = MessageBox.Show("Would you like to continue the previous game?", "Load Game", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
-                if (result == MessageBoxResult.Yes)
+                var Result = MessageBox.Show("Would you like to continue the previous game?", "Load Game", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+                if (Result == MessageBoxResult.Yes)
                 {
 
                 }
-                else if (result == MessageBoxResult.No)
+                else if (Result == MessageBoxResult.No)
                 {
                     Window w = new GameSettings("User");
                     this.Hide();
@@ -69,12 +69,12 @@ namespace Coursework_UI
 
             if (SavedGame)
             {
-                var result = MessageBox.Show("Would you like to continue the previous game?", "Load game", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
-                if (result == MessageBoxResult.Yes)
+                var Result = MessageBox.Show("Would you like to continue the previous game?", "Load game", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+                if (Result == MessageBoxResult.Yes)
                 {
 
                 }
-                else if (result == MessageBoxResult.No)
+                else if (Result == MessageBoxResult.No)
                 {
                     Window w = new GameSettings("Computer");
                     this.Hide();
