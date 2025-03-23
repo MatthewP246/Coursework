@@ -51,31 +51,37 @@ namespace Coursework_UI
         private void Column2_Click(object sender, RoutedEventArgs e)
         {
             PlaceCounter(1);
+            Column2.Height = Column2.Height - 150;
         }
 
         private void Column3_Click(object sender, RoutedEventArgs e)
         {
             PlaceCounter(2);
+            Column3.Height = Column3.Height - 150;
         }
 
         private void Column4_Click(object sender, RoutedEventArgs e)
         {
             PlaceCounter(3);
+            Column4.Height = Column4.Height - 150;
         }
 
         private void Column5_Click(object sender, RoutedEventArgs e)
         {
             PlaceCounter(4);
+            Column5.Height = Column5.Height - 150;
         }
 
         private void Column6_Click(object sender, RoutedEventArgs e)
         {
             PlaceCounter(5);
+            Column6.Height = Column6.Height - 150;
         }
 
         private void Column7_Click(object sender, RoutedEventArgs e)
         {
             PlaceCounter(6);
+            Column7.Height = Column7.Height - 150;
         }
 
         private void KeyPressed(object sender, KeyEventArgs e)
