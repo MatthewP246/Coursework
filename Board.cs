@@ -23,7 +23,7 @@ namespace Coursework_UI
 
         public Board(string FirstPlayer)
         {
-            //initialising the grid as a blank array of 0's
+            //initialising the grid as an array of blank Counters
             Grid = new Counter[42];
             Grid2D = new Counter[7, 6];
 
@@ -33,7 +33,7 @@ namespace Coursework_UI
                 Grid[x] = new Counter("0");
                 Grid2D[x % 7, x / 7] = new Counter("0");
             }
-            //Assigning the first player based on input
+            //Assigning the first Player based on input
             CurrentPlayer = new Counter(FirstPlayer);
         }
         public Counter[] grid
@@ -52,7 +52,7 @@ namespace Coursework_UI
             set { Grid2D = value; }
         }
 
-        public Counter player
+        public Counter Player
         {
             //Get method for Player making the move
             //Used for data binding
@@ -63,13 +63,8 @@ namespace Coursework_UI
         {
             
             string Status = "Ongoing";
-            //Checks if the board is full
-            if (GetValidLocations().Count() == 0)
-            {
-                Status = "Draw";
-            }
             //Only checks for win if a counter is placed
-            else if (RecursivePlace(Column))
+            if (RecursivePlace(Column))
             {
                 //Doesnt check for a win if temporarily placing counter
                 //Used in minmax algorithm
@@ -77,7 +72,8 @@ namespace Coursework_UI
                 {
 
                     if (CheckWin()) Status = "Win"; //Returns win based on check win function
-                    else UpdatePlayer(); //If the player didn't win, update for it to be the next players go
+                    else if (GetValidLocations().Count() == 0) Status = "Draw";
+                    UpdatePlayer(); //If the Player didn't win, update for it to be the next players go
                 }
             }
             else Status = "No Move";

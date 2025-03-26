@@ -130,18 +130,18 @@
 
             <StackPanel x:Name="CurrentPlayer" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2">
                 <TextBlock Grid.Column="1" Grid.Row="1" Text="Players Turn"  FontSize="20" HorizontalAlignment="Center" Width="108"/>
-                <Image Grid.Column="1" Grid.Row="1" Width="130" Height="130" Source="{Binding board.player.Colour, Converter={StaticResource CCConverter}}" Margin="51,39,50,135" Grid.RowSpan="2" />
+                <Image Grid.Column="1" Grid.Row="1" Width="130" Height="130" Source="{Binding board.Player.Colour, Converter={StaticResource CCConverter}}" Margin="51,39,50,135" Grid.RowSpan="2" />
             </StackPanel>
 
             <TextBlock Grid.Column="4" Grid.ColumnSpan="3" x:Name="GameWinner" Text="Player Wins" FontSize="40" VerticalAlignment="Top" Margin="0,22,0,0" Grid.RowSpan="2" HorizontalAlignment="Center" Visibility="Hidden"/>
 
 
 
-            <Button x:Name ="Close" Click="Cross_Click" Grid.Row="0" Grid.Column="12" Width="150" Height="150" Background="{x:Null}" BorderBrush="{x:Null}"  Cursor="Hand">
+            <Button x:Name ="CloseButton" Click="Close" Grid.Row="0" Grid.Column="12" Width="150" Height="150" Background="{x:Null}" BorderBrush="{x:Null}"  Cursor="Hand">
                 <Image Source="/Images/Cross.png"/>
             </Button>
 
-            <Button x:Name="Restart" Click="Restart_Click" Grid.Row="0" Grid.Column="11" Width="150" Height="150" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" Focusable="False" >
+            <Button x:Name="RestartButton" Click="Restart" Grid.Row="0" Grid.Column="11" Width="150" Height="150" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" Focusable="False" >
                 <Image Source="/Images/Restart.png"/>
             </Button>
 

@@ -12,7 +12,7 @@ namespace Coursework_UI
         //Initialising variables
         private Board Board;
         //Array for the 2 players, can be computer or human
-        private Player[] Players = new Player[2];
+        private Player[] Players;
         private bool AIGame;
         private string Player1Colour;
         private string Player1Name;
@@ -23,24 +23,27 @@ namespace Coursework_UI
 
         public Game(string FirstPlayer, bool AI, string P1Name, string P2Name, string Diff)
         {
-            //Assinging variables to their values
+            //Assinging values to the variables
+            Players = new Player[2];
             Database = new DatabaseAccess();
             Player1Colour=FirstPlayer;
             Player1Name=P1Name;
             Player2Name=P2Name;
             AIGame = AI;
             Difficulty = Diff;
+            if (FirstPlayer == "R") Player2Colour = "Y";
+            else Player2Colour = "R";
+            Board = new Board(FirstPlayer);
 
             //Player 1 is always a human
             Players[0] = new Human(Player1Colour,Player1Name, 0,0);
-            if (FirstPlayer == "R") Player2Colour = "Y";
-            else Player2Colour = "R";
-            //Creates either a computer player or another human based on selection made
+            
+            //Creates either a computer Player or another human based on selection made
             if (AIGame) Players[1] = new Computer(Player2Colour);
             else Players[1] = new Human(Player2Colour, Player2Name,0,0);
 
 
-            Board = new Board(FirstPlayer);
+            
         }
 
         public Board board
@@ -58,14 +61,16 @@ namespace Coursework_UI
             string Status;
             if (Column == -1 && AIGame)
             {
+                //Computer is making the move
                 Status=Players[1].PlaceCounter(Column, Board, Difficulty);
                 if (Status == "Win")
                 {
                     Loser = Player1Name;
                 }
             }
-            else if (Player1Colour == Board.player.Colour)
+            else if (Player1Colour == Board.Player.Colour)
             {
+                //Player making the move is player 1
                 Status = Players[0].PlaceCounter(Column, Board, Difficulty);
                 if (Status=="Win")
                 {
@@ -76,6 +81,7 @@ namespace Coursework_UI
             }
             else
             {
+                //Player making the move is player 2
                 Status = (Players[1].PlaceCounter(Column, Board, Difficulty));
                 if (Status == "Win")
                 {

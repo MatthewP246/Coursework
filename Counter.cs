@@ -30,7 +30,7 @@ namespace Coursework_UI
             }
         }
 
-        void OnPropertyChanged(string PropertyName)
+        private void OnPropertyChanged(string PropertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
         }

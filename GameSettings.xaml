@@ -34,7 +34,7 @@
             <TextBox Text="SETTINGS" Foreground="Red" FontSize="100" Margin="0,0,0,822" HorizontalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}"/>
         </Border>
 
-        <Button x:Name ="Close" Click="Cross_Click" Grid.Row="0" Grid.Column="12" Width="150" Height="150" Background="{x:Null}" BorderBrush="{x:Null}"  Cursor="Hand">
+        <Button x:Name ="CloseButton" Click="Close" Grid.Row="0" Grid.Column="12" Width="150" Height="150" Background="{x:Null}" BorderBrush="{x:Null}"  Cursor="Hand">
             <Image Source="/Images/Cross.png"/>
         </Button>
 
@@ -71,13 +71,13 @@
 
 
         <StackPanel x:Name="Column3" Grid.Row="2" Grid.Column="4"  Grid.RowSpan="4" >
-            <Button Content="Add new User" FontSize="20" Click="AddPlayer_Click" Cursor="Hand"></Button>
+            <Button Content="Add new User" FontSize="20" Click="AddPlayer" Cursor="Hand"></Button>
             <Separator Opacity="0" Height="30"></Separator>
             <TextBox x:Name="NewUser" Text="Enter Username" FontSize="20"></TextBox>
         </StackPanel>
 
 
-        <Button Grid.Column="3" Grid.Row="4" x:Name="Start" Content="Start Game" Background="Lime" Click="Start_Click" />
+        <Button Grid.Column="3" Grid.Row="4" x:Name="StartButton" Content="Start Game" Background="Lime" Click="Start" />
 
 
     </Grid>

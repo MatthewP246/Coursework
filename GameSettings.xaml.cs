@@ -51,7 +51,7 @@ namespace Coursework_UI
 
         }
 
-        private void Start_Click(object sender, RoutedEventArgs e)
+        private void Start(object sender, RoutedEventArgs e)
         {
             
             P1Name = Player1Name.Text;
@@ -62,15 +62,17 @@ namespace Coursework_UI
                 MessageBox.Show("Please enter all required data!", "Invalid input", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            if (P1Name == P2Name)
+            else if (P1Name == P2Name)
             {
-                MessageBox.Show("Please select 2 different usernames","Invalid input", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Please select 2 usernames","Invalid input", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
             }
 
             if (Colour.Text == "Yellow") FirstPlayer = "Y";
             else if (Colour.Text == "Red") FirstPlayer = "R";
-            //if randomly generated number is even, first player is red
-            else if (Rgen.Next() % 2 == 0) FirstPlayer = "R";
+            //if randomly generated number is even, first Player is red
+            else if (Rgen.Next(101) % 2 == 0) FirstPlayer = "R";
+            else FirstPlayer = "Y";
             if (Mode == "User")
             {
                 
@@ -86,7 +88,7 @@ namespace Coursework_UI
             }
         }
 
-        private void AddPlayer_Click(object sender, RoutedEventArgs e)
+        private void AddPlayer(object sender, RoutedEventArgs e)
         {
             string name = NewUser.Text.Trim();
             if(string.IsNullOrWhiteSpace(name) || name=="Enter Username")
@@ -100,7 +102,7 @@ namespace Coursework_UI
             
         }
 
-        private void Cross_Click(object sender, RoutedEventArgs e)
+        private void Close(object sender, RoutedEventArgs e)
         {
             Application.Current.MainWindow.Show();
             this.Close();

@@ -55,43 +55,36 @@ namespace Coursework_UI
         private void Column1_Click(object sender, RoutedEventArgs e)
         {
             PlaceCounter(0);
-            Column1.Height = Column1.Height - 150;
         }
 
         private void Column2_Click(object sender, RoutedEventArgs e)
         {
             PlaceCounter(1);
-            Column2.Height = Column2.Height - 150;
         }
 
         private void Column3_Click(object sender, RoutedEventArgs e)
         {
             PlaceCounter(2);
-            Column3.Height = Column3.Height - 150;
         }
 
         private void Column4_Click(object sender, RoutedEventArgs e)
         {
             PlaceCounter(3);
-            Column4.Height = Column4.Height - 150;
         }
 
         private void Column5_Click(object sender, RoutedEventArgs e)
         {
             PlaceCounter(4);
-            Column5.Height = Column5.Height - 150;
         }
 
         private void Column6_Click(object sender, RoutedEventArgs e)
         {
             PlaceCounter(5);
-            Column6.Height = Column6.Height - 150;
         }
 
         private void Column7_Click(object sender, RoutedEventArgs e)
         {
             PlaceCounter(6);
-            Column7.Height = Column7.Height - 150;
         }
 
 
@@ -99,7 +92,7 @@ namespace Coursework_UI
         {
             if (e.Key == Key.Escape)
             {
-                Cross_Click(sender, e);
+                Close(sender, e);
             }
             //Allows the use of the numpad or the top Row of numbers
             if (e.Key == Key.D1 || e.Key==Key.NumPad1)
@@ -138,17 +131,15 @@ namespace Coursework_UI
             }
         }
 
-        private void Cross_Click(object sender, RoutedEventArgs e) //Closes the game
+        private void Close(object sender, RoutedEventArgs e) //Closes the game
         {
-            GameTime.Stop();
+            
             Window w = new PauseMenu();
             w.Owner = this;
             w.ShowDialog();
-            //if thePause menu is closed, restart the timer
-            GameTime.Start();
         }
 
-        private void Restart_Click(object sender, RoutedEventArgs e) //Restarts the game with the original settings
+        private void Restart(object sender, RoutedEventArgs e) //Restarts the game with the original settings
         {
             Window w = new PlayUser(Player1Colour, Player1Name, Player2Name);
             w.Show();
@@ -166,15 +157,15 @@ namespace Coursework_UI
             if (Status == "Win")
             {
                 //if someone wins end the game and indicate who
-                if (Connect4.board.player.Colour == Player1Colour) GameWin(Player1Name);
-                else GameWin(Player2Name);
+                if (Connect4.board.Player.Colour == Player1Colour) GameEnd(Player1Name);
+                else GameEnd(Player2Name);
             }
             //if a draw, also end the game where no one wins
-            else if (Status == "Draw") GameWin("No one");
+            else if (Status == "Draw") GameEnd("No one");
             
         }
 
-        private async void GameWin(string Winner)
+        private async void GameEnd(string Winner)
         {
             //Prevents the user placing any more Counters
             Column1.Visibility = Visibility.Collapsed;
@@ -185,12 +176,10 @@ namespace Coursework_UI
             Column6.Visibility = Visibility.Collapsed;
             Column7.Visibility = Visibility.Collapsed;
             //Prevents the user starting a new game
-            Restart.Visibility = Visibility.Hidden;
-            Close.Visibility = Visibility.Hidden;
+            RestartButton.Visibility = Visibility.Hidden;
+            CloseButton.Visibility = Visibility.Hidden;
             CurrentPlayer.Visibility = Visibility.Hidden;
 
-            //Stops the game time
-            GameTime.Stop();
             //Displays a message to show the winner and make it visible
             GameWinner.Text = $"{Winner} Wins";
             GameWinner.Visibility = Visibility.Visible;

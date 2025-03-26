@@ -15,14 +15,13 @@ namespace Coursework_UI
     internal class Computer : Player
     {
         //Creates new random generator
-        private Random Rgen = new Random();
-        //assumes player Columnour is Yellow
+        //assumes Player Colour is Yellow
         private string PlayerColour = "Y";
             
 
         public Computer(string Colour) : base( Colour)
         {
-            //if Computer Columnour is yellow, player Columnour is red and vice versa
+            //if Computer Columnour is yellow, Player Columnour is red and vice versa
             if (Colour == "Y") PlayerColour = "R";
         }
 
@@ -53,7 +52,7 @@ namespace Coursework_UI
             int CentreCount = 0;
             for (int i = 0;i < CentreArray.Length; i++)
             {
-                //Increments a counter based on number of player counters in the Middle Column
+                //Increments a counter based on number of Player counters in the Middle Column
                 if (CentreArray[i] == GetColour) CentreCount++;
             }
             HValue += CentreCount * 3;
@@ -69,7 +68,7 @@ namespace Coursework_UI
                     //4 to prevent index out of bounds error
                     //creates a window of 4 spaces horizontally which could be used to win
                     string[] Window = { RowArray[Column], RowArray  [Column + 1], RowArray[Column + 2], RowArray[Column + 3] };
-                    //Assings a Value based on the number of player counters in the window and adds to a total
+                    //Assings a Value based on the number of Player counters in the window and adds to a total
                     HValue += WindowCheck(Window);
 
 
@@ -126,7 +125,7 @@ namespace Coursework_UI
             else
             {
 
-                //if 4 player counters in the window, increment the Score by the given Value
+                //if 4 Player counters in the window, increment the Score by the given Value
                 if ((Window.Count(s => s == GetColour) == 4))
                 {
                     //4 indicates a win so add a much greater Value for wins over anything else
@@ -147,8 +146,8 @@ namespace Coursework_UI
                 //Opponent has 3 in window
                 if ((Window.Count(s => s == PlayerColour) == 3) && (Window.Count(s => s == "0")) == 1)
                 {
-                    //Adds ability to block the player winning over getting more in a Row for the computer
-                    //Value is less than the player winning so it always wins the game for itself first
+                    //Adds ability to block the Player winning over getting more in a Row for the computer
+                    //Value is less than the Player winning so it always wins the game for itself first
                     HValue -= 6;
                 }
                 //Opponent has 2 in window
@@ -163,6 +162,7 @@ namespace Coursework_UI
         private int BestMove(Board Board)
         {
             LinkList ValidLocation = Board.GetValidLocations();
+            Random Rgen = new Random();
             //Assings initial Value of -1 for best Column as this indicates the board is full
             int BestColumn = -1;
             int BestScore = 0;
@@ -179,7 +179,7 @@ namespace Coursework_UI
                     //Assings l to each location in valid Location s
                     int l = ValidLocation.Peek(i);
                     //Initialises a temporary board and assigns all counters to their respective locations based on the main board
-                    Board TempBoard = new Board(Board.player.Colour);
+                    Board TempBoard = new Board(Board.Player.Colour);
                     for (int j = 0; j < 42; j++)
                     {
                         if (Board.grid[j].Colour == "R")
@@ -215,7 +215,7 @@ namespace Coursework_UI
             LinkList ValidLocations = Board.GetValidLocations();
             //Checks if the node of the minmax array is a terminal node
             bool Terminal = TerminalNode(Board);
-            //-1 indicates the board is full
+            //initial condition is -1 as this indicates the board is full
             int BestColumn = -1;
 
 
@@ -227,8 +227,8 @@ namespace Coursework_UI
                 {
                     //returns a Value based on if the computer is playing, the human is playing or its a draw
                     //also returns a Column of -1 to indicate the game is over
-                    if (Board.player.Colour == GetColour) return (-1, 1000000000);
-                    else if (Board.player.Colour == PlayerColour) return (-1, -1000000000);
+                    if (Board.Player.Colour == GetColour) return (-1, 1000000000);
+                    else if (Board.Player.Colour == PlayerColour) return (-1, -1000000000);
                     else return (-1, 0);
                 }
                 else
@@ -237,14 +237,14 @@ namespace Coursework_UI
                     return (-1, Heuristic(Board));
                 }
             }
-            //the player is trying to maximise the heuristic Value of the board
+            //the Player is trying to maximise the heuristic Value of the board
             if (MaximisingPlayer)
             {
                 int Value = int.MinValue;
 
                 foreach (int l in ValidLocations)
                 {
-                    //creates a copy of the Board with the intended player making a move
+                    //creates a copy of the Board with the intended Player making a move
                     Board TempBoard = new Board(GetColour);
                     for (int i = 0; i < 42; i++)
                     {
@@ -278,6 +278,7 @@ namespace Coursework_UI
 
                 }
                 //Returns both the best Column and heuristic Value of placing in that Column
+                //This allows the algorithm to call itself and update score but at the end it still returns the best column
                 return (BestColumn, Value);
             }
             else //Minimising Player

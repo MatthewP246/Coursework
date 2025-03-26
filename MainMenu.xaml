@@ -26,15 +26,15 @@
                 <RowDefinition/>
 
             </Grid.RowDefinitions>
-            <Button x:Name="PlayUser" Content="Play a Friend" FontSize="50" Click="PlayUser_Click" Background="OrangeRed" Cursor="Hand" Grid.Column="1" Grid.Row="1" />
-            <Button x:Name="PlayComputer" Content="Play Computer" FontSize="50" Click="PlayComputer_Click" Background="OrangeRed" Cursor="Hand"  Grid.Row="1" Grid.Column="3"/>
+            <Button x:Name="PlayUserButton" Content="Play a Friend" FontSize="50" Click="PlayUser" Background="OrangeRed" Cursor="Hand" Grid.Column="1" Grid.Row="1" />
+            <Button x:Name="PlayComputerButton" Content="Play Computer" FontSize="50" Click="PlayComputer" Background="OrangeRed" Cursor="Hand"  Grid.Row="1" Grid.Column="3"/>
 
             <StackPanel Grid.Row="2" Grid.Column="2" Margin="0,0,0,1" Grid.RowSpan="3"
                         >
 
                 
 
-                <Button x:Name="Rules" Content="Rules" FontSize="50" Click="Rules_Click"  Height="200" Background="OrangeRed" Cursor="Hand"/>
+                <Button x:Name="RulesButton" Content="Rules" FontSize="50" Click="Rules"  Height="200" Background="OrangeRed" Cursor="Hand"/>
                 <Separator Opacity="0" Height="50"/>
                 <DataGrid x:Name="Leaderboard" ItemsSource="{Binding PlayerList}"  AutoGenerateColumns="True" Margin="10" Height="150" IsReadOnly="True" CanUserSortColumns="False" VerticalScrollBarVisibility="Visible" CanUserResizeColumns="False" CanUserResizeRows="False"/>
 

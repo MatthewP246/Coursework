@@ -27,19 +27,19 @@ namespace Coursework_UI
             return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Connect4DB");
         }
 
-        public List<Human> PlayersLeaderboard()
+        public List<Human> GetPlayers()
         {
             List<Human> Players = new List<Human>();
             using (var Conn = new SQLiteConnection(ConnectionString))
             {
                 Conn.Open();
-                string query = "SELECT Username, Wins, Losses FROM Players ORDER BY Wins DESC" ;
-                using (var cmd = new SQLiteCommand(query, Conn))
-                using (var reader = cmd.ExecuteReader())
+                string Query = "SELECT Username, Wins, Losses FROM Players ORDER BY Wins DESC" ;
+                using (var cmd = new SQLiteCommand(Query, Conn))
+                using (var Reader = cmd.ExecuteReader())
                 {
-                    while (reader.Read())
+                    while (Reader.Read())
                     {
-                        Players.Add(new Human("R", reader.GetString(0), reader.GetInt32(1), reader.GetInt32(2)));
+                        Players.Add(new Human("R", Reader.GetString(0), Reader.GetInt32(1), Reader.GetInt32(2)));
                         
                     }
                 }
@@ -53,8 +53,8 @@ namespace Coursework_UI
             using (var Conn = new SQLiteConnection(ConnectionString))
             {
                 Conn.Open();
-                string query = "UPDATE Players SET Wins=Wins+1 WHERE Username=@user";
-                using (var cmd = new SQLiteCommand(query, Conn))
+                string Query = "UPDATE Players SET Wins=Wins+1 WHERE Username=@user";
+                using (var cmd = new SQLiteCommand(Query, Conn))
                 {
                     cmd.Parameters.AddWithValue("@user", Username);
                     cmd.ExecuteNonQuery();
@@ -67,8 +67,8 @@ namespace Coursework_UI
             using (var Conn = new SQLiteConnection(ConnectionString))
             {
                 Conn.Open();
-                string query = "UPDATE Players SET Losses=Losses+1 WHERE Username=@user";
-                using (var cmd = new SQLiteCommand(query, Conn))
+                string Query = "UPDATE Players SET Losses=Losses+1 WHERE Username=@user";
+                using (var cmd = new SQLiteCommand(Query, Conn))
                 {
                     cmd.Parameters.AddWithValue("@user", Username);
                     cmd.ExecuteNonQuery();
@@ -82,8 +82,8 @@ namespace Coursework_UI
             using (var Conn = new SQLiteConnection(ConnectionString))
             {
                 Conn.Open();
-                string query = "INSERT INTO Players (Username) VALUES (@user)";
-                using (var cmd = new SQLiteCommand(query, Conn))
+                string Query = "INSERT INTO Players (Username) VALUES (@user)";
+                using (var cmd = new SQLiteCommand(Query, Conn))
                 {
                     cmd.Parameters.AddWithValue("@user", Username);
                     cmd.ExecuteNonQuery();

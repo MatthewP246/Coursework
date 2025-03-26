@@ -25,19 +25,19 @@ namespace Coursework_UI
 
         private Game Connect4;
         private string Colour;
-        private string P1Name;
-        private string P2Name;
+        private string Player1Name;
+        private string Player2Name;
         private string Difficulty;
         public PlayComputer(string colour, string P1, string P2, string Diff)
         {
             InitializeComponent();
             Colour = colour;
-            P1Name = P1;
-            P2Name = P2;
+            Player1Name = P1;
+            Player2Name = P2;
             Difficulty = Diff;
             DifficultyText.Text = $"Difficulty: {Difficulty}";
 
-            Connect4 = new Game(Colour, true, P1Name, P2Name, Difficulty);
+            Connect4 = new Game(Colour, true, Player1Name, Player2Name, Difficulty);
             DataContext = Connect4;
             this.KeyDown += new KeyEventHandler(KeyPressed);
 
@@ -51,46 +51,39 @@ namespace Coursework_UI
         private void Column2_Click(object sender, RoutedEventArgs e)
         {
             PlaceCounter(1);
-            Column2.Height = Column2.Height - 150;
         }
 
         private void Column3_Click(object sender, RoutedEventArgs e)
         {
             PlaceCounter(2);
-            Column3.Height = Column3.Height - 150;
         }
 
         private void Column4_Click(object sender, RoutedEventArgs e)
         {
             PlaceCounter(3);
-            Column4.Height = Column4.Height - 150;
         }
 
         private void Column5_Click(object sender, RoutedEventArgs e)
         {
             PlaceCounter(4);
-            Column5.Height = Column5.Height - 150;
         }
 
         private void Column6_Click(object sender, RoutedEventArgs e)
         {
             PlaceCounter(5);
-            Column6.Height = Column6.Height - 150;
         }
 
         private void Column7_Click(object sender, RoutedEventArgs e)
         {
             PlaceCounter(6);
-            Column7.Height = Column7.Height - 150;
         }
 
         private void KeyPressed(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Escape)
             {
-                Cross_Click(sender, e);
+                Close(sender, e);
             }
-
             //Allows the use of the numpad or the top Row of numbers
             if (e.Key == Key.D1 || e.Key == Key.NumPad1)
             {
@@ -128,17 +121,17 @@ namespace Coursework_UI
             }
         }
 
-        private void Cross_Click(object sender, RoutedEventArgs e)
+        private void Close(object sender, RoutedEventArgs e)
         {
             Window w = new PauseMenu();
             w.Owner = this;
             w.ShowDialog();
         }
 
-        private void Restart_Click(object sender, RoutedEventArgs e)
+        private void Restart(object sender, RoutedEventArgs e)
         {
             
-            Window w = new PlayComputer(Colour, P1Name, P2Name, Difficulty);
+            Window w = new PlayComputer(Colour, Player1Name, Player2Name, Difficulty);
             w.Show();
             this.Close();
         }
@@ -171,8 +164,8 @@ namespace Coursework_UI
             Column6.Visibility = Visibility.Collapsed;
             Column7.Visibility = Visibility.Collapsed;
             //Prevents the user starting a new game
-            Restart.Visibility = Visibility.Hidden;
-            Close.Visibility = Visibility.Hidden;
+            RestartButton.Visibility = Visibility.Hidden;
+            CloseButton.Visibility = Visibility.Hidden;
             CurrentPlayer.Visibility = Visibility.Hidden;
 
             GameWinner.Text = "No one Wins";
@@ -195,8 +188,8 @@ namespace Coursework_UI
             Column6.Visibility = Visibility.Collapsed;
             Column7.Visibility = Visibility.Collapsed;
             //Prevents the user starting a new game
-            Restart.Visibility = Visibility.Hidden;
-            Close.Visibility = Visibility.Hidden;
+            RestartButton.Visibility = Visibility.Hidden;
+            CloseButton.Visibility = Visibility.Hidden;
             CurrentPlayer.Visibility = Visibility.Hidden;
 
             GameWinner.Text = $"You {(Win?"Win":"Lose")}";

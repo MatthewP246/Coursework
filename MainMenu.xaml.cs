@@ -34,7 +34,7 @@ namespace Coursework_UI
             
         }
 
-        private void PlayUser_Click(object sender, RoutedEventArgs e)
+        private void PlayUser(object sender, RoutedEventArgs e)
         {
             if (SavedGame)
             {
@@ -49,7 +49,6 @@ namespace Coursework_UI
                     this.Hide();
                     w.ShowDialog();
                 }
-                else ;
 
             }
             else
@@ -64,7 +63,7 @@ namespace Coursework_UI
 
         }
 
-        private void PlayComputer_Click(object sender, RoutedEventArgs e)
+        private void PlayComputer(object sender, RoutedEventArgs e)
         {
 
             if (SavedGame)
@@ -93,7 +92,7 @@ namespace Coursework_UI
 
         }
 
-        private void Rules_Click(object sender, RoutedEventArgs e)
+        private void Rules(object sender, RoutedEventArgs e)
         {
 
         }

@@ -18,14 +18,14 @@ namespace Coursework_UI
         public PlayerViewer() 
         {
             Access = new DatabaseAccess();
-            PlayerList = new ObservableCollection<Human>(Access.PlayersLeaderboard());
+            PlayerList = new ObservableCollection<Human>(Access.GetPlayers());
         }
 
         public void AddPlayer(string name)
         {
             Access.AddPlayer(name);
             PlayerList.Clear();
-            foreach(var Player in Access.PlayersLeaderboard())
+            foreach(var Player in Access.GetPlayers())
             {
                 PlayerList.Add(Player);
             }

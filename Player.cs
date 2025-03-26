@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace Coursework_UI
 {
-
+    //Abstract Class Player
+    //Contains common attributes for all players e.g. Colour and Place Counter
     abstract class Player
     {
         //Initialises Colour as needed for all players
@@ -29,7 +30,7 @@ namespace Coursework_UI
 
 
         //Creates abstract place counter method as all players can place counter
-        public abstract string PlaceCounter(int C, Board board, string Difficulty);
+        public abstract string PlaceCounter(int Column, Board Board, string Difficulty);
 
         
 
