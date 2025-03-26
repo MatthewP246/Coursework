@@ -8,7 +8,7 @@ using System.Windows.Documents;
 
 namespace Connect4
 {
-    internal class LinkList : IEnumerable
+    public class LinkList : IEnumerable
     {
         private Node Head;
 

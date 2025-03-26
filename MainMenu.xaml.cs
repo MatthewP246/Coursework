@@ -21,14 +21,12 @@ namespace Connect4
     public partial class MainMenu : Window
     {
         private PlayerViewer Viewer;
-        private bool SavedGame;
         
         public MainMenu()
         {
             Viewer = new PlayerViewer();
             DataContext = Viewer;
 
-            SavedGame = false;
 
             this.KeyDown += new KeyEventHandler(KeyPressed);
             
@@ -36,66 +34,31 @@ namespace Connect4
 
         private void PlayUser(object sender, RoutedEventArgs e)
         {
-            if (SavedGame)
-            {
-                var Result = MessageBox.Show("Would you like to continue the previous game?", "Load Game", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
-                if (Result == MessageBoxResult.Yes)
-                {
-
-                }
-                else if (Result == MessageBoxResult.No)
-                {
-                    Window w = new GameSettings("User");
-                    this.Hide();
-                    w.ShowDialog();
-                }
-
-            }
-            else
-            {
-                Window w = new GameSettings("User");
-                this.Hide();
-                w.ShowDialog();
-            }
+			Window w = new GameSettings("User");
+			this.Hide();
+			w.ShowDialog();
 
 
 
 
-        }
+		}
 
         private void PlayComputer(object sender, RoutedEventArgs e)
         {
 
-            if (SavedGame)
-            {
-                var Result = MessageBox.Show("Would you like to continue the previous game?", "Load game", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
-                if (Result == MessageBoxResult.Yes)
-                {
-
-                }
-                else if (Result == MessageBoxResult.No)
-                {
-                    Window w = new GameSettings("Computer");
-                    this.Hide();
-                    w.ShowDialog();
-                }
-                else ;
-
-            }
-            else
-            {
-                Window w = new GameSettings("Computer");
-                this.Hide();
-                w.ShowDialog();
-            }
+			Window w = new GameSettings("Computer");
+			this.Hide();
+			w.ShowDialog();
 
 
-        }
+		}
 
         private void Rules(object sender, RoutedEventArgs e)
         {
-
-        }
+            Window w = new Rules();
+            this.Hide();
+			w.ShowDialog();
+		}
 
 
         private void KeyPressed(object sender, KeyEventArgs e)

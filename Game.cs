@@ -7,13 +7,13 @@ using System.Windows;
 
 namespace Connect4
 {
-    internal class Game
+    public class Game
     {
         //Initialising variables
         private Board Board;
         //Array for the 2 players, can be computer or human
         private Player[] Players;
-        private bool AIGame;
+        private bool AI;
         private string Player1Colour;
         private string Player1Name;
         private string Player2Colour;
@@ -21,7 +21,7 @@ namespace Connect4
         private string Difficulty;
         private DatabaseAccess Database;
 
-        public Game(string FirstPlayer, bool AI, string P1Name, string P2Name, string Diff)
+        public Game(string FirstPlayer, string P1Name, string P2Name, string Diff)
         {
             //Assinging values to the variables
             Players = new Player[2];
@@ -29,17 +29,17 @@ namespace Connect4
             Player1Colour=FirstPlayer;
             Player1Name=P1Name;
             Player2Name=P2Name;
-            AIGame = AI;
+            AI = (P2Name == "Computer");
             Difficulty = Diff;
-            if (FirstPlayer == "R") Player2Colour = "Y";
-            else Player2Colour = "R";
+            Player2Colour= FirstPlayer== "R" ? "Y" : "R";
+
             Board = new Board(FirstPlayer);
 
             //Player 1 is always a human
             Players[0] = new Human(Player1Colour,Player1Name, 0,0);
             
             //Creates either a computer Player or another human based on selection made
-            if (AIGame) Players[1] = new Computer(Player2Colour);
+            if (AI) Players[1] = new Computer(Player2Colour);
             else Players[1] = new Human(Player2Colour, Player2Name,0,0);
 
 
@@ -51,15 +51,29 @@ namespace Connect4
             get { return Board; }
         }
 
+        public string Player1
+		{
+			get { return Player1Name; }
+		}
+        public string Player2
+        {
+			get { return Player2Name; }
+		}
+
+        public string CurrentPlayer
+		{
+			get { return Player1Colour; }
+		}
 
 
 
-        public string PlaceCounter(int Column)
+
+		public string PlaceCounter(int Column)
         {
             string Winner="";
             string Loser="";
             string Status;
-            if (Column == -1 && AIGame)
+            if (Column == -1 && AI)
             {
                 //Computer is making the move
                 Status=Players[1].PlaceCounter(Column, Board, Difficulty);
@@ -75,7 +89,7 @@ namespace Connect4
                 if (Status=="Win")
                 {
                     Winner = Player1Name;
-                    if(!AIGame) Loser = Player2Name;
+                    if(!AI) Loser = Player2Name;
                     
                 }
             }

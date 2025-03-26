@@ -11,7 +11,7 @@ using System.Xaml.Schema;
 
 namespace Connect4
 {
-    internal class Board
+    public class Board
     {
         private Counter[] Grid;
         private Counter[,] Grid2D;
@@ -41,7 +41,8 @@ namespace Connect4
             //get method for 1D grid
             //Used for data binding
             get { return Grid; }
-        }
+
+		}
 
 
 
@@ -49,7 +50,7 @@ namespace Connect4
         {
             //get method for 2D grid array
             get { return Grid2D; }
-            set { Grid2D = value; }
+
         }
 
         public Counter Player
@@ -85,27 +86,20 @@ namespace Connect4
 
         private bool RecursivePlace(int Column)
         {
-            //Recursive algorithm to place counter
-            bool Placed = true;
-            if (Column <42)
-            {
+			//Recursive algorithm to place counter
+			if (Column >= 42) return false;
 
-                if (Grid[Column].Colour == "0")
-                {
-                    Grid[Column].Colour = CurrentPlayer.Colour;
-                    Grid2D[Column %7,Column/7].Colour = CurrentPlayer.Colour;
-                }
-                else 
-                {
-                    Placed = RecursivePlace(Column +7);
-
-                }
-                
-            }
-            else Placed = false;
-
-            return Placed;
-        }
+			if (Grid[Column].Colour == "0")
+			{
+				Grid[Column].Colour = CurrentPlayer.Colour;
+				Grid2D[Column % 7, Column / 7].Colour = CurrentPlayer.Colour;
+				return true;
+			}
+			else
+			{
+				return RecursivePlace(Column + 7);
+			}
+		}
 
 
         public LinkList GetValidLocations()
@@ -126,8 +120,7 @@ namespace Connect4
         private bool IsValidLocation(int Column)
         {
             //Checks if the top Row of each Column is empty
-            if (Grid[35+Column].Colour == "0") return true;
-            else return false;
+            return Grid[35 + Column].Colour == "0";
         }
 
 
@@ -135,10 +128,9 @@ namespace Connect4
 
         private void UpdatePlayer()
         {
-            //Updating which Columnour is placing a counter after each go
-            if (CurrentPlayer.Colour == "R") CurrentPlayer.Colour = "Y";
-            else CurrentPlayer.Colour = "R";
-        }
+			//Updating which Columnour is placing a counter after each go
+			CurrentPlayer.Colour = CurrentPlayer.Colour == "R" ? "Y" : "R";
+		}
 
 
         public bool CheckWin()

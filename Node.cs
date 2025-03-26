@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Connect4
 {
-    internal class Node
+    public class Node
     {
         public int Data;
         public Node Next;

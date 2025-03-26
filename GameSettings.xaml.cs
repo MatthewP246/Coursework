@@ -27,6 +27,7 @@ namespace Connect4
         private string P1Name;
         private string P2Name;
         private Random Rgen = new Random();
+        private DatabaseAccess Database;
 
         private PlayerViewer Viewer;
 
@@ -36,7 +37,9 @@ namespace Connect4
             InitializeComponent();
             Mode = Gamemode;
             Viewer = new PlayerViewer();
+            Database = new DatabaseAccess();
             DataContext = Viewer;
+
             if (Mode == "Computer")
             {
                 Column2.Visibility = Visibility.Collapsed;
@@ -76,14 +79,13 @@ namespace Connect4
             if (Mode == "User")
             {
                 
-                Window w = new PlayUser(FirstPlayer, P1Name, P2Name);
+                Window w = new PlayUser(FirstPlayer, P1Name, P2Name, Database.LoadGame(1, P1Name, P2Name));
                 w.Show();
                 this.Close();
             }
             else
             {
-                P2Name = "Computer";
-                Window w = new PlayComputer(FirstPlayer, P1Name, P2Name, Difficulty.Text);
+                Window w = new PlayComputer(FirstPlayer, P1Name, Difficulty.Text,null);
                 w.Show();
                 this.Close();
             }

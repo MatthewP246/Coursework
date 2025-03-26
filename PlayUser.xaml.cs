@@ -27,9 +27,10 @@ namespace Connect4
         private string Player2Name;
         private string Player1Colour;
         private DatabaseAccess Database;
+        private int GameSaveID;
 
 
-        public PlayUser(string colour, string P1Name, string P2Name)
+        public PlayUser(string colour, string P1Name, string P2Name, Game Game)
         {
             InitializeComponent();
             this.Focus();
@@ -38,8 +39,9 @@ namespace Connect4
             Player1Colour = colour;
             Database = new DatabaseAccess();
 
+            if (Game!= null) Connect4 = Game;
+			else Connect4 = new Game(Player1Colour, Player1Name, Player2Name, "");
 
-            Connect4 = new Game(Player1Colour, false, Player1Name, Player2Name, "");
 
             DataContext = Connect4;
 
@@ -140,7 +142,7 @@ namespace Connect4
 
         private void Restart(object sender, RoutedEventArgs e) //Restarts the game with the original settings
         {
-            Window w = new PlayUser(Player1Colour, Player1Name, Player2Name);
+            Window w = new PlayUser(Player1Colour, Player1Name, Player2Name, Connect4);
             w.Show();
             this.Close();
 
@@ -190,8 +192,8 @@ namespace Connect4
 
         private void SaveGame(object sender, RoutedEventArgs e)
         {
-
-        }
+			GameSaveID = Database.SaveGame(Connect4, GameSaveID);
+		}
 
 
 

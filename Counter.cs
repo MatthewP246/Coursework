@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Connect4
 {
-    internal class Counter : INotifyPropertyChanged
+    public class Counter : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

@@ -25,19 +25,20 @@ namespace Connect4
 
         private Game Connect4;
         private string Colour;
-        private string Player1Name;
-        private string Player2Name;
+        private string PlayerName;
         private string Difficulty;
-        public PlayComputer(string colour, string P1, string P2, string Diff)
+        public PlayComputer(string colour, string P1, string Diff, Game Game)
         {
             InitializeComponent();
             Colour = colour;
-            Player1Name = P1;
-            Player2Name = P2;
+            PlayerName = P1;
             Difficulty = Diff;
             DifficultyText.Text = $"Difficulty: {Difficulty}";
 
-            Connect4 = new Game(Colour, true, Player1Name, Player2Name, Difficulty);
+            if (Game != null) Connect4 = Game;
+            else Connect4 = new Game(Colour, PlayerName, "Computer", Difficulty);
+
+
             DataContext = Connect4;
             this.KeyDown += new KeyEventHandler(KeyPressed);
 
@@ -131,7 +132,7 @@ namespace Connect4
         private void Restart(object sender, RoutedEventArgs e)
         {
             
-            Window w = new PlayComputer(Colour, Player1Name, Player2Name, Difficulty);
+            Window w = new PlayComputer(Colour, PlayerName, Difficulty, null);
             w.Show();
             this.Close();
         }
