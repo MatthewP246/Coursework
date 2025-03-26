@@ -145,6 +145,9 @@
                 <Image Source="/Images/Restart.png"/>
             </Button>
 
+            <Button x:Name="SaveGameButton" Click="SaveGame" Grid.Row="1" Grid.Column="9" Content="Save Game" FontSize="30" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand"/>
+
+
 
         </Grid>
     </Grid>

@@ -27,8 +27,6 @@ namespace Coursework_UI
         private string Player2Name;
         private string Player1Colour;
         private string Player2Colour;
-        private DispatcherTimer GameTime;
-        private int TimeLeft=600;
 
         public PlayUser(string colour, string P1Name, string P2Name)
         {

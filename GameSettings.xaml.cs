@@ -82,6 +82,7 @@ namespace Coursework_UI
             }
             else
             {
+                P2Name = "Computer";
                 Window w = new PlayComputer(FirstPlayer, P1Name, P2Name, Difficulty.Text);
                 w.Show();
                 this.Close();
