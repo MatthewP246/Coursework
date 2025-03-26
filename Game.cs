@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Coursework_UI
+namespace Connect4
 {
     internal class Game
     {

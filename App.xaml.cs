@@ -7,7 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Coursework_UI
+namespace Connect4
 {
     /// <summary>
     /// Interaction logic for App.xaml

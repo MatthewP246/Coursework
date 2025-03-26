@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SQLite;
 using System.IO;
 
-namespace Coursework_UI
+namespace Connect4
 {
     class DatabaseAccess
     {

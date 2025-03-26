@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Coursework_UI
+namespace Connect4
 {
     /// <summary>
     /// Interaction logic for PauseMenu.xaml

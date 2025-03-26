@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Coursework_UI
+namespace Connect4
 {
     internal class Node
     {

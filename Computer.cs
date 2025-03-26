@@ -10,19 +10,20 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Coursework_UI
+namespace Connect4
 {
     internal class Computer : Player
     {
         //Creates new random generator
         //assumes Player Colour is Yellow
-        private string PlayerColour = "Y";
+        private string PlayerColour;
             
 
         public Computer(string Colour) : base( Colour)
         {
-            //if Computer Columnour is yellow, Player Columnour is red and vice versa
+            //if Computer Colour is yellow, Player Colour is red and vice versa
             if (Colour == "Y") PlayerColour = "R";
+            else PlayerColour = "Y";
         }
 
         public override string PlaceCounter(int Column, Board Board, string Difficulty)
@@ -32,9 +33,12 @@ namespace Coursework_UI
 
             //Checks difficulty selected before calling minmax with different depths for each difficulty
             //Minmax returns the best Column to place the counter
-            if(Difficulty=="Hard") Column = MinMax(Board, 7, int.MinValue, int.MaxValue, true).Item1;
-            else if (Difficulty=="Medium") Column = MinMax(Board, 5, int.MinValue, int.MaxValue, true).Item1;
-            else Column = MinMax(Board, 2, int.MinValue, int.MaxValue, true).Item1;
+            int Depth;
+            if (Difficulty == "Hard") Depth = 7;
+            else if (Difficulty == "Medium") Depth = 5;
+            else Depth = 2;
+
+            Column = MinMax(Board, Depth, int.MinValue, int.MaxValue, true).Item1;
 
             //Actually places the counter on the board and returns the state of the game
             return Board.PlaceCounter(Column, false);
@@ -119,44 +123,31 @@ namespace Coursework_UI
         {
             //Assigns a Value to each window
             int HValue = 0;
-
-            
-            if (Window.Count(s => s == "0") == 4) ;//Don't check for any counters if the window is empty
+            //if window is empty, dont assign a value to the move;
+            if (Window.All(s => s == "0")) ;
             else
             {
+                //Checks the number of player, opponent and empty counters in the window
+                int playerCount = Window.Count(s => s == GetColour);
+                int opponentCount = Window.Count(s => s == PlayerColour);
+                int emptyCount = Window.Count(s => s == "0");
 
-                //if 4 Player counters in the window, increment the Score by the given Value
-                if ((Window.Count(s => s == GetColour) == 4))
-                {
-                    //4 indicates a win so add a much greater Value for wins over anything else
-                    HValue += 100000;
-                }
-                //3 in the window
-                else if ((Window.Count(s => s == GetColour) == 3) && (Window.Count(s => s == "0")) == 1)
-                {
-                    HValue += 8;
-                }
-                //2 in window
-                else if ((Window.Count(s => s == GetColour) == 2) && (Window.Count(s => s == "0")) == 2)
-                {
-                    HValue += 2;
-                }
+                //4 in a row
+                if (playerCount == 4) HValue += 100000;
+                //3 in a row
+                else if (playerCount == 3 && emptyCount == 1) HValue += 5;
+                //2 in a row
+                else if (playerCount == 2 && emptyCount == 2) HValue += 2;
 
+                //3 in a row for opponent
+                if (opponentCount == 3 && emptyCount == 1) HValue -= 6;
+                //2 in a row for opponent
+                else if (opponentCount == 2 && emptyCount == 2) HValue -= 4;
 
-                //Opponent has 3 in window
-                if ((Window.Count(s => s == PlayerColour) == 3) && (Window.Count(s => s == "0")) == 1)
-                {
-                    //Adds ability to block the Player winning over getting more in a Row for the computer
-                    //Value is less than the Player winning so it always wins the game for itself first
-                    HValue -= 6;
-                }
-                //Opponent has 2 in window
-                else if ((Window.Count(s => s == PlayerColour) == 2) && (Window.Count(s => s == "0")) == 2)
-                {
-                    HValue -= 4;
-                }
+                
             }
             return HValue;
+
 
         }
         private int BestMove(Board Board)

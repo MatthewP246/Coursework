@@ -17,7 +17,7 @@ using System.Windows.Shapes;
 using System.Xml.Linq;
 
 
-namespace Coursework_UI
+namespace Connect4
 {
 
     public partial class GameSettings : Window 

@@ -9,7 +9,7 @@ using System.Windows.Media;
 using System.Windows.Navigation;
 using System.Xaml.Schema;
 
-namespace Coursework_UI
+namespace Connect4
 {
     internal class Board
     {

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Documents;
 
-namespace Coursework_UI
+namespace Connect4
 {
     internal class LinkList : IEnumerable
     {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Coursework_UI
+namespace Connect4
 {
     //Abstract Class Player
     //Contains common attributes for all players e.g. Colour and Place Counter

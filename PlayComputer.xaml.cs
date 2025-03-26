@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Xml.Linq;
 
-namespace Coursework_UI
+namespace Connect4
 {
     /// <summary>
     /// Interaction logic for PlayComputer.xaml

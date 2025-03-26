@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 
-namespace Coursework_UI
+namespace Connect4
 {
     /// <summary>
     /// Interaction logic for PlayUser.xaml
@@ -26,7 +26,8 @@ namespace Coursework_UI
         private string Player1Name;
         private string Player2Name;
         private string Player1Colour;
-        private string Player2Colour;
+        private DatabaseAccess Database;
+
 
         public PlayUser(string colour, string P1Name, string P2Name)
         {
@@ -35,8 +36,8 @@ namespace Coursework_UI
             Player1Name = P1Name;
             Player2Name = P2Name;
             Player1Colour = colour;
-            if (Player1Colour == "R") Player2Colour = "Y";
-            else Player2Colour = "R";
+            Database = new DatabaseAccess();
+
 
             Connect4 = new Game(Player1Colour, false, Player1Name, Player2Name, "");
 
@@ -187,6 +188,10 @@ namespace Coursework_UI
             this.Close();
         }
 
+        private void SaveGame(object sender, RoutedEventArgs e)
+        {
+
+        }
 
 
 

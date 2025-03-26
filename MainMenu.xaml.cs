@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Coursework_UI
+namespace Connect4
 {
 
     public partial class MainMenu : Window

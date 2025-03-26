@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
 
-namespace Coursework_UI
+namespace Connect4
 {
     class CounterColourConverter : IValueConverter
     {
