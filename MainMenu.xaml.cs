@@ -34,13 +34,11 @@ namespace Connect4
 
         private void PlayUser(object sender, RoutedEventArgs e)
         {
-            Window w = new MainMenu();
+
+
+            Window w = new GameSettings("User");
             this.Close();
             w.Show();
-
-            //Window w = new GameSettings("User");
-            //this.Hide();
-            //w.ShowDialog();
 
 
 
@@ -51,8 +49,8 @@ namespace Connect4
         {
 
             Window w = new GameSettings("Computer");
-            this.Hide();
-            w.ShowDialog();
+            this.Close();
+            w.Show();
 
 
         }
@@ -60,8 +58,8 @@ namespace Connect4
         private void Rules(object sender, RoutedEventArgs e)
         {
             Window w = new Rules();
-            this.Hide();
-            w.ShowDialog();
+            this.Close();
+            w.Show();
         }
 
 
