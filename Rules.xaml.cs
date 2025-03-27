@@ -17,6 +17,11 @@ namespace Connect4
     /// <summary>
     /// Interaction logic for Rules.xaml
     /// </summary>
+    /// 
+    /*
+     * RULES
+     * Allows new players to learn the rules of the game
+     */
     public partial class Rules : Window
     {
         public Rules()

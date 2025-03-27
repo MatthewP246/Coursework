@@ -41,6 +41,10 @@ namespace Connect4
             Node n = new Node();
             n.Data = s;
             n.Next = Head;
+            if(Head != null)
+            {
+                Head.Previous = n;
+            }
             Head = n;
 
         }
@@ -57,6 +61,7 @@ namespace Connect4
                 Node n = new Node();
                 n.Data = s;
                 a.Next = n;
+                n.Previous = a;
             }
             else
             {
@@ -79,6 +84,10 @@ namespace Connect4
                 {
                     a = a.Next;
                 }
+            }
+            if(a == null)
+            {
+                return -1;
             }
             return a.Data;
         }

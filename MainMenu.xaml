@@ -7,9 +7,7 @@
         mc:Ignorable="d"
         WindowState="Maximized"
         Title="MainMenu" Width="{x:Static SystemParameters.PrimaryScreenWidth}" Height="{x:Static SystemParameters.PrimaryScreenHeight}">
-
     <Grid>
-
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -32,7 +30,7 @@
             <StackPanel Grid.Row="2" Grid.Column="2" Margin="0,0,0,1" Grid.RowSpan="3"
                         >
 
-                
+
 
                 <Button x:Name="RulesButton" Content="Rules" FontSize="50" Click="Rules"  Height="200" Background="OrangeRed" Cursor="Hand"/>
                 <Separator Opacity="0" Height="50"/>

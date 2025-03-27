@@ -9,10 +9,10 @@ namespace Connect4
     internal class Human : Player
     {
         private string name;
-        private float wins;
-        private float losses;
+        private double wins;
+        private double losses;
 
-        public Human(string Colour, string Name, float win, float loss) : base(Colour)
+        public Human(string Colour, string Name, double win, double loss) : base(Colour)
         {
             name = Name;
             wins = win;
@@ -25,22 +25,22 @@ namespace Connect4
             set { name = value; }
         }
 
-        public float Wins
+        public double Wins
         {
             get { return wins; }
             set { wins = value; }
         }
-        public float Losses
+        public double Losses
         {
             get { return losses; }
             set { wins = losses; }
         }
 
-        public float WinLossRatio
+        public double WinLossRatio
         {
             get 
             { if (wins == 0 || losses == 0) return 0;
-                else return wins / losses; 
+                else return Math.Round(wins / losses,3); 
             }
         }
         //Place Counter method for human players

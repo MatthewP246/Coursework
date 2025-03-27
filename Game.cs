@@ -19,13 +19,13 @@ namespace Connect4
         private string Player2Colour;
         private string Player2Name;
         private string Difficulty;
-        private DatabaseAccess Database;
+        private PlayerViewer Viewer;
 
         public Game(string FirstPlayer, string P1Name, string P2Name, string Diff)
         {
             //Assinging values to the variables
             Players = new Player[2];
-            Database = new DatabaseAccess();
+            Viewer = new PlayerViewer();
             Player1Colour=FirstPlayer;
             Player1Name=P1Name;
             Player2Name=P2Name;
@@ -104,8 +104,8 @@ namespace Connect4
                 }
             }
 
-            if (Winner != "") Database.AddWin(Winner);
-            Database.AddLoss(Loser);
+            if (Winner != "") Viewer.AddWin(Winner);
+            Viewer.AddLoss(Loser);
 
             return Status;
         }

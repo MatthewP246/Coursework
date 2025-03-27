@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Connect4"
         mc:Ignorable="d"
         ResizeMode="NoResize"
-
+        WindowStartupLocation="CenterScreen"
         Title="PauseMenu" Height="400" Width="1000">
         
     <Grid>

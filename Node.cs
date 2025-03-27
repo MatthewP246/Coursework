@@ -10,5 +10,6 @@ namespace Connect4
     {
         public int Data;
         public Node Next;
+        public Node Previous;
     }
 }

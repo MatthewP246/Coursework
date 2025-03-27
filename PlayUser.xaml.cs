@@ -20,6 +20,13 @@ namespace Connect4
     /// <summary>
     /// Interaction logic for PlayUser.xaml
     /// </summary>
+
+
+    /*
+     * PLAY USER
+     * Allows 2 players to play against each other
+     * Can load a saved game if selected
+     */
     public partial class PlayUser : Window
     {
         private Game Connect4;
@@ -39,8 +46,9 @@ namespace Connect4
             Player1Colour = colour;
             Database = new DatabaseAccess();
 
+            //Loads a saved game if selected
             if (Game!= null) Connect4 = Game;
-			else Connect4 = new Game(Player1Colour, Player1Name, Player2Name, "");
+			else Connect4 = new Game(Player1Colour, Player1Name, Player2Name, "None");
 
 
             DataContext = Connect4;
@@ -180,6 +188,7 @@ namespace Connect4
             RestartButton.Visibility = Visibility.Hidden;
             CloseButton.Visibility = Visibility.Hidden;
             CurrentPlayer.Visibility = Visibility.Hidden;
+            SaveGameButton.Visibility = Visibility.Hidden;
 
             //Displays a message to show the winner and make it visible
             GameWinner.Text = $"{Winner} Wins";
@@ -192,7 +201,8 @@ namespace Connect4
 
         private void SaveGame(object sender, RoutedEventArgs e)
         {
-			GameSaveID = Database.SaveGame(Connect4, GameSaveID);
+            //Saves the game
+            GameSaveID = Database.SaveGame(Connect4, GameSaveID);
 		}
 
 

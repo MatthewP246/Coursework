@@ -19,7 +19,12 @@ using System.Xml.Linq;
 
 namespace Connect4
 {
-
+    /*
+     * GAME SETTINGS
+     * Allows the user to select:
+     * Usernames, Colour, Difficulty
+     * Allows the user to create a new player
+     */
     public partial class GameSettings : Window 
     {
         private string Mode;
@@ -79,7 +84,7 @@ namespace Connect4
             if (Mode == "User")
             {
                 
-                Window w = new PlayUser(FirstPlayer, P1Name, P2Name, Database.LoadGame(1, P1Name, P2Name));
+                Window w = new PlayUser(FirstPlayer, P1Name, P2Name, null);
                 w.Show();
                 this.Close();
             }

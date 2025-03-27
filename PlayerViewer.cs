@@ -32,6 +32,28 @@ namespace Connect4
             OnPropertyChanged(nameof(PlayerList));
         }
 
+        public void AddWin(string Username)
+        {
+            Access.AddWin(Username);
+            PlayerList.Clear();
+            foreach (var Player in Access.GetPlayers())
+            {
+                PlayerList.Add(Player);
+            }
+            OnPropertyChanged(nameof(PlayerList));
+        }
+
+        public void AddLoss(string Username)
+        {
+            Access.AddLoss(Username);
+            PlayerList.Clear();
+            foreach (var Player in Access.GetPlayers())
+            {
+                PlayerList.Add(Player);
+            }
+            OnPropertyChanged(nameof(PlayerList));
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string PropertyName)
         {

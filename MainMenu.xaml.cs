@@ -1,64 +1,68 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Connect4
 {
-
+    /// <summary>
+    /// Interaction logic for MainMenu.xaml
+    /// </summary>
     public partial class MainMenu : Window
     {
+
         private PlayerViewer Viewer;
-        
         public MainMenu()
         {
+            InitializeComponent();
             Viewer = new PlayerViewer();
             DataContext = Viewer;
 
 
             this.KeyDown += new KeyEventHandler(KeyPressed);
-            
         }
+
 
         private void PlayUser(object sender, RoutedEventArgs e)
         {
-			Window w = new GameSettings("User");
-			this.Hide();
-			w.ShowDialog();
+            Window w = new MainMenu();
+            this.Close();
+            w.Show();
+
+            //Window w = new GameSettings("User");
+            //this.Hide();
+            //w.ShowDialog();
 
 
 
 
-		}
+        }
 
         private void PlayComputer(object sender, RoutedEventArgs e)
         {
 
-			Window w = new GameSettings("Computer");
-			this.Hide();
-			w.ShowDialog();
+            Window w = new GameSettings("Computer");
+            this.Hide();
+            w.ShowDialog();
 
 
-		}
+        }
 
         private void Rules(object sender, RoutedEventArgs e)
         {
             Window w = new Rules();
             this.Hide();
-			w.ShowDialog();
-		}
+            w.ShowDialog();
+        }
 
 
         private void KeyPressed(object sender, KeyEventArgs e)
@@ -68,14 +72,5 @@ namespace Connect4
                 Application.Current.Shutdown();
             }
         }
-
-        
-
-
-
-        
     }
-
-    
 }
-
