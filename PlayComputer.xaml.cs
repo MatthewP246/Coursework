@@ -145,7 +145,7 @@ namespace Connect4
             else if (Status == "Win") GameEnd(true);
             else if(Status != "No Move")
             {
-                await Task.Delay(500);
+                await Task.Delay(100);
                 Status = Connect4.PlaceCounter(-1);
                 if (Status == "Draw") GameEnd();
                 if (Status == "Win") GameEnd(false);
@@ -173,7 +173,8 @@ namespace Connect4
             GameWinner.Visibility = Visibility.Visible;
 
             await Task.Delay(5000);
-            Application.Current.MainWindow.Show();
+            Window w = new MainMenu();
+            w.Show();
             this.Close();
         }
 
@@ -197,7 +198,8 @@ namespace Connect4
             GameWinner.Visibility = Visibility.Visible;
             
             await Task.Delay(5000);
-            Application.Current.MainWindow.Show();
+            Window w = new MainMenu();
+            w.Show();
             this.Close();
         }
         

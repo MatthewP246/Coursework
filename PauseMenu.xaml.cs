@@ -22,6 +22,7 @@ namespace Connect4
         public PauseMenu()
         {
             InitializeComponent();
+            this.KeyDown += new KeyEventHandler(KeyPressed); //Event handler to recognise key presses
         }
 
         private void QuitToDesktop_Click(object sender, RoutedEventArgs e)
@@ -32,8 +33,17 @@ namespace Connect4
 
         private void ReturnToMenu_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.MainWindow.Show();
+            Window w = new MainMenu();
+            w.Show();
             Owner.Close();  
+        }
+
+        private void KeyPressed(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+            {
+                this.Close();
+            }
         }
     }
 }

@@ -37,8 +37,8 @@ namespace Connect4
 
 
             Window w = new GameSettings("User");
-            this.Close();
             w.Show();
+            this.Close();
 
 
 
@@ -49,8 +49,8 @@ namespace Connect4
         {
 
             Window w = new GameSettings("Computer");
-            this.Close();
             w.Show();
+            this.Close();
 
 
         }
@@ -58,8 +58,8 @@ namespace Connect4
         private void Rules(object sender, RoutedEventArgs e)
         {
             Window w = new Rules();
-            this.Close();
             w.Show();
+            this.Close();
         }
 
 

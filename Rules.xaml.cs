@@ -32,7 +32,8 @@ namespace Connect4
 
         private void Close(object sender, RoutedEventArgs e)
         {
-            Application.Current.MainWindow.Show();
+            Window w = new MainMenu();
+            w.Show();
             this.Close();
         }
 
@@ -40,8 +41,8 @@ namespace Connect4
         {
             if (e.Key == Key.Escape)
             {
-                Application.Current.MainWindow.Show();
-                this.Close();
+                Close(sender, e);
             }
-        }    }
+        }
+    }
 }

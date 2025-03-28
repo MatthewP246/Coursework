@@ -195,7 +195,8 @@ namespace Connect4
             GameWinner.Visibility = Visibility.Visible;
             //wait 5s before closing the window and returning to the main menu
             await Task.Delay(5000);
-            Application.Current.MainWindow.Show();
+            Window w = new MainMenu();
+            w.Show();
             this.Close();
         }
 

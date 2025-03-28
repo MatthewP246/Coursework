@@ -144,7 +144,11 @@ namespace Connect4
 			using (var Conn=new SQLiteConnection(ConnectionString))
             {
 				Conn.Open();
-				string Query = "SELECT Grid, CurrentPlayer, Difficulty FROM SaveGame WHERE GameSaveId=@id";
+				string Query = "SELECT Grid, CurrentPlayer, Difficulty " +
+                    "FROM Players, PlayerGameSave, SaveGame " +
+                    "WHERE Players.PlayerID=PlayerGameSave.PlayerID " +
+                    "AND SaveGame.GameSaveID = PlayerGameSave.GameSaveID" +
+                    "AND PayerGameSave.GameSaveID=@id";
 				using (var cmd = new SQLiteCommand(Query, Conn))
                 {
                     cmd.Parameters.AddWithValue("@id", GameSaveID);

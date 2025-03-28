@@ -13,6 +13,7 @@ namespace Connect4
     {
         //Initialises Colour as needed for all players
         private string Colour;
+        private int ID;
         
          
         
