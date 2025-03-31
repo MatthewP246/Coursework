@@ -84,7 +84,7 @@ namespace Connect4
             if (Mode == "User")
             {
                 
-                Window w = new PlayUser(FirstPlayer, P1Name, P2Name, null);
+                Window w = new PlayUser(FirstPlayer, P1Name, P2Name, Database.LoadGame(1), 1);
                 w.Show();
                 this.Close();
             }

@@ -37,13 +37,14 @@ namespace Connect4
         private int GameSaveID;
 
 
-        public PlayUser(string colour, string P1Name, string P2Name, Game Game)
+        public PlayUser(string colour, string P1Name, string P2Name, Game Game, int gamesaveid)
         {
             InitializeComponent();
             this.Focus();
             Player1Name = P1Name;
             Player2Name = P2Name;
             Player1Colour = colour;
+            GameSaveID = gamesaveid;
             Database = new DatabaseAccess();
 
             //Loads a saved game if selected
@@ -150,7 +151,7 @@ namespace Connect4
 
         private void Restart(object sender, RoutedEventArgs e) //Restarts the game with the original settings
         {
-            Window w = new PlayUser(Player1Colour, Player1Name, Player2Name, Connect4);
+            Window w = new PlayUser(Player1Colour, Player1Name, Player2Name, Connect4, GameSaveID);
             w.Show();
             this.Close();
 

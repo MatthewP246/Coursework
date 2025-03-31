@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SQLite;
 using System.IO;
+using System.Windows.Controls.Primitives;
 
 namespace Connect4
 {
@@ -33,7 +34,7 @@ namespace Connect4
             using (var Conn = new SQLiteConnection(ConnectionString))
             {
                 Conn.Open();
-                string Query = "SELECT Username, Wins, Losses FROM Players ORDER BY Wins DESC" ;
+                string Query = "SELECT Username,Wins,Losses FROM Players ORDER BY Wins DESC" ;
                 using (var cmd = new SQLiteCommand(Query, Conn))
                 using (var Reader = cmd.ExecuteReader())
                 {
@@ -95,9 +96,15 @@ namespace Connect4
 
         public int SaveGame(Game Game, int GameSaveID)
         {
-            string Grid = Game.board.grid.ToString();
+            List<string> BoardGrid = new List<string>(42);
+            for (int i=0; i < 42; i++)
+            {
+                BoardGrid.Add(Game.board.grid[i].Colour);
+            }
+            string Grid= string.Join("", BoardGrid);
 
-			if (GameSaveID != 0)
+
+            if (GameSaveID != 0)
             {
                 using (var Conn = new SQLiteConnection(ConnectionString))
                 {
@@ -118,51 +125,69 @@ namespace Connect4
                 using (var Conn = new SQLiteConnection(ConnectionString))
                 {
                     Conn.Open();
-                    string Query = "INSERT INTO SaveGame (Player1, Player2, Grid, CurrentPlayer) VALUES (@player1, @player2, @grid, @currentplayer)";
+                    string Query = "INSERT INTO SaveGame (Grid, CurrentPlayer, Difficulty) VALUES (@grid, @currentplayer, @difficulty)";
                     using (var cmd = new SQLiteCommand(Query, Conn))
                     {
-                        cmd.Parameters.AddWithValue("@player1", Game.Player1);
-						cmd.Parameters.AddWithValue("@player2", Game.Player2);
 						cmd.Parameters.AddWithValue("@grid", Grid);
 						cmd.Parameters.AddWithValue("@currentplayer", Game.CurrentPlayer);
-						cmd.ExecuteNonQuery();
+                        cmd.Parameters.AddWithValue("@difficulty", Game.Difficulty);
+                        cmd.ExecuteNonQuery();
 						GameSaveID = Convert.ToInt32(cmd.ExecuteScalar());
 					}
-                    Conn.Close();
+
+                    Query= "INSERT INTO PlayerGameSave (PlayerID, GameSaveID) VALUES ((SELECT PlayerID FROM Players WHERE Username=@user), @id)";
+                    using (var cmd = new SQLiteCommand(Query, Conn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", GameSaveID);
+                        cmd.Parameters.AddWithValue("@user", Game.Player1);
+                        cmd.ExecuteNonQuery();
+                        cmd.Parameters.AddWithValue("@id", GameSaveID);
+                        cmd.Parameters.AddWithValue("@user", Game.Player2);
+                        cmd.ExecuteNonQuery();
+                    }
+                        Conn.Close();
                 }
             }
 			return GameSaveID;
 		}
-        public Game LoadGame(int GameSaveID, string Player1, string Player2)
+        public Game LoadGame(int GameSaveID)
         {
             Game Game;
 			string Grid="";
 			string CurrentPlayer="";
             string Difficulty="";
+            string Player1 = "";
+            string Player2 = "";
 
 
-			using (var Conn=new SQLiteConnection(ConnectionString))
+            using (var Conn=new SQLiteConnection(ConnectionString))
             {
-				Conn.Open();
-				string Query = "SELECT Grid, CurrentPlayer, Difficulty " +
-                    "FROM Players, PlayerGameSave, SaveGame " +
-                    "WHERE Players.PlayerID=PlayerGameSave.PlayerID " +
-                    "AND SaveGame.GameSaveID = PlayerGameSave.GameSaveID" +
-                    "AND PayerGameSave.GameSaveID=@id";
-				using (var cmd = new SQLiteCommand(Query, Conn))
+                Conn.Open();
+                string Query = "SELECT Username, Grid, CurrentPlayer, Difficulty FROM Players, PlayerGameSave, SaveGame WHERE Players.PlayerID = PlayerGameSave.PlayerID AND SaveGame.GameSaveID = PlayerGameSave.GameSaveID AND PlayerGameSave.GameSaveID = 1";
+
+                using (var cmd = new SQLiteCommand(Query, Conn))
                 {
                     cmd.Parameters.AddWithValue("@id", GameSaveID);
                     using (var Reader = cmd.ExecuteReader())
                     {
-
                         while (Reader.Read())
                         {
-                            Grid = Reader.GetString(0);
-                            CurrentPlayer = Reader.GetString(1);
-                            Difficulty = Reader.GetString(2);
+                            Player1 = Reader.GetString(0);
+                            Grid = Reader.GetString(1);
+                            CurrentPlayer = Reader.GetString(2);
+                            //Checks if the difficulty is null
+                            if (!Reader.IsDBNull(3)) Difficulty = Reader.GetString(3);
+                        }
+                        Reader.NextResult();
+                        while (Reader.Read())
+                        {
+                            Player2 = Reader.GetString(0);
+                        }
+
+
+
 
                         }
-                    }
                     
                 }
                 Conn.Close();

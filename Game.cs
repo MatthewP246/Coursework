@@ -18,7 +18,7 @@ namespace Connect4
         private string Player1Name;
         private string Player2Colour;
         private string Player2Name;
-        private string Difficulty;
+        private string difficulty;
         private PlayerViewer Viewer;
 
         public Game(string FirstPlayer, string P1Name, string P2Name, string Diff)
@@ -30,7 +30,7 @@ namespace Connect4
             Player1Name=P1Name;
             Player2Name=P2Name;
             AI = (P2Name == "Computer");
-            Difficulty = Diff;
+            difficulty = Diff;
             Player2Colour= FirstPlayer== "R" ? "Y" : "R";
 
             Board = new Board(FirstPlayer);
@@ -64,6 +64,10 @@ namespace Connect4
 		{
 			get { return Player1Colour; }
 		}
+        public string Difficulty
+        {
+            get { return difficulty; }
+        }
 
 
 
@@ -76,7 +80,7 @@ namespace Connect4
             if (Column == -1 && AI)
             {
                 //Computer is making the move
-                Status=Players[1].PlaceCounter(Column, Board, Difficulty);
+                Status=Players[1].PlaceCounter(Column, Board, difficulty);
                 if (Status == "Win")
                 {
                     Loser = Player1Name;
@@ -85,7 +89,7 @@ namespace Connect4
             else if (Player1Colour == Board.Player.Colour)
             {
                 //Player making the move is player 1
-                Status = Players[0].PlaceCounter(Column, Board, Difficulty);
+                Status = Players[0].PlaceCounter(Column, Board, difficulty);
                 if (Status=="Win")
                 {
                     Winner = Player1Name;
@@ -96,7 +100,7 @@ namespace Connect4
             else
             {
                 //Player making the move is player 2
-                Status = (Players[1].PlaceCounter(Column, Board, Difficulty));
+                Status = (Players[1].PlaceCounter(Column, Board, difficulty));
                 if (Status == "Win")
                 {
                     Winner= Player2Name;
