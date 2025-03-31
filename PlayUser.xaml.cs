@@ -167,7 +167,7 @@ namespace Connect4
             if (Status == "Win")
             {
                 //if someone wins end the game and indicate who
-                if (Connect4.board.Player.Colour == Player1Colour) GameEnd(Player1Name);
+                if (Connect4.Board.Player.Colour == Player1Colour) GameEnd(Player1Name);
                 else GameEnd(Player2Name);
             }
             //if a draw, also end the game where no one wins

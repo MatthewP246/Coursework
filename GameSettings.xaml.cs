@@ -84,7 +84,7 @@ namespace Connect4
             if (Mode == "User")
             {
                 
-                Window w = new PlayUser(FirstPlayer, P1Name, P2Name, Database.LoadGame(1), 1);
+                Window w = new PlayUser(FirstPlayer, P1Name, P2Name, null, 1);
                 w.Show();
                 this.Close();
             }
@@ -123,6 +123,11 @@ namespace Connect4
             {
                 Close(sender, e);
             }
+        }
+
+        private void NewUser_GotFocus(object sender, RoutedEventArgs e)
+        {
+            NewUser.Clear();
         }
 
     }

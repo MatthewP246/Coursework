@@ -10,7 +10,7 @@ namespace Connect4
     public class Game
     {
         //Initialising variables
-        private Board Board;
+        private Board board;
         //Array for the 2 players, can be computer or human
         private Player[] Players;
         private bool AI;
@@ -33,7 +33,7 @@ namespace Connect4
             difficulty = Diff;
             Player2Colour= FirstPlayer== "R" ? "Y" : "R";
 
-            Board = new Board(FirstPlayer);
+            board = new Board(FirstPlayer);
 
             //Player 1 is always a human
             Players[0] = new Human(Player1Colour,Player1Name, 0,0);
@@ -46,9 +46,9 @@ namespace Connect4
             
         }
 
-        public Board board
+        public Board Board
         {
-            get { return Board; }
+            get { return board; }
         }
 
         public string Player1
@@ -80,7 +80,7 @@ namespace Connect4
             if (Column == -1 && AI)
             {
                 //Computer is making the move
-                Status=Players[1].PlaceCounter(Column, Board, difficulty);
+                Status=Players[1].PlaceCounter(Column, board, difficulty);
                 if (Status == "Win")
                 {
                     Loser = Player1Name;
@@ -89,7 +89,7 @@ namespace Connect4
             else if (Player1Colour == Board.Player.Colour)
             {
                 //Player making the move is player 1
-                Status = Players[0].PlaceCounter(Column, Board, difficulty);
+                Status = Players[0].PlaceCounter(Column, board, difficulty);
                 if (Status=="Win")
                 {
                     Winner = Player1Name;
@@ -100,7 +100,7 @@ namespace Connect4
             else
             {
                 //Player making the move is player 2
-                Status = (Players[1].PlaceCounter(Column, Board, difficulty));
+                Status = (Players[1].PlaceCounter(Column, board, difficulty));
                 if (Status == "Win")
                 {
                     Winner= Player2Name;

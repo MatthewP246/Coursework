@@ -99,7 +99,7 @@ namespace Connect4
             List<string> BoardGrid = new List<string>(42);
             for (int i=0; i < 42; i++)
             {
-                BoardGrid.Add(Game.board.grid[i].Colour);
+                BoardGrid.Add(Game.Board.grid[i].Colour);
             }
             string Grid= string.Join("", BoardGrid);
 
@@ -198,7 +198,7 @@ namespace Connect4
 			Game=new Game(CurrentPlayer, Player1, Player2, Difficulty);
             for(int i = 0; i < 42; i++)
             {
-                Game.board.grid[i].Colour= Grid[i].ToString();
+                Game.Board.grid[i].Colour= Grid[i].ToString();
 			}
             
 

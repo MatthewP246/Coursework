@@ -14,11 +14,13 @@ namespace Connect4
         private DatabaseAccess Access;
 
         public ObservableCollection<Human> PlayerList {  get; private set; }
+        public ObservableCollection<Game> SavedGames { get; private set; }
 
         public PlayerViewer() 
         {
             Access = new DatabaseAccess();
             PlayerList = new ObservableCollection<Human>(Access.GetPlayers());
+            SavedGames = new ObservableCollection<Game>();
         }
 
         public void AddPlayer(string name)

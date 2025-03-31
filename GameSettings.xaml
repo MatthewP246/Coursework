@@ -73,7 +73,13 @@
         <StackPanel x:Name="Column3" Grid.Row="2" Grid.Column="4"  Grid.RowSpan="4" >
             <Button Content="Add new User" FontSize="20" Click="AddPlayer" Cursor="Hand"></Button>
             <Separator Opacity="0" Height="30"></Separator>
-            <TextBox x:Name="NewUser" Text="Enter Username" FontSize="20"></TextBox>
+            <TextBox x:Name="NewUser" Text="Enter Username" FontSize="20" GotFocus="NewUser_GotFocus"></TextBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" Grid.Column="4">
+            <TextBlock Text="Load Game" FontSize="20"/>
+            <Separator Opacity="0" Height="30"/>
+            <ComboBox x:Name="SaveGame" Grid.Column="4" Grid.Row="3" ItemsSource="{Binding }"/>
         </StackPanel>
 
 
