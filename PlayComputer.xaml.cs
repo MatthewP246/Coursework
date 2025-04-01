@@ -27,13 +27,19 @@ namespace Connect4
         private string Colour;
         private string PlayerName;
         private string Difficulty;
-        public PlayComputer(string colour, string P1, string Diff, Game Game)
+        private PlayerViewer Viewer;
+        private int GameSaveID;
+
+
+        public PlayComputer(string colour, string P1, string Diff, Game Game, int gamesaveid)
         {
             InitializeComponent();
             Colour = colour;
             PlayerName = P1;
             Difficulty = Diff;
             DifficultyText.Text = $"Difficulty: {Difficulty}";
+            Viewer = new PlayerViewer();
+            GameSaveID = gamesaveid;
 
             if (Game != null) Connect4 = Game;
             else Connect4 = new Game(Colour, PlayerName, "Computer", Difficulty);
@@ -132,7 +138,7 @@ namespace Connect4
         private void Restart(object sender, RoutedEventArgs e)
         {
             
-            Window w = new PlayComputer(Colour, PlayerName, Difficulty, null);
+            Window w = new PlayComputer(Colour, PlayerName, Difficulty, null, GameSaveID);
             w.Show();
             this.Close();
         }
@@ -140,18 +146,23 @@ namespace Connect4
         private async void PlaceCounter(int C)
         {
             string Status;
-            Status = Connect4.PlaceCounter(C);
+            string Winner = "";
+            string Loser = "";
+            (Status, Winner, Loser) = Connect4.PlaceCounter(C);
             if (Status == "Draw") GameEnd();
             else if (Status == "Win") GameEnd(true);
             else if(Status != "No Move")
             {
                 await Task.Delay(100);
-                Status = Connect4.PlaceCounter(-1);
+                (Status,Winner,Loser) = Connect4.PlaceCounter(-1);
                 if (Status == "Draw") GameEnd();
                 if (Status == "Win") GameEnd(false);
             }
-            
-            
+
+            if (Winner != "") Viewer.AddWin(Winner);
+            if (Loser != "" && Loser != "Computer") Viewer.AddLoss(Loser);
+
+
         }
 
         private async void GameEnd()
@@ -202,7 +213,13 @@ namespace Connect4
             w.Show();
             this.Close();
         }
-        
+
+        private void SaveGame(object sender, RoutedEventArgs e)
+        {
+            //Saves the game
+            GameSaveID = Viewer.SaveGame(Connect4, GameSaveID);
+        }
+
 
     }
 }

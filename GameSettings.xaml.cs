@@ -64,17 +64,28 @@ namespace Connect4
             
             P1Name = Player1Name.Text;
             P2Name = Player2Name.Text;
-            if(string.IsNullOrWhiteSpace(P1Name) || (Mode!="Computer" && string.IsNullOrWhiteSpace(P2Name)) ||(Mode=="Computer" && string.IsNullOrWhiteSpace(Difficulty.Text)) || string.IsNullOrWhiteSpace(Colour.Text))
+            if(SaveGame.Text == null)
             {
-                
-                MessageBox.Show("Please enter all required data!", "Invalid input", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
+                if (string.IsNullOrWhiteSpace(P1Name) || (Mode != "Computer" && string.IsNullOrWhiteSpace(P2Name)) || (Mode == "Computer" && string.IsNullOrWhiteSpace(Difficulty.Text)) || string.IsNullOrWhiteSpace(Colour.Text))
+                {
+
+                    MessageBox.Show("Please enter all required data!", "Invalid input", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+                else if (P1Name == P2Name)
+                {
+                    MessageBox.Show("Please select 2 usernames", "Invalid input", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
             }
-            else if (P1Name == P2Name)
+            
+            Game game;
+            if (SaveGame.Text != "")
             {
-                MessageBox.Show("Please select 2 usernames","Invalid input", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
+                game = Database.LoadGame(int.Parse(SaveGame.Text));
             }
+            else game = null;
+
 
             if (Colour.Text == "Yellow") FirstPlayer = "Y";
             else if (Colour.Text == "Red") FirstPlayer = "R";
@@ -84,13 +95,13 @@ namespace Connect4
             if (Mode == "User")
             {
                 
-                Window w = new PlayUser(FirstPlayer, P1Name, P2Name, null, 1);
+                Window w = new PlayUser(FirstPlayer, P1Name, P2Name, game, 0);
                 w.Show();
                 this.Close();
             }
             else
             {
-                Window w = new PlayComputer(FirstPlayer, P1Name, Difficulty.Text,null);
+                Window w = new PlayComputer(FirstPlayer, P1Name, Difficulty.Text,game, 0);
                 w.Show();
                 this.Close();
             }

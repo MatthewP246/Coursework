@@ -131,7 +131,6 @@ namespace Connect4
 						cmd.Parameters.AddWithValue("@grid", Grid);
 						cmd.Parameters.AddWithValue("@currentplayer", Game.CurrentPlayer);
                         cmd.Parameters.AddWithValue("@difficulty", Game.Difficulty);
-                        cmd.ExecuteNonQuery();
 						GameSaveID = Convert.ToInt32(cmd.ExecuteScalar());
 					}
 
@@ -183,12 +182,7 @@ namespace Connect4
                         {
                             Player2 = Reader.GetString(0);
                         }
-
-
-
-
-                        }
-                    
+                    }
                 }
                 Conn.Close();
                     
@@ -201,9 +195,47 @@ namespace Connect4
                 Game.Board.grid[i].Colour= Grid[i].ToString();
 			}
             
-
-
 			return Game;
+        }
+
+        public List<Game> GetGames()
+        {
+            List<Game> Games = new List<Game>();
+            string CurrentPlayer = "";
+            string Difficulty = "";
+            string Player1 = "";
+            string Player2 = "";
+            int GameSaveID;
+
+            using (var Conn = new SQLiteConnection(ConnectionString))
+            {
+                Conn.Open();
+                string Query = "SELECT SaveGame.GameSaveID, Username, CurrentPlayer, Difficulty FROM Players, PlayerGameSave, SaveGame WHERE Players.PlayerID = PlayerGameSave.PlayerID AND SaveGame.GameSaveID = PlayerGameSave.GameSaveID";
+                using (var cmd = new SQLiteCommand(Query, Conn))
+                using (var Reader = cmd.ExecuteReader())
+                {
+                    while (Reader.Read())
+                    {
+                        while (Reader.Read())
+                        {
+                            GameSaveID = Reader.GetInt32(0);
+                            Player1 = Reader.GetString(1);
+                            CurrentPlayer = Reader.GetString(2);
+                            if (!Reader.IsDBNull(3)) Difficulty = Reader.GetString(3);
+                        }
+                        Reader.NextResult();
+                        while (Reader.Read())
+                        {
+                            Player2 = Reader.GetString(1);
+                        }
+                        Game Game = new Game(CurrentPlayer, Player1, Player2, Difficulty);
+                        Games.Add(Game);
+                    }
+                    
+                }
+                Conn.Close();
+            }
+            return Games;
         }
     }
 }

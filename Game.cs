@@ -19,13 +19,11 @@ namespace Connect4
         private string Player2Colour;
         private string Player2Name;
         private string difficulty;
-        private PlayerViewer Viewer;
 
         public Game(string FirstPlayer, string P1Name, string P2Name, string Diff)
         {
             //Assinging values to the variables
             Players = new Player[2];
-            Viewer = new PlayerViewer();
             Player1Colour=FirstPlayer;
             Player1Name=P1Name;
             Player2Name=P2Name;
@@ -72,7 +70,7 @@ namespace Connect4
 
 
 
-		public string PlaceCounter(int Column)
+		public (string, string, string) PlaceCounter(int Column)
         {
             string Winner="";
             string Loser="";
@@ -108,10 +106,7 @@ namespace Connect4
                 }
             }
 
-            if (Winner != "") Viewer.AddWin(Winner);
-            Viewer.AddLoss(Loser);
-
-            return Status;
+            return (Status, Winner, Loser);
         }
 
         public bool CheckWin()

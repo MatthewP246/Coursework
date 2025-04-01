@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -33,7 +34,7 @@ namespace Connect4
         private string Player1Name;
         private string Player2Name;
         private string Player1Colour;
-        private DatabaseAccess Database;
+        private PlayerViewer Viewer;
         private int GameSaveID;
 
 
@@ -45,7 +46,7 @@ namespace Connect4
             Player2Name = P2Name;
             Player1Colour = colour;
             GameSaveID = gamesaveid;
-            Database = new DatabaseAccess();
+            Viewer = new PlayerViewer();
 
             //Loads a saved game if selected
             if (Game!= null) Connect4 = Game;
@@ -163,7 +164,9 @@ namespace Connect4
         {
             //Places counter and assings the status of the game after placing a counter
             string Status;
-            Status=Connect4.PlaceCounter(C);
+            string Winner="";
+            string Loser="";
+            (Status,Winner,Loser) = Connect4.PlaceCounter(C);
             if (Status == "Win")
             {
                 //if someone wins end the game and indicate who
@@ -172,7 +175,9 @@ namespace Connect4
             }
             //if a draw, also end the game where no one wins
             else if (Status == "Draw") GameEnd("No one");
-            
+            if (Winner != "") Viewer.AddWin(Winner);
+            if (Loser != "" && Loser != "Computer") Viewer.AddLoss(Loser);
+
         }
 
         private async void GameEnd(string Winner)
@@ -204,7 +209,7 @@ namespace Connect4
         private void SaveGame(object sender, RoutedEventArgs e)
         {
             //Saves the game
-            GameSaveID = Database.SaveGame(Connect4, GameSaveID);
+            GameSaveID = Viewer.SaveGame(Connect4, GameSaveID);
 		}
 
 

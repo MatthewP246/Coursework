@@ -74,7 +74,7 @@ namespace Connect4
 
                     if (CheckWin()) Status = "Win"; //Returns win based on check win function
                     else if (GetValidLocations().Count() == 0) Status = "Draw";
-                    UpdatePlayer(); //If the Player didn't win, update for it to be the next players go
+                    else UpdatePlayer(); //If the Player didn't win, update for it to be the next players go
                 }
             }
             else Status = "No Move";

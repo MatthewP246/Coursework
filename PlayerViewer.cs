@@ -20,7 +20,7 @@ namespace Connect4
         {
             Access = new DatabaseAccess();
             PlayerList = new ObservableCollection<Human>(Access.GetPlayers());
-            SavedGames = new ObservableCollection<Game>();
+            SavedGames = new ObservableCollection<Game>(Access.GetGames());
         }
 
         public void AddPlayer(string name)
@@ -54,6 +54,19 @@ namespace Connect4
                 PlayerList.Add(Player);
             }
             OnPropertyChanged(nameof(PlayerList));
+        }
+
+        public int SaveGame(Game Game, int GameSaveID)
+        {
+            GameSaveID=Access.SaveGame(Game, GameSaveID);
+            SavedGames.Clear();
+            foreach (var item in SavedGames)
+            {
+                SavedGames.Add(item);
+            }
+            OnPropertyChanged(nameof(SavedGames));
+
+            return GameSaveID;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

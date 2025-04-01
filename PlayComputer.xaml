@@ -73,58 +73,58 @@
 
 
 
-            <Image Grid.Column="2" Grid.Row="7"  Width="Auto" Height="Auto" Source="{Binding board.grid[0].Colour, Converter={StaticResource CCConverter}}"/>
-            <Image Grid.Column="3" Grid.Row="7"  Width="Auto" Height="Auto" Source="{Binding board.grid[1].Colour, Converter={StaticResource CCConverter}}"/>
-            <Image Grid.Column="4" Grid.Row="7"  Width="Auto" Height="Auto" Source="{Binding board.grid[2].Colour, Converter={StaticResource CCConverter}}"/>
-            <Image Grid.Column="5" Grid.Row="7"  Width="Auto" Height="Auto" Source="{Binding board.grid[3].Colour, Converter={StaticResource CCConverter}}"/>
-            <Image Grid.Column="6" Grid.Row="7"  Width="Auto" Height="Auto" Source="{Binding board.grid[4].Colour, Converter={StaticResource CCConverter}}"/>
-            <Image Grid.Column="7" Grid.Row="7"  Width="Auto" Height="Auto" Source="{Binding board.grid[5].Colour, Converter={StaticResource CCConverter}}"/>
-            <Image Grid.Column="8" Grid.Row="7"  Width="Auto" Height="Auto" Source="{Binding board.grid[6].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="2" Grid.Row="7"  Width="Auto" Height="Auto" Source="{Binding Board.grid[0].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="3" Grid.Row="7"  Width="Auto" Height="Auto" Source="{Binding Board.grid[1].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="4" Grid.Row="7"  Width="Auto" Height="Auto" Source="{Binding Board.grid[2].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="5" Grid.Row="7"  Width="Auto" Height="Auto" Source="{Binding Board.grid[3].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="6" Grid.Row="7"  Width="Auto" Height="Auto" Source="{Binding Board.grid[4].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="7" Grid.Row="7"  Width="Auto" Height="Auto" Source="{Binding Board.grid[5].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="8" Grid.Row="7"  Width="Auto" Height="Auto" Source="{Binding Board.grid[6].Colour, Converter={StaticResource CCConverter}}"/>
 
 
-            <Image Grid.Column="2" Grid.Row="6"  Width="Auto" Height="Auto" Source="{Binding board.grid[7].Colour, Converter={StaticResource CCConverter}}"/>
-            <Image Grid.Column="3" Grid.Row="6"  Width="Auto" Height="Auto" Source="{Binding board.grid[8].Colour, Converter={StaticResource CCConverter}}"/>
-            <Image Grid.Column="4" Grid.Row="6"  Width="Auto" Height="Auto" Source="{Binding board.grid[9].Colour, Converter={StaticResource CCConverter}}"/>
-            <Image Grid.Column="5" Grid.Row="6"  Width="Auto" Height="Auto" Source="{Binding board.grid[10].Colour, Converter={StaticResource CCConverter}}"/>
-            <Image Grid.Column="6" Grid.Row="6"  Width="Auto" Height="Auto" Source="{Binding board.grid[11].Colour, Converter={StaticResource CCConverter}}"/>
-            <Image Grid.Column="7" Grid.Row="6"  Width="Auto" Height="Auto" Source="{Binding board.grid[12].Colour, Converter={StaticResource CCConverter}}"/>
-            <Image Grid.Column="8" Grid.Row="6"  Width="Auto" Height="Auto" Source="{Binding board.grid[13].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="2" Grid.Row="6"  Width="Auto" Height="Auto" Source="{Binding Board.grid[7].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="3" Grid.Row="6"  Width="Auto" Height="Auto" Source="{Binding Board.grid[8].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="4" Grid.Row="6"  Width="Auto" Height="Auto" Source="{Binding Board.grid[9].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="5" Grid.Row="6"  Width="Auto" Height="Auto" Source="{Binding Board.grid[10].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="6" Grid.Row="6"  Width="Auto" Height="Auto" Source="{Binding Board.grid[11].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="7" Grid.Row="6"  Width="Auto" Height="Auto" Source="{Binding Board.grid[12].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="8" Grid.Row="6"  Width="Auto" Height="Auto" Source="{Binding Board.grid[13].Colour, Converter={StaticResource CCConverter}}"/>
 
 
-            <Image Grid.Column="2" Grid.Row="5"  Width="Auto" Height="Auto" Source="{Binding board.grid[14].Colour, Converter={StaticResource CCConverter}}" />
-            <Image Grid.Column="3" Grid.Row="5"  Width="Auto" Height="Auto" Source="{Binding board.grid[15].Colour, Converter={StaticResource CCConverter}}"/>
-            <Image Grid.Column="4" Grid.Row="5"  Width="Auto" Height="Auto" Source="{Binding board.grid[16].Colour, Converter={StaticResource CCConverter}}"/>
-            <Image Grid.Column="5" Grid.Row="5"  Width="Auto" Height="Auto" Source="{Binding board.grid[17].Colour, Converter={StaticResource CCConverter}}"/>
-            <Image Grid.Column="6" Grid.Row="5"  Width="Auto" Height="Auto" Source="{Binding board.grid[18].Colour, Converter={StaticResource CCConverter}}"/>
-            <Image Grid.Column="7" Grid.Row="5"  Width="Auto" Height="Auto" Source="{Binding board.grid[19].Colour, Converter={StaticResource CCConverter}}"/>
-            <Image Grid.Column="8" Grid.Row="5"  Width="Auto" Height="Auto" Source="{Binding board.grid[20].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="2" Grid.Row="5"  Width="Auto" Height="Auto" Source="{Binding Board.grid[14].Colour, Converter={StaticResource CCConverter}}" />
+            <Image Grid.Column="3" Grid.Row="5"  Width="Auto" Height="Auto" Source="{Binding Board.grid[15].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="4" Grid.Row="5"  Width="Auto" Height="Auto" Source="{Binding Board.grid[16].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="5" Grid.Row="5"  Width="Auto" Height="Auto" Source="{Binding Board.grid[17].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="6" Grid.Row="5"  Width="Auto" Height="Auto" Source="{Binding Board.grid[18].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="7" Grid.Row="5"  Width="Auto" Height="Auto" Source="{Binding Board.grid[19].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="8" Grid.Row="5"  Width="Auto" Height="Auto" Source="{Binding Board.grid[20].Colour, Converter={StaticResource CCConverter}}"/>
 
 
-            <Image Grid.Column="2" Grid.Row="4"  Width="Auto" Height="Auto" Source="{Binding board.grid[21].Colour, Converter={StaticResource CCConverter}}"/>
-            <Image Grid.Column="3" Grid.Row="4"  Width="Auto" Height="Auto" Source="{Binding board.grid[22].Colour, Converter={StaticResource CCConverter}}"/>
-            <Image Grid.Column="4" Grid.Row="4"  Width="Auto" Height="Auto" Source="{Binding board.grid[23].Colour, Converter={StaticResource CCConverter}}"/>
-            <Image Grid.Column="5" Grid.Row="4"  Width="Auto" Height="Auto" Source="{Binding board.grid[24].Colour, Converter={StaticResource CCConverter}}"/>
-            <Image Grid.Column="6" Grid.Row="4"  Width="Auto" Height="Auto" Source="{Binding board.grid[25].Colour, Converter={StaticResource CCConverter}}"/>
-            <Image Grid.Column="7" Grid.Row="4"  Width="Auto" Height="Auto" Source="{Binding board.grid[26].Colour, Converter={StaticResource CCConverter}}"/>
-            <Image Grid.Column="8" Grid.Row="4"  Width="Auto" Height="Auto" Source="{Binding board.grid[27].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="2" Grid.Row="4"  Width="Auto" Height="Auto" Source="{Binding Board.grid[21].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="3" Grid.Row="4"  Width="Auto" Height="Auto" Source="{Binding Board.grid[22].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="4" Grid.Row="4"  Width="Auto" Height="Auto" Source="{Binding Board.grid[23].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="5" Grid.Row="4"  Width="Auto" Height="Auto" Source="{Binding Board.grid[24].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="6" Grid.Row="4"  Width="Auto" Height="Auto" Source="{Binding Board.grid[25].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="7" Grid.Row="4"  Width="Auto" Height="Auto" Source="{Binding Board.grid[26].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="8" Grid.Row="4"  Width="Auto" Height="Auto" Source="{Binding Board.grid[27].Colour, Converter={StaticResource CCConverter}}"/>
 
 
-            <Image Grid.Column="2" Grid.Row="3"  Width="Auto" Height="Auto" Source="{Binding board.grid[28].Colour, Converter={StaticResource CCConverter}}"/>
-            <Image Grid.Column="3" Grid.Row="3"  Width="Auto" Height="Auto" Source="{Binding board.grid[29].Colour, Converter={StaticResource CCConverter}}"/>
-            <Image Grid.Column="4" Grid.Row="3"  Width="Auto" Height="Auto" Source="{Binding board.grid[30].Colour, Converter={StaticResource CCConverter}}"/>
-            <Image Grid.Column="5" Grid.Row="3"  Width="Auto" Height="Auto" Source="{Binding board.grid[31].Colour, Converter={StaticResource CCConverter}}"/>
-            <Image Grid.Column="6" Grid.Row="3"  Width="Auto" Height="Auto" Source="{Binding board.grid[32].Colour, Converter={StaticResource CCConverter}}"/>
-            <Image Grid.Column="7" Grid.Row="3"  Width="Auto" Height="Auto" Source="{Binding board.grid[33].Colour, Converter={StaticResource CCConverter}}"/>
-            <Image Grid.Column="8" Grid.Row="3"  Width="Auto" Height="Auto" Source="{Binding board.grid[34].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="2" Grid.Row="3"  Width="Auto" Height="Auto" Source="{Binding Board.grid[28].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="3" Grid.Row="3"  Width="Auto" Height="Auto" Source="{Binding Board.grid[29].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="4" Grid.Row="3"  Width="Auto" Height="Auto" Source="{Binding Board.grid[30].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="5" Grid.Row="3"  Width="Auto" Height="Auto" Source="{Binding Board.grid[31].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="6" Grid.Row="3"  Width="Auto" Height="Auto" Source="{Binding Board.grid[32].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="7" Grid.Row="3"  Width="Auto" Height="Auto" Source="{Binding Board.grid[33].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="8" Grid.Row="3"  Width="Auto" Height="Auto" Source="{Binding Board.grid[34].Colour, Converter={StaticResource CCConverter}}"/>
 
 
-            <Image Grid.Column="2" Grid.Row="2"  Width="Auto" Height="Auto" Source="{Binding board.grid[35].Colour, Converter={StaticResource CCConverter}}"/>
-            <Image Grid.Column="3" Grid.Row="2"  Width="Auto" Height="Auto" Source="{Binding board.grid[36].Colour, Converter={StaticResource CCConverter}}"/>
-            <Image Grid.Column="4" Grid.Row="2"  Width="Auto" Height="Auto" Source="{Binding board.grid[37].Colour, Converter={StaticResource CCConverter}}"/>
-            <Image Grid.Column="5" Grid.Row="2"  Width="Auto" Height="Auto" Source="{Binding board.grid[38].Colour, Converter={StaticResource CCConverter}}"/>
-            <Image Grid.Column="6" Grid.Row="2"  Width="Auto" Height="Auto" Source="{Binding board.grid[39].Colour, Converter={StaticResource CCConverter}}"/>
-            <Image Grid.Column="7" Grid.Row="2"  Width="Auto" Height="Auto" Source="{Binding board.grid[40].Colour, Converter={StaticResource CCConverter}}"/>
-            <Image Grid.Column="8" Grid.Row="2"  Width="Auto" Height="Auto" Source="{Binding board.grid[41].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="2" Grid.Row="2"  Width="Auto" Height="Auto" Source="{Binding Board.grid[35].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="3" Grid.Row="2"  Width="Auto" Height="Auto" Source="{Binding Board.grid[36].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="4" Grid.Row="2"  Width="Auto" Height="Auto" Source="{Binding Board.grid[37].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="5" Grid.Row="2"  Width="Auto" Height="Auto" Source="{Binding Board.grid[38].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="6" Grid.Row="2"  Width="Auto" Height="Auto" Source="{Binding Board.grid[39].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="7" Grid.Row="2"  Width="Auto" Height="Auto" Source="{Binding Board.grid[40].Colour, Converter={StaticResource CCConverter}}"/>
+            <Image Grid.Column="8" Grid.Row="2"  Width="Auto" Height="Auto" Source="{Binding Board.grid[41].Colour, Converter={StaticResource CCConverter}}"/>
 
 
 
@@ -132,7 +132,7 @@
 
             <StackPanel x:Name="CurrentPlayer" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2">
                 <TextBlock Grid.Column="1" Grid.Row="1" Text="Players Turn"  FontSize="20" HorizontalAlignment="Center" Width="108"/>
-                <Image Grid.Column="1" Grid.Row="1" Width="130" Height="130" Source="{Binding board.Player.Colour, Converter={StaticResource CCConverter}}" Margin="51,39,50,135" Grid.RowSpan="2" />
+                <Image Grid.Column="1" Grid.Row="1" Width="130" Height="130" Source="{Binding Board.Player.Colour, Converter={StaticResource CCConverter}}" Margin="51,39,50,135" Grid.RowSpan="2" />
             </StackPanel>
 
             

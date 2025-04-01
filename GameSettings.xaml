@@ -79,7 +79,7 @@
         <StackPanel Grid.Row="3" Grid.Column="4">
             <TextBlock Text="Load Game" FontSize="20"/>
             <Separator Opacity="0" Height="30"/>
-            <ComboBox x:Name="SaveGame" Grid.Column="4" Grid.Row="3" ItemsSource="{Binding }"/>
+            <ComboBox x:Name="SaveGame" Grid.Column="4" Grid.Row="3" ItemsSource="{Binding SavedGames}" DisplayMemberPath="Player1" SelectedValuePath="Player1" SelectedValue="{Binding Path=Player1}"/>
         </StackPanel>
 
 
