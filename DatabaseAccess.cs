@@ -16,7 +16,7 @@ namespace Connect4
         public DatabaseAccess()
         {
             ConnectionString = "Data Source=|DataDirectory|Connect4DB.db; Version=3;";
-
+            //If the file doesn't exist, create it
             if (!File.Exists(GetDatabasePath()))
             {
                 SQLiteConnection.CreateFile(GetDatabasePath());
@@ -30,11 +30,15 @@ namespace Connect4
 
         public List<Human> GetPlayers()
         {
+            //Gets the list of players for the leaderboard and selecting user
             List<Human> Players = new List<Human>();
             using (var Conn = new SQLiteConnection(ConnectionString))
             {
                 Conn.Open();
-                string Query = "SELECT Username,Wins,Losses FROM Players ORDER BY Wins DESC" ;
+                //SQL query
+                string Query = "SELECT Username,Wins,Losses " +
+                    "FROM Players " +
+                    "ORDER BY Wins DESC" ;
                 using (var cmd = new SQLiteCommand(Query, Conn))
                 using (var Reader = cmd.ExecuteReader())
                 {
@@ -51,10 +55,13 @@ namespace Connect4
 
         public void AddWin(string Username)
         {
+            //Adds a win to the winner
             using (var Conn = new SQLiteConnection(ConnectionString))
             {
                 Conn.Open();
-                string Query = "UPDATE Players SET Wins=Wins+1 WHERE Username=@user";
+                string Query = "UPDATE Players " +
+                    "SET Wins=Wins+1 " +
+                    "WHERE Username=@user";
                 using (var cmd = new SQLiteCommand(Query, Conn))
                 {
                     cmd.Parameters.AddWithValue("@user", Username);
@@ -65,10 +72,13 @@ namespace Connect4
         }
         public void AddLoss(string Username)
         {
+            //Adds a loss to the loser
             using (var Conn = new SQLiteConnection(ConnectionString))
             {
                 Conn.Open();
-                string Query = "UPDATE Players SET Losses=Losses+1 WHERE Username=@user";
+                string Query = "UPDATE Players " +
+                    "SET Losses=Losses+1 " +
+                    "WHERE Username=@user";
                 using (var cmd = new SQLiteCommand(Query, Conn))
                 {
                     cmd.Parameters.AddWithValue("@user", Username);
@@ -80,10 +90,12 @@ namespace Connect4
 
         public void AddPlayer(string Username)
         {
+            //Creates a new player
             using (var Conn = new SQLiteConnection(ConnectionString))
             {
                 Conn.Open();
-                string Query = "INSERT INTO Players (Username) VALUES (@user)";
+                string Query = "INSERT INTO Players (Username) " +
+                    "VALUES (@user)";
                 using (var cmd = new SQLiteCommand(Query, Conn))
                 {
                     cmd.Parameters.AddWithValue("@user", Username);
@@ -96,6 +108,10 @@ namespace Connect4
 
         public int SaveGame(Game Game, int GameSaveID)
         {
+            //Saves the game to the database
+            //If the game is already saved, update it
+
+            //Creates a string of the grid
             List<string> BoardGrid = new List<string>(42);
             for (int i=0; i < 42; i++)
             {
@@ -103,13 +119,15 @@ namespace Connect4
             }
             string Grid= string.Join("", BoardGrid);
 
-
+            //Checks if game already exists
             if (GameSaveID != 0)
             {
                 using (var Conn = new SQLiteConnection(ConnectionString))
                 {
                     Conn.Open();
-                    string Query = "UPDATE SaveGame SET Grid=@grid, CurrentPlayer=@currentplayer WHERE GameSaveID=@id";
+                    string Query = "UPDATE SaveGame " +
+                        "SET Grid=@grid, CurrentPlayer=@currentplayer " +
+                        "WHERE GameSaveID=@id";
                     using (var cmd = new SQLiteCommand(Query, Conn))
                     {
                         cmd.Parameters.AddWithValue("@grid", Grid);
@@ -125,16 +143,34 @@ namespace Connect4
                 using (var Conn = new SQLiteConnection(ConnectionString))
                 {
                     Conn.Open();
-                    string Query = "INSERT INTO SaveGame (Grid, CurrentPlayer, Difficulty) VALUES (@grid, @currentplayer, @difficulty)";
+                    string Query = "INSERT INTO SaveGame (Grid, CurrentPlayer, Difficulty) " +
+                        "VALUES (@grid, @currentplayer, @difficulty)";
                     using (var cmd = new SQLiteCommand(Query, Conn))
                     {
 						cmd.Parameters.AddWithValue("@grid", Grid);
 						cmd.Parameters.AddWithValue("@currentplayer", Game.CurrentPlayer);
                         cmd.Parameters.AddWithValue("@difficulty", Game.Difficulty);
-						GameSaveID = Convert.ToInt32(cmd.ExecuteScalar());
-					}
+                        cmd.ExecuteNonQuery();
+                    }
+                    //Returns the ID of the game for updating save
+                    Query = "SELECT GameSaveID " +
+                        "FROM SaveGame " +
+                        "WHERE Grid=@grid " +
+                        "AND CurrentPlayer=@currentplayer " +
+                        "AND Difficulty=@difficulty";
+                    using(var cmd = new SQLiteCommand(Query, Conn))
+                    {
+                        cmd.Parameters.AddWithValue("@grid", Grid);
+                        cmd.Parameters.AddWithValue("@currentplayer", Game.CurrentPlayer);
+                        cmd.Parameters.AddWithValue("@difficulty", Game.Difficulty);
+                        GameSaveID = Convert.ToInt32(cmd.ExecuteScalar());
+                    }
 
-                    Query= "INSERT INTO PlayerGameSave (PlayerID, GameSaveID) VALUES ((SELECT PlayerID FROM Players WHERE Username=@user), @id)";
+
+
+                    //Creates records in the link table
+                    Query = "INSERT INTO PlayerGameSave (PlayerID, GameSaveID) " +
+                        "VALUES ((SELECT PlayerID FROM Players WHERE Username=@user), @id)";
                     using (var cmd = new SQLiteCommand(Query, Conn))
                     {
                         cmd.Parameters.AddWithValue("@id", GameSaveID);
@@ -151,6 +187,7 @@ namespace Connect4
 		}
         public Game LoadGame(int GameSaveID)
         {
+            //Loads the game from the database
             Game Game;
 			string Grid="";
 			string CurrentPlayer="";
@@ -162,7 +199,11 @@ namespace Connect4
             using (var Conn=new SQLiteConnection(ConnectionString))
             {
                 Conn.Open();
-                string Query = "SELECT Username, Grid, CurrentPlayer, Difficulty FROM Players, PlayerGameSave, SaveGame WHERE Players.PlayerID = PlayerGameSave.PlayerID AND SaveGame.GameSaveID = PlayerGameSave.GameSaveID AND PlayerGameSave.GameSaveID = 1";
+                string Query = "SELECT Username, Grid, CurrentPlayer, Difficulty " +
+                    "FROM Players, PlayerGameSave, SaveGame " +
+                    "WHERE Players.PlayerID = PlayerGameSave.PlayerID " +
+                    "AND SaveGame.GameSaveID = PlayerGameSave.GameSaveID " +
+                    "AND PlayerGameSave.GameSaveID = 1";
 
                 using (var cmd = new SQLiteCommand(Query, Conn))
                 {
@@ -198,40 +239,34 @@ namespace Connect4
 			return Game;
         }
 
-        public List<Game> GetGames()
+        public List<int> GetGames(string Player1, string Player2)
         {
-            List<Game> Games = new List<Game>();
-            string CurrentPlayer = "";
-            string Difficulty = "";
-            string Player1 = "";
-            string Player2 = "";
+            //Returns a list of games for the load game menu
+            List<int> Games = new List<int>();
             int GameSaveID;
 
             using (var Conn = new SQLiteConnection(ConnectionString))
             {
                 Conn.Open();
-                string Query = "SELECT SaveGame.GameSaveID, Username, CurrentPlayer, Difficulty FROM Players, PlayerGameSave, SaveGame WHERE Players.PlayerID = PlayerGameSave.PlayerID AND SaveGame.GameSaveID = PlayerGameSave.GameSaveID";
+                string Query = "SELECT SaveGame.GameSaveID " +
+                    "FROM Players, PlayerGameSave, SaveGame " +
+                    "WHERE Players.PlayerID = PlayerGameSave.PlayerID " +
+                    "AND SaveGame.GameSaveID = PlayerGameSave.GameSaveID " +
+                    "AND (@player1 IS NULL OR Players.PlayerID=(SELECT PlayerID FROM Players WHERE Username = @player1) " +
+                    "OR (@player2 IS NULL OR Players.PlayerID=(SELECT PlayerID FROM Players WHERE Username = @player2)))";
                 using (var cmd = new SQLiteCommand(Query, Conn))
-                using (var Reader = cmd.ExecuteReader())
                 {
-                    while (Reader.Read())
+                    cmd.Parameters.AddWithValue("@player1", Player1);
+                    cmd.Parameters.AddWithValue("@player2", Player2);
+                    using (var Reader = cmd.ExecuteReader())
                     {
                         while (Reader.Read())
                         {
                             GameSaveID = Reader.GetInt32(0);
-                            Player1 = Reader.GetString(1);
-                            CurrentPlayer = Reader.GetString(2);
-                            if (!Reader.IsDBNull(3)) Difficulty = Reader.GetString(3);
+                            Games.Add(GameSaveID);
                         }
-                        Reader.NextResult();
-                        while (Reader.Read())
-                        {
-                            Player2 = Reader.GetString(1);
-                        }
-                        Game Game = new Game(CurrentPlayer, Player1, Player2, Difficulty);
-                        Games.Add(Game);
+
                     }
-                    
                 }
                 Conn.Close();
             }

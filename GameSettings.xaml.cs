@@ -49,13 +49,16 @@ namespace Connect4
             {
                 Column2.Visibility = Visibility.Collapsed;
                 ColourText.Text = "Select Colour";
+                Player2Name.Text = "Computer";
+                
             }
             else
             {
                 Difficulty.Visibility = Visibility.Collapsed;
                 DifficultyText.Visibility = Visibility.Collapsed;
             }
-                this.KeyDown += new KeyEventHandler(KeyPressed);
+            Viewer.ChooseSavedGames(Player1Name.Text, Player2Name.Text);
+            this.KeyDown += new KeyEventHandler(KeyPressed);
 
         }
 
@@ -64,7 +67,9 @@ namespace Connect4
             
             P1Name = Player1Name.Text;
             P2Name = Player2Name.Text;
-            if(SaveGame.Text == null)
+            Game game;
+            int GameSaveID = 0;
+            if (SaveGame.Text == null)
             {
                 if (string.IsNullOrWhiteSpace(P1Name) || (Mode != "Computer" && string.IsNullOrWhiteSpace(P2Name)) || (Mode == "Computer" && string.IsNullOrWhiteSpace(Difficulty.Text)) || string.IsNullOrWhiteSpace(Colour.Text))
                 {
@@ -79,10 +84,11 @@ namespace Connect4
                 }
             }
             
-            Game game;
+            
             if (SaveGame.Text != "")
             {
-                game = Database.LoadGame(int.Parse(SaveGame.Text));
+                GameSaveID = int.Parse(SaveGame.Text);
+                game = Database.LoadGame(GameSaveID);
             }
             else game = null;
 
@@ -95,13 +101,13 @@ namespace Connect4
             if (Mode == "User")
             {
                 
-                Window w = new PlayUser(FirstPlayer, P1Name, P2Name, game, 0);
+                Window w = new PlayUser(FirstPlayer, P1Name, P2Name, game, GameSaveID);
                 w.Show();
                 this.Close();
             }
             else
             {
-                Window w = new PlayComputer(FirstPlayer, P1Name, Difficulty.Text,game, 0);
+                Window w = new PlayComputer(FirstPlayer, P1Name, Difficulty.Text,game, GameSaveID);
                 w.Show();
                 this.Close();
             }
@@ -141,5 +147,9 @@ namespace Connect4
             NewUser.Clear();
         }
 
+        private void NameChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Viewer.ChooseSavedGames(Player1Name.Text, Player2Name.Text);
+        }
     }
 }
