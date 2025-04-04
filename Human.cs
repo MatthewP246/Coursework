@@ -38,8 +38,10 @@ namespace Connect4
 
         public double WinLossRatio
         {
-            get 
-            { if (wins == 0 || losses == 0) return 0;
+            get
+            { //If either wins or losses is 0, return 0 to prevent division by 0 error
+                if (wins == 0 || losses == 0) return 0;
+                //Rounds to 3 decimal places
                 else return Math.Round(wins / losses,3); 
             }
         }

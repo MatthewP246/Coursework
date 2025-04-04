@@ -20,7 +20,6 @@ namespace Connect4
             if (!File.Exists(GetDatabasePath()))
             {
                 SQLiteConnection.CreateFile(GetDatabasePath());
-                
                 using (var Conn = new SQLiteConnection(ConnectionString))
                 {
                     Conn.Open();
@@ -28,8 +27,8 @@ namespace Connect4
                     "\"PlayerID\"	INTEGER NOT NULL, " +
                     "\"Username\"	TEXT NOT NULL, " +
                     "\"Wins\"	INTEGER DEFAULT 0, " +
-                    "\"Losses\"	INTEGER DEFAULT 0, " +
-                    "PRIMARY KEY(\"PlayerID\" AUTOINCREMENT" +
+                    "\"Losses\"    INTEGER DEFAULT 0, " +
+                    "PRIMARY KEY(\"PlayerID\" AUTOINCREMENT)" +
                     ");";
                     using (var cmd = new SQLiteCommand(Query, Conn))
                     {
@@ -37,8 +36,9 @@ namespace Connect4
                     }
                     Query = "CREATE TABLE \"SaveGame\" (" +
                     "\"GameSaveID\"    INTEGER NOT NULL," +
-                    "\"Grid\"   INTEGER NOT NULL," +
-                    "\"CurrentPlayer\"    INTEGER NOT NULL," +
+                    "\"Grid\"    INTEGER NOT NULL," +
+                    "\"CurrentPlayer\"    TEXT NOT NULL," +
+                    "\"FirstPlayer\"    TEXT NOT NULL," +
                     "\"Difficulty\"    TEXT," +
                     "PRIMARY KEY(\"GameSaveID\" AUTOINCREMENT)" +
                     ");";
@@ -58,8 +58,10 @@ namespace Connect4
                         cmd.ExecuteNonQuery();
                     }
                 }
-                
+
+
             }
+            
         }
 
         private string GetDatabasePath()
@@ -167,13 +169,14 @@ namespace Connect4
                 {
                     Conn.Open();
                     string Query = "UPDATE SaveGame " +
-                        "SET Grid=@grid, CurrentPlayer=@currentplayer " +
+                        "SET Grid=@grid, CurrentPlayer=@currentplayer, FirstPlayer=@firstplayer" +
                         "WHERE GameSaveID=@id";
                     using (var cmd = new SQLiteCommand(Query, Conn))
                     {
                         cmd.Parameters.AddWithValue("@grid", Grid);
-                        cmd.Parameters.AddWithValue("@currentplayer", Game.CurrentPlayer);
-						cmd.Parameters.AddWithValue("@id", GameSaveID);
+                        cmd.Parameters.AddWithValue("@currentplayer", Game.Board.Player.Colour);
+                        cmd.Parameters.AddWithValue("@firstplayer", Game.FirstPlayer);
+                        cmd.Parameters.AddWithValue("@id", GameSaveID);
                         cmd.ExecuteNonQuery();
                     }
                     Conn.Close();
@@ -184,12 +187,13 @@ namespace Connect4
                 using (var Conn = new SQLiteConnection(ConnectionString))
                 {
                     Conn.Open();
-                    string Query = "INSERT INTO SaveGame (Grid, CurrentPlayer, Difficulty) " +
-                        "VALUES (@grid, @currentplayer, @difficulty)";
+                    string Query = "INSERT INTO SaveGame (Grid, CurrentPlayer, FirstPlayer, Difficulty) " +
+                        "VALUES (@grid, @currentplayer, @firstplayer, @difficulty)";
                     using (var cmd = new SQLiteCommand(Query, Conn))
                     {
 						cmd.Parameters.AddWithValue("@grid", Grid);
-						cmd.Parameters.AddWithValue("@currentplayer", Game.CurrentPlayer);
+						cmd.Parameters.AddWithValue("@currentplayer", Game.Board.Player.Colour);
+                        cmd.Parameters.AddWithValue("@firstplayer", Game.FirstPlayer);
                         cmd.Parameters.AddWithValue("@difficulty", Game.Difficulty);
                         cmd.ExecuteNonQuery();
                     }
@@ -198,18 +202,20 @@ namespace Connect4
                         "FROM SaveGame " +
                         "WHERE Grid=@grid " +
                         "AND CurrentPlayer=@currentplayer " +
+                        "AND FirstPlayer=@firstplayer " +
                         "AND Difficulty=@difficulty";
                     using(var cmd = new SQLiteCommand(Query, Conn))
                     {
                         cmd.Parameters.AddWithValue("@grid", Grid);
-                        cmd.Parameters.AddWithValue("@currentplayer", Game.CurrentPlayer);
+                        cmd.Parameters.AddWithValue("@currentplayer", Game.Board.Player.Colour);
+                        cmd.Parameters.AddWithValue("@firstplayer", Game.FirstPlayer);
                         cmd.Parameters.AddWithValue("@difficulty", Game.Difficulty);
                         GameSaveID = Convert.ToInt32(cmd.ExecuteScalar());
                     }
 
 
 
-                    //Creates records in the link table
+                    //Creates the records in the link table
                     Query = "INSERT INTO PlayerGameSave (PlayerID, GameSaveID) " +
                         "VALUES ((SELECT PlayerID FROM Players WHERE Username=@user), @id)";
                     using (var cmd = new SQLiteCommand(Query, Conn))
@@ -232,6 +238,7 @@ namespace Connect4
             Game Game;
 			string Grid="";
 			string CurrentPlayer="";
+            string FirstPlayer = "";
             string Difficulty="";
             string Player1 = "";
             string Player2 = "";
@@ -240,7 +247,7 @@ namespace Connect4
             using (var Conn=new SQLiteConnection(ConnectionString))
             {
                 Conn.Open();
-                string Query = "SELECT Username, Grid, CurrentPlayer, Difficulty " +
+                string Query = "SELECT Username, Grid, CurrentPlayer, FirstPlayer, Difficulty " +
                     "FROM Players, PlayerGameSave, SaveGame " +
                     "WHERE Players.PlayerID = PlayerGameSave.PlayerID " +
                     "AND SaveGame.GameSaveID = PlayerGameSave.GameSaveID " +
@@ -255,8 +262,9 @@ namespace Connect4
                         Player1 = Reader.GetString(0);
                         Grid = Reader.GetString(1);
                         CurrentPlayer = Reader.GetString(2);
-                        //Checks if the difficulty is null
-                        Difficulty = Reader.GetString(3);
+                        FirstPlayer=Reader.GetString(3);
+                        Difficulty = Reader.GetString(4);
+                        //Reads the next line to get the second player
                         Reader.Read();
                         Player2 = Reader.GetString(0);
                     }
@@ -266,8 +274,9 @@ namespace Connect4
 			}
 
 
-			Game=new Game(CurrentPlayer, Player1, Player2, Difficulty);
-            for(int i = 0; i < 42; i++)
+			Game=new Game(FirstPlayer, Player1, Player2, Difficulty);
+            Game.Board.Player.Colour = CurrentPlayer;
+            for (int i = 0; i < 42; i++)
             {
                 Game.Board.grid[i].Colour= Grid[i].ToString();
                 Game.Board.grid2D[i % 7, i / 7].Colour = Grid[i].ToString();

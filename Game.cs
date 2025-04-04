@@ -57,11 +57,11 @@ namespace Connect4
         {
 			get { return Player2Name; }
 		}
+        public string FirstPlayer
+        {
+            get { return Player1Colour; }
+        }
 
-        public string CurrentPlayer
-		{
-			get { return Player1Colour; }
-		}
         public string Difficulty
         {
             get { return difficulty; }
