@@ -42,15 +42,25 @@ namespace Connect4
         {
             InitializeComponent();
             this.Focus();
-            Player1Name = P1Name;
-            Player2Name = P2Name;
-            Player1Colour = colour;
+            
             GameSaveID = gamesaveid;
             Viewer = new PlayerViewer();
 
             //Loads a saved game if selected
-            if (Game!= null) Connect4 = Game;
-			else Connect4 = new Game(Player1Colour, Player1Name, Player2Name, "None");
+            if (Game != null)
+            {
+                Connect4 = Game;
+                Player1Name = Game.Player1;
+                Player2Name = Game.Player2;
+                Player1Colour = Game.Board.Player.Colour;
+            }
+            else
+            {
+                Player1Name = P1Name;
+                Player2Name = P2Name;
+                Player1Colour = colour;
+                Connect4 = new Game(Player1Colour, Player1Name, Player2Name, "None");
+            }
 
 
             DataContext = Connect4;
@@ -199,6 +209,11 @@ namespace Connect4
             //Displays a message to show the winner and make it visible
             GameWinner.Text = $"{Winner} Wins";
             GameWinner.Visibility = Visibility.Visible;
+            //Deletes the game from the database if saved
+            if (GameSaveID != 0)
+            {
+                Viewer.DeleteGame(GameSaveID);
+            }
             //wait 5s before closing the window and returning to the main menu
             await Task.Delay(5000);
             Window w = new MainMenu();

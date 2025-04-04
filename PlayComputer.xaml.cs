@@ -34,17 +34,27 @@ namespace Connect4
         public PlayComputer(string colour, string P1, string Diff, Game Game, int gamesaveid)
         {
             InitializeComponent();
-            Colour = colour;
-            PlayerName = P1;
-            Difficulty = Diff;
-            DifficultyText.Text = $"Difficulty: {Difficulty}";
             Viewer = new PlayerViewer();
             GameSaveID = gamesaveid;
 
-            if (Game != null) Connect4 = Game;
-            else Connect4 = new Game(Colour, PlayerName, "Computer", Difficulty);
+            if (Game != null)
+            {
+                //Loads a saved game if selected
+                Connect4 = Game;
+                PlayerName = Game.Player1;
+                Colour = Game.Board.Player.Colour;
+                Difficulty = Game.Difficulty;
+            }
+            else
+            {
+                //Creates a new game
+                Colour = colour;
+                PlayerName = P1;
+                Difficulty = Diff;
+                Connect4 = new Game(Colour, PlayerName, "Computer", Difficulty);
+            }
 
-
+            DifficultyText.Text = $"Difficulty: {Difficulty}";
             DataContext = Connect4;
             this.KeyDown += new KeyEventHandler(KeyPressed);
 
@@ -175,14 +185,20 @@ namespace Connect4
             Column5.Visibility = Visibility.Collapsed;
             Column6.Visibility = Visibility.Collapsed;
             Column7.Visibility = Visibility.Collapsed;
-            //Prevents the user starting a new game
+            //Prevents the user starting a new game or saving the completed game
             RestartButton.Visibility = Visibility.Hidden;
             CloseButton.Visibility = Visibility.Hidden;
             CurrentPlayer.Visibility = Visibility.Hidden;
-
+            SaveGameButton.Visibility = Visibility.Hidden;
+            //Displays a message to show the winner and make it visible
             GameWinner.Text = "No one Wins";
             GameWinner.Visibility = Visibility.Visible;
-
+            //Deletes the game from the database if saved or loaded from a save
+            if (GameSaveID != 0)
+            {
+                Viewer.DeleteGame(GameSaveID);
+            }
+            //Waits 5 seconds before returning to the main menu
             await Task.Delay(5000);
             Window w = new MainMenu();
             w.Show();
@@ -207,7 +223,13 @@ namespace Connect4
 
             GameWinner.Text = $"You {(Win?"Win":"Lose")}";
             GameWinner.Visibility = Visibility.Visible;
-            
+
+            //Deletes the game from the database if saved or loaded from a save
+            if (GameSaveID != 0)
+            {
+                Viewer.DeleteGame(GameSaveID);
+            }
+            //Waits 5 seconds before returning to the main menu
             await Task.Delay(5000);
             Window w = new MainMenu();
             w.Show();

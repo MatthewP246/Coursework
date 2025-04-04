@@ -50,14 +50,15 @@ namespace Connect4
                 Column2.Visibility = Visibility.Collapsed;
                 ColourText.Text = "Select Colour";
                 Player2Name.Text = "Computer";
-                
+                //Only shows saved games against the computer
+                Viewer.ChooseSavedGames();
             }
             else
             {
                 Difficulty.Visibility = Visibility.Collapsed;
                 DifficultyText.Visibility = Visibility.Collapsed;
             }
-            Viewer.ChooseSavedGames(Player1Name.Text, Player2Name.Text);
+            
             this.KeyDown += new KeyEventHandler(KeyPressed);
 
         }
@@ -83,21 +84,26 @@ namespace Connect4
                     return;
                 }
             }
-            
-            
+
+
             if (SaveGame.Text != "")
             {
                 GameSaveID = int.Parse(SaveGame.Text);
                 game = Database.LoadGame(GameSaveID);
             }
-            else game = null;
+            else
+            {
+                //If the game is not loaded, create a new game
+                game = null;
+                if (Colour.Text == "Yellow") FirstPlayer = "Y";
+                else if (Colour.Text == "Red") FirstPlayer = "R";
+                //if randomly generated number is even, first Player is red
+                else if (Rgen.Next(101) % 2 == 0) FirstPlayer = "R";
+                else FirstPlayer = "Y";
+            }
 
 
-            if (Colour.Text == "Yellow") FirstPlayer = "Y";
-            else if (Colour.Text == "Red") FirstPlayer = "R";
-            //if randomly generated number is even, first Player is red
-            else if (Rgen.Next(101) % 2 == 0) FirstPlayer = "R";
-            else FirstPlayer = "Y";
+            
             if (Mode == "User")
             {
                 
@@ -147,9 +153,5 @@ namespace Connect4
             NewUser.Clear();
         }
 
-        private void NameChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Viewer.ChooseSavedGames(Player1Name.Text, Player2Name.Text);
-        }
     }
 }

@@ -20,6 +20,45 @@ namespace Connect4
             if (!File.Exists(GetDatabasePath()))
             {
                 SQLiteConnection.CreateFile(GetDatabasePath());
+                
+                using (var Conn = new SQLiteConnection(ConnectionString))
+                {
+                    Conn.Open();
+                    string Query = "CREATE TABLE \"Players\" ( " +
+                    "\"PlayerID\"	INTEGER NOT NULL, " +
+                    "\"Username\"	TEXT NOT NULL, " +
+                    "\"Wins\"	INTEGER DEFAULT 0, " +
+                    "\"Losses\"	INTEGER DEFAULT 0, " +
+                    "PRIMARY KEY(\"PlayerID\" AUTOINCREMENT" +
+                    ");";
+                    using (var cmd = new SQLiteCommand(Query, Conn))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    Query = "CREATE TABLE \"SaveGame\" (" +
+                    "\"GameSaveID\"    INTEGER NOT NULL," +
+                    "\"Grid\"   INTEGER NOT NULL," +
+                    "\"CurrentPlayer\"    INTEGER NOT NULL," +
+                    "\"Difficulty\"    TEXT," +
+                    "PRIMARY KEY(\"GameSaveID\" AUTOINCREMENT)" +
+                    ");";
+                    using (var cmd = new SQLiteCommand(Query, Conn))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    Query = "CREATE TABLE \"PlayerGameSave\" (" +
+                    "\"PlayerID\"    INTEGER NOT NULL," +
+                    "\"GameSaveID\"    INTEGER NOT NULL," +
+                    "PRIMARY KEY(\"PlayerID\", \"GameSaveID\")," +
+                    "FOREIGN KEY(\"PlayerID\") REFERENCES \"Players\"(\"PlayerID\") ON DELETE CASCADE," +
+                    "FOREIGN KEY(\"GameSaveID\") REFERENCES \"SaveGame\"(\"GameSaveID\") ON DELETE CASCADE" +
+                        ");";
+                    using (var cmd = new SQLiteCommand(Query, Conn))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                
             }
         }
 
@@ -44,7 +83,9 @@ namespace Connect4
                 {
                     while (Reader.Read())
                     {
-                        Players.Add(new Human("R", Reader.GetString(0), Reader.GetInt32(1), Reader.GetInt32(2)));
+                        //Doesn't show the computer player to prevent confusion
+                        //Computer player is a placeholder
+                        if(Reader.GetString(0) != "Computer") Players.Add(new Human("R", Reader.GetString(0), Reader.GetInt32(1), Reader.GetInt32(2)));
                         
                     }
                 }
@@ -203,26 +244,21 @@ namespace Connect4
                     "FROM Players, PlayerGameSave, SaveGame " +
                     "WHERE Players.PlayerID = PlayerGameSave.PlayerID " +
                     "AND SaveGame.GameSaveID = PlayerGameSave.GameSaveID " +
-                    "AND PlayerGameSave.GameSaveID = 1";
+                    "AND PlayerGameSave.GameSaveID = @id";
 
                 using (var cmd = new SQLiteCommand(Query, Conn))
                 {
                     cmd.Parameters.AddWithValue("@id", GameSaveID);
                     using (var Reader = cmd.ExecuteReader())
                     {
-                        while (Reader.Read())
-                        {
-                            Player1 = Reader.GetString(0);
-                            Grid = Reader.GetString(1);
-                            CurrentPlayer = Reader.GetString(2);
-                            //Checks if the difficulty is null
-                            if (!Reader.IsDBNull(3)) Difficulty = Reader.GetString(3);
-                        }
-                        Reader.NextResult();
-                        while (Reader.Read())
-                        {
-                            Player2 = Reader.GetString(0);
-                        }
+                        Reader.Read();
+                        Player1 = Reader.GetString(0);
+                        Grid = Reader.GetString(1);
+                        CurrentPlayer = Reader.GetString(2);
+                        //Checks if the difficulty is null
+                        Difficulty = Reader.GetString(3);
+                        Reader.Read();
+                        Player2 = Reader.GetString(0);
                     }
                 }
                 Conn.Close();
@@ -234,16 +270,18 @@ namespace Connect4
             for(int i = 0; i < 42; i++)
             {
                 Game.Board.grid[i].Colour= Grid[i].ToString();
-			}
+                Game.Board.grid2D[i % 7, i / 7].Colour = Grid[i].ToString();
+
+            }
             
 			return Game;
         }
 
-        public List<int> GetGames(string Player1, string Player2)
+        public List<int> GetGames(string Username)
         {
             //Returns a list of games for the load game menu
             List<int> Games = new List<int>();
-            int GameSaveID;
+            int GameSaveID=0;
 
             using (var Conn = new SQLiteConnection(ConnectionString))
             {
@@ -252,25 +290,47 @@ namespace Connect4
                     "FROM Players, PlayerGameSave, SaveGame " +
                     "WHERE Players.PlayerID = PlayerGameSave.PlayerID " +
                     "AND SaveGame.GameSaveID = PlayerGameSave.GameSaveID " +
-                    "AND (@player1 IS NULL OR Players.PlayerID=(SELECT PlayerID FROM Players WHERE Username = @player1) " +
-                    "OR (@player2 IS NULL OR Players.PlayerID=(SELECT PlayerID FROM Players WHERE Username = @player2)))";
+                    "AND (@user IS NULL OR Username=@user )";
                 using (var cmd = new SQLiteCommand(Query, Conn))
                 {
-                    cmd.Parameters.AddWithValue("@player1", Player1);
-                    cmd.Parameters.AddWithValue("@player2", Player2);
+                    cmd.Parameters.AddWithValue("@user", Username);
                     using (var Reader = cmd.ExecuteReader())
                     {
                         while (Reader.Read())
                         {
-                            GameSaveID = Reader.GetInt32(0);
-                            Games.Add(GameSaveID);
+                            //Checks if the game already exists in the list
+                            if (GameSaveID != Reader.GetInt32(0))
+                            {
+                                GameSaveID = Reader.GetInt32(0);
+                                Games.Add(GameSaveID);
+                            }
+                            
                         }
 
                     }
                 }
+                
                 Conn.Close();
             }
             return Games;
+        }
+
+        public void DeleteGame(int GameSaveID)
+        {
+            //Deletes a game from the database
+            using (var Conn = new SQLiteConnection(ConnectionString))
+            {
+                Conn.Open();
+                string Query = "DELETE FROM SaveGame " +
+                    "WHERE GameSaveID=@id";
+                using (var cmd = new SQLiteCommand(Query, Conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", GameSaveID);
+                    cmd.ExecuteNonQuery();
+                }
+                
+                Conn.Close();
+            }
         }
     }
 }

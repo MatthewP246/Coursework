@@ -41,7 +41,7 @@
 
         <StackPanel x:Name="Column1" Grid.Row="2" Grid.Column="2" VerticalAlignment="Top" Orientation="Vertical" Width="Auto" Height="804" Grid.RowSpan="4" >
             <TextBlock Text="Select Player 1" FontSize="25"/>
-            <ComboBox x:Name="Player1Name" Height="30" ItemsSource="{Binding PlayerList}" DisplayMemberPath="Name" SelectedValuePath="Name" SelectedValue="{Binding Path=Name}" SelectionChanged="NameChanged"/>
+            <ComboBox x:Name="Player1Name" Height="30" ItemsSource="{Binding PlayerList}" DisplayMemberPath="Name" SelectedValuePath="Name" SelectedValue="{Binding Path=Name}"/>
 
 
             <Separator Opacity="0" Height="30"/>
@@ -65,7 +65,7 @@
 
         <StackPanel x:Name="Column2" Grid.Row="2" Grid.Column="3" VerticalAlignment="Top" Orientation="Vertical" Height="804"  Grid.RowSpan="4" >
             <TextBlock Text="Select Player 2" FontSize="25"/>
-            <ComboBox x:Name="Player2Name" Height="30" ItemsSource="{Binding PlayerList}" DisplayMemberPath="Name" SelectedValuePath="Name" SelectedValue="{Binding Path=Name}" SelectionChanged="NameChanged"/>
+            <ComboBox x:Name="Player2Name" Height="30" ItemsSource="{Binding PlayerList}" DisplayMemberPath="Name" SelectedValuePath="Name" SelectedValue="{Binding Path=Name}"/>
 
         </StackPanel>
 

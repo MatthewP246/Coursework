@@ -15,13 +15,12 @@ namespace Connect4
 
         public ObservableCollection<Human> PlayerList {  get; private set; }
         public ObservableCollection<int> SavedGames { get; private set; }
-        private string Player1Name;
-        private string Player2Name;
+        private string Username;
         public PlayerViewer() 
         {
             Access = new DatabaseAccess();
             PlayerList = new ObservableCollection<Human>(Access.GetPlayers());
-            SavedGames = new ObservableCollection<int>(Access.GetGames(Player1Name,Player2Name));
+            SavedGames = new ObservableCollection<int>(Access.GetGames(Username));
         }
 
         public void AddPlayer(string name)
@@ -70,12 +69,22 @@ namespace Connect4
             return GameSaveID;
         }
 
-        public void ChooseSavedGames(string Player1, string Player2)
+        public void DeleteGame(int GameSaveID)
         {
-            Player1Name = Player1;
-            Player2Name = Player2;
+            Access.DeleteGame(GameSaveID);
             SavedGames.Clear();
-            foreach (var item in Access.GetGames(Player1, Player2))
+            foreach (var item in Access.GetGames(null))
+            {
+                SavedGames.Add(item);
+            }
+            OnPropertyChanged(nameof(SavedGames));
+        }
+
+
+        public void ChooseSavedGames()
+        {
+            SavedGames.Clear();
+            foreach (var item in Access.GetGames("Computer"))
             {
                 SavedGames.Add(item);
             }

@@ -49,7 +49,7 @@
 
 
             <Button x:Name ="Column1" Click="Column1_Click" Grid.Column="2" Grid.Row="2" Background="{x:Null}" BorderBrush="{x:Null}" Height="900" Grid.RowSpan="6" Width="Auto" VerticalAlignment="Top" Opacity="0.5" Cursor="Hand">
-                
+                <TextBlock Background="{x:Null}" Height="900" Width="150"/>
             </Button>
             <Button x:Name ="Column2" Click="Column2_Click" Grid.Column="3" Grid.Row="2" Background="{x:Null}" BorderBrush="{x:Null}" Height="Auto" Grid.RowSpan="6" Width="Auto" VerticalAlignment="Top" Opacity="0.5" Cursor="Hand">
                 <TextBlock Background="{x:Null}" Height="900" Width="150"/>
@@ -147,7 +147,8 @@
                 <Image Source="/Images/Restart.png"/>
             </Button>
 
-            <TextBlock x:Name="DifficultyText" Grid.Column="9" Grid.Row="1" Text="Difficulty: Easy" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Button x:Name="SaveGameButton" Click="SaveGame" Grid.Row="1" Grid.Column="9" Content="Save Game" FontSize="30" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand"/>
+            <TextBlock x:Name="DifficultyText" Grid.Column="1" Grid.Row="2" Text="Difficulty: Easy" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
 
 
