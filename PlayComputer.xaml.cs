@@ -20,6 +20,14 @@ namespace Connect4
     /// <summary>
     /// Interaction logic for PlayComputer.xaml
     /// </summary>
+
+    /*
+     * PLAY THE COMPUTER
+     * 
+     * UI for playing against the computer
+     * Contains specific place counter methods for against the computer
+     * Contains method for ending the game
+     */
     public partial class PlayComputer : Window
     {
 
@@ -55,11 +63,14 @@ namespace Connect4
             }
 
             DifficultyText.Text = $"Difficulty: {Difficulty}";
+            //Creates binding for the gameboard
             DataContext = Connect4;
+            //Sets up a event handler to recognise key presses
             this.KeyDown += new KeyEventHandler(KeyPressed);
 
         }
 
+        //Clicks for placing the counter
         private void Column1_Click(object sender, RoutedEventArgs e)
         {
             PlaceCounter(0);
@@ -147,7 +158,7 @@ namespace Connect4
 
         private void Restart(object sender, RoutedEventArgs e)
         {
-            
+            //Restarts the game with the same initial settings
             Window w = new PlayComputer(Colour, PlayerName, Difficulty, null, GameSaveID);
             w.Show();
             this.Close();
@@ -155,6 +166,7 @@ namespace Connect4
 
         private async void PlaceCounter(int C)
         {
+            //Method for placing counter then the computer placing a counter
             string Status;
             string Winner = "";
             string Loser = "";
@@ -177,6 +189,7 @@ namespace Connect4
 
         private async void GameEnd()
         {
+            this.KeyDown -= new KeyEventHandler(KeyPressed);
             //Prevents the user placing any more counters
             Column1.Visibility = Visibility.Collapsed;
             Column2.Visibility = Visibility.Collapsed;
@@ -190,7 +203,7 @@ namespace Connect4
             CloseButton.Visibility = Visibility.Hidden;
             CurrentPlayer.Visibility = Visibility.Hidden;
             SaveGameButton.Visibility = Visibility.Hidden;
-            //Displays a message to show the winner and make it visible
+            //Displays a message to show a draw and make it visible
             GameWinner.Text = "No one Wins";
             GameWinner.Visibility = Visibility.Visible;
             //Deletes the game from the database if saved or loaded from a save
@@ -208,6 +221,8 @@ namespace Connect4
         //Overload for GameEnd method
         private async void GameEnd(bool Win)
         {
+            //Disables keystrokes
+            this.KeyDown -= new KeyEventHandler(KeyPressed);
             //Prevents the user placing any more counters
             Column1.Visibility = Visibility.Collapsed;
             Column2.Visibility = Visibility.Collapsed;

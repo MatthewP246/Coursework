@@ -9,22 +9,29 @@ using System.Threading.Tasks;
 
 namespace Connect4
 {
+    /*
+     * PLAYER VIEWER
+     * 
+     * Creates observable collections for the leaderboard and saved games
+     * Contains methods for updating the leaderboard and saved games when players are added or games saved
+     */
     internal class PlayerViewer
     {
         private DatabaseAccess Access;
 
         public ObservableCollection<Human> PlayerList {  get; private set; }
         public ObservableCollection<int> SavedGames { get; private set; }
-        private string Username;
         public PlayerViewer() 
         {
+            //Initialising the collections as the database
             Access = new DatabaseAccess();
             PlayerList = new ObservableCollection<Human>(Access.GetPlayers());
-            SavedGames = new ObservableCollection<int>(Access.GetGames(Username));
+            SavedGames = new ObservableCollection<int>(Access.GetGames(null));
         }
 
         public void AddPlayer(string name)
         {
+            //Adds player to the Database then recreates the collection with the new player
             Access.AddPlayer(name);
             PlayerList.Clear();
             foreach(var Player in Access.GetPlayers())
@@ -36,6 +43,7 @@ namespace Connect4
 
         public void AddWin(string Username)
         {
+            //Adds a win to the player indictaed then updates leaderboard to show this
             Access.AddWin(Username);
             PlayerList.Clear();
             foreach (var Player in Access.GetPlayers())
@@ -47,6 +55,7 @@ namespace Connect4
 
         public void AddLoss(string Username)
         {
+            //Adds a loss to the player indictaed then updates leaderboard to show this
             Access.AddLoss(Username);
             PlayerList.Clear();
             foreach (var Player in Access.GetPlayers())
@@ -58,9 +67,11 @@ namespace Connect4
 
         public int SaveGame(Game Game, int GameSaveID)
         {
-            GameSaveID=Access.SaveGame(Game, GameSaveID);
+            //Saves the game to the database and returns the ID of the saved game
+            //Updates the list of saved games for the UI
+            GameSaveID = Access.SaveGame(Game, GameSaveID);
             SavedGames.Clear();
-            foreach (var item in SavedGames)
+            foreach (var item in Access.GetGames(null))
             {
                 SavedGames.Add(item);
             }
@@ -71,6 +82,7 @@ namespace Connect4
 
         public void DeleteGame(int GameSaveID)
         {
+            //Deletes a saved game from the database and updates the list of saved games for the UI
             Access.DeleteGame(GameSaveID);
             SavedGames.Clear();
             foreach (var item in Access.GetGames(null))
@@ -83,6 +95,7 @@ namespace Connect4
 
         public void ChooseSavedGames()
         {
+            //Displays only games against the computer
             SavedGames.Clear();
             foreach (var item in Access.GetGames("Computer"))
             {
@@ -91,6 +104,7 @@ namespace Connect4
             OnPropertyChanged(nameof(SavedGames));
         }
 
+        //Calls an event to update the bindings
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string PropertyName)
         {

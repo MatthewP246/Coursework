@@ -9,6 +9,13 @@ using System.Windows.Media.Imaging;
 
 namespace Connect4
 {
+
+    /*
+     * CONVERTER
+     * 
+     * Used to convert the colour of a counter to the equivalent bitmap image for the UI
+     * Converts counters to strike through equivalent once player has won
+     */
     class CounterColourConverter : IValueConverter
     {
 

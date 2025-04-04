@@ -7,8 +7,11 @@ using System.Threading.Tasks;
 
 namespace Connect4
 {
-    //Abstract Class Player
-    //Contains common attributes for all players e.g. Colour and Place Counter
+    /*
+     * ABSTRACT CLASS PLAYER
+     * 
+     * Contains common attributes for all players e.g. Colour and Place Counter
+     */
     abstract class Player
     {
         //Initialises Colour as needed for all players

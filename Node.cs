@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace Connect4
 {
+    /*
+     * NODE 
+     * 
+     * Contains data for nodes in the link list
+     */
     public class Node
     {
         public int Data;

@@ -12,6 +12,13 @@ using System.Windows.Controls;
 
 namespace Connect4
 {
+    /*
+     * COMPUTER PLAYER
+     * 
+     * Contains minmax method for placing counters
+     * Contains alternate method for placing counters
+     * Contains the heuristic algorithm used to evaluate the board
+     */
     internal class Computer : Player
     {
         //Creates new random generator

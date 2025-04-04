@@ -7,6 +7,11 @@ using System.Windows;
 
 namespace Connect4
 {
+    /*
+     * GAME
+     * 
+     * Contains the game logic
+     */
     public class Game
     {
         //Initialising variables

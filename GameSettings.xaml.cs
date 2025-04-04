@@ -21,9 +21,10 @@ namespace Connect4
 {
     /*
      * GAME SETTINGS
+     * 
      * Allows the user to select:
      * Usernames, Colour, Difficulty
-     * Allows the user to create a new player
+     * Allows the user to create a new player or load a saved game
      */
     public partial class GameSettings : Window 
     {
@@ -45,6 +46,7 @@ namespace Connect4
             Database = new DatabaseAccess();
             DataContext = Viewer;
 
+            //Displays/Hides certain boxes depending on the gamemode
             if (Mode == "Computer")
             {
                 Column2.Visibility = Visibility.Collapsed;
@@ -65,11 +67,12 @@ namespace Connect4
 
         private void Start(object sender, RoutedEventArgs e)
         {
-            
+            //Gets the data from the text boxes
             P1Name = Player1Name.Text;
             P2Name = Player2Name.Text;
             Game game;
             int GameSaveID = 0;
+            //Checks if the user has entered all data or loaded a game
             if (SaveGame.Text == null)
             {
                 if (string.IsNullOrWhiteSpace(P1Name) || (Mode != "Computer" && string.IsNullOrWhiteSpace(P2Name)) || (Mode == "Computer" && string.IsNullOrWhiteSpace(Difficulty.Text)) || string.IsNullOrWhiteSpace(Colour.Text))
@@ -85,15 +88,15 @@ namespace Connect4
                 }
             }
 
-
-            if (SaveGame.Text != "")
+            //if the user has selected a saved game, load it
+            if (!string.IsNullOrWhiteSpace(SaveGame.Text))
             {
                 GameSaveID = int.Parse(SaveGame.Text);
                 game = Database.LoadGame(GameSaveID);
             }
             else
             {
-                //If the game is not loaded, create a new game
+                //If a saved game is not selected, create a new game
                 game = null;
                 if (Colour.Text == "Yellow") FirstPlayer = "Y";
                 else if (Colour.Text == "Red") FirstPlayer = "R";
@@ -103,7 +106,7 @@ namespace Connect4
             }
 
 
-            
+            //Creates a new game with the selected data and depending on the gamemode
             if (Mode == "User")
             {
                 
@@ -121,8 +124,10 @@ namespace Connect4
 
         private void AddPlayer(object sender, RoutedEventArgs e)
         {
+            //Adds a new player to the database
             string name = NewUser.Text.Trim();
-            if(string.IsNullOrWhiteSpace(name) || name=="Enter Username")
+            //Checks if the name is valid
+            if (string.IsNullOrWhiteSpace(name) || name=="Enter Username")
             {
                 MessageBox.Show("Please enter a valid name!", "Invalid input", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
@@ -135,6 +140,7 @@ namespace Connect4
 
         private void Close(object sender, RoutedEventArgs e)
         {
+            //Closes the window
             Window w = new MainMenu();
             w.Show();
             this.Close();
@@ -142,6 +148,7 @@ namespace Connect4
 
         private void KeyPressed(object sender, KeyEventArgs e)
         {
+            //Method for recognising keystrokes
             if (e.Key == Key.Escape)
             {
                 Close(sender, e);
@@ -150,6 +157,7 @@ namespace Connect4
 
         private void NewUser_GotFocus(object sender, RoutedEventArgs e)
         {
+            //Clears the text box when it is clicked
             NewUser.Clear();
         }
 

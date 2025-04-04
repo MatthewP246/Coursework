@@ -16,7 +16,13 @@ namespace Connect4
 {
     /// <summary>
     /// Interaction logic for MainMenu.xaml
-    /// </summary>
+    /// </summary
+    
+    /*
+     * MAIN MENU
+     * 
+     * allows the user to select which mode they play, look at the rules or see the leaderboard
+     */
     public partial class MainMenu : Window
     {
 
@@ -31,38 +37,32 @@ namespace Connect4
             this.KeyDown += new KeyEventHandler(KeyPressed);
         }
 
-
+        //Opens the game settings window with the selected mode
         private void PlayUser(object sender, RoutedEventArgs e)
         {
-
-
             Window w = new GameSettings("User");
             w.Show();
             this.Close();
-
-
-
-
         }
 
         private void PlayComputer(object sender, RoutedEventArgs e)
         {
-
             Window w = new GameSettings("Computer");
             w.Show();
             this.Close();
-
-
         }
 
         private void Rules(object sender, RoutedEventArgs e)
         {
+            //Opens the rules window
             Window w = new Rules();
             w.Show();
             this.Close();
         }
 
 
+
+        //Used to recognise keystrokes
         private void KeyPressed(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Escape)

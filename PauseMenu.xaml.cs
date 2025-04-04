@@ -17,6 +17,13 @@ namespace Connect4
     /// <summary>
     /// Interaction logic for PauseMenu.xaml
     /// </summary>
+
+
+    /*
+     * PAUSE MENU 
+     * 
+     * Gives the options to quit to the desktop or return to the main menu
+     */
     public partial class PauseMenu : Window
     {
         public PauseMenu()
@@ -27,8 +34,8 @@ namespace Connect4
 
         private void QuitToDesktop_Click(object sender, RoutedEventArgs e)
         {
+            //Closes the application
             Application.Current.Shutdown();
-
         }
 
         private void ReturnToMenu_Click(object sender, RoutedEventArgs e)

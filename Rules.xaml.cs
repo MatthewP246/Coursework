@@ -20,7 +20,8 @@ namespace Connect4
     /// 
     /*
      * RULES
-     * Allows new players to learn the rules of the game
+     * 
+     * Allows new players to learn the rules of the game using the visual
      */
     public partial class Rules : Window
     {
@@ -32,6 +33,7 @@ namespace Connect4
 
         private void Close(object sender, RoutedEventArgs e)
         {
+            //Returns to main menu
             Window w = new MainMenu();
             w.Show();
             this.Close();

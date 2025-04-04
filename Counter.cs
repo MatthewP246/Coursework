@@ -7,6 +7,13 @@ using System.Threading.Tasks;
 
 namespace Connect4
 {
+    /*
+     * COUNTER
+     * 
+     * Create counters used in the game board.
+     * Colour property used to determine the colour of the counter in the game.
+     * Contains method for updating the data binding
+     */
     public class Counter : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;

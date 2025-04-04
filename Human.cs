@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace Connect4
 {
+    /*
+     * HUMAN
+     * 
+     * Contains get/set methods for the leaderboard
+     * Contains an override of the PlaceCounter method
+     */
     internal class Human : Player
     {
         private string name;
@@ -45,7 +51,7 @@ namespace Connect4
                 else return Math.Round(wins / losses,3); 
             }
         }
-        //Place Counter method for human players
+        //override for Place Counter method for human players
         public override string PlaceCounter(int Column, Board Board, string Difficulty)
         {
             return Board.PlaceCounter(Column, false);

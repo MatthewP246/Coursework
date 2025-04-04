@@ -8,6 +8,12 @@ using System.Windows.Documents;
 
 namespace Connect4
 {
+    /*
+     * LINKED LIST
+     * 
+     * Creates a linked list of nodes
+     * Contains methods for adding to the front and back of the list, searching for a node, and counting the number of nodes in the list
+     */
     public class LinkList : IEnumerable
     {
         private Node Head;
@@ -21,11 +27,13 @@ namespace Connect4
 
         public int Count()
         {
+            //Seperate method needed as it is recursive
             return Length(Head);
         }
 
         private int Length(Node a)
         {
+            //Finds the length of the list
             if (a == null)
             {
                 return 0;
@@ -38,6 +46,7 @@ namespace Connect4
 
         public void AddToFront(int s)
         {
+            //Adds to the front of the list
             Node n = new Node();
             n.Data = s;
             n.Next = Head;
@@ -76,6 +85,7 @@ namespace Connect4
 
         public int Peek(int position)
         {
+            //Returns the data at a given position
             Node a = Head;
 
             for (int x = 0; x < position; x++)
@@ -95,6 +105,7 @@ namespace Connect4
 
         public IEnumerator GetEnumerator()
         {
+            //Enumerator used for foreach loops
             Node a = Head;
             while (a != null)
             {

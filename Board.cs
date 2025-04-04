@@ -11,6 +11,12 @@ using System.Xaml.Schema;
 
 namespace Connect4
 {
+    /*
+     * BOARD
+     * 
+     * Used to store the board of counters
+     * Contains place counter and check win methods
+     */
     public class Board
     {
         private Counter[] Grid;

@@ -9,6 +9,12 @@ using System.Windows.Controls.Primitives;
 
 namespace Connect4
 {
+    /*
+     * DATABASE
+     * 
+     * Facilitates the connection to the database
+     * Contains all database queries
+     */
     class DatabaseAccess
     {
         private string ConnectionString;
@@ -20,6 +26,7 @@ namespace Connect4
             if (!File.Exists(GetDatabasePath()))
             {
                 SQLiteConnection.CreateFile(GetDatabasePath());
+                //Adds neccessary tables to the database
                 using (var Conn = new SQLiteConnection(ConnectionString))
                 {
                     Conn.Open();
@@ -85,8 +92,7 @@ namespace Connect4
                 {
                     while (Reader.Read())
                     {
-                        //Doesn't show the computer player to prevent confusion
-                        //Computer player is a placeholder
+                        //Doesn't show the computer player to prevent confusion (Computer player is a placeholder)
                         if(Reader.GetString(0) != "Computer") Players.Add(new Human("R", Reader.GetString(0), Reader.GetInt32(1), Reader.GetInt32(2)));
                         
                     }
@@ -107,6 +113,7 @@ namespace Connect4
                     "WHERE Username=@user";
                 using (var cmd = new SQLiteCommand(Query, Conn))
                 {
+                    //Ensures correct user is selected
                     cmd.Parameters.AddWithValue("@user", Username);
                     cmd.ExecuteNonQuery();
                 }
@@ -163,6 +170,7 @@ namespace Connect4
             string Grid= string.Join("", BoardGrid);
 
             //Checks if game already exists
+            //If so, update the record instead of creating a new record
             if (GameSaveID != 0)
             {
                 using (var Conn = new SQLiteConnection(ConnectionString))
@@ -184,6 +192,7 @@ namespace Connect4
             }
             else
             {
+                //If the game doesn't exist, create a new record
                 using (var Conn = new SQLiteConnection(ConnectionString))
                 {
                     Conn.Open();
@@ -273,7 +282,7 @@ namespace Connect4
                     
 			}
 
-
+            //Creates the game and returns it
 			Game=new Game(FirstPlayer, Player1, Player2, Difficulty);
             Game.Board.Player.Colour = CurrentPlayer;
             for (int i = 0; i < 42; i++)
@@ -288,9 +297,8 @@ namespace Connect4
 
         public List<int> GetGames(string Username)
         {
-            //Returns a list of games for the load game menu
+            //Returns a list of game IDs for the load game menu
             List<int> Games = new List<int>();
-            int GameSaveID=0;
 
             using (var Conn = new SQLiteConnection(ConnectionString))
             {
@@ -307,11 +315,10 @@ namespace Connect4
                     {
                         while (Reader.Read())
                         {
-                            //Checks if the game already exists in the list
-                            if (GameSaveID != Reader.GetInt32(0))
+                            //Checks if the game already exists in the list to prevent repeated entries
+                            if (!Games.Contains(Reader.GetInt32(0)))
                             {
-                                GameSaveID = Reader.GetInt32(0);
-                                Games.Add(GameSaveID);
+                                Games.Add(Reader.GetInt32(0));
                             }
                             
                         }

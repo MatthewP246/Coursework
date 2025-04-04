@@ -25,6 +25,7 @@ namespace Connect4
 
     /*
      * PLAY USER
+     * 
      * Allows 2 players to play against each other
      * Can load a saved game if selected
      */
@@ -46,7 +47,7 @@ namespace Connect4
             GameSaveID = gamesaveid;
             Viewer = new PlayerViewer();
 
-            //Loads a saved game if selected
+            //Loads a saved game if selected and assings neccessary variables
             if (Game != null)
             {
                 Connect4 = Game;
@@ -152,16 +153,17 @@ namespace Connect4
             }
         }
 
-        private void Close(object sender, RoutedEventArgs e) //Closes the game
+        private void Close(object sender, RoutedEventArgs e)
         {
-            
+            //Opens the pause menu
             Window w = new PauseMenu();
             w.Owner = this;
             w.ShowDialog();
         }
 
-        private void Restart(object sender, RoutedEventArgs e) //Restarts the game with the original settings
+        private void Restart(object sender, RoutedEventArgs e) 
         {
+            //Restarts the game with the original settings
             Window w = new PlayUser(Player1Colour, Player1Name, Player2Name, Connect4, GameSaveID);
             w.Show();
             this.Close();
@@ -172,6 +174,7 @@ namespace Connect4
 
         private void PlaceCounter(int C)
         {
+
             //Places counter and assings the status of the game after placing a counter
             string Status;
             string Winner="";
@@ -192,6 +195,8 @@ namespace Connect4
 
         private async void GameEnd(string Winner)
         {
+            //Disables keystrokes
+            this.KeyDown -= new KeyEventHandler(KeyPressed);
             //Prevents the user placing any more Counters
             Column1.Visibility = Visibility.Collapsed;
             Column2.Visibility = Visibility.Collapsed;
