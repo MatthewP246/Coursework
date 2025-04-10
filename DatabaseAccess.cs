@@ -297,6 +297,7 @@ namespace Connect4
 
         public List<int> GetGames(string Username)
         {
+            //Username used to only show the computer games if selected
             //Returns a list of game IDs for the load game menu
             List<int> Games = new List<int>();
 
@@ -307,7 +308,7 @@ namespace Connect4
                     "FROM Players, PlayerGameSave, SaveGame " +
                     "WHERE Players.PlayerID = PlayerGameSave.PlayerID " +
                     "AND SaveGame.GameSaveID = PlayerGameSave.GameSaveID " +
-                    "AND (@user IS NULL OR Username=@user )";
+                    "AND (@user IS NULL OR Username=@user)";
                 using (var cmd = new SQLiteCommand(Query, Conn))
                 {
                     cmd.Parameters.AddWithValue("@user", Username);
