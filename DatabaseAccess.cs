@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SQLite;
 using System.IO;
 using System.Windows.Controls.Primitives;
+using System.Windows;
 
 namespace Connect4
 {
@@ -177,7 +178,7 @@ namespace Connect4
                 {
                     Conn.Open();
                     string Query = "UPDATE SaveGame " +
-                        "SET Grid=@grid, CurrentPlayer=@currentplayer, FirstPlayer=@firstplayer" +
+                        "SET Grid=@grid, CurrentPlayer=@currentplayer, FirstPlayer=@firstplayer " +
                         "WHERE GameSaveID=@id";
                     using (var cmd = new SQLiteCommand(Query, Conn))
                     {
@@ -239,7 +240,8 @@ namespace Connect4
                         Conn.Close();
                 }
             }
-			return GameSaveID;
+            MessageBox.Show($"Game saved successfully as game {GameSaveID}", "Save Game", MessageBoxButton.OK);
+            return GameSaveID;
 		}
         public Game LoadGame(int GameSaveID)
         {
