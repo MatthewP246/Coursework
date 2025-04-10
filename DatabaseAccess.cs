@@ -57,8 +57,8 @@ namespace Connect4
                     "\"PlayerID\"    INTEGER NOT NULL," +
                     "\"GameSaveID\"    INTEGER NOT NULL," +
                     "PRIMARY KEY(\"PlayerID\", \"GameSaveID\")," +
-                    "FOREIGN KEY(\"PlayerID\") REFERENCES \"Players\"(\"PlayerID\") ON DELETE CASCADE," +
-                    "FOREIGN KEY(\"GameSaveID\") REFERENCES \"SaveGame\"(\"GameSaveID\") ON DELETE CASCADE" +
+                    "FOREIGN KEY(\"PlayerID\") REFERENCES \"Players\"(\"PlayerID\")," +
+                    "FOREIGN KEY(\"GameSaveID\") REFERENCES \"SaveGame\"(\"GameSaveID\")" +
                         ");";
                     using (var cmd = new SQLiteCommand(Query, Conn))
                     {
@@ -344,8 +344,16 @@ namespace Connect4
                     cmd.Parameters.AddWithValue("@id", GameSaveID);
                     cmd.ExecuteNonQuery();
                 }
-                
-                Conn.Close();
+                //Deletes entries from the link table
+                Query = "DELETE FROM PlayerGameSave " +
+                    "WHERE GameSaveID=@id";
+                using (var cmd = new SQLiteCommand(Query, Conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", GameSaveID);
+                    cmd.ExecuteNonQuery();
+                }
+
+                    Conn.Close();
             }
         }
     }
