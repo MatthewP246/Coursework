@@ -141,7 +141,7 @@ namespace Connect4
 
                 //4 in a row
                 if (playerCount == 4) HValue += 100000;
-                //3 in a row
+                //3 in a row where the non player space is empty
                 else if (playerCount == 3 && emptyCount == 1) HValue += 5;
                 //2 in a row
                 else if (playerCount == 2 && emptyCount == 2) HValue += 2;
