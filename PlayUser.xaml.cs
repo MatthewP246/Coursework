@@ -63,7 +63,7 @@ namespace Connect4
                 Connect4 = new Game(Player1Colour, Player1Name, Player2Name, "None");
             }
 
-
+            CurrentPlayerText.Text = $"{Player1Name}'s Turn";
             DataContext = Connect4;
 
 
@@ -191,13 +191,14 @@ namespace Connect4
             if (Winner != "") Viewer.AddWin(Winner);
             if (Loser != "" && Loser != "Computer") Viewer.AddLoss(Loser);
 
+            CurrentPlayerText.Text = (CurrentPlayerText.Text == $"{Player1Name}'s Turn" ? $"{Player2Name}'s Turn" : $"{Player1Name}'s Turn");
         }
 
         private async void GameEnd(string Winner)
         {
             //Disables keystrokes
             this.KeyDown -= new KeyEventHandler(KeyPressed);
-            //Prevents the user placing any more Counters
+            //Prevents the user clicking to place any more Counters
             Column1.Visibility = Visibility.Collapsed;
             Column2.Visibility = Visibility.Collapsed;
             Column3.Visibility = Visibility.Collapsed;
@@ -215,10 +216,7 @@ namespace Connect4
             GameWinner.Text = $"{Winner} Wins";
             GameWinner.Visibility = Visibility.Visible;
             //Deletes the game from the database if saved
-            if (GameSaveID != 0)
-            {
-                Viewer.DeleteGame(GameSaveID);
-            }
+            if (GameSaveID != 0) Viewer.DeleteGame(GameSaveID);
             //wait 5s before closing the window and returning to the main menu
             await Task.Delay(5000);
             Window w = new MainMenu();

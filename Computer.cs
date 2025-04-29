@@ -29,8 +29,7 @@ namespace Connect4
         public Computer(string Colour) : base( Colour)
         {
             //if Computer Colour is yellow, Player Colour is red and vice versa
-            if (Colour == "Y") PlayerColour = "R";
-            else PlayerColour = "Y";
+            PlayerColour = (Colour == "Y" ? "R" : "Y");
         }
 
         public override string PlaceCounter(int Column, Board Board, string Difficulty)
@@ -223,7 +222,7 @@ namespace Connect4
             {
                 if (Terminal)
                 {
-                    //returns a Value based on if the computer is playing, the human is playing or its a draw
+                    //returns a Value based on if the computer is the final move, the user is the final move or its a draw
                     //also returns a Column of -1 to indicate the game is over
                     if (Board.Player.Colour == GetColour) return (-1, 1000000000);
                     else if (Board.Player.Colour == PlayerColour) return (-1, -1000000000);
@@ -238,6 +237,7 @@ namespace Connect4
             //the Player is trying to maximise the heuristic Value of the board
             if (MaximisingPlayer)
             {
+                //sets a minimum value so any heuristic score to begin with with always be greater
                 int Value = int.MinValue;
 
                 foreach (int l in ValidLocations)
@@ -281,6 +281,7 @@ namespace Connect4
             }
             else //Minimising Player
             {
+                //sets a maximum value so any heuristic score to begin with with always be less
                 int Value = int.MaxValue;
 
 

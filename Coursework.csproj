@@ -171,6 +171,7 @@
     <Resource Include="Images\Red D1.png" />
     <Resource Include="Images\Red D2.png" />
     <Resource Include="Images\Red.png" />
+    <Resource Include="Images\Rules.png" />
     <Resource Include="Images\Yellow D1.png" />
     <Resource Include="Images\Yellow D2.png" />
     <Resource Include="Images\Yellow.png" />
@@ -188,9 +189,6 @@
   <ItemGroup>
     <Resource Include="Images\Yellow H.png" />
     <Resource Include="Images\Yellow V.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Rules.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Loading.PNG" />

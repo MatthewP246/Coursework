@@ -61,7 +61,7 @@ namespace Connect4
                 Difficulty = Diff;
                 Connect4 = new Game(Colour, PlayerName, "Computer", Difficulty);
             }
-
+            CurrentPlayerText.Text = $"{PlayerName} is playing";
             DifficultyText.Text = $"Difficulty: {Difficulty}";
             //Creates binding for the gameboard
             DataContext = Connect4;
@@ -189,8 +189,9 @@ namespace Connect4
 
         private async void GameEnd()
         {
+            //Disables keystroke recognition
             this.KeyDown -= new KeyEventHandler(KeyPressed);
-            //Prevents the user placing any more counters
+            //Prevents the user clicking to place any more counters
             Column1.Visibility = Visibility.Collapsed;
             Column2.Visibility = Visibility.Collapsed;
             Column3.Visibility = Visibility.Collapsed;
