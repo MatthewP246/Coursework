@@ -131,8 +131,8 @@
 
 
             <StackPanel x:Name="CurrentPlayer" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2">
-                <TextBlock x:Name="CurrentPlayerText" Grid.Column="1" Grid.Row="1" Text="Players Turn"  FontSize="20" HorizontalAlignment="Center" Width="108"/>
-                <Image Grid.Column="1" Grid.Row="1" Width="130" Height="130" Source="{Binding Board.Player.Colour, Converter={StaticResource CCConverter}}" Margin="51,39,50,135" Grid.RowSpan="2" />
+                <TextBlock x:Name="CurrentPlayerText" Text="Players Turn"  FontSize="20" HorizontalAlignment="Center"/>
+                <Image Width="130" Height="130" Source="{Binding Board.Player.Colour, Converter={StaticResource CCConverter}}" Margin="51,39,50,135" Grid.RowSpan="2" />
             </StackPanel>
 
             

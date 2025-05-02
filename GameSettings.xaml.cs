@@ -73,7 +73,7 @@ namespace Connect4
             Game game;
             int GameSaveID = 0;
             //Checks if the user has entered all data or loaded a game
-            if (SaveGame.Text == null)
+            if (string.IsNullOrWhiteSpace(SaveGame.Text))
             {
                 if (string.IsNullOrWhiteSpace(P1Name) || (Mode != "Computer" && string.IsNullOrWhiteSpace(P2Name)) || (Mode == "Computer" && string.IsNullOrWhiteSpace(Difficulty.Text)) || string.IsNullOrWhiteSpace(Colour.Text))
                 {
@@ -132,7 +132,16 @@ namespace Connect4
                 MessageBox.Show("Please enter a valid name!", "Invalid input", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            Viewer.AddPlayer(name);
+            try
+            {
+                Viewer.AddPlayer(name);
+                MessageBox.Show($"{name} added to database", "Success", MessageBoxButton.OK);
+            }
+            catch
+            {
+                MessageBox.Show("Invalid username", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            
             NewUser.Clear();
             NewUser.Text = "Enter Username";
             

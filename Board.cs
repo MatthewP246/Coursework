@@ -93,16 +93,19 @@ namespace Connect4
         private bool RecursivePlace(int Column)
         {
 			//Recursive algorithm to place counter
+            //Returns false if column is full as no counter is placed
 			if (Column >= 42) return false;
 
 			if (Grid[Column].Colour == "0")
 			{
+                //Checks if the location is empty and if true, places a counter and returns true
 				Grid[Column].Colour = CurrentPlayer.Colour;
 				Grid2D[Column % 7, Column / 7].Colour = CurrentPlayer.Colour;
 				return true;
 			}
 			else
 			{
+                //Calls itself with the location of one piece up in the column
 				return RecursivePlace(Column + 7);
 			}
 		}

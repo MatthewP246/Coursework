@@ -202,8 +202,10 @@ namespace Connect4
             //Prevents the user starting a new game or saving the completed game
             RestartButton.Visibility = Visibility.Hidden;
             CloseButton.Visibility = Visibility.Hidden;
+            //Hides extra uneccesary details
             CurrentPlayer.Visibility = Visibility.Hidden;
             SaveGameButton.Visibility = Visibility.Hidden;
+            DifficultyText.Visibility = Visibility.Hidden;
             //Displays a message to show a draw and make it visible
             GameWinner.Text = "No one Wins";
             GameWinner.Visibility = Visibility.Visible;
@@ -235,7 +237,10 @@ namespace Connect4
             //Prevents the user starting a new game
             RestartButton.Visibility = Visibility.Hidden;
             CloseButton.Visibility = Visibility.Hidden;
+            //Hides extra uneccesary details
             CurrentPlayer.Visibility = Visibility.Hidden;
+            SaveGameButton.Visibility = Visibility.Hidden;
+            DifficultyText.Visibility = Visibility.Hidden;
 
             GameWinner.Text = $"You {(Win?"Win":"Lose")}";
             GameWinner.Visibility = Visibility.Visible;

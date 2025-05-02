@@ -164,7 +164,7 @@ namespace Connect4
         private void Restart(object sender, RoutedEventArgs e) 
         {
             //Restarts the game with the original settings
-            Window w = new PlayUser(Player1Colour, Player1Name, Player2Name, Connect4, GameSaveID);
+            Window w = new PlayUser(Player1Colour, Player1Name, Player2Name, null, GameSaveID);
             w.Show();
             this.Close();
 
